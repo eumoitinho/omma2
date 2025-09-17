@@ -1,7 +1,11 @@
+"use client";
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer: React.FC = () => {
+    const pathname = usePathname();
+    if (pathname?.startsWith('/lp')) return null;
     const year = new Date().getFullYear();
     return (
         <footer className="border-t border-white/10">

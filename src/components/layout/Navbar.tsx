@@ -1,6 +1,10 @@
+"use client";
 import React from 'react';
+import { usePathname } from 'next/navigation';
 
 const Navbar: React.FC = () => {
+    const pathname = usePathname();
+    if (pathname?.startsWith('/lp')) return null;
     return (
         <header className="fixed top-4 inset-x-0 z-50">
             <div className="mx-auto max-w-7xl px-4 sm:px-6">
