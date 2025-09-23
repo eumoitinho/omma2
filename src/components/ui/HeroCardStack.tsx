@@ -77,7 +77,7 @@ export const HeroCardStack: React.FC = () => {
   }, [current, projects.length]);
 
   return (
-    <div className="relative w-full max-w-md mx-auto h-[520px] select-none" aria-label="Projetos em destaque" role="region">
+    <div className="relative w-full max-w-md mx-auto h-[480px] select-none group" aria-label="Projetos em destaque" role="region">
       {/* Cards in stack */}
       {stackIndexes.map((idx, rank) => {
         const p = projects[idx];
@@ -107,41 +107,33 @@ export const HeroCardStack: React.FC = () => {
               <img
                 src={p.imageUrl}
                 alt={isTop ? p.title : ''}
-                className={`h-full w-full object-cover transition-[filter,transform] duration-700 ${isTop ? 'brightness-90 group-hover:scale-[1.02]' : 'brightness-50'} ${rank > 0 ? 'grayscale-[35%]' : ''}`}
+                className={`h-full w-full object-cover transition-[filter,transform] duration-700 ${isTop ? 'group-hover:scale-[1.02]' : ''} ${rank > 0 ? 'grayscale-[35%]' : ''}`}
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/80" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/55 to-black/85" />
               {rank > 0 && <div className="absolute inset-0 bg-black/30" />}
             </div>
             {/* Content */}
-            <div className="relative h-full flex flex-col justify-end p-6 md:p-7">
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-[11px] uppercase tracking-wide text-amber-300/90">
-                  <span className="px-2 py-0.5 rounded-full bg-amber-400/15 border border-amber-400/30">Projeto</span>
-                  <span className="text-white/50">{(current + 1).toString().padStart(2, '0')} / {projects.length.toString().padStart(2, '0')}</span>
-                </div>
-                <h3 className="text-xl md:text-2xl font-semibold leading-tight text-white drop-shadow-sm">
-                  {p.title}
-                </h3>
-                <p className="text-sm md:text-[15px] leading-relaxed text-white/80 line-clamp-4">
-                  {p.description}
-                </p>
-                {info && (
-                  <div className="space-y-2 text-[11px] md:text-[12px] font-medium tracking-wide text-white/65">
-                    <div className="flex flex-col gap-1">
-                      <span className="text-amber-300/90">Resultados</span>
-                      <p className="text-white/75 font-normal leading-snug">{info.results}</p>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <span className="text-amber-300/90">Escopo</span>
-                      <p className="text-white/75 font-normal leading-snug">{info.scope}</p>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <span className="text-amber-300/90">Foco</span>
-                      <p className="text-white/75 font-normal leading-snug">{info.focus}</p>
-                    </div>
+            <div className="relative h-full flex flex-col justify-end p-4 sm:p-5 md:p-6">
+              <div className="relative rounded-2xl bg-black/55 ring-1 ring-white/10 p-4 md:p-5 backdrop-blur-sm shadow-[0_6px_24px_-10px_rgba(0,0,0,0.6)]">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-[10px] md:text-[11px] uppercase tracking-wide text-amber-300/90">
+                    <span className="px-2 py-0.5 rounded-full bg-amber-400/15 border border-amber-400/30">Projeto</span>
+                    <span className="text-white/50">{(current + 1).toString().padStart(2, '0')} / {projects.length.toString().padStart(2, '0')}</span>
                   </div>
-                )}
+                  <h3 className="text-lg md:text-2xl font-semibold leading-tight text-white drop-shadow-sm line-clamp-2">
+                    {p.title}
+                  </h3>
+                  <p className="text-[13px] md:text-[15px] leading-relaxed text-white/85 line-clamp-2 md:line-clamp-3">
+                    {p.description}
+                  </p>
+                  {info && (
+                    <div className="pt-1 text-[11px] md:text-[12px] font-medium tracking-wide text-white/70">
+                      <span className="text-amber-300/90">Resultados:</span>{' '}
+                      <span className="text-white/85 line-clamp-2">{info.results}</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
