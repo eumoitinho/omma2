@@ -114,27 +114,12 @@ const slides = [
 export default function CorporativosLP() {
   return (
     <div className="min-h-screen">
-      {/* Bloco 1 – Hero (agora com background Spline interativo) */}
+      {/* Bloco 1 – Hero (fundo estático restaurado) */}
       <section className="relative overflow-hidden pt-28 pb-16">
         <div className="absolute inset-0 -z-10">
-          {/* Container Spline (background 3D). Mantemos um fallback estático por trás para evitar flash em carregamento lento */}
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20" aria-hidden="true" />
-            <div className="spline-container absolute inset-0">
-              <iframe
-                src="https://my.spline.design/glassmorphlandingpage-nyOS3MRrg0GCft1x8mCtqPwk"
-                id="aura-spline"
-                title="Ambiente 3D OMMA"
-                className="w-full h-full [mask-image:radial-gradient(circle_at_center,white,transparent_85%)] opacity-95"
-                frameBorder={0}
-                loading="lazy"
-                allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              ></iframe>
-            </div>
-          </div>
-          {/* Overlays para legibilidade do conteúdo */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black" aria-hidden="true" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06),transparent_60%)] mix-blend-overlay" aria-hidden="true" />
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-30" aria-hidden="true" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/60 to-black" aria-hidden="true" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04),transparent_65%)]" aria-hidden="true" />
         </div>
         <RevealObserver />
         
@@ -168,8 +153,14 @@ export default function CorporativosLP() {
         </div>
       </section>
 
-      {/* Bloco 2 – Resultados */}
-      <section className="py-12 border-t border-white/10 reveal">
+      {/* Bloco 2 – Resultados (adicionado fundo âmbar sutil) */}
+      <section className="py-12 border-t border-white/10 reveal relative overflow-hidden bg-[#070605]">
+        {/* Layers âmbar suaves */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-400/[0.05] via-transparent to-amber-300/[0.04]" />
+          <div className="absolute -top-20 -right-32 h-80 w-80 rounded-full bg-amber-500/10 blur-3xl" />
+          <div className="absolute bottom-0 left-1/3 h-64 w-[42rem] -translate-x-1/2 bg-gradient-to-r from-amber-400/10 via-amber-300/0 to-transparent blur-2xl" />
+        </div>
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="text-2xl sm:text-3xl font-semibold text-center" style={{ fontFamily: 'Exo, Inter' }}>
             Resultados que comprovam nossa expertise
@@ -275,8 +266,14 @@ export default function CorporativosLP() {
         </div>
       </section>
 
-      {/* Bloco 4 – Impacto positivo (refatorado com novo layout de cards interativos) */}
-      <section className="py-16 border-t border-white/10 reveal relative">
+      {/* Bloco 4 – Impacto positivo (agora com base âmbar translúcida) */}
+      <section className="py-16 border-t border-white/10 reveal relative overflow-hidden bg-[#090806]">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-amber-400/5" />
+          <div className="absolute -left-40 top-1/3 h-[28rem] w-[28rem] rounded-full bg-amber-400/10 blur-3xl" />
+          <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-amber-500/10 blur-3xl" />
+          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/40 to-transparent" />
+        </div>
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-8">
             <h3 className="text-3xl sm:text-4xl tracking-tight font-semibold max-w-3xl" style={{ fontFamily: 'Exo, Inter' }}>
@@ -413,8 +410,14 @@ export default function CorporativosLP() {
         </div>
       </section>
 
-      {/* Bloco 6 – Adiar vs Conquistar */}
-      <section className="py-12 border-t border-white/10 reveal">
+      {/* Bloco 6 – Adiar vs Conquistar (fundo com véu âmbar sutil) */}
+      <section className="py-12 border-t border-white/10 reveal relative overflow-hidden bg-[#0a0907]">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-amber-400/10" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 h-40 w-[60%] bg-gradient-to-b from-amber-400/15 via-amber-300/0 to-transparent blur-xl opacity-60" />
+          <div className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-amber-500/10 blur-3xl" />
+          <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-amber-300/10 blur-3xl" />
+        </div>
         <div className="mx-auto max-w-7xl px-6">
           <div
             className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 ring-1 ring-white/5 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-md shadow-2xl shadow-black/30 anim-fadeSlideUp"
@@ -581,8 +584,13 @@ export default function CorporativosLP() {
         </div>
       </section>
 
-      {/* Bloco 9 – Projetos/carrossel */}
-      <section className="py-12 border-t border-white/10">
+      {/* Bloco 9 – Projetos/carrossel (com película âmbar leve para coerência) */}
+      <section className="py-12 border-t border-white/10 relative overflow-hidden bg-[#0b0a08]">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-amber-400/5" />
+          <div className="absolute top-1/2 -translate-y-1/2 left-0 h-[26rem] w-[30rem] bg-radial-[farthest-side_at_left_center] from-amber-400/15 via-transparent to-transparent blur-2xl" />
+          <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-amber-500/10 blur-3xl" />
+        </div>
         <div className="mx-auto max-w-7xl px-6">
           <h3 className="text-2xl font-semibold" style={{ fontFamily: 'Exo, Inter' }}>Projetos que falam por nós</h3>
           <p className="text-white/70 mt-2 text-sm">As imagens definitivas podem ser vinculadas às obras publicadas em omma.com.br/obras-realizadas.</p>
