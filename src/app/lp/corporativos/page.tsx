@@ -1,6 +1,5 @@
 import React from 'react';
 import ProjectsCarousel from '@/components/lp/ProjectsCarousel';
-import LeadForm from '@/components/lp/LeadForm';
 import { RevealObserver } from '@/components/ui/useReveal';
 import ContactForm from '@/components/lp/ContactForm';
 

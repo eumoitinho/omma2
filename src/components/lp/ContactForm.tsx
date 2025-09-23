@@ -37,7 +37,7 @@ export default function ContactForm() {
       // Placeholder: aqui poderia chamar uma rota /api/lead futuramente
       await new Promise((r) => setTimeout(r, 800));
       setStatus('ok');
-    } catch (err) {
+    } catch {
       setStatus('error');
     } finally {
       setTimeout(() => setStatus('idle'), 4000);
