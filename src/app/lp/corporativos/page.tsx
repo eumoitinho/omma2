@@ -1,4 +1,6 @@
 import React from 'react';
+import projectsData from '@/../projects.json';
+import HeroCardStack from '@/components/ui/HeroCardStack';
 import ProjectsCarousel from '@/components/lp/ProjectsCarousel';
 import { RevealObserver } from '@/components/ui/useReveal';
 import ContactForm from '@/components/lp/ContactForm';
@@ -27,42 +29,12 @@ const sectors = [
 // Versão detalhada para o novo layout de "Setores" (Bloco 5)
 // Mantemos as cores (base escura + acentos âmbar) e textos coerentes com a proposta.
 const sectorCards = [
-  {
-    key: 'Escritórios',
-    title: 'Escritórios Corporativos',
-    desc: 'Layouts eficientes que equilibram foco e colaboração, fortalecendo cultura e performance diária.',
-    img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop',
-  },
-  {
-    key: 'Startups',
-    title: 'Startups & Scale-ups',
-    desc: 'Ambientes flexíveis e escaláveis que acompanham o crescimento e estimulam velocidade de execução.',
-    img: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop',
-  },
-  {
-    key: 'Coworkings',
-    title: 'Coworkings',
-    desc: 'Espaços multiuso desenhados para alta rotatividade, conforto e retenção de clientes e comunidades.',
-    img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1200&auto=format&fit=crop',
-  },
-  {
-    key: 'Clínicas médicas',
-    title: 'Clínicas e Saúde',
-    desc: 'Ambientes humanizados, funcionais e normativos que elevam a experiência de pacientes e equipes.',
-    img: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1200&auto=format&fit=crop',
-  },
-  {
-    key: 'Laboratórios',
-    title: 'Laboratórios',
-    desc: 'Infraestrutura técnica precisa, segurança e fluxo operacional otimizado para alta confiabilidade.',
-    img: 'https://images.unsplash.com/photo-1581091215367-59ab6b28d7c5?q=80&w=1200&auto=format&fit=crop',
-  },
-  {
-    key: 'Estabelecimentos comerciais',
-    title: 'Espaços Comerciais',
-    desc: 'Projetos que convertem: estética, funcionalidade e identidade para maximizar valor de marca.',
-    img: 'https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=1200&auto=format&fit=crop',
-  },
+  { key: 'Escritórios', title: 'Escritórios Corporativos', desc: 'Layouts eficientes que equilibram foco e colaboração, fortalecendo cultura e performance diária.', img: '/OMMA%20001/camb1-1024x676.jpg' },
+  { key: 'Startups', title: 'Startups & Scale-ups', desc: 'Ambientes flexíveis e escaláveis que acompanham o crescimento e estimulam velocidade de execução.', img: '/OMMA%20001/Movile1.jpg' },
+  { key: 'Coworkings', title: 'Coworkings', desc: 'Espaços multiuso desenhados para alta rotatividade, conforto e retenção de clientes e comunidades.', img: '/OMMA%20001/Movile2%20(1).jpg' },
+  { key: 'Clínicas médicas', title: 'Clínicas e Saúde', desc: 'Ambientes humanizados, funcionais e normativos que elevam a experiência de pacientes e equipes.', img: '/OMMA%20001/uni11-1024x676.jpg' },
+  { key: 'Laboratórios', title: 'Laboratórios', desc: 'Infraestrutura técnica precisa, segurança e fluxo operacional otimizado para alta confiabilidade.', img: '/OMMA%20001/melhoramentos2%20(1).jpg' },
+  { key: 'Estabelecimentos comerciais', title: 'Espaços Comerciais', desc: 'Projetos que convertem: estética, funcionalidade e identidade para maximizar valor de marca.', img: '/OMMA%20001/pdc3-1024x676.jpg' },
 ];
 
 const clients = [
@@ -78,48 +50,34 @@ const clients = [
   'Movile',
 ];
 
-const slides = [
-  {
-    title: 'Decathlon – Espaços funcionais para alta performance',
-    description:
-      'Projeto focado em otimização de fluxo interno e identidade de marca em ambientes corporativos conectados à cultura esportiva.',
-    imageUrl: 'https://omma.com.br/wp-content/uploads/2022/12/Decathlon.jpg',
-  },
-  {
-    title: 'Recursus – Infraestrutura corporativa eficiente',
-    description:
-      'Soluções sob medida aliando modernização de layout, conforto e escalabilidade operacional para a equipe.',
-    imageUrl: 'https://omma.com.br/wp-content/uploads/2022/12/recursus.jpg',
-  },
-  {
-    title: 'Ambev – Ambientes que fortalecem a cultura',
-    description:
-      'Integração de espaços colaborativos e áreas técnicas com alto padrão de acabamento e gestão precisa de prazos.',
-    imageUrl: 'https://omma.com.br/wp-content/uploads/2022/12/ambev.jpg',
-  },
-  {
-    title: 'Unimed – Escala, organização e bem-estar',
-    description:
-      'Entrega ágil de ambientes corporativos distribuídos em múltiplos pavimentos, com gestão centralizada e qualidade.',
-    imageUrl: 'https://omma.com.br/wp-content/uploads/2022/12/unimed.jpg',
-  },
-  {
-    title: 'Azul – Identidade e tecnologia em equilíbrio',
-    description:
-      'Espaços pensados para performance e experiência do usuário, refletindo inovação e dinamismo da marca.',
-    imageUrl: 'https://omma.com.br/wp-content/uploads/2022/12/azul.jpg',
-  },
+const slides = (projectsData as { title: string; description: string; imageUrl: string }[]);
+
+// Banco de imagens para os cards de impacto (Bloco 4)
+const impactoImages = [
+  '/OMMA%20001/Movile1.jpg',
+  '/OMMA%20001/ultracargo2-1024x676.jpg',
+  '/OMMA%20001/ambev2.jpg',
+  '/OMMA%20001/melhoramentos3.jpg',
+  '/OMMA%20001/pdc3-1024x676.jpg',
+  '/OMMA%20001/uni10-1024x676.jpg',
 ];
 
 export default function CorporativosLP() {
   return (
     <div className="min-h-screen">
-      {/* Bloco 1 – Hero (fundo estático restaurado) */}
+      {/* Bloco 1 – Hero (mais âmbar em layers, sem imagem externa) */}
       <section className="relative overflow-hidden pt-28 pb-16">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-30" aria-hidden="true" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/60 to-black" aria-hidden="true" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04),transparent_65%)]" aria-hidden="true" />
+          {/* Base escura com película âmbar */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0d0b08] via-[#0a0908] to-black" aria-hidden="true" />
+          {/* Radiais âmbar suaves */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_32%,rgba(251,191,36,0.22),transparent_60%)] mix-blend-screen" aria-hidden="true" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_68%,rgba(253,215,99,0.18),transparent_55%)] mix-blend-screen" aria-hidden="true" />
+          {/* Blobs difusos */}
+          <div className="absolute -top-40 -left-44 h-[42rem] w-[42rem] rounded-full bg-amber-400/10 blur-3xl" aria-hidden="true" />
+          <div className="absolute top-1/2 -translate-y-1/2 right-0 h-[34rem] w-[34rem] rounded-full bg-amber-500/10 blur-3xl" aria-hidden="true" />
+          {/* Layer de escurecimento gradual */}
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,193,7,0.10)_0%,rgba(0,0,0,0.55)_45%,rgba(0,0,0,0.92)_90%)]" aria-hidden="true" />
         </div>
         <RevealObserver />
         
@@ -145,32 +103,37 @@ export default function CorporativosLP() {
                 </a>
               </div>
             </div>
-            {/* Placeholder visual (mantido como bloco vazio, pode futuramente ter media) */}
-            <div className="hidden lg:block relative">
-              <div className="aspect-[3/4] w-full max-w-md mx-auto rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm anim-fadeScaleIn" />
+            {/* Pilha animada de cards de projetos */}
+            <div className="hidden lg:block relative anim-fadeScaleIn">
+              <HeroCardStack />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Bloco 2 – Resultados (adicionado fundo âmbar sutil) */}
-      <section className="py-12 border-t border-white/10 reveal relative overflow-hidden bg-[#070605]">
-        {/* Layers âmbar suaves */}
+      {/* Bloco 2 – Resultados (camadas âmbar adicionadas) */}
+      <section className="py-12 border-t border-white/10 reveal relative overflow-hidden">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-amber-400/[0.05] via-transparent to-amber-300/[0.04]" />
-          <div className="absolute -top-20 -right-32 h-80 w-80 rounded-full bg-amber-500/10 blur-3xl" />
-          <div className="absolute bottom-0 left-1/3 h-64 w-[42rem] -translate-x-1/2 bg-gradient-to-r from-amber-400/10 via-amber-300/0 to-transparent blur-2xl" />
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-400/5 via-transparent to-amber-300/5" />
+          <div className="absolute -right-40 top-1/2 -translate-y-1/2 h-[30rem] w-[30rem] rounded-full bg-amber-400/10 blur-3xl" />
+          <div className="absolute -left-40 top-0 h-[24rem] w-[24rem] rounded-full bg-amber-500/10 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_25%,rgba(251,191,36,0.18),transparent_60%)] opacity-60" />
         </div>
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-7xl px-6 relative">
           <h2 className="text-2xl sm:text-3xl font-semibold text-center" style={{ fontFamily: 'Exo, Inter' }}>
             Resultados que comprovam nossa expertise
           </h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             {stats.map((s, i) => (
-              <div key={s.label} className={`rounded-2xl bg-white/5 ring-1 ring-white/10 p-6 anim-fadeSlideUp`} style={{ animationDelay: `${0.1 * i}s` }}>
-                <div className="text-3xl font-bold text-amber-400" style={{ fontFamily: 'Exo, Inter' }}>{s.value}</div>
-                <div className="text-white/90 mt-1 font-medium">{s.label}</div>
-                <p className="text-white/70 mt-3 text-sm">{s.desc}</p>
+              <div
+                key={s.label}
+                className={`relative rounded-2xl p-6 anim-fadeSlideUp overflow-hidden group ring-1 ring-white/10 bg-gradient-to-br from-white/5 via-neutral-900/30 to-amber-400/10 hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25),0_8px_28px_-6px_rgba(251,191,36,0.25)] transition-shadow`}
+                style={{ animationDelay: `${0.1 * i}s` }}
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_78%_22%,rgba(251,191,36,0.28),transparent_65%)]" />
+                <div className="relative text-3xl font-bold text-amber-300 drop-shadow" style={{ fontFamily: 'Exo, Inter' }}>{s.value}</div>
+                <div className="relative text-white/90 mt-1 font-medium">{s.label}</div>
+                <p className="relative text-white/70 mt-3 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -178,7 +141,11 @@ export default function CorporativosLP() {
       </section>
 
       {/* Bloco 3 – Sem dor de cabeça (refatorado com layout de componente fornecido) */}
-      <section className="py-16 border-t border-white/10 reveal">
+      <section className="py-16 border-t border-white/10 reveal relative overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-transparent" />
+          <div className="absolute top-1/3 left-0 h-72 w-72 rounded-full bg-amber-400/10 blur-3xl" />
+        </div>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-medium text-amber-300" style={{ fontFamily: 'Exo, Inter' }}>Sem dor de cabeça</span>
@@ -186,6 +153,7 @@ export default function CorporativosLP() {
             <p className="mt-3 sm:mt-4 text-sm sm:text-base font-medium text-white/80" style={{ fontFamily: 'Inter' }}>
               Os principais riscos que eliminamos em cada projeto corporativo de alto padrão.
             </p>
+            
           </div>
 
           {/* Marquee de cards (problemas e soluções) */}
@@ -198,26 +166,14 @@ export default function CorporativosLP() {
                 {[...Array(2)].map((_, dup) => (
                   <React.Fragment key={dup}>
                     {[
-                      {
-                        title: 'Prazos estourados?',
-                        img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop'
-                      },
-                      {
-                        title: 'Custos imprevistos?',
-                        img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop'
-                      },
-                      {
-                        title: 'Falta de gestão?',
-                        img: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=800&auto=format&fit=crop'
-                      },
-                      {
-                        title: 'Qualidade questionável?',
-                        img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop'
-                      },
+                      { title: 'Prazos estourados?', img: '/OMMA%20001/ultracargo2-1024x676.jpg' },
+                      { title: 'Custos imprevistos?', img: '/OMMA%20001/ultracargo4-1024x676%20(1).jpg' },
+                      { title: 'Falta de gestão?', img: '/OMMA%20001/movile3-1%20(1).jpg' },
+                      { title: 'Qualidade questionável?', img: '/OMMA%20001/uni10-1024x676.jpg' },
                     ].map((item, i) => (
                       <div
                         key={item.title + dup + i}
-                        className="relative flex-shrink-0 w-[240px] sm:w-[260px] md:w-[280px] h-44 sm:h-52 md:h-56 mr-4 sm:mr-6 rounded-2xl overflow-hidden ring-1 ring-white/10 bg-black/40 group"
+                        className="relative flex-shrink-0 w-[240px] sm:w-[260px] md:w-[280px] h-44 sm:h-52 md:h-56 mr-4 sm:mr-6 rounded-2xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-black/60 via-black/40 to-amber-400/10 group"
                       >
                         <img
                           src={item.img}
@@ -225,7 +181,8 @@ export default function CorporativosLP() {
                           className="absolute inset-0 w-full h-full object-cover transition-transform duration-[6000ms] group-hover:scale-105"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-80 group-hover:opacity-90 transition" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_70%_25%,rgba(251,191,36,0.25),transparent_60%)]" />
                         <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between">
                           <span className="sr-only">{item.title}</span>
                           <span className="h-7 w-7 rounded-full bg-amber-400/20 backdrop-blur-sm ring-1 ring-amber-400/40 flex items-center justify-center text-[10px] text-amber-300 font-semibold">{i + 1}</span>
@@ -256,9 +213,10 @@ export default function CorporativosLP() {
                   text: 'Garantimos padrões elevados em cada detalhe: acabamentos refinados e sistemas de alta performance que asseguram ambientes funcionais, seguros e estéticos.'
                 },
               ].map((item) => (
-                <div key={item.title} className="rounded-2xl ring-1 ring-white/10 bg-white/5 p-5">
+                <div key={item.title} className="relative rounded-2xl ring-1 ring-white/10 bg-gradient-to-br from-white/5 via-white/5 to-amber-400/10 p-5 overflow-hidden group">
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_65%_30%,rgba(251,191,36,0.25),transparent_60%)]" />
                   <h4 className="font-semibold text-white text-base">{item.title}</h4>
-                  <p className="text-white/70 text-sm mt-3 leading-relaxed">{item.text}</p>
+                  <p className="relative text-white/70 text-sm mt-3 leading-relaxed group-hover:text-white/80 transition-colors">{item.text}</p>
                 </div>
               ))}
             </div>
@@ -266,13 +224,13 @@ export default function CorporativosLP() {
         </div>
       </section>
 
-      {/* Bloco 4 – Impacto positivo (agora com base âmbar translúcida) */}
-      <section className="py-16 border-t border-white/10 reveal relative overflow-hidden bg-[#090806]">
+      {/* Bloco 4 – Impacto positivo */}
+      <section className="py-16 border-t border-white/10 reveal relative overflow-hidden">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-amber-400/5" />
-          <div className="absolute -left-40 top-1/3 h-[28rem] w-[28rem] rounded-full bg-amber-400/10 blur-3xl" />
-          <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-amber-500/10 blur-3xl" />
-          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-amber-400/10" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 h-40 w-[60%] bg-gradient-to-b from-amber-400/20 via-amber-300/0 to-transparent blur-xl opacity-60" />
+          <div className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-amber-500/10 blur-3xl" />
+          <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-amber-300/10 blur-3xl" />
         </div>
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-8">
@@ -289,28 +247,32 @@ export default function CorporativosLP() {
               { t: 'Acabamentos de qualidade', d: 'Valorizamos seu negócio com materiais de alto padrão que garantem estética, durabilidade e funcionalidade a cada ambiente.' },
               { t: 'Instalações elétricas otimizadas', d: 'Projetamos uma infraestrutura moderna e segura, preparada para atender plenamente às demandas tecnológicas do seu negócio.' },
             ].map((i, idx) => {
-              const highlight = idx === 2; // Destaque sutil para o 3º card
+              const highlight = idx === 2;
+              const img = impactoImages[idx % impactoImages.length];
               return (
                 <div
                   key={i.t}
                   className={[
-                    'relative group cursor-default rounded-3xl p-6 backdrop-blur supports-[backdrop-filter]:bg-black/40 transition-all duration-300',
-                    'ring-1 ring-white/10 bg-white/5',
-                    'hover:-translate-y-2 hover:scale-[1.03] hover:bg-white/10 hover:ring-amber-400/40',
-                    highlight ? 'ring-amber-400/30 bg-gradient-to-b from-amber-400/10 via-white/5 to-transparent shadow-[0_0_0_1px_rgba(251,191,36,0.15),0_0_40px_-10px_rgba(251,191,36,0.2)]' : '',
+                    'relative group cursor-default rounded-3xl overflow-hidden p-6 transition-all duration-500',
+                    'ring-1 ring-white/10 bg-gradient-to-br from-black/55 via-black/35 to-amber-400/10',
+                    'hover:-translate-y-2 hover:scale-[1.03] hover:ring-amber-400/50',
+                    highlight ? 'ring-amber-400/40 shadow-[0_0_0_1px_rgba(251,191,36,0.25),0_0_50px_-8px_rgba(251,191,36,0.35)]' : ''
                   ].join(' ')}
                   style={{ animationDelay: `${0.04 * idx}s` }}
                 >
-                  <div className="mb-4 flex items-center justify-between">
-                    <div className="grid h-12 w-12 place-items-center rounded-xl bg-black/50 ring-1 ring-white/10 group-hover:ring-amber-400/40 group-hover:bg-amber-400/10 transition-all duration-300">
+                  <img src={img} alt="" className="absolute inset-0 h-full w-full object-cover opacity-60 group-hover:opacity-70 transition-opacity duration-500" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 group-hover:from-black/55 group-hover:via-black/35 group-hover:to-black/75 transition-colors" />
+                  <div className="pointer-events-none absolute inset-0 [background:radial-gradient(circle_at_30%_30%,rgba(255,193,7,0.15),transparent_60%)] opacity-70 mix-blend-screen" />
+                  <div className="relative mb-4 flex items-center justify-between">
+                    <div className="grid h-12 w-12 place-items-center rounded-xl bg-black/40 ring-1 ring-white/15 group-hover:ring-amber-400/50 group-hover:bg-amber-400/10 transition-all duration-300 backdrop-blur-sm">
                       <span className="text-[11px] font-semibold text-amber-300" style={{ fontFamily: 'Exo, Inter' }}>{String(idx + 1).padStart(2, '0')}</span>
                     </div>
                     <span className="text-xs text-white/40 group-hover:text-amber-300 transition-colors font-medium" style={{ fontFamily: 'Exo, Inter' }}>{idx + 1}</span>
                   </div>
-                  <h4 className="mb-2 text-lg font-semibold tracking-tight text-white group-hover:text-amber-200 transition-colors" style={{ fontFamily: 'Exo, Inter' }}>{i.t}</h4>
-                  <p className="text-sm text-white/70 group-hover:text-white/80 transition-colors leading-relaxed" style={{ fontFamily: 'Inter' }}>{i.d}</p>
+                  <h4 className="relative mb-2 text-lg font-semibold tracking-tight text-white group-hover:text-amber-200 transition-colors" style={{ fontFamily: 'Exo, Inter' }}>{i.t}</h4>
+                  <p className="relative text-sm text-white/75 group-hover:text-white/85 transition-colors leading-relaxed" style={{ fontFamily: 'Inter' }}>{i.d}</p>
                   {highlight && (
-                    <div className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-radial-[farthest-side_at_50%_20%] from-amber-400/20 via-transparent to-transparent" />
+                    <div className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-radial-[farthest-side_at_50%_25%] from-amber-400/25 via-transparent to-transparent" />
                   )}
                 </div>
               );
@@ -328,7 +290,7 @@ export default function CorporativosLP() {
       </section>
 
       {/* Bloco 5 – Setores (refatorado com layout de cards com imagem e interação) */}
-      <section className="py-16 border-t border-white/10 reveal">
+      <section className="py-16 border-t border-white/10 reveal relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-10">
             <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight" style={{ fontFamily: 'Exo, Inter' }}>
@@ -348,11 +310,10 @@ export default function CorporativosLP() {
                   <article
                     key={card.key}
                     className={[
-                      'group relative overflow-hidden rounded-2xl border border-white/10 p-6 backdrop-blur-xl',
-                      'bg-gradient-to-b from-white/10 to-white/5',
-                      'hover:from-white/14 hover:to-white/8 transition-all duration-500',
-                      highlight ? 'ring-1 ring-amber-400/30 shadow-[0_0_40px_-10px_rgba(251,191,36,0.25)]' : 'ring-1 ring-white/5',
-                      'anim-fadeSlideUp'
+                      'group relative overflow-hidden rounded-2xl border border-white/10 p-6 backdrop-blur-xl anim-fadeSlideUp',
+                      'bg-gradient-to-br from-white/10 via-neutral-900/20 to-amber-400/10',
+                      'hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25),0_8px_32px_-8px_rgba(251,191,36,0.35)] transition-all duration-500',
+                      highlight ? 'ring-amber-400/40' : 'ring-white/5'
                     ].join(' ')}
                     style={{ animationDelay: `${0.05 * idx}s` }}
                   >
@@ -363,7 +324,8 @@ export default function CorporativosLP() {
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_75%_25%,rgba(251,191,36,0.25),transparent_60%)]" />
                       <div className="absolute top-3 right-3 flex gap-2">
                         <span className="inline-flex h-8 px-3 items-center justify-center rounded-full bg-black/40 ring-1 ring-white/15 text-[11px] font-medium tracking-wide text-white/70 group-hover:text-amber-300 group-hover:ring-amber-400/40 transition-colors" style={{ fontFamily: 'Exo, Inter' }}>
                           {String(idx + 1).padStart(2, '0')}
@@ -411,13 +373,7 @@ export default function CorporativosLP() {
       </section>
 
       {/* Bloco 6 – Adiar vs Conquistar (fundo com véu âmbar sutil) */}
-      <section className="py-12 border-t border-white/10 reveal relative overflow-hidden bg-[#0a0907]">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-amber-400/10" />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 h-40 w-[60%] bg-gradient-to-b from-amber-400/15 via-amber-300/0 to-transparent blur-xl opacity-60" />
-          <div className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-amber-500/10 blur-3xl" />
-          <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-amber-300/10 blur-3xl" />
-        </div>
+      <section className="py-12 border-t border-white/10 reveal relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-6">
           <div
             className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 ring-1 ring-white/5 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-md shadow-2xl shadow-black/30 anim-fadeSlideUp"
@@ -434,7 +390,7 @@ export default function CorporativosLP() {
                   </p>
                 </div>
                 <div className="flex items-center gap-1.5 mt-4 sm:mt-0 opacity-70">
-                  <span className="h-2 w-2 rounded-full bg-amber-400/70 animate-pulse" />
+                  <span className="h-2 w-2 rounded-full bg-amber-400/70" />
                   <span className="h-2 w-2 rounded-full bg-white/20" />
                   <span className="h-2 w-2 rounded-full bg-white/20" />
                   <span className="h-2 w-2 rounded-full bg-white/20" />
@@ -511,12 +467,6 @@ export default function CorporativosLP() {
 
       {/* Bloco 7 – Metodologia (adicionado gradientes sutis para reduzir o preto contínuo) */}
       <section className="py-12 border-t border-white/10 reveal relative overflow-hidden">
-        {/* Layers decorativos */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-80">
-          <div className="absolute -top-40 -left-32 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl" />
-          <div className="absolute top-1/3 -right-40 h-[28rem] w-[28rem] rounded-full bg-amber-200/10 blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-72 w-[40rem] bg-gradient-to-r from-amber-400/10 via-amber-300/5 to-transparent blur-2xl" />
-        </div>
         <div className="relative mx-auto max-w-7xl px-6">
           <h3 className="text-2xl font-semibold text-center">METODOLOGIA OMMA</h3>
           <p className="text-center text-white/70 mt-1">O caminho para o sucesso do seu projeto</p>
@@ -549,13 +499,9 @@ export default function CorporativosLP() {
         </div>
       </section>
 
-      {/* Bloco 8 – Nossos clientes (incluído gradiente claro âmbar) */}
-      <section className="py-12 border-t border-white/10 reveal relative overflow-hidden">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-amber-300/5 via-amber-200/0 to-transparent" />
-          <div className="absolute -bottom-40 right-0 h-96 w-96 rounded-full bg-amber-500/10 blur-3xl" />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-6">
+      {/* Bloco 8 – Nossos clientes */}
+      <section className="py-12 border-t border-white/10 reveal">
+        <div className="mx-auto max-w-7xl px-6">
           <h3 className="text-2xl font-semibold text-center text-amber-300">NOSSOS CLIENTES</h3>
           {/* Marquee container */}
           <div className="mt-8 relative overflow-hidden">
@@ -584,13 +530,8 @@ export default function CorporativosLP() {
         </div>
       </section>
 
-      {/* Bloco 9 – Projetos/carrossel (com película âmbar leve para coerência) */}
-      <section className="py-12 border-t border-white/10 relative overflow-hidden bg-[#0b0a08]">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-amber-400/5" />
-          <div className="absolute top-1/2 -translate-y-1/2 left-0 h-[26rem] w-[30rem] bg-radial-[farthest-side_at_left_center] from-amber-400/15 via-transparent to-transparent blur-2xl" />
-          <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-amber-500/10 blur-3xl" />
-        </div>
+      {/* Bloco 9 – Projetos/carrossel */}
+      <section className="py-12 border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6">
           <h3 className="text-2xl font-semibold" style={{ fontFamily: 'Exo, Inter' }}>Projetos que falam por nós</h3>
           <p className="text-white/70 mt-2 text-sm">As imagens definitivas podem ser vinculadas às obras publicadas em omma.com.br/obras-realizadas.</p>
@@ -688,8 +629,8 @@ export default function CorporativosLP() {
 
       {/* Bloco 12 – Contato (refatorado com formulário em layout claro âmbar com transição suave) */}
       <section id="contato" className="pt-28 pb-20 border-t border-white/10 reveal relative overflow-hidden bg-gradient-to-br from-amber-200/55 via-amber-300/35 to-amber-400/30">
-        {/* Layer de transição superior (escuro -> âmbar) */}
-        <div aria-hidden="true" className="pointer-events-none absolute -top-32 inset-x-0 h-40 bg-gradient-to-b from-[#1a1405] via-amber-900/10 to-transparent" />
+        {/* Layer de transição superior (escuro -> âmbar) com gradiente mais suave para evitar transição abrupta */}
+        <div aria-hidden="true" className="pointer-events-none absolute -top-40 inset-x-0 h-48 bg-gradient-to-b from-[#1a1405] via-amber-900/20 via-amber-800/15 via-amber-600/10 to-transparent" />
         {/* Vignette decorativa ajustada */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 mix-blend-multiply">
           <div className="absolute -top-40 -left-24 h-[26rem] w-[26rem] rounded-full bg-amber-500/25 blur-3xl" />
