@@ -16,15 +16,6 @@ const stats = [
   { value: '+24', label: 'anos de experiência', desc: 'Tradição e inovação a serviço do seu projeto corporativo.' },
 ];
 
-const sectors = [
-  'Escritórios',
-  'Startups',
-  'Coworkings',
-  'Clínicas médicas',
-  'Laboratórios',
-  'Escolas',
-  'Estabelecimentos comerciais',
-];
 
 // Versão detalhada para o novo layout de "Setores" (Bloco 5)
 // Mantemos as cores (base escura + acentos âmbar) e textos coerentes com a proposta.

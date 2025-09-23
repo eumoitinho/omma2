@@ -24,14 +24,17 @@ export default function LeadForm() {
       setDone(true);
       form.reset();
     } catch (err: unknown) {
-      if (err && typeof err === 'object' && 'message' in err && typeof (err as any).message === 'string') {
-        setError((err as { message: string }).message);
-      } else {
-        setError('Erro inesperado');
-      }
+      const message = getErrorMessage(err);
+      setError(message);
     } finally {
       setLoading(false);
     }
+  }
+
+  function getErrorMessage(err: unknown): string {
+    if (err instanceof Error && typeof err.message === 'string') return err.message;
+    if (typeof err === 'string') return err;
+    return 'Erro inesperado';
   }
 
   return (
