@@ -27,6 +27,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <div className="absolute -bottom-[10%] -right-[10%] h-[36rem] w-[36rem] rounded-full bg-white/10 blur-[140px]" />
                     <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black" />
                 </div>
+                <script src="https://68d30b3900346b9d2c00.sfo.appwrite.run/widget.js"></script>
+<script
+    dangerouslySetInnerHTML={{
+        __html: `
+            Feed2Dev.init({
+                projectId: '68d2f6720002e0a23941',
+                appwriteEndpoint: 'https://sfo.cloud.appwrite.io/v1',
+                appwriteProjectId: '68d2f6720002e0a23941',
+                position: 'bottom-right',
+                primaryColor: '#667eea',
+                title: 'Enviar Feedback',
+                subtitle: 'Adoraríamos ouvir sua opinião!'
+            });
+        `,
+    }}
+></script>
 
                 <Navbar />
                 <main>{children}</main>
