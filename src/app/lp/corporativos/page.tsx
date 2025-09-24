@@ -366,104 +366,102 @@ export default function CorporativosLP() {
       {/* Bloco 6 – Adiar vs Conquistar (fundo com véu âmbar sutil) */}
       <section className="py-12 border-t border-white/10 reveal relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-6">
-          <div
-            className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 ring-1 ring-white/5 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-md shadow-2xl shadow-black/30 anim-fadeSlideUp"
-          >
-            {/* Top content */}
-            <div className="p-6 md:p-8">
-              <div className="flex items-center justify-between gap-4 flex-wrap">
-                <div>
-                  <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight" style={{ fontFamily: 'Exo, Inter' }}>
-                   Compare o impacto de adiar sua obra com os ganhos concretos de executar um projeto profissional OMMA.
-                  </h3>
-                  
-                </div>
-                <div className="flex items-center gap-1.5 mt-4 sm:mt-0 opacity-70">
-                  <span className="h-2 w-2 rounded-full bg-amber-400/70" />
-                  <span className="h-2 w-2 rounded-full bg-white/20" />
-                  <span className="h-2 w-2 rounded-full bg-white/20" />
-                  <span className="h-2 w-2 rounded-full bg-white/20" />
-                </div>
-              </div>
-
-              {/* Two-column comparison inside card */}
-              <div className="mt-8 grid md:grid-cols-2 gap-10">
-              <div className="relative">
-                <div className="relative">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-[11px] font-medium text-amber-300 tracking-wide">
-                  Adiar o projeto
-                  </div>
-                  <h4 className="mt-4 text-lg font-semibold" style={{ fontFamily: 'Exo, Inter' }}>
-                  O que acontece quando você adia seu projeto?
-                  </h4>
-                  <div className="mt-4 space-y-2 text-white/80 text-sm leading-relaxed" style={{ fontFamily: 'Inter' }}>
-                  {[
-                    'Equipe desmotivada',
-                    'Estrutura do ambiente desorganizada',
-                    'Redução de performance',
-                    'Layouts que dificultam a comunicação e a colaboração',
-                    'Ambientes monótonos e sem estímulos criativos',
-                  ].map((t) => (
-                    <div key={t} className="flex items-start gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0">
-                      <path d="M18 6L6 18" />
-                      <path d="M6 6l12 12" />
-                    </svg>
-                    <span>{t}</span>
-                    </div>
-                  ))}
-                  </div>
-                </div>
-                <div className="relative">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-[11px] font-medium text-amber-300 tracking-wide">
-                  Conquistar com a OMMA
-                  </div>
-                  <h4 className="mt-4 text-lg font-semibold" style={{ fontFamily: 'Exo, Inter' }}>
-                  O que você conquista ao fechar seu projeto com a OMMA?
-                  </h4>
-                  <div className="mt-4 space-y-2 text-white/80 text-sm leading-relaxed" style={{ fontFamily: 'Inter' }}>
-                  {[
-                    'Espaços versáteis e integrados',
-                    'Acabamentos e revestimentos de qualidade',
-                    'Infraestrutura moderna e segura',
-                    'Espaços organizados e decorados',
-                    'Fortalecimento da cultura e da marca',
-                  ].map((t) => (
-                    <div key={t} className="flex items-start gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0">
-                      <path d="M20 6L9 17l-5-5" />
-                    </svg>
-                    <span>{t}</span>
-                    </div>
-                  ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom bar */}
-              <div className="mt-10 flex items-center justify-between pt-6 border-t border-white/10">
-                <p className="text-xs sm:text-sm text-white/50" style={{ fontFamily: 'Inter' }}>
-                  Decisão estratégica: cada mês de adiamento impacta motivação, eficiência e marca.
-                </p>
-                <a
-                  href="#form"
-                  className="inline-flex items-center gap-2 rounded-xl border border-amber-400/70 bg-amber-400/10 px-4 py-2 text-xs font-medium text-white hover:bg-amber-400/20 hover:scale-[1.03] transition-all"
-                >
-                  INICIAR PROJETO
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
+          <div className="group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 ring-1 ring-white/5 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-md shadow-2xl shadow-black/30 anim-fadeSlideUp">
+        {/* Top content */}
+        <div className="p-6 md:p-8">
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <div>
+          <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight" style={{ fontFamily: 'Exo, Inter' }}>
+            Compare o impacto de adiar sua obra com os ganhos concretos de executar um projeto profissional OMMA.
+          </h3>
             </div>
-
-            {/* Decorative gradient / sheen */}
-            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-              <div className="absolute -top-10 -right-10 h-48 w-48 rounded-full bg-amber-400/10 blur-3xl" />
+            <div className="flex items-center gap-1.5 mt-4 sm:mt-0 opacity-70">
+          <span className="h-2 w-2 rounded-full bg-amber-400/70" />
+          <span className="h-2 w-2 rounded-full bg-white/20" />
+          <span className="h-2 w-2 rounded-full bg-white/20" />
+          <span className="h-2 w-2 rounded-full bg-white/20" />
             </div>
           </div>
-          </div>  
+
+          {/* Two-column comparison inside card */}
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-10">
+            {/* Coluna 1 – Adiar */}
+            <div className="relative">
+          <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-[11px] font-medium text-amber-300 tracking-wide">
+            Adiar o projeto
+          </div>
+          <h4 className="mt-4 text-lg font-semibold" style={{ fontFamily: 'Exo, Inter' }}>
+            O que acontece quando você adia seu projeto?
+          </h4>
+          <div className="mt-4 space-y-2 text-white/80 text-sm leading-relaxed" style={{ fontFamily: 'Inter' }}>
+            {[
+              'Equipe desmotivada',
+              'Estrutura do ambiente desorganizada',
+              'Redução de performance',
+              'Layouts que dificultam a comunicação e a colaboração',
+              'Ambientes monótonos e sem estímulos criativos',
+            ].map((t) => (
+              <div key={t} className="flex items-start gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0">
+              <path d="M18 6L6 18" />
+              <path d="M6 6l12 12" />
+            </svg>
+            <span>{t}</span>
+              </div>
+            ))}
+          </div>
+            </div>
+
+            {/* Coluna 2 – Conquistar */}
+            <div className="relative">
+          <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-[11px] font-medium text-amber-300 tracking-wide">
+            Conquistar com a OMMA
+          </div>
+          <h4 className="mt-4 text-lg font-semibold" style={{ fontFamily: 'Exo, Inter' }}>
+            O que você conquista ao fechar seu projeto com a OMMA?
+          </h4>
+          <div className="mt-4 space-y-2 text-white/80 text-sm leading-relaxed" style={{ fontFamily: 'Inter' }}>
+            {[
+              'Espaços versáteis e integrados',
+              'Acabamentos e revestimentos de qualidade',
+              'Infraestrutura moderna e segura',
+              'Espaços organizados e decorados',
+              'Fortalecimento da cultura e da marca',
+            ].map((t) => (
+              <div key={t} className="flex items-start gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+            <span>{t}</span>
+              </div>
+            ))}
+          </div>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="mt-10 flex items-center justify-between pt-6 border-t border-white/10">
+            <p className="text-xs sm:text-sm text-white/50" style={{ fontFamily: 'Inter' }}>
+          Decisão estratégica: cada mês de adiamento impacta motivação, eficiência e marca.
+            </p>
+            <a
+          href="#form"
+          className="inline-flex items-center gap-2 rounded-xl border border-amber-400/70 bg-amber-400/10 px-4 py-2 text-xs font-medium text-white hover:bg-amber-400/20 hover:scale-[1.03] transition-all"
+            >
+          INICIAR PROJETO
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+            </a>
+          </div>
+        </div>
+
+        {/* Decorative gradient / sheen */}
+        <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+          <div className="absolute -top-10 -right-10 h-48 w-48 rounded-full bg-amber-400/10 blur-3xl" />
+        </div>
+          </div>
         </div>
       </section>
 
@@ -685,7 +683,7 @@ export default function CorporativosLP() {
               <ContactForm />
             </div>
           </div>
-        </div>
+        </div>Compare o impacto
       </section>
     </div>
   );
