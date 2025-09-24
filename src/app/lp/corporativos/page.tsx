@@ -683,7 +683,7 @@ export default function CorporativosLP() {
               <ContactForm />
             </div>
           </div>
-        </div>Compare o impacto
+        </div>
       </section>
     </div>
   );
