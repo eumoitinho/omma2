@@ -1,0 +1,253 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2025-09-26 16:05:00",
+  "containerVersion": {
+    "path": "accounts/0000000000/containers/00000000/versions/0",
+    "accountId": "0000000000",
+    "containerId": "00000000",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0000000000/containers/00000000",
+      "accountId": "0000000000",
+      "containerId": "00000000",
+      "name": "[92] LP Corporativos - WEB",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": ["WEB"],
+      "fingerprint": "0000000000000",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0000000000/containers/00000000/workspaces?apiLink=container",
+      "features": {
+        "supportUserPermissions": true,
+        "supportEnvironments": true,
+        "supportWorkspaces": true,
+        "supportGtagConfigs": false,
+        "supportBuiltInVariables": true,
+        "supportClients": false,
+        "supportFolders": true,
+        "supportTags": true,
+        "supportTemplates": true,
+        "supportTriggers": true,
+        "supportVariables": true,
+        "supportVersions": true,
+        "supportZones": true,
+        "supportTransformations": false
+      }
+    },
+    "tag": [
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "1",
+        "name": "[92] GA4 - Page View",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "page_view" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["100"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "2",
+        "name": "[92] GA4 - Section View",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "section_view" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["101"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "3",
+        "name": "[92] GA4 - Scroll Depth",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "scroll_depth" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["102"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "4",
+        "name": "[92] GA4 - CTA Click",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "cta_click" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["103"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "5",
+        "name": "[92] GA4 - Sector Card CTA",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "sector_card_cta" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["104"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "6",
+        "name": "[92] GA4 - Slide View",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "slide_view" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["105"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "7",
+        "name": "[92] GA4 - Carousel Navigation",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "carousel_navigation" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["106","107","108"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "8",
+        "name": "[92] GA4 - Form View",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "form_view" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["109"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "9",
+        "name": "[92] GA4 - Form Submit Attempt",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "form_submit_attempt" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["110"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "10",
+        "name": "[92] GA4 - Form Submit Success / Lead",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "form_submit_success" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["111"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "11",
+        "name": "[92] GA4 - Lead Submit (Alias)",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "lead_submit" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["112"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "12",
+        "name": "[92] GA4 - Form Submit Error",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "form_submit_error" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["113"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "13",
+        "name": "[92] GA4 - User Identify",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "user_identify" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["114"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "tagId": "14",
+        "name": "[92] GA4 - First CTA Click Time",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "first_cta_click_time" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[92] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["115"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      }
+    ],
+    "trigger": [
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "100", "name": "[92] CE - page_view", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "page_view" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "101", "name": "[92] CE - section_view", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "section_view" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "102", "name": "[92] CE - scroll_depth", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "scroll_depth" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "103", "name": "[92] CE - cta_click", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "cta_click" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "104", "name": "[92] CE - sector_card_cta", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "sector_card_cta" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "105", "name": "[92] CE - slide_view", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "slide_view" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "106", "name": "[92] CE - carousel_prev", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "carousel_prev" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "107", "name": "[92] CE - carousel_next", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "carousel_next" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "108", "name": "[92] CE - carousel_dot", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "carousel_dot" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "109", "name": "[92] CE - form_view", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "form_view" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "110", "name": "[92] CE - form_submit_attempt", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "form_submit_attempt" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "111", "name": "[92] CE - form_submit_success", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "form_submit_success" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "112", "name": "[92] CE - lead_submit", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "lead_submit" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "113", "name": "[92] CE - form_submit_error", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "form_submit_error" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "114", "name": "[92] CE - user_identify", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "user_identify" } ] } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "triggerId": "115", "name": "[92] CE - first_cta_click_time", "type": "CUSTOM_EVENT", "customEventFilter": [ { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" }, { "type": "TEMPLATE", "key": "arg1", "value": "first_cta_click_time" } ] } ] }
+    ],
+    "variable": [
+      { "accountId": "0000000000", "containerId": "00000000", "variableId": "200", "name": "[92] GA4 Measurement ID", "type": "c", "parameter": [ { "type": "TEMPLATE", "key": "value", "value": "G-XXXXXXXXXX" } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "variableId": "201", "name": "DLV - event_label", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "event_label" } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "variableId": "202", "name": "DLV - location", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "location" } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "variableId": "203", "name": "DLV - section_id", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "section_id" } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "variableId": "204", "name": "DLV - scroll_percent", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "scroll_percent" } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "variableId": "205", "name": "DLV - ms_since_page_view", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "ms_since_page_view" } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "variableId": "206", "name": "DLV - email_hash", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "email_hash" } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "variableId": "207", "name": "DLV - form_id", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "form_id" } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "variableId": "208", "name": "DLV - slide_index", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "slide_index" } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "variableId": "209", "name": "DLV - error_type", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "error_type" } ] },
+      { "accountId": "0000000000", "containerId": "00000000", "variableId": "210", "name": "DLV - sector_name", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "sector_name" } ] }
+    ],
+    "fingerprint": "2222222222222",
+    "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/0000000000/containers/00000000/versions/0?apiLink=version"
+  }
+}

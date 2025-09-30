@@ -1,0 +1,1047 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2025-09-30 15:30:00",
+    "containerVersion": {
+        "path": "accounts/6312972829/containers/229944943/versions/1",
+        "accountId": "6312972829",
+        "containerId": "229944943",
+        "containerVersionId": "1",
+        "container": {
+            "path": "accounts/6312972829/containers/229944943",
+            "accountId": "6312972829",
+            "containerId": "229944943",
+            "name": "[92] 24h.tur.br - WEB",
+            "publicId": "GTM-M24J5ZPS",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1757958995633",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6312972829/containers/229944943/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-M24J5ZPS"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "34",
+                "name": "[92] Google Ads - Conversion Linker",
+                "type": "gclidw",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableCrossDomain",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableUrlPassthrough",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "linkerDomains",
+                        "value": "24h.tur.br, 24turismo-eta.vercel.app, 24turismo.vercel.app"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableCookieOverrides",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1758896892476",
+                "firingTriggerId": [
+                    "8"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "59",
+                "name": "[92] GA4 - Phone Click",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "event_category"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "contact"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "phone_number"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "(51) 3516-0098"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "phone_click"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{[92] GA4 Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1758228670005",
+                "firingTriggerId": [
+                    "46"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "63",
+                "name": "[92] GA4 - Google Analytics",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "page_view"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{[92] GA4 Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1758228670006",
+                "firingTriggerId": [
+                    "8"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "65",
+                "name": "[92] GA4 - Form Submit",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "event_category"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "form"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "form_name"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "contato"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "empresa"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{[92] Form - Empresa}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "assunto"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{[92] Form - Assunto}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "form_submit"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{[92] GA4 Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1758228670006",
+                "firingTriggerId": [
+                    "51"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "67",
+                "name": "[92] GA4 - Email Click",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "event_category"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "contact"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "email_address"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "contato@24hviagens.com.br"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "email_click"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{[92] GA4 Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1758228670006",
+                "firingTriggerId": [
+                    "64"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "69",
+                "name": "[92] Meta Pixel - Base Code",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<!-- Meta Pixel Code -->\n<script>\n!function(f,b,e,v,n,t,s)\n{if(f.fbq)return;n=f.fbq=function(){n.callMethod?\nn.callMethod.apply(n,arguments):n.queue.push(arguments)};\nif(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';\nn.queue=[];t=b.createElement(e);t.async=!0;\nt.src=v;s=b.getElementsByTagName(e)[0];\ns.parentNode.insertBefore(t,s)}(window, document,'script',\n'https://connect.facebook.net/en_US/fbevents.js');\nfbq('init', '{{[92] Meta Pixel ID}}');\nfbq('track', 'PageView');\n</script>\n<noscript><img height=\"1\" width=\"1\" style=\"display:none\"\nsrc=\"https://www.facebook.com/tr?id=684857207308306&ev=PageView&noscript=1\"\n/></noscript>\n<!-- End Meta Pixel Code -->"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1758897144886",
+                "firingTriggerId": [
+                    "8"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "72",
+                "name": "[92] Google Ads - Remarketing Tag",
+                "type": "sp",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableDynamicRemarketing",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionId",
+                        "value": "{{[92] Google Ads Conversion ID}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "customParamsFormat",
+                        "value": "NONE"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "rdp",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1758228670007",
+                "firingTriggerId": [
+                    "8"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "78",
+                "name": "[92] Google Ads - Form Submit Conversion",
+                "type": "awct",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableNewCustomerReporting",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableConversionLinker",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableProductReporting",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEnhancedConversion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionCookiePrefix",
+                        "value": "_gcl"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionId",
+                        "value": "{{[92] Google Ads Conversion ID}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionLabel",
+                        "value": "{{[92] Google Ads Label - Form Submit}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "rdp",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1758274487493",
+                "firingTriggerId": [
+                    "51"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "98",
+                "name": "[92] GA4 - WhatsApp Click",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "whatsapp_click"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{[92] GA4 Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1758274487494",
+                "firingTriggerId": [
+                    "49"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "99",
+                "name": "[92] Google Ads - WhatsApp Conversion",
+                "type": "awct",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableNewCustomerReporting",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableConversionLinker",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableProductReporting",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEnhancedConversion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionCookiePrefix",
+                        "value": "_gcl"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionId",
+                        "value": "{{[92] Google Ads Conversion ID}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionLabel",
+                        "value": "{{[92] Google Ads Label - WhatsApp}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "rdp",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1758274487494",
+                "firingTriggerId": [
+                    "49"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "103",
+                "name": "[92] Meta Pixel - Form Submit",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nif (typeof fbq === 'function') {\n  fbq('track', 'Contact', {\n    content_name: 'Formulário de Contato',\n    content_category: 'contact_form'\n  });\n}\n</script>"
+                    }
+                ],
+                "fingerprint": "1758274487495",
+                "firingTriggerId": [
+                    "51"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "104",
+                "name": "[92] GA4 - Form Start",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "form_start"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{[92] GA4 Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1758274487495",
+                "firingTriggerId": [
+                    "79"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "tagId": "108",
+                "name": "[92] RD Station - Form Submit",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n(function() {\n  var rdtn_id = '{{[92] RD Station Tracking ID}}';\n  \n  if (!rdtn_id || rdtn_id.indexOf('XXXX') !== -1) {\n    console.log('[92] RD Station ID não configurado');\n    return;\n  }\n  \n  // RD Station tracking code\n  (function () {\n    var s = document.createElement('script');\n    s.type = 'text/javascript';\n    s.async = true;\n    s.src = 'https://d335luupugsy2.cloudfront.net/js/loader-scripts/'+rdtn_id+'-loader.js';\n    var x = document.getElementsByTagName('script')[0];\n    x.parentNode.insertBefore(s, x);\n  })();\n  \n  // Track form submission\n  setTimeout(function() {\n    if (typeof rdstation !== 'undefined') {\n      rdstation('conversion', {\n        event_type: 'CONVERSION',\n        event_family: 'CDP',\n        payload: {\n          conversion_identifier: 'form_submit',\n          email: '{{[92] User Email}}' || 'unknown@unknown.com',\n          name: '{{[92] User Name}}' || 'Usuário Anônimo',\n          company: '{{[92] Form - Empresa}}' || '',\n          state: '{{[92] User State}}' || '',\n          city: '{{[92] User City}}' || '',\n          country: 'Brasil',\n          personal_phone: '{{[92] User Phone}}' || '',\n          tags: ['lead', '24h-viagens', 'formulario-contato'],\n          traffic_source: '{{[92] Traffic Source}}' || 'organic',\n          traffic_medium: '{{[92] Traffic Medium}}' || 'none',\n          traffic_campaign: '{{[92] Campaign}}' || '',\n          available_for_mailing: true,\n          legal_bases: [{\n            category: 'consent',\n            type: 'consent',\n            status: 'granted'\n          }]\n        }\n      });\n    }\n  }, 1000);\n})();\n</script>"
+                    }
+                ],
+                "fingerprint": "1759245726508",
+                "firingTriggerId": [
+                    "51"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "triggerId": "8",
+                "name": "[92] All Pages",
+                "type": "PAGEVIEW",
+                "fingerprint": "1758228164284"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "triggerId": "46",
+                "name": "[92] Phone Click",
+                "type": "LINK_CLICK",
+                "filter": [
+                    {
+                        "type": "STARTS_WITH",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{[92] Click URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "tel:"
+                            }
+                        ]
+                    }
+                ],
+                "waitForTags": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "checkValidation": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "waitForTagsTimeout": {
+                    "type": "TEMPLATE",
+                    "value": "2000"
+                },
+                "uniqueTriggerId": {
+                    "type": "TEMPLATE"
+                },
+                "fingerprint": "1758228670003"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "triggerId": "49",
+                "name": "[92] WhatsApp Click",
+                "type": "LINK_CLICK",
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{[92] Click URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "whatsapp"
+                            }
+                        ]
+                    }
+                ],
+                "waitForTags": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "checkValidation": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "waitForTagsTimeout": {
+                    "type": "TEMPLATE",
+                    "value": "2000"
+                },
+                "uniqueTriggerId": {
+                    "type": "TEMPLATE"
+                },
+                "fingerprint": "1758228670003"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "triggerId": "51",
+                "name": "[92] Form Submit - Contact",
+                "type": "FORM_SUBMISSION",
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{[92] Form ID}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "contato"
+                            }
+                        ]
+                    }
+                ],
+                "waitForTags": {
+                    "type": "TEMPLATE"
+                },
+                "checkValidation": {
+                    "type": "TEMPLATE"
+                },
+                "waitForTagsTimeout": {
+                    "type": "TEMPLATE",
+                    "value": "2000"
+                },
+                "uniqueTriggerId": {
+                    "type": "TEMPLATE"
+                },
+                "fingerprint": "1758228670004"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "triggerId": "64",
+                "name": "[92] Email Click",
+                "type": "LINK_CLICK",
+                "filter": [
+                    {
+                        "type": "STARTS_WITH",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{[92] Click URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "mailto:"
+                            }
+                        ]
+                    }
+                ],
+                "waitForTags": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "checkValidation": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "waitForTagsTimeout": {
+                    "type": "TEMPLATE",
+                    "value": "2000"
+                },
+                "uniqueTriggerId": {
+                    "type": "TEMPLATE"
+                },
+                "fingerprint": "1758228670006"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "triggerId": "79",
+                "name": "[92] CE - form_start",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "form_start"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1758274487493"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "7",
+                "name": "[92] RD Station Tracking ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "PLACEHOLDER_RD_STATION_ID"
+                    }
+                ],
+                "fingerprint": "1758228164284"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "10",
+                "name": "[92] Traffic Medium",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "utm_medium"
+                    }
+                ],
+                "fingerprint": "1758228164284"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "11",
+                "name": "[92] Traffic Source",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "utm_source"
+                    }
+                ],
+                "fingerprint": "1758228164285"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "12",
+                "name": "[92] Form - Assunto",
+                "type": "e",
+                "fingerprint": "1758228164285"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "13",
+                "name": "[92] User Company",
+                "type": "e",
+                "fingerprint": "1758228164285"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "21",
+                "name": "[92] User Phone",
+                "type": "e",
+                "fingerprint": "1758228164287"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "23",
+                "name": "[92] Meta Pixel ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "684857207308306"
+                    }
+                ],
+                "fingerprint": "1758244605473",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "24",
+                "name": "[92] Google Ads Label - WhatsApp",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "03w1CI_13KQbEMGW-NxA"
+                    }
+                ],
+                "fingerprint": "1758228164287"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "29",
+                "name": "[92] User Name",
+                "type": "e",
+                "fingerprint": "1758228164288"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "32",
+                "name": "[92] GA4 Measurement ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "G-DGR4M2CC2X"
+                    }
+                ],
+                "fingerprint": "1758228164289"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "35",
+                "name": "[92] User Email",
+                "type": "e",
+                "fingerprint": "1758228164289"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "38",
+                "name": "[92] Form - Empresa",
+                "type": "e",
+                "fingerprint": "1758228164290"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "43",
+                "name": "[92] Campaign",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "utm_campaign"
+                    }
+                ],
+                "fingerprint": "1758228164291"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "44",
+                "name": "[92] Google Ads Label - Form Submit",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "03w1CI_13KQbEMGW-NxA"
+                    }
+                ],
+                "fingerprint": "1758228164291"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "45",
+                "name": "[92] Click URL",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "gtm.elementUrl"
+                    }
+                ],
+                "fingerprint": "1758228670002"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "48",
+                "name": "[92] Form ID",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "gtm.elementId"
+                    }
+                ],
+                "fingerprint": "1758228670003"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "58",
+                "name": "[92] User City",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "Porto Alegre"
+                    }
+                ],
+                "fingerprint": "1758228670005"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "68",
+                "name": "[92] User State",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "RS"
+                    }
+                ],
+                "fingerprint": "1758228670007"
+            },
+            {
+                "accountId": "6312972829",
+                "containerId": "229944943",
+                "variableId": "77",
+                "name": "[92] Google Ads Conversion ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "17374776129"
+                    }
+                ],
+                "fingerprint": "1758916527611",
+                "formatValue": {}
+            }
+        ],
+        "fingerprint": "1759245726508",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6312972829/containers/229944943/versions/1?apiLink=version"
+    }
+}

@@ -3,6 +3,8 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import './globals.css';
 import dynamic from 'next/dynamic';
+import GTMProvider from '@/components/GTMProvider';
+import ConsentBanner from '@/components/ConsentBanner';
 
 export const metadata = {
     title: 'OMMA Engenharia — Hero + Second Section',
@@ -35,6 +37,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Navbar />
                 <main>{children}</main>
                 <Footer />
+                {/* GTM + Consent */}
+                <GTMProvider />
+                <ConsentBanner />
             </body>
         </html>
     );

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useCallback } from 'react';
+import { trackEvent } from '@/lib/gtm';
 
 // Extended slide type – backward compatible with existing usage
 export type Slide = {
@@ -26,6 +27,15 @@ export default function ProjectsCarousel({ slides, autoAdvanceMs = 0 }: Projects
       if (len <= 1) return 0;
       return i === 0 ? len - 1 : i - 1;
     });
+    if (len > 0) {
+      trackEvent({
+        event: 'carousel_prev',
+        event_category: 'carousel',
+        event_label: 'projects',
+        slide_index: idx,
+        slide_title: slides[idx]?.title
+      });
+    }
   }, [len]);
 
   const next = useCallback(() => {
@@ -33,7 +43,28 @@ export default function ProjectsCarousel({ slides, autoAdvanceMs = 0 }: Projects
       if (len <= 1) return 0;
       return i === len - 1 ? 0 : i + 1;
     });
+    if (len > 0) {
+      trackEvent({
+        event: 'carousel_next',
+        event_category: 'carousel',
+        event_label: 'projects',
+        slide_index: idx,
+        slide_title: slides[idx]?.title
+      });
+    }
   }, [len]);
+  // Fire slide_view when idx changes
+  useEffect(() => {
+    if (len > 0) {
+      trackEvent({
+        event: 'slide_view',
+        event_category: 'carousel',
+        event_label: 'projects',
+        slide_index: idx,
+        slide_title: slides[idx]?.title
+      });
+    }
+  }, [idx, len, slides]);
 
   // Optional auto-advance
   useEffect(() => {
@@ -181,7 +212,16 @@ export default function ProjectsCarousel({ slides, autoAdvanceMs = 0 }: Projects
             <button
               key={i}
               aria-label={`Ir para projeto ${i + 1}`}
-              onClick={() => setIdx(i)}
+              onClick={() => {
+                setIdx(i);
+                trackEvent({
+                  event: 'carousel_dot',
+                  event_category: 'carousel',
+                  event_label: 'projects',
+                  slide_index: i,
+                  slide_title: slides[i]?.title
+                });
+              }}
               className={`h-2 rounded-full transition-all ${i === idx ? 'w-8 bg-amber-400' : 'w-3 bg-white/35 hover:bg-white/60'}`}
             />
           ))}

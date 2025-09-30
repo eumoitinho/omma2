@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
+import { trackEvent, trackWithAliases } from '@/lib/gtm';
 
 interface ContactFormData {
   nome: string;
@@ -19,9 +20,19 @@ export default function ContactForm() {
     orcamento: '250k-500k',
     prazo: 'asap',
     servico: 'Obra completa',
-    detalhes: '',
+    detalhes: ''
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle');
+
+  // Track form impression once
+  useEffect(() => {
+    trackEvent({
+      event: 'form_view',
+      form_id: 'contact_form',
+      event_category: 'engagement',
+      event_label: 'Contact Form View'
+    });
+  }, []);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -33,12 +44,49 @@ export default function ContactForm() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setStatus('sending');
+    trackEvent({
+      event: 'form_submit_attempt',
+      form_id: 'contact_form',
+      event_category: 'lead',
+      event_label: 'Contact Form Submit Attempt'
+    });
     try {
-      // Placeholder: aqui poderia chamar uma rota /api/lead futuramente
+      // Placeholder: simulation of async submission
       await new Promise((r) => setTimeout(r, 800));
       setStatus('ok');
+      // Emit success + alias (lead_submit)
+      trackWithAliases({
+        event: 'form_submit_success',
+        form_id: 'contact_form',
+        event_category: 'lead',
+        event_label: 'Contact Form Success'
+      }, ['lead_submit']);
+
+      // Hashed identification (only after success)
+      try {
+        if (typeof window !== 'undefined' && data.email) {
+          const encoder = new TextEncoder();
+          const bytes = encoder.encode(data.email.trim().toLowerCase());
+          const digest = await crypto.subtle.digest('SHA-256', bytes);
+          const hashArray = Array.from(new Uint8Array(digest));
+          const email_hash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+          trackEvent({
+            event: 'user_identify',
+            event_category: 'user',
+            event_label: 'contact_form',
+            email_hash,
+            source: 'contact_form'
+          });
+        }
+      } catch {}
     } catch {
       setStatus('error');
+      trackEvent({
+        event: 'form_submit_error',
+        form_id: 'contact_form',
+        event_category: 'lead',
+        event_label: 'Contact Form Error'
+      });
     } finally {
       setTimeout(() => setStatus('idle'), 4000);
     }

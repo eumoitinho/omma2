@@ -1,4 +1,6 @@
 import React from 'react';
+import PageAnalytics from '@/components/analytics/PageAnalytics';
+import ScrollAndSections from '@/components/analytics/ScrollAndSections';
 import projectsData from '@/../projects.json';
 import HeroCardStack from '@/components/ui/HeroCardStack';
 import ProjectsCarousel from '@/components/lp/ProjectsCarousel';
@@ -56,8 +58,10 @@ const impactoImages = [
 export default function CorporativosLP() {
   return (
     <div className="min-h-screen">
+      <PageAnalytics pageId="lp_corporativos" />
+      <ScrollAndSections pageId="lp_corporativos" />
       {/* Bloco 1 – Hero (mais âmbar em layers, sem imagem externa) */}
-      <section className="relative overflow-hidden pt-28 pb-16">
+      <section id="hero" className="relative overflow-hidden pt-28 pb-16">
         <div className="absolute inset-0 -z-10">
           {/* Base escura com película âmbar */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#0d0b08] via-[#0a0908] to-black" aria-hidden="true" />
@@ -89,7 +93,20 @@ export default function CorporativosLP() {
                 Transformando a visão da sua empresa em ambientes corporativos funcionais, estéticos e de alta performance.
               </p>
               <div className="mt-8 flex items-center gap-4 anim-fadeSlideIn anim-delay-5">
-                <a href="#form" className="inline-flex items-center gap-2 rounded-full border-2 border-amber-400 px-7 py-3 text-sm font-semibold text-amber-400 hover:bg-amber-400 hover:text-black transition-all">
+                <a
+                  href="#form"
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      import('@/lib/gtm').then(m => m.trackCtaWithTiming({
+                        event: 'cta_click',
+                        event_category: 'engagement',
+                        event_label: 'hero_quero_iniciar_projeto',
+                        location: 'hero'
+                      })).catch(()=>{});
+                    }
+                  }}
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-amber-400 px-7 py-3 text-sm font-semibold text-amber-400 hover:bg-amber-400 hover:text-black transition-all"
+                >
                   QUERO INICIAR UM PROJETO!
                 </a>
               </div>
@@ -103,7 +120,7 @@ export default function CorporativosLP() {
       </section>
 
       {/* Bloco 2 – Resultados (camadas âmbar adicionadas) */}
-      <section className="py-12 border-t border-white/10 reveal relative overflow-hidden">
+  <section id="resultados" className="py-12 border-t border-white/10 reveal relative overflow-hidden">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-amber-400/5 via-transparent to-amber-300/5" />
           <div className="absolute -right-40 top-1/2 -translate-y-1/2 h-[30rem] w-[30rem] rounded-full bg-amber-400/10 blur-3xl" />
@@ -132,7 +149,7 @@ export default function CorporativosLP() {
       </section>
 
       {/* Bloco 3 – Sem dor de cabeça (refatorado com layout de componente fornecido) */}
-      <section className="py-16 border-t border-white/10 reveal relative overflow-hidden">
+    <section id="sem-dor" className="py-16 border-t border-white/10 reveal relative overflow-hidden">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-transparent" />
           <div className="absolute top-1/3 left-0 h-72 w-72 rounded-full bg-amber-400/10 blur-3xl" />
@@ -216,7 +233,7 @@ export default function CorporativosLP() {
       </section>
 
       {/* Bloco 4 – Impacto positivo */}
-      <section className="py-16 border-t border-white/10 reveal relative overflow-hidden">
+  <section id="impacto" className="py-16 border-t border-white/10 reveal relative overflow-hidden">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-amber-400/10" />
           <div className="absolute top-0 left-1/2 -translate-x-1/2 h-40 w-[60%] bg-gradient-to-b from-amber-400/20 via-amber-300/0 to-transparent blur-xl opacity-60" />
@@ -272,6 +289,12 @@ export default function CorporativosLP() {
           <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="#form"
+              onClick={() => import('@/lib/gtm').then(m => m.trackCtaWithTiming({
+                event: 'cta_click',
+                event_category: 'engagement',
+                event_label: 'impacto_solicite_orcamento',
+                location: 'impacto'
+              })).catch(()=>{})}
               className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 px-6 py-3 text-sm text-white hover:bg-amber-400/10 hover:scale-[1.02] transition-all duration-300"
             >
               SOLICITE UM ORÇAMENTO AGORA!
@@ -281,7 +304,7 @@ export default function CorporativosLP() {
       </section>
 
       {/* Bloco 5 – Setores (refatorado com layout de cards com imagem e interação) */}
-      <section className="py-16 border-t border-white/10 reveal relative overflow-hidden">
+  <section id="setores" className="py-16 border-t border-white/10 reveal relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-10">
             <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight" style={{ fontFamily: 'Exo, Inter' }}>
@@ -335,6 +358,12 @@ export default function CorporativosLP() {
                       </p>
                       <a
                         href="#form"
+                        onClick={() => import('@/lib/gtm').then(m => m.trackEvent({
+                          event: 'sector_card_cta',
+                          event_category: 'sector',
+                          event_label: card.key,
+                          location: 'setores'
+                        })).catch(()=>{})}
                         className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-2.5 text-xs font-medium text-white/90 hover:bg-white/10 hover:border-white/25 hover:scale-[1.03] transition-all duration-300 group"
                         style={{ fontFamily: 'Exo, Inter' }}
                         aria-label={`Solicitar orçamento para ${card.title}`}
@@ -355,6 +384,12 @@ export default function CorporativosLP() {
           <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="#form"
+              onClick={() => import('@/lib/gtm').then(m => m.trackCtaWithTiming({
+                event: 'cta_click',
+                event_category: 'engagement',
+                event_label: 'setores_solicite_orcamento',
+                location: 'setores'
+              })).catch(()=>{})}
               className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 px-6 py-3 text-sm text-white hover:bg-amber-400/10 hover:scale-[1.02] transition-all duration-300"
             >
               SOLICITE UM ORÇAMENTO AGORA!
@@ -364,7 +399,7 @@ export default function CorporativosLP() {
       </section>
 
       {/* Bloco 6 – Adiar vs Conquistar (fundo com véu âmbar sutil) */}
-      <section className="py-12 border-t border-white/10 reveal relative overflow-hidden">
+  <section id="comparativo" className="py-12 border-t border-white/10 reveal relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-6">
           <div className="group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 ring-1 ring-white/5 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-md shadow-2xl shadow-black/30 anim-fadeSlideUp">
         {/* Top content */}
@@ -446,6 +481,12 @@ export default function CorporativosLP() {
             </p>
             <a
           href="#form"
+          onClick={() => import('@/lib/gtm').then(m => m.trackCtaWithTiming({
+            event: 'cta_click',
+            event_category: 'engagement',
+            event_label: 'comparativo_iniciar_projeto',
+            location: 'comparativo'
+          })).catch(()=>{})}
           className="inline-flex items-center gap-2 rounded-xl border border-amber-400/70 bg-amber-400/10 px-4 py-2 text-xs font-medium text-white hover:bg-amber-400/20 hover:scale-[1.03] transition-all"
             >
           INICIAR PROJETO
@@ -492,7 +533,12 @@ export default function CorporativosLP() {
             ))}
           </div>
           <div className="mt-8 text-center">
-            <a href="#form" className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 px-6 py-3 text-sm text-white hover:bg-amber-400/10 transition">
+            <a href="#form" onClick={() => import('@/lib/gtm').then(m => m.trackCtaWithTiming({
+              event: 'cta_click',
+              event_category: 'engagement',
+              event_label: 'metodologia_solicite_orcamento',
+              location: 'metodologia'
+            })).catch(()=>{})} className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 px-6 py-3 text-sm text-white hover:bg-amber-400/10 transition">
               SOLICITE UM ORÇAMENTO AGORA!
             </a>
           </div>
@@ -500,7 +546,7 @@ export default function CorporativosLP() {
       </section>
 
       {/* Bloco 8 – Nossos clientes */}
-      <section className="py-12 border-t border-white/10 reveal">
+    <section id="clientes" className="py-12 border-t border-white/10 reveal">
         <div className="mx-auto max-w-7xl px-6">
           <h3 className="text-2xl font-semibold text-center text-amber-300">NOSSOS CLIENTES</h3>
           {/* Marquee container */}
@@ -531,7 +577,7 @@ export default function CorporativosLP() {
       </section>
 
       {/* Bloco 9 – Projetos/carrossel */}
-      <section className="py-12 border-t border-white/10">
+    <section id="projetos" className="py-12 border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6">
           <h3 className="text-2xl font-semibold" style={{ fontFamily: 'Exo, Inter' }}>Projetos que falam por nós</h3>
           <p className="text-white/70 mt-2 text-sm">As imagens definitivas podem ser vinculadas às obras publicadas em omma.com.br/obras-realizadas.</p>
@@ -542,7 +588,7 @@ export default function CorporativosLP() {
       </section>
 
       {/* Bloco 10 – Por que escolher (refatorado com layout de header composto) */}
-      <section className="py-20 border-t border-white/10 reveal relative overflow-hidden">
+    <section id="porque-escolher" className="py-20 border-t border-white/10 reveal relative overflow-hidden">
         {/* Gradiente de transição inferior para suavizar passagem ao bloco amarelo */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-[#0f0f0f] to-[#1a1405]" />
         <header className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -579,14 +625,24 @@ export default function CorporativosLP() {
                 </details>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 anim-fadeSlideIn anim-delay-2">
-                <a href="#form" className="group inline-flex items-center justify-center gap-3 bg-amber-400 text-neutral-900 px-6 py-3 rounded-full font-medium text-sm hover:bg-amber-300 transition-all duration-300 hover:shadow-lg hover:shadow-amber-400/25 hover:scale-[1.04]">
+                <a href="#form" onClick={() => import('@/lib/gtm').then(m => m.trackCtaWithTiming({
+                  event: 'cta_click',
+                  event_category: 'engagement',
+                  event_label: 'porque_solicitar_proposta',
+                  location: 'porque_escolher'
+                })).catch(()=>{})} className="group inline-flex items-center justify-center gap-3 bg-amber-400 text-neutral-900 px-6 py-3 rounded-full font-medium text-sm hover:bg-amber-300 transition-all duration-300 hover:shadow-lg hover:shadow-amber-400/25 hover:scale-[1.04]">
                   <span>Solicitar Proposta</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 group-hover:translate-x-1 transition-transform">
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />
                   </svg>
                 </a>
-                <a href="#impacto-cards" className="group inline-flex items-center justify-center gap-3 border border-white/20 text-white/80 px-6 py-3 rounded-full font-medium text-sm hover:border-amber-400 hover:text-amber-300 transition-all duration-300">
+                <a href="#impacto-cards" onClick={() => import('@/lib/gtm').then(m => m.trackCtaWithTiming({
+                  event: 'cta_click',
+                  event_category: 'engagement',
+                  event_label: 'porque_ver_beneficios',
+                  location: 'porque_escolher'
+                })).catch(()=>{})} className="group inline-flex items-center justify-center gap-3 border border-white/20 text-white/80 px-6 py-3 rounded-full font-medium text-sm hover:border-amber-400 hover:text-amber-300 transition-all duration-300">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                     <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16Z" />
                   </svg>
@@ -628,7 +684,7 @@ export default function CorporativosLP() {
 
 
       {/* Bloco 12 – Contato (refatorado com formulário em layout claro âmbar com transição suave) */}
-      <section id="contato" className="pt-28 pb-20 border-t border-white/10 reveal relative overflow-hidden bg-gradient-to-br from-amber-200/55 via-amber-300/35 to-amber-400/30">
+    <section id="contato" className="pt-28 pb-20 border-t border-white/10 reveal relative overflow-hidden bg-gradient-to-br from-amber-200/55 via-amber-300/35 to-amber-400/30">
         {/* Layer de transição superior (escuro -> âmbar) com gradiente mais suave para evitar transição abrupta */}
         <div aria-hidden="true" className="pointer-events-none absolute -top-40 inset-x-0 h-48 bg-gradient-to-b from-[#1a1405] via-amber-900/20 via-amber-800/15 via-amber-600/10 to-transparent" />
         {/* Vignette decorativa ajustada */}

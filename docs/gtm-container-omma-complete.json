@@ -1,0 +1,871 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2025-09-30 18:00:00",
+  "containerVersion": {
+    "path": "accounts/XXXXX/containers/XXXXX/versions/0",
+    "accountId": "XXXXX",
+    "containerId": "XXXXX",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/XXXXX/containers/XXXXX",
+      "accountId": "XXXXX",
+      "containerId": "XXXXX",
+      "name": "[OMMA] Site Institucional - WEB",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": ["WEB"],
+      "fingerprint": "0000000000000",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/XXXXX/containers/XXXXX/workspaces?apiLink=container",
+      "features": {
+        "supportUserPermissions": true,
+        "supportEnvironments": true,
+        "supportWorkspaces": true,
+        "supportGtagConfigs": false,
+        "supportBuiltInVariables": true,
+        "supportClients": false,
+        "supportFolders": true,
+        "supportTags": true,
+        "supportTemplates": true,
+        "supportTriggers": true,
+        "supportVariables": true,
+        "supportVersions": true,
+        "supportZones": true,
+        "supportTransformations": false
+      }
+    },
+    "tag": [
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "1",
+        "name": "[OMMA] Google Ads - Conversion Linker",
+        "type": "gclidw",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "enableCrossDomain", "value": "true" },
+          { "type": "BOOLEAN", "key": "enableUrlPassthrough", "value": "false" },
+          { "type": "TEMPLATE", "key": "linkerDomains", "value": "omma.com.br, *.vercel.app" },
+          { "type": "BOOLEAN", "key": "enableCookieOverrides", "value": "false" }
+        ],
+        "firingTriggerId": ["2147479553"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "2",
+        "name": "[OMMA] GA4 - Google Analytics",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "page_view" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["2147479553"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "3",
+        "name": "[OMMA] Google Ads - Remarketing",
+        "type": "sp",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "enableDynamicRemarketing", "value": "false" },
+          { "type": "TEMPLATE", "key": "conversionId", "value": "{{[OMMA] Google Ads Conversion ID}}" },
+          { "type": "TEMPLATE", "key": "customParamsFormat", "value": "NONE" },
+          { "type": "BOOLEAN", "key": "rdp", "value": "false" }
+        ],
+        "firingTriggerId": ["2147479553"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "4",
+        "name": "[OMMA] Meta Pixel - Base Code",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n!function(f,b,e,v,n,t,s)\n{if(f.fbq)return;n=f.fbq=function(){n.callMethod?\nn.callMethod.apply(n,arguments):n.queue.push(arguments)};\nif(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';\nn.queue=[];t=b.createElement(e);t.async=!0;\nt.src=v;s=b.getElementsByTagName(e)[0];\ns.parentNode.insertBefore(t,s)}(window, document,'script',\n'https://connect.facebook.net/en_US/fbevents.js');\nfbq('init', '{{[OMMA] Meta Pixel ID}}');\nfbq('track', 'PageView');\n</script>\n<noscript><img height=\"1\" width=\"1\" style=\"display:none\"\nsrc=\"https://www.facebook.com/tr?id={{[OMMA] Meta Pixel ID}}&ev=PageView&noscript=1\"\n/></noscript>"
+          },
+          { "type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false" }
+        ],
+        "firingTriggerId": ["2147479553"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "10",
+        "name": "[OMMA] GA4 - Form View",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "type": "LIST",
+            "key": "eventSettingsTable",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "parameter", "value": "event_category" },
+                  { "type": "TEMPLATE", "key": "parameterValue", "value": "form" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "parameter", "value": "form_id" },
+                  { "type": "TEMPLATE", "key": "parameterValue", "value": "{{DLV - form_id}}" }
+                ]
+              }
+            ]
+          },
+          { "type": "TEMPLATE", "key": "eventName", "value": "form_view" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["100"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "11",
+        "name": "[OMMA] GA4 - Form Start",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "form_start" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["101"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "12",
+        "name": "[OMMA] GA4 - Form Submit Attempt",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "form_submit_attempt" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["102"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "13",
+        "name": "[OMMA] GA4 - Form Submit Success",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "form_submit_success" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["103"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "14",
+        "name": "[OMMA] GA4 - Lead Submit",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "lead_submit" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["104"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "15",
+        "name": "[OMMA] GA4 - Form Submit Error",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "form_submit_error" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["105"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "20",
+        "name": "[OMMA] Google Ads - Form Submit Conversion",
+        "type": "awct",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "enableNewCustomerReporting", "value": "false" },
+          { "type": "BOOLEAN", "key": "enableConversionLinker", "value": "true" },
+          { "type": "BOOLEAN", "key": "enableProductReporting", "value": "false" },
+          { "type": "BOOLEAN", "key": "enableEnhancedConversion", "value": "false" },
+          { "type": "TEMPLATE", "key": "conversionCookiePrefix", "value": "_gcl" },
+          { "type": "TEMPLATE", "key": "conversionId", "value": "{{[OMMA] Google Ads Conversion ID}}" },
+          { "type": "TEMPLATE", "key": "conversionLabel", "value": "{{[OMMA] Google Ads Label - Form Submit}}" },
+          { "type": "BOOLEAN", "key": "rdp", "value": "false" }
+        ],
+        "firingTriggerId": ["103"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "21",
+        "name": "[OMMA] Meta Pixel - Form Submit",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\nfbq('track', 'Lead', {\n  content_name: 'Formulário de Contato',\n  content_category: 'lead_generation',\n  value: 0,\n  currency: 'BRL'\n});\n</script>"
+          }
+        ],
+        "firingTriggerId": ["103"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "30",
+        "name": "[OMMA] GA4 - CTA Click",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "cta_click" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["110"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "31",
+        "name": "[OMMA] Google Ads - CTA Click Conversion",
+        "type": "awct",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "enableConversionLinker", "value": "true" },
+          { "type": "TEMPLATE", "key": "conversionId", "value": "{{[OMMA] Google Ads Conversion ID}}" },
+          { "type": "TEMPLATE", "key": "conversionLabel", "value": "{{[OMMA] Google Ads Label - CTA}}" },
+          { "type": "BOOLEAN", "key": "rdp", "value": "false" }
+        ],
+        "firingTriggerId": ["110"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "32",
+        "name": "[OMMA] Meta Pixel - CTA Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\nfbq('track', 'Lead', {\n  content_name: 'CTA Click',\n  content_category: 'engagement',\n  value: 0,\n  currency: 'BRL'\n});\n</script>"
+          }
+        ],
+        "firingTriggerId": ["110"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "40",
+        "name": "[OMMA] GA4 - Phone Click",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "phone_click" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["111"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "41",
+        "name": "[OMMA] Google Ads - Phone Click Conversion",
+        "type": "awct",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "enableConversionLinker", "value": "true" },
+          { "type": "TEMPLATE", "key": "conversionId", "value": "{{[OMMA] Google Ads Conversion ID}}" },
+          { "type": "TEMPLATE", "key": "conversionLabel", "value": "{{[OMMA] Google Ads Label - Phone}}" },
+          { "type": "BOOLEAN", "key": "rdp", "value": "false" }
+        ],
+        "firingTriggerId": ["111"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "42",
+        "name": "[OMMA] Meta Pixel - Phone Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\nfbq('track', 'Contact', {\n  content_name: 'Phone Click',\n  content_category: 'phone',\n  value: 0,\n  currency: 'BRL'\n});\n</script>"
+          }
+        ],
+        "firingTriggerId": ["111"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "50",
+        "name": "[OMMA] GA4 - Email Click",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "email_click" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["112"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "51",
+        "name": "[OMMA] Meta Pixel - Email Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\nfbq('track', 'Contact', {\n  content_name: 'Email Click',\n  content_category: 'email',\n  value: 0,\n  currency: 'BRL'\n});\n</script>"
+          }
+        ],
+        "firingTriggerId": ["112"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "60",
+        "name": "[OMMA] GA4 - WhatsApp Click",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "whatsapp_click" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["113"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "61",
+        "name": "[OMMA] Google Ads - WhatsApp Conversion",
+        "type": "awct",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "enableConversionLinker", "value": "true" },
+          { "type": "TEMPLATE", "key": "conversionId", "value": "{{[OMMA] Google Ads Conversion ID}}" },
+          { "type": "TEMPLATE", "key": "conversionLabel", "value": "{{[OMMA] Google Ads Label - WhatsApp}}" },
+          { "type": "BOOLEAN", "key": "rdp", "value": "false" }
+        ],
+        "firingTriggerId": ["113"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "62",
+        "name": "[OMMA] Meta Pixel - WhatsApp Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\nfbq('track', 'Contact', {\n  content_name: 'WhatsApp Click',\n  content_category: 'whatsapp',\n  value: 0,\n  currency: 'BRL'\n});\n</script>"
+          }
+        ],
+        "firingTriggerId": ["113"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "70",
+        "name": "[OMMA] GA4 - Section View",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "section_view" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["114"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "71",
+        "name": "[OMMA] GA4 - Scroll Depth",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "scroll_depth" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["115"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "80",
+        "name": "[OMMA] GA4 - User Identify",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "user_identify" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{[OMMA] GA4 Measurement ID}}" }
+        ],
+        "firingTriggerId": ["116"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "tagId": "90",
+        "name": "[OMMA] RD Station - Conversion",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function() {\n  if (typeof RDStationTracking === 'undefined') return;\n  \n  RDStationTracking.track('conversion', {\n    event_type: 'CONVERSION',\n    event_family: 'CDP',\n    payload: {\n      conversion_identifier: '{{DLV - conversion_identifier}}',\n      email: '{{DLV - email}}' || 'unknown@unknown.com',\n      name: '{{DLV - nome}}' || '',\n      company: '{{DLV - empresa}}' || '',\n      personal_phone: '{{DLV - telefone}}' || '',\n      tags: ['lead', 'omma-engenharia'],\n      traffic_source: '{{Traffic Source}}' || 'organic',\n      traffic_medium: '{{Traffic Medium}}' || 'none',\n      traffic_campaign: '{{Campaign}}' || '',\n      available_for_mailing: true,\n      legal_bases: [{\n        category: 'consent',\n        type: 'consent',\n        status: 'granted'\n      }]\n    }\n  });\n})();\n</script>"
+          }
+        ],
+        "firingTriggerId": ["117"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "2147479553",
+        "name": "All Pages",
+        "type": "PAGEVIEW"
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "100",
+        "name": "[OMMA] CE - form_view",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "form_view" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "101",
+        "name": "[OMMA] CE - form_start",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "form_start" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "102",
+        "name": "[OMMA] CE - form_submit_attempt",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "form_submit_attempt" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "103",
+        "name": "[OMMA] CE - form_submit_success",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "form_submit_success" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "104",
+        "name": "[OMMA] CE - lead_submit",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "lead_submit" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "105",
+        "name": "[OMMA] CE - form_submit_error",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "form_submit_error" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "110",
+        "name": "[OMMA] CE - cta_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "cta_click" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "111",
+        "name": "[OMMA] CE - phone_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "phone_click" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "112",
+        "name": "[OMMA] CE - email_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "email_click" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "113",
+        "name": "[OMMA] CE - whatsapp_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "whatsapp_click" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "114",
+        "name": "[OMMA] CE - section_view",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "section_view" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "115",
+        "name": "[OMMA] CE - scroll_depth",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "scroll_depth" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "116",
+        "name": "[OMMA] CE - user_identify",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "user_identify" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "triggerId": "117",
+        "name": "[OMMA] CE - rd_conversion",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "rd_conversion" }
+            ]
+          }
+        ]
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "1",
+        "name": "[OMMA] GA4 Measurement ID",
+        "type": "c",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "value", "value": "G-XXXXXXXXXX" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "2",
+        "name": "[OMMA] Google Ads Conversion ID",
+        "type": "c",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "value", "value": "AW-XXXXXXXXXX" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "3",
+        "name": "[OMMA] Meta Pixel ID",
+        "type": "c",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "value", "value": "YOUR_PIXEL_ID" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "10",
+        "name": "[OMMA] Google Ads Label - Form Submit",
+        "type": "c",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "value", "value": "CONVERSION_LABEL_1" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "11",
+        "name": "[OMMA] Google Ads Label - CTA",
+        "type": "c",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "value", "value": "CONVERSION_LABEL_2" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "12",
+        "name": "[OMMA] Google Ads Label - Phone",
+        "type": "c",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "value", "value": "CONVERSION_LABEL_3" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "13",
+        "name": "[OMMA] Google Ads Label - WhatsApp",
+        "type": "c",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "value", "value": "CONVERSION_LABEL_4" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "20",
+        "name": "DLV - form_id",
+        "type": "v",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "name", "value": "form_id" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "21",
+        "name": "DLV - email",
+        "type": "v",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "name", "value": "email" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "22",
+        "name": "DLV - nome",
+        "type": "v",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "name", "value": "nome" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "23",
+        "name": "DLV - empresa",
+        "type": "v",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "name", "value": "empresa" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "24",
+        "name": "DLV - telefone",
+        "type": "v",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "name", "value": "telefone" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "25",
+        "name": "DLV - conversion_identifier",
+        "type": "v",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "name", "value": "conversion_identifier" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "30",
+        "name": "Traffic Source",
+        "type": "v",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "name", "value": "utm_source" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "31",
+        "name": "Traffic Medium",
+        "type": "v",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "name", "value": "utm_medium" }
+        ]
+      },
+      {
+        "accountId": "XXXXX",
+        "containerId": "XXXXX",
+        "variableId": "32",
+        "name": "Campaign",
+        "type": "v",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "name", "value": "utm_campaign" }
+        ]
+      }
+    ],
+    "fingerprint": "0000000000000",
+    "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/XXXXX/containers/XXXXX/versions/0?apiLink=version"
+  }
+}
