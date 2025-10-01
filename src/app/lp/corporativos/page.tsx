@@ -306,7 +306,7 @@ export default function CorporativosLP() {
               { t: 'Instalações otimizadas', d: 'Criamos infraestruturas seguras e inovadoras, preparadas para acompanhar sua evolução e suportar as demandas tecnológicas do seu negócio.' },
             ].map((i, idx) => {
               const highlight = idx === 2;
-              const img = impactoImages[idx % impactoImages.length];s
+              const img = impactoImages[idx % impactoImages.length];
               return (
                 <div
                   key={i.t}
