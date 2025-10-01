@@ -3,13 +3,13 @@ import { AnalyticsEventBase, ConsentStateRecord } from '@/types/analytics';
 
 declare global {
   interface Window {
-    dataLayer: any[];
+    dataLayer: unknown[];
   }
 }
 
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-XXXXXXX';
 
-export function getDataLayer(): any[] {
+export function getDataLayer(): unknown[] {
   if (typeof window === 'undefined') return [];
   window.dataLayer = window.dataLayer || [];
   return window.dataLayer;

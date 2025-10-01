@@ -36,7 +36,7 @@ export default function ProjectsCarousel({ slides, autoAdvanceMs = 0 }: Projects
         slide_title: slides[idx]?.title
       });
     }
-  }, [len]);
+  }, [len, idx, slides]);
 
   const next = useCallback(() => {
     setIdx((i) => {
@@ -52,7 +52,7 @@ export default function ProjectsCarousel({ slides, autoAdvanceMs = 0 }: Projects
         slide_title: slides[idx]?.title
       });
     }
-  }, [len]);
+  }, [len, idx, slides]);
   // Fire slide_view when idx changes
   useEffect(() => {
     if (len > 0) {

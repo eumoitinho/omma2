@@ -1,10 +1,10 @@
 "use client";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 declare global {
   interface Window {
     Feed2Dev?: {
-      init: (config: Record<string, any>) => void;
+      init: (config: Record<string, unknown>) => void;
     };
   }
 }

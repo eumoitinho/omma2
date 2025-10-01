@@ -78,7 +78,9 @@ export default function ContactForm() {
             source: 'contact_form'
           });
         }
-      } catch {}
+      } catch {
+        // Ignore hashing errors
+      }
     } catch {
       setStatus('error');
       trackEvent({

@@ -7,7 +7,6 @@ import ProjectsCarousel from '@/components/lp/ProjectsCarousel';
 import { RevealObserver } from '@/components/ui/useReveal';
 import ContactForm from '@/components/lp/ContactForm';
 import CTAButton from '@/components/lp/CTAButton';
-import SectorCTAButton from '@/components/lp/SectorCTAButton';
 import ClientsCarousel from '@/components/lp/ClientsCarousel';
 
 export const metadata = {
