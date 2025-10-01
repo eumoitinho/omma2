@@ -62,9 +62,9 @@ export function setUserProperties(props: Record<string, unknown>) {
 export function updateConsent(consent: ConsentStateRecord) {
   pushDL({ event: 'consent_update', consent });
   // Google style command if present
-  // @ts-ignore
+  // @ts-expect-error - gtag is added by GTM script
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-    // @ts-ignore
+    // @ts-expect-error - gtag consent API
     window.gtag('consent', 'update', consent);
   }
 }
@@ -76,13 +76,19 @@ export function initialConsentLoad() {
       const parsed: ConsentStateRecord = JSON.parse(raw);
       updateConsent(parsed);
       return parsed;
-    } catch {}
+    } catch {
+      // Ignore parse errors
+    }
   }
   return null;
 }
 
 export function saveConsent(consent: ConsentStateRecord) {
-  try { localStorage.setItem('omma_consent_v1', JSON.stringify(consent)); } catch {}
+  try {
+    localStorage.setItem('omma_consent_v1', JSON.stringify(consent));
+  } catch {
+    // Ignore storage errors
+  }
 }
 
 export function defaultDeniedConsent(): ConsentStateRecord {
