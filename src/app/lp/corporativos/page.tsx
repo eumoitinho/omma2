@@ -15,8 +15,8 @@ export const metadata = {
 };
 
 const stats = [
-  { value: '+750 mil m²', label: 'de obras executadas', desc: 'Experiência comprovada em Projetos de grande escala.' },
-  { value: '+850', label: 'clientes', desc: 'Parcerias de sucesso com empresas que confiam na OMMA.' },
+  { value: '+1000', label: 'de obras entregues', desc: 'Experiência comprovada em Projetos de grande escala.' },
+  { value: '+750 mil m²', label: 'de obras executadas', desc: 'Consolidação da OMMA como referência no setor de engenharia.' },
   { value: '+27', label: 'anos de experiência', desc: 'Tradição e inovação a serviço do seu Projeto corporativo.' },
 ];
 
@@ -169,27 +169,29 @@ export default function CorporativosLP() {
         </div>
       </section>
 
-      {/* Bloco 2 – Resultados (fundo claro) */}
-  <section id="resultados" className="py-16 border-t border-neutral-200 reveal relative overflow-hidden bg-gradient-to-br from-amber-50 via-white to-amber-50/30">
+      {/* Bloco 2 – Resultados (camadas âmbar adicionadas) */}
+  <section id="resultados" className="py-12 border-t border-white/10 reveal relative overflow-hidden">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute -right-40 top-1/2 -translate-y-1/2 h-[30rem] w-[30rem] rounded-full bg-amber-300/20 blur-3xl" />
-          <div className="absolute -left-40 top-0 h-[24rem] w-[24rem] rounded-full bg-amber-400/15 blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-400/5 via-transparent to-amber-300/5" />
+          <div className="absolute -right-40 top-1/2 -translate-y-1/2 h-[30rem] w-[30rem] rounded-full bg-amber-400/10 blur-3xl" />
+          <div className="absolute -left-40 top-0 h-[24rem] w-[24rem] rounded-full bg-amber-500/10 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_25%,rgba(251,191,36,0.18),transparent_60%)] opacity-60" />
         </div>
         <div className="mx-auto max-w-7xl px-6 relative">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center text-neutral-900" style={{ fontFamily: 'Exo, Inter' }}>
+          <h2 className="text-2xl sm:text-3xl font-semibold text-center" style={{ fontFamily: 'Exo, Inter' }}>
             Resultados que comprovam nossa expertise
           </h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             {stats.map((s, i) => (
               <div
                 key={s.label}
-                className={`relative rounded-2xl p-6 anim-fadeSlideUp overflow-hidden group bg-white border border-amber-200/60 shadow-lg hover:shadow-xl hover:border-amber-300 transition-all`}
+                className={`relative rounded-2xl p-6 anim-fadeSlideUp overflow-hidden group ring-1 ring-white/10 bg-gradient-to-br from-white/5 via-neutral-900/30 to-amber-400/10 hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25),0_8px_28px_-6px_rgba(251,191,36,0.25)] transition-shadow`}
                 style={{ animationDelay: `${0.1 * i}s` }}
               >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_78%_22%,rgba(251,191,36,0.15),transparent_65%)]" />
-                <div className="relative text-3xl font-bold text-amber-600 drop-shadow" style={{ fontFamily: 'Exo, Inter' }}>{s.value}</div>
-                <div className="relative text-neutral-900 mt-1 font-medium">{s.label}</div>
-                <p className="relative text-neutral-600 mt-3 text-sm leading-relaxed">{s.desc}</p>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_78%_22%,rgba(251,191,36,0.28),transparent_65%)]" />
+                <div className="relative text-3xl font-bold text-amber-300 drop-shadow" style={{ fontFamily: 'Exo, Inter' }}>{s.value}</div>
+                <div className="relative text-white/90 mt-1 font-medium">{s.label}</div>
+                <p className="relative text-white/70 mt-3 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -301,10 +303,10 @@ export default function CorporativosLP() {
               { t: 'Identidade da empresa', d: 'Criamos Projetos que traduzem sua cultura organizacional, com ambientes que refletem seus valores e reforçam a imagem da sua marca.' },
               { t: 'Economia com manutenção', d: 'Com planejamento inteligente, você reduz custos futuros com reformas e aproveita o espaço de forma prática e estratégica.' },
               { t: 'Acabamentos de qualidade', d: 'Valorizamos seus espaços com materiais de alto padrão que garantem estética, durabilidade e funcionalidade a cada ambiente.' },
-              { t: 'Instalações otimizadas', d: 'Executamos uma infraestrutura moderna e segura, preparada para atender plenamente às demandas tecnológicas do seu negócio.' },
+              { t: 'Instalações otimizadas', d: 'Criamos infraestruturas seguras e inovadoras, preparadas para acompanhar sua evolução e suportar as demandas tecnológicas do seu negócio.' },
             ].map((i, idx) => {
               const highlight = idx === 2;
-              const img = impactoImages[idx % impactoImages.length];
+              const img = impactoImages[idx % impactoImages.length];s
               return (
                 <div
                   key={i.t}
@@ -522,15 +524,11 @@ export default function CorporativosLP() {
         </div>
       </section>
 
-      {/* Bloco 7 – Metodologia (fundo claro) */}
-      <section className="py-16 border-t border-neutral-200 reveal relative overflow-hidden bg-gradient-to-br from-white via-amber-50/50 to-white">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute top-1/2 left-1/4 h-[28rem] w-[28rem] rounded-full bg-amber-300/15 blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 h-[24rem] w-[24rem] rounded-full bg-amber-400/10 blur-3xl" />
-        </div>
+      {/* Bloco 7 – Metodologia (adicionado gradientes sutis para reduzir o preto contínuo) */}
+      <section className="py-12 border-t border-white/10 reveal relative overflow-hidden">
         <div className="relative mx-auto max-w-7xl px-6">
-          <h3 className="text-2xl font-semibold text-center text-neutral-900">METODOLOGIA OMMA</h3>
-          <p className="text-center text-neutral-600 mt-1">O caminho para o sucesso do seu Projeto</p>
+          <h3 className="text-2xl font-semibold text-center">METODOLOGIA OMMA</h3>
+          <p className="text-center text-white/70 mt-1">O caminho para o sucesso do seu Projeto</p>
           <div className="relative mt-8 grid md:grid-cols-4 gap-6">
             {[{
               n: 'FASE 1', title: 'DIAGNÓSTICO', items: ['Revisão de briefing', 'Revisão do escopo e requisitos', 'Estimativa preliminar']
@@ -541,7 +539,7 @@ export default function CorporativosLP() {
             }, {
               n: 'FASE 4', title: 'ENTREGA e PÓS-OBRA', items: ['Comissionamento e testes', 'Vistoria e punch list', 'Entrega Final (As-Built)', 'Treinamento e Ocupação']
             }].map((step) => (
-              <div key={step.title} className="relative rounded-2xl bg-white border border-amber-200/60 p-5 text-neutral-900 shadow-lg hover:shadow-xl hover:border-amber-300 transition-all">
+              <div key={step.title} className="relative rounded-2xl bg-white p-5 text-neutral-900 shadow-[0_0_40px_rgba(250,204,21,0.12)]">
                 <div className="text-xs font-semibold text-amber-600">{step.n}</div>
                 <h4 className="text-lg font-semibold mt-1">{step.title}</h4>
                 <ul className="mt-2 space-y-1 text-sm text-neutral-700">
@@ -557,7 +555,6 @@ export default function CorporativosLP() {
               href="#form"
               eventLabel="metodologia_solicite_orcamento"
               location="metodologia"
-              className="inline-flex items-center gap-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 text-sm font-semibold transition-all hover:scale-[1.02] shadow-lg"
             >
               SOLICITE UM ORÇAMENTO AGORA!
             </CTAButton>
@@ -565,14 +562,10 @@ export default function CorporativosLP() {
         </div>
       </section>
 
-      {/* Bloco 8 – Nossos clientes (fundo claro) */}
-    <section id="clientes" className="py-16 border-t border-neutral-200 reveal relative overflow-hidden bg-gradient-to-br from-amber-50/30 via-white to-amber-50/30">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute top-0 left-1/3 h-[26rem] w-[26rem] rounded-full bg-amber-300/15 blur-3xl" />
-          <div className="absolute bottom-0 right-1/3 h-[22rem] w-[22rem] rounded-full bg-amber-400/10 blur-3xl" />
-        </div>
-        <div className="mx-auto max-w-7xl px-6 relative">
-          <h3 className="text-2xl font-semibold text-center text-amber-600">NOSSOS CLIENTES</h3>
+      {/* Bloco 8 – Nossos clientes */}
+    <section id="clientes" className="py-12 border-t border-white/10 reveal">
+        <div className="mx-auto max-w-7xl px-6">
+          <h3 className="text-2xl font-semibold text-center text-amber-300">NOSSOS CLIENTES</h3>
           <ClientsCarousel clients={allClients} />
         </div>
       </section>
