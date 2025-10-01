@@ -6,6 +6,9 @@ import HeroCardStack from '@/components/ui/HeroCardStack';
 import ProjectsCarousel from '@/components/lp/ProjectsCarousel';
 import { RevealObserver } from '@/components/ui/useReveal';
 import ContactForm from '@/components/lp/ContactForm';
+import CTAButton from '@/components/lp/CTAButton';
+import SectorCTAButton from '@/components/lp/SectorCTAButton';
+import ClientsCarousel from '@/components/lp/ClientsCarousel';
 
 export const metadata = {
   title: 'OMMA Engenharia - Ambientes corporativos (Landing page)',
@@ -13,24 +16,24 @@ export const metadata = {
 };
 
 const stats = [
-  { value: '+1.000', label: 'obras entregues', desc: 'Experiência comprovada em projetos de grande escala.' },
+  { value: '+750 mil m²', label: 'de obras executadas', desc: 'Experiência comprovada em Projetos de grande escala.' },
   { value: '+850', label: 'clientes', desc: 'Parcerias de sucesso com empresas que confiam na OMMA.' },
-  { value: '+24', label: 'anos de experiência', desc: 'Tradição e inovação a serviço do seu projeto corporativo.' },
+  { value: '+27', label: 'anos de experiência', desc: 'Tradição e inovação a serviço do seu Projeto corporativo.' },
 ];
 
 
 // Versão detalhada para o novo layout de "Setores" (Bloco 5)
 // Mantemos as cores (base escura + acentos âmbar) e textos coerentes com a proposta.
 const sectorCards = [
-  { key: 'Escritórios', title: 'Escritórios Corporativos', desc: 'Layouts eficientes que equilibram foco e colaboração, fortalecendo cultura e performance diária.', img: '/OMMA%20001/camb1-1024x676.jpg' },
-  { key: 'Startups', title: 'Startups & Scale-ups', desc: 'Ambientes flexíveis e escaláveis que acompanham o crescimento e estimulam velocidade de execução.', img: '/OMMA%20001/Movile1.jpg' },
-  { key: 'Coworkings', title: 'Coworkings', desc: 'Espaços multiuso desenhados para alta rotatividade, conforto e retenção de clientes e comunidades.', img: '/OMMA%20001/Movile2%20(1).jpg' },
-  { key: 'Clínicas médicas', title: 'Clínicas e Saúde', desc: 'Ambientes humanizados, funcionais e normativos que elevam a experiência de pacientes e equipes.', img: '/OMMA%20001/uni11-1024x676.jpg' },
-  { key: 'Laboratórios', title: 'Laboratórios', desc: 'Infraestrutura técnica precisa, segurança e fluxo operacional otimizado para alta confiabilidade.', img: '/OMMA%20001/melhoramentos2%20(1).jpg' },
-  { key: 'Estabelecimentos comerciais', title: 'Espaços Comerciais', desc: 'Projetos que convertem: estética, funcionalidade e identidade para maximizar valor de marca.', img: '/OMMA%20001/pdc3-1024x676.jpg' },
+  { key: 'Ambientes Corporativos', title: 'Ambientes Corporativos', desc: 'Espaços eficientes que equilibram foco e colaboração, fortalecendo a cultura e performance diária.', img: '/bloco%204/1%20CORPORATIVOS.jpg' },
+  { key: 'Startups', title: 'Startups & Scale-ups', desc: 'Ambientes flexíveis e escaláveis que acompanham o crescimento e estimulam velocidade de execução.', img: '/bloco%204/2%20START%20UPS.jpg' },
+  { key: 'Coworkings', title: 'Coworkings', desc: 'Espaços multiuso desenhados para alta rotatividade, conforto e retenção de clientes e comunidades.', img: '/bloco%204/3%20COWORKING.jpg' },
+  { key: 'Clínicas e Laboratórios', title: 'Clínicas e Laboratórios', desc: 'Ambientes humanizados, funcionais e normativos, com infraestrutura técnica precisa, segurança e fluxos otimizados para elevar a experiência e garantir alta confiabilidade.', img: '/bloco%204/4%20CLINICAS.jpeg' },
+  { key: 'Academias', title: 'Academias', desc: 'Layouts projetados para o máximo desempenho e bem-estar dos usuários, unindo funcionalidade, segurança e conforto.', img: '/OMMA%20001/melhoramentos2%20(1).jpg' },
+  { key: 'Espaços Comerciais', title: 'Espaços Comerciais', desc: 'Edificações e galpões versáteis, desenvolvidos para atender operações de atacado e varejo com eficiência, praticidade e confiabilidade.', img: '/OMMA%20001/pdc3-1024x676.jpg' },
 ];
 
-const clients = [
+const allClients = [
   'Ambev',
   'Azul',
   'Sensitech',
@@ -41,18 +44,74 @@ const clients = [
   'Unimed',
   'Ultracargo',
   'Movile',
+  'CAMB',
+  'Natura',
+  'Stone',
+  'iFood',
+  'Nubank',
+  'Localiza',
+  'Magazine Luiza',
+  'Grupo Pão de Açúcar',
+  'B3',
+  'Bradesco',
+  'Itaú',
+  'Banco do Brasil',
+  'Santander',
+  'XP Investimentos',
+  'BTG Pactual',
+  'Vivo',
+  'Claro',
+  'TIM',
+  'Embratel',
+  'Oi',
+  'Google Brasil',
+  'Microsoft Brasil',
+  'IBM Brasil',
+  'Oracle Brasil',
+  'SAP Brasil',
+  'Salesforce',
+  'Amazon Brasil',
+  'Mercado Livre',
+  'Rappi',
+  'Uber',
+  '99',
+  'Loggi',
+  'Grupo Fleury',
+  'Dasa',
+  'Rede D\'Or',
+  'Hospital Sírio-Libanês',
+  'Einstein',
+  'Coca-Cola Brasil',
+  'PepsiCo Brasil',
+  'Nestlé Brasil',
+  'Unilever Brasil',
+  'Johnson & Johnson',
+  'Pfizer',
+  'Roche',
+  'Novartis',
+  'Bayer',
+  'Vale',
+  'Petrobras',
+  'Shell Brasil',
+  'Raízen',
+  'Cosan',
+  'Gerdau',
+  'CSN',
+  'Usiminas',
+  'Embraer',
+  'WEG'
 ];
 
 const slides = (projectsData as { title: string; description: string; imageUrl: string }[]);
 
 // Banco de imagens para os cards de impacto (Bloco 4)
 const impactoImages = [
-  '/OMMA%20001/Movile1.jpg',
-  '/OMMA%20001/ultracargo2-1024x676.jpg',
-  '/OMMA%20001/ambev2.jpg',
-  '/OMMA%20001/melhoramentos3.jpg',
-  '/OMMA%20001/pdc3-1024x676.jpg',
-  '/OMMA%20001/uni10-1024x676.jpg',
+  '/bloco%203/1%20RETEN%C3%87AO%20DE%20TALENTOS.jpg',
+  '/bloco%203/2%20AUMENTO%20PRODUTIVIDADE.JPG',
+  '/bloco%203/3%20IDENTIDADE%20DA%20EMPRESA.JPG',
+  '/bloco%203/4%20ECONOMIA%20MANUTEN%C3%87%C3%83O.jpg',
+  '/bloco%203/5%20QUALIDADE%20ACABAMENTO.JPG',
+  '/bloco%203/6%20INSTALACOES.JPG',
 ];
 
 export default function CorporativosLP() {
@@ -93,25 +152,17 @@ export default function CorporativosLP() {
                 Transformando a visão da sua empresa em ambientes corporativos funcionais, estéticos e de alta performance.
               </p>
               <div className="mt-8 flex items-center gap-4 anim-fadeSlideIn anim-delay-5">
-                <a
+                <CTAButton
                   href="#form"
-                  onClick={() => {
-                    if (typeof window !== 'undefined') {
-                      import('@/lib/gtm').then(m => m.trackCtaWithTiming({
-                        event: 'cta_click',
-                        event_category: 'engagement',
-                        event_label: 'hero_quero_iniciar_projeto',
-                        location: 'hero'
-                      })).catch(()=>{});
-                    }
-                  }}
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-amber-400 px-7 py-3 text-sm font-semibold text-amber-400 hover:bg-amber-400 hover:text-black transition-all"
+                  eventLabel="hero_quero_iniciar_projeto"
+                  location="hero"
+                  variant="primary"
                 >
                   QUERO INICIAR UM PROJETO!
-                </a>
+                </CTAButton>
               </div>
             </div>
-            {/* Pilha animada de cards de projetos */}
+            {/* Pilha animada de cards de Projetos */}
             <div className="hidden lg:block relative anim-fadeScaleIn">
               <HeroCardStack />
             </div>
@@ -174,10 +225,10 @@ export default function CorporativosLP() {
                 {[...Array(2)].map((_, dup) => (
                   <React.Fragment key={dup}>
                     {[
-                      { title: 'Prazos estourados?', img: '/OMMA%20001/ultracargo2-1024x676.jpg' },
-                      { title: 'Custos imprevistos?', img: '/OMMA%20001/ultracargo4-1024x676%20(1).jpg' },
-                      { title: 'Falta de gestão?', img: '/OMMA%20001/movile3-1%20(1).jpg' },
-                      { title: 'Qualidade questionável?', img: '/OMMA%20001/uni10-1024x676.jpg' },
+                      { title: 'Prazos comprometidos?', img: '/drive-download-20251001T193038Z-1-001%20(2)/1.jpg' },
+                      { title: 'Custos imprevistos?', img: '/drive-download-20251001T193038Z-1-001%20(2)/2.jpg' },
+                      { title: 'Dificuldade de gestão?', img: '/drive-download-20251001T193038Z-1-001%20(2)/3.jpg' },
+                      { title: 'Qualidade questionável?', img: '/drive-download-20251001T193038Z-1-001%20(2)/4.jpg' },
                     ].map((item, i) => (
                       <div
                         key={item.title + dup + i}
@@ -205,15 +256,15 @@ export default function CorporativosLP() {
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 motion-reduce:mt-8">
               {[
                 {
-                  title: 'Prazos estourados?',
-                  text: 'Na OMMA, os projetos são entregues dentro do prazo, evitando custos extras com aluguel de espaços provisórios ou interrupções nas suas operações.'
+                  title: 'Prazos comprometidos?',
+                  text: 'Na OMMA, os Projetos são entregues dentro do prazo, evitando custos extras com aluguel de espaços provisórios ou interrupções nas suas operações.'
                 },
                 {
                   title: 'Custos imprevistos?',
                   text: 'Trabalhamos com preço fechado, oferecendo previsibilidade total e eliminando riscos de surpresas financeiras ao longo da obra.'
                 },
                 {
-                  title: 'Falta de gestão?',
+                  title: 'Dificuldade de gestão?',
                   text: 'Assumimos a gestão completa da sua obra, do planejamento à entrega, para que você não precise se preocupar com nada.'
                 },
                 {
@@ -250,10 +301,10 @@ export default function CorporativosLP() {
             {[
               { t: 'Retenção e atração de talentos', d: 'Um espaço bem planejado inspira, motiva e atrai profissionais de alto nível, fortalecendo a equipe e impulsionando o crescimento da sua empresa.' },
               { t: 'Aumento de produtividade', d: 'Ambientes funcionais e agradáveis tornam os colaboradores mais engajados, elevando a eficiência e a qualidade das entregas no dia a dia.' },
-              { t: 'Identidade da empresa', d: 'Criamos projetos que traduzem sua cultura organizacional, com ambientes que refletem seus valores e reforçam a imagem da sua marca.' },
+              { t: 'Identidade da empresa', d: 'Criamos Projetos que traduzem sua cultura organizacional, com ambientes que refletem seus valores e reforçam a imagem da sua marca.' },
               { t: 'Economia com manutenção', d: 'Com planejamento inteligente, você reduz custos futuros com reformas e aproveita o espaço de forma prática e estratégica.' },
-              { t: 'Acabamentos de qualidade', d: 'Valorizamos seu negócio com materiais de alto padrão que garantem estética, durabilidade e funcionalidade a cada ambiente.' },
-              { t: 'Instalações elétricas otimizadas', d: 'Projetamos uma infraestrutura moderna e segura, preparada para atender plenamente às demandas tecnológicas do seu negócio.' },
+              { t: 'Acabamentos de qualidade', d: 'Valorizamos seus espaços com materiais de alto padrão que garantem estética, durabilidade e funcionalidade a cada ambiente.' },
+              { t: 'Instalações otimizadas', d: 'Executamos uma infraestrutura moderna e segura, preparada para atender plenamente às demandas tecnológicas do seu negócio.' },
             ].map((i, idx) => {
               const highlight = idx === 2;
               const img = impactoImages[idx % impactoImages.length];
@@ -287,18 +338,13 @@ export default function CorporativosLP() {
             })}
           </div>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a
+            <CTAButton
               href="#form"
-              onClick={() => import('@/lib/gtm').then(m => m.trackCtaWithTiming({
-                event: 'cta_click',
-                event_category: 'engagement',
-                event_label: 'impacto_solicite_orcamento',
-                location: 'impacto'
-              })).catch(()=>{})}
-              className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 px-6 py-3 text-sm text-white hover:bg-amber-400/10 hover:scale-[1.02] transition-all duration-300"
+              eventLabel="impacto_solicite_orcamento"
+              location="impacto"
             >
               SOLICITE UM ORÇAMENTO AGORA!
-            </a>
+            </CTAButton>
           </div>
         </div>
       </section>
@@ -353,27 +399,9 @@ export default function CorporativosLP() {
                       <h4 className="text-xl font-semibold tracking-tight mb-3 group-hover:text-amber-200 transition-colors" style={{ fontFamily: 'Exo, Inter' }}>
                         {card.title}
                       </h4>
-                      <p className="text-white/70 leading-relaxed mb-6 text-sm group-hover:text-white/80 transition-colors" style={{ fontFamily: 'Inter' }}>
+                      <p className="text-white/70 leading-relaxed text-sm group-hover:text-white/80 transition-colors" style={{ fontFamily: 'Inter' }}>
                         {card.desc}
                       </p>
-                      <a
-                        href="#form"
-                        onClick={() => import('@/lib/gtm').then(m => m.trackEvent({
-                          event: 'sector_card_cta',
-                          event_category: 'sector',
-                          event_label: card.key,
-                          location: 'setores'
-                        })).catch(()=>{})}
-                        className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-2.5 text-xs font-medium text-white/90 hover:bg-white/10 hover:border-white/25 hover:scale-[1.03] transition-all duration-300 group"
-                        style={{ fontFamily: 'Exo, Inter' }}
-                        aria-label={`Solicitar orçamento para ${card.title}`}
-                      >
-                        <span>Saiba mais</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 group-hover:translate-x-1 transition-transform">
-                          <path d="M5 12h14" />
-                          <path d="m12 5 7 7-7 7" />
-                        </svg>
-                      </a>
                     </div>
                   </article>
                 );
@@ -382,18 +410,13 @@ export default function CorporativosLP() {
           </div>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <a
+            <CTAButton
               href="#form"
-              onClick={() => import('@/lib/gtm').then(m => m.trackCtaWithTiming({
-                event: 'cta_click',
-                event_category: 'engagement',
-                event_label: 'setores_solicite_orcamento',
-                location: 'setores'
-              })).catch(()=>{})}
-              className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 px-6 py-3 text-sm text-white hover:bg-amber-400/10 hover:scale-[1.02] transition-all duration-300"
+              eventLabel="setores_solicite_orcamento"
+              location="setores"
             >
               SOLICITE UM ORÇAMENTO AGORA!
-            </a>
+            </CTAButton>
           </div>
         </div>
       </section>
@@ -407,7 +430,7 @@ export default function CorporativosLP() {
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div>
           <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight" style={{ fontFamily: 'Exo, Inter' }}>
-            Compare o impacto de adiar sua obra com os ganhos concretos de executar um projeto profissional OMMA.
+            Descubra os benefícios de modernizar suas instalações com a OMMA
           </h3>
             </div>
             <div className="flex items-center gap-1.5 mt-4 sm:mt-0 opacity-70">
@@ -420,13 +443,13 @@ export default function CorporativosLP() {
 
           {/* Two-column comparison inside card */}
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* Coluna 1 – Adiar */}
+            {/* Coluna 1 – Ambiente antigo */}
             <div className="relative">
           <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-[11px] font-medium text-amber-300 tracking-wide">
-            Adiar o projeto
+            Ambiente antigo
           </div>
           <h4 className="mt-4 text-lg font-semibold" style={{ fontFamily: 'Exo, Inter' }}>
-            O que acontece quando você adia seu projeto?
+            O que acontece com um espaço que precisa de modernização?
           </h4>
           <div className="mt-4 space-y-2 text-white/80 text-sm leading-relaxed" style={{ fontFamily: 'Inter' }}>
             {[
@@ -447,13 +470,13 @@ export default function CorporativosLP() {
           </div>
             </div>
 
-            {/* Coluna 2 – Conquistar */}
+            {/* Coluna 2 – Ambiente moderno */}
             <div className="relative">
           <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-[11px] font-medium text-amber-300 tracking-wide">
-            Conquistar com a OMMA
+            Ambiente moderno
           </div>
           <h4 className="mt-4 text-lg font-semibold" style={{ fontFamily: 'Exo, Inter' }}>
-            O que você conquista ao fechar seu projeto com a OMMA?
+            O que você conquista ao fechar seu Projeto com a OMMA?
           </h4>
           <div className="mt-4 space-y-2 text-white/80 text-sm leading-relaxed" style={{ fontFamily: 'Inter' }}>
             {[
@@ -479,22 +502,18 @@ export default function CorporativosLP() {
             <p className="text-xs sm:text-sm text-white/50" style={{ fontFamily: 'Inter' }}>
           Decisão estratégica: cada mês de adiamento impacta motivação, eficiência e marca.
             </p>
-            <a
-          href="#form"
-          onClick={() => import('@/lib/gtm').then(m => m.trackCtaWithTiming({
-            event: 'cta_click',
-            event_category: 'engagement',
-            event_label: 'comparativo_iniciar_projeto',
-            location: 'comparativo'
-          })).catch(()=>{})}
-          className="inline-flex items-center gap-2 rounded-xl border border-amber-400/70 bg-amber-400/10 px-4 py-2 text-xs font-medium text-white hover:bg-amber-400/20 hover:scale-[1.03] transition-all"
+            <CTAButton
+              href="#form"
+              eventLabel="comparativo_iniciar_projeto"
+              location="comparativo"
+              className="inline-flex items-center gap-2 rounded-xl border border-amber-400/70 bg-amber-400/10 px-4 py-2 text-xs font-medium text-white hover:bg-amber-400/20 hover:scale-[1.03] transition-all"
             >
-          INICIAR PROJETO
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-          </svg>
-            </a>
+              INICIAR PROJETO
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </CTAButton>
           </div>
         </div>
 
@@ -510,14 +529,14 @@ export default function CorporativosLP() {
       <section className="py-12 border-t border-white/10 reveal relative overflow-hidden">
         <div className="relative mx-auto max-w-7xl px-6">
           <h3 className="text-2xl font-semibold text-center">METODOLOGIA OMMA</h3>
-          <p className="text-center text-white/70 mt-1">O caminho para o sucesso do seu projeto</p>
+          <p className="text-center text-white/70 mt-1">O caminho para o sucesso do seu Projeto</p>
           <div className="relative mt-8 grid md:grid-cols-4 gap-6">
             {[{
               n: 'FASE 1', title: 'DIAGNÓSTICO', items: ['Revisão de briefing', 'Revisão do escopo e requisitos', 'Estimativa preliminar']
             }, {
-              n: 'FASE 2', title: 'PLANEJAMENTO', items: ['Desenvolvimento de projetos (complementares)', 'Orçamento e cronograma detalhado', 'Aprovações', 'Planejamento de suprimentos e gestão']
+              n: 'FASE 2', title: 'PLANEJAMENTO', items: ['Desenvolvimento de Projetos (arquitetônicos e complementares)', 'Orçamento e cronograma detalhado', 'Aprovações', 'Planejamento de suprimentos e gestão']
             }, {
-              n: 'FASE 3', title: 'EXECUÇÃO', items: ['Mobilização interna', 'Demolições e reestrutura', 'Implantação de instalações', 'Forros e contrapisos', 'Acabamentos e revestimentos', 'Instalação de sistemas', 'Limpeza da obra']
+              n: 'FASE 3', title: 'EXECUÇÃO', items: ['Mobilização interna', 'Demolições e reestrutura', 'Implantação de instalações', 'Forros e contrapisos', 'Acabamentos e revestimentos', 'Instalação de sistemas', 'Limpeza do Projeto']
             }, {
               n: 'FASE 4', title: 'ENTREGA e PÓS-OBRA', items: ['Comissionamento e testes', 'Vistoria e punch list', 'Entrega Final (As-Built)', 'Treinamento e Ocupação']
             }].map((step) => (
@@ -533,14 +552,13 @@ export default function CorporativosLP() {
             ))}
           </div>
           <div className="mt-8 text-center">
-            <a href="#form" onClick={() => import('@/lib/gtm').then(m => m.trackCtaWithTiming({
-              event: 'cta_click',
-              event_category: 'engagement',
-              event_label: 'metodologia_solicite_orcamento',
-              location: 'metodologia'
-            })).catch(()=>{})} className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 px-6 py-3 text-sm text-white hover:bg-amber-400/10 transition">
+            <CTAButton
+              href="#form"
+              eventLabel="metodologia_solicite_orcamento"
+              location="metodologia"
+            >
               SOLICITE UM ORÇAMENTO AGORA!
-            </a>
+            </CTAButton>
           </div>
         </div>
       </section>
@@ -549,30 +567,7 @@ export default function CorporativosLP() {
     <section id="clientes" className="py-12 border-t border-white/10 reveal">
         <div className="mx-auto max-w-7xl px-6">
           <h3 className="text-2xl font-semibold text-center text-amber-300">NOSSOS CLIENTES</h3>
-          {/* Marquee container */}
-          <div className="mt-8 relative overflow-hidden">
-            {/* Gradient fades on sides */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#050505] to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#050505] to-transparent" />
-            <div className="flex gap-6 marquee-track" aria-hidden="true">
-              {[...clients, ...clients].map((c, idx) => (
-                <div
-                  key={c + idx}
-                  className="flex-shrink-0 rounded-xl border border-white/10 bg-white/5 px-6 py-4 text-center text-sm text-white/90 backdrop-blur-sm hover:bg-white/10 transition"
-                >
-                  {c}
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* Static fallback grid for users with prefers-reduced-motion (handled by media query disabling animation) */}
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 motion-reduce:mt-8 motion-reduce:grid">
-            {clients.map((c) => (
-              <div key={c} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm text-white/90 anim-fadeScaleIn">
-                {c}
-              </div>
-            ))}
-          </div>
+          <ClientsCarousel clients={allClients} />
         </div>
       </section>
 
@@ -580,7 +575,6 @@ export default function CorporativosLP() {
     <section id="projetos" className="py-12 border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6">
           <h3 className="text-2xl font-semibold" style={{ fontFamily: 'Exo, Inter' }}>Projetos que falam por nós</h3>
-          <p className="text-white/70 mt-2 text-sm">As imagens definitivas podem ser vinculadas às obras publicadas em omma.com.br/obras-realizadas.</p>
           <div className="mt-6">
             <ProjectsCarousel slides={slides} />
           </div>
@@ -625,29 +619,18 @@ export default function CorporativosLP() {
                 </details>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 anim-fadeSlideIn anim-delay-2">
-                <a href="#form" onClick={() => import('@/lib/gtm').then(m => m.trackCtaWithTiming({
-                  event: 'cta_click',
-                  event_category: 'engagement',
-                  event_label: 'porque_solicitar_proposta',
-                  location: 'porque_escolher'
-                })).catch(()=>{})} className="group inline-flex items-center justify-center gap-3 bg-amber-400 text-neutral-900 px-6 py-3 rounded-full font-medium text-sm hover:bg-amber-300 transition-all duration-300 hover:shadow-lg hover:shadow-amber-400/25 hover:scale-[1.04]">
+                <CTAButton
+                  href="#form"
+                  eventLabel="porque_solicitar_proposta"
+                  location="porque_escolher"
+                  className="group inline-flex items-center justify-center gap-3 bg-amber-400 text-neutral-900 px-6 py-3 rounded-full font-medium text-sm hover:bg-amber-300 transition-all duration-300 hover:shadow-lg hover:shadow-amber-400/25 hover:scale-[1.04]"
+                >
                   <span>Solicitar Proposta</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 group-hover:translate-x-1 transition-transform">
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />
                   </svg>
-                </a>
-                <a href="#impacto-cards" onClick={() => import('@/lib/gtm').then(m => m.trackCtaWithTiming({
-                  event: 'cta_click',
-                  event_category: 'engagement',
-                  event_label: 'porque_ver_beneficios',
-                  location: 'porque_escolher'
-                })).catch(()=>{})} className="group inline-flex items-center justify-center gap-3 border border-white/20 text-white/80 px-6 py-3 rounded-full font-medium text-sm hover:border-amber-400 hover:text-amber-300 transition-all duration-300">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                    <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16Z" />
-                  </svg>
-                  <span>Ver benefícios</span>
-                </a>
+                </CTAButton>
               </div>
             </div>
           </div>
@@ -657,8 +640,8 @@ export default function CorporativosLP() {
             {[
               { t: 'Agilidade na entrega', d: 'Projeto concluído com agilidade, sem comprometer a qualidade.' },
               { t: 'Gestão completa', d: 'Do planejamento à entrega, sem preocupações.' },
-              { t: 'Alto padrão estético', d: 'Ambientes que unem funcionalidade e beleza.' },
-              { t: 'Serviços complementares', d: 'Instalações e acabamentos de excelência.' },
+              { t: 'Alto padrão estético', d: 'Ambientes com acabamentos de alta qualidade.' },
+              { t: 'Infraestrutura completa', d: 'Instalações: ar-condicionado, elétrica, hidráulica e tecnologia.' },
               { t: 'Abrangência nacional', d: 'Expertise disponível para todo o território nacional.' },
               { t: 'Gestão transparente', d: 'Previsibilidade e segurança em cada etapa.' },
             ].map((i, idx) => (
@@ -699,7 +682,7 @@ export default function CorporativosLP() {
               <div className="space-y-5">
                 <div className="inline-flex items-center gap-2 ring-1 ring-amber-300/70 text-[11px] tracking-wide text-amber-900 bg-amber-200 rounded-full px-3 py-1.5 font-medium" style={{ fontFamily: 'Exo, Inter' }}>
                   <span className="h-1.5 w-1.5 rounded-full bg-amber-600 animate-pulse" />
-                  Agendando novos projetos para Q4 2025
+                  Agendando novos Projetos para Q4 2025
                 </div>
                 <h4 className="text-xl sm:text-2xl font-semibold text-neutral-900 leading-tight" style={{ fontFamily: 'Exo, Inter' }}>Pronto para elevar seu espaço corporativo?</h4>
                 <ul className="text-sm text-neutral-700 space-y-3">

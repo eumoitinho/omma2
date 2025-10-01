@@ -2,9 +2,9 @@ import React from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import './globals.css';
-import dynamic from 'next/dynamic';
 import GTMProvider from '@/components/GTMProvider';
 import ConsentBanner from '@/components/ConsentBanner';
+import ClientFeedbackWidget from '@/components/ClientFeedbackWidget';
 
 export const metadata = {
     title: 'OMMA Engenharia — Hero + Second Section',
@@ -12,7 +12,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    const FeedbackWidget = dynamic(() => import('../components/FeedbackWidget'), { ssr: false });
     return (
         <html lang="pt-BR">
             <head>
@@ -32,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black" />
                 </div>
                 {/* Feedback widget (client-only) */}
-                <FeedbackWidget position="bottom-right" primaryColor="#667eea" title="Enviar Feedback" subtitle="Adoraríamos ouvir sua opinião!" />
+                <ClientFeedbackWidget />
 
                 <Navbar />
                 <main>{children}</main>

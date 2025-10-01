@@ -94,7 +94,7 @@ export default function ProjectsCarousel({ slides, autoAdvanceMs = 0 }: Projects
           Nenhum projeto disponível no momento.
         </div>
       ) : (
-        <div className="relative h-[440px] sm:h-[520px]">
+        <div className="relative h-[540px] sm:h-[620px]">
           {/* Slide image */}
           <img
             src={slides[idx].imageUrl}
@@ -102,70 +102,27 @@ export default function ProjectsCarousel({ slides, autoAdvanceMs = 0 }: Projects
             className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-[1.04]"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 group-hover:via-black/50 group-hover:to-black/90 transition-all duration-500" />
-          {/* Additional horizontal gradient to improve left-to-right text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent opacity-95 sm:opacity-90 pointer-events-none" />
-          {/* Subtle radial focus vignette */}
-          <div className="absolute inset-0 pointer-events-none [background:radial-gradient(circle_at_25%_55%,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.35)_40%,rgba(0,0,0,0.15)_65%,transparent_80%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/85 group-hover:to-black/90 transition-all duration-500" />
+          {/* Minimal horizontal gradient only at bottom for text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent opacity-80 pointer-events-none" style={{clipPath: 'polygon(0 70%, 100% 70%, 100% 100%, 0 100%)'}} />
 
           {/* Content overlay */}
-          <div className="absolute inset-0 flex flex-col justify-between px-5 py-6 sm:p-8 md:p-10">
-            {/* Top row */}
+          <div className="absolute bottom-0 left-0 right-0 px-5 py-6 sm:p-8 md:p-10">
             {(() => {
               const s = slides[idx];
-              let mainTitle = s.title;
-              let highlight: string | null = null;
-              const dashMatch = s.title.split(/\s[–-]\s/);
-              if (dashMatch.length === 2) {
-                mainTitle = dashMatch[0];
-                highlight = dashMatch[1];
-              }
-              const rating = typeof s.rating === 'number' ? s.rating : 4.9;
-              const awards = typeof s.awards === 'number' ? s.awards : 5;
-              const status = s.status || 'Concluído';
 
               return (
                 <>
-                  <div className="flex items-start justify-between gap-4">
-                    <h2 className="leading-tight text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight max-w-lg" style={{ fontFamily: 'Exo, Inter' }}>
-                      {mainTitle}{' '}
-                      {highlight && (
-                        <span className="block text-amber-300 font-semibold group-hover:text-amber-200 transition-colors duration-300">
-                          {highlight}
-                        </span>
-                      )}
-                    </h2>
-                    <div className="flex-shrink-0 inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3 py-1 text-[11px] font-medium text-white/80 group-hover:bg-white/20 transition-all duration-300">
-                      {status}
-                      <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                    </div>
-                  </div>
-
-                  {/* Bottom area */}
+                  {/* Bottom area - título e controles apenas */}
                   <div className="flex items-end justify-between gap-6">
-                    <div className="max-w-md">
-                      <p className="text-white/85 text-sm sm:text-base leading-relaxed font-light group-hover:text-white transition-colors duration-300" style={{ fontFamily: 'Inter' }}>
-                        {s.description}
-                      </p>
-                      <div className="mt-4 flex items-center gap-5 flex-wrap text-white/80 text-xs sm:text-sm">
-                        <div className="flex items-center gap-1 group-hover:text-white/90 transition-colors">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-amber-300">
-                            <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.68a2.1 2.1 0 0 0 1.58 1.16l5.17.76a.53.53 0 0 1 .29.9l-3.73 3.64a2.1 2.1 0 0 0-.6 1.87l.88 5.14a.53.53 0 0 1-.77.56l-4.62-2.43a2.1 2.1 0 0 0-1.97 0L6.4 21.02a.53.53 0 0 1-.77-.56l.88-5.14a2.1 2.1 0 0 0-.61-1.88L2.16 9.8a.53.53 0 0 1 .29-.9l5.17-.75a2.1 2.1 0 0 0 1.59-1.16l2.31-4.64Z" />
-                          </svg>
-                          <span className="font-medium">{rating.toFixed(1)} Rating</span>
-                        </div>
-                        <div className="flex items-center gap-1 group-hover:text-white/90 transition-colors">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                            <path d="m15.5 12.9 1.5 8.5a.5.5 0 0 1-.8.5l-3.6-2.7a1 1 0 0 0-1.2 0l-3.6 2.7a.5.5 0 0 1-.8-.5l1.5-8.5" />
-                            <circle cx="12" cy="8" r="6" />
-                          </svg>
-                          <span className="font-medium">{awards}+ Premiações</span>
-                        </div>
-                        <div className="flex items-center gap-1 text-white/60 group-hover:text-white/70 transition-colors">
-                          <span className="text-[11px] tracking-wide uppercase">{idx + 1}/{len}</span>
-                        </div>
+                    <div className="max-w-2xl">
+                      <h2 className="leading-tight text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-white drop-shadow-lg mb-4" style={{ fontFamily: 'Exo, Inter' }}>
+                        {s.title}
+                      </h2>
+                      <div className="flex items-center gap-1 text-white/60 text-xs mb-5">
+                        <span className="tracking-wide uppercase">{idx + 1}/{len}</span>
                       </div>
-                      <div className="mt-5 flex gap-3">
+                      <div className="flex gap-3">
                         <button
                           onClick={prev}
                           aria-label="Projeto anterior"
@@ -186,16 +143,6 @@ export default function ProjectsCarousel({ slides, autoAdvanceMs = 0 }: Projects
                             <path d="m12 5 7 7-7 7" />
                           </svg>
                         </button>
-                        <a
-                          href="#form"
-                          className="inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-400/10 px-5 py-2 text-xs font-semibold tracking-wide text-amber-300 hover:bg-amber-400/20 hover:border-amber-400/60 transition-all duration-300"
-                        >
-                          SOLICITAR CONTATO
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                            <path d="M5 12h14" />
-                            <path d="m12 5 7 7-7 7" />
-                          </svg>
-                        </a>
                       </div>
                     </div>
                   </div>
@@ -203,28 +150,6 @@ export default function ProjectsCarousel({ slides, autoAdvanceMs = 0 }: Projects
               );
             })()}
           </div>
-        </div>
-      )}
-
-      {len > 0 && (
-        <div className="absolute bottom-4 right-5 flex items-center gap-2">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              aria-label={`Ir para projeto ${i + 1}`}
-              onClick={() => {
-                setIdx(i);
-                trackEvent({
-                  event: 'carousel_dot',
-                  event_category: 'carousel',
-                  event_label: 'projects',
-                  slide_index: i,
-                  slide_title: slides[i]?.title
-                });
-              }}
-              className={`h-2 rounded-full transition-all ${i === idx ? 'w-8 bg-amber-400' : 'w-3 bg-white/35 hover:bg-white/60'}`}
-            />
-          ))}
         </div>
       )}
 
