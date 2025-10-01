@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
                 {/* Feedback widget (client-only) */}
                 <ClientFeedbackWidget />
-
+                <script async type="text/javascript" src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/69c4f434-0cd5-40c9-895e-c70ffc37e85c-loader.js"></script>
                 <Navbar />
                 <main>{children}</main>
                 <Footer />

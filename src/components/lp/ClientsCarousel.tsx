@@ -15,13 +15,13 @@ export default function ClientsCarousel({ clients }: ClientsCarouselProps) {
       {/* Marquee container */}
       <div className="mt-8 relative overflow-hidden">
         {/* Gradient fades on sides */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#050505] to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#050505] to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10" />
         <div className="flex gap-6 marquee-track" aria-hidden="true">
           {[...visibleClients, ...visibleClients].map((c, idx) => (
             <div
               key={c + idx}
-              className="flex-shrink-0 rounded-xl border border-white/10 bg-white/5 px-6 py-4 text-center text-sm text-white/90 backdrop-blur-sm hover:bg-white/10 transition"
+              className="flex-shrink-0 rounded-xl border border-amber-200 bg-white px-6 py-4 text-center text-sm text-neutral-800 shadow-sm hover:shadow-md hover:border-amber-300 transition"
             >
               {c}
             </div>
@@ -33,7 +33,7 @@ export default function ClientsCarousel({ clients }: ClientsCarouselProps) {
       <div className="mt-8 text-center">
         <button
           onClick={() => setShowAll(true)}
-          className="inline-flex items-center gap-2 rounded-full border border-amber-400/70 bg-amber-400/10 px-6 py-3 text-sm font-medium text-white hover:bg-amber-400/20 hover:scale-[1.03] transition-all"
+          className="inline-flex items-center gap-2 rounded-full bg-amber-500 hover:bg-amber-600 px-6 py-3 text-sm font-medium text-white hover:scale-[1.03] transition-all shadow-lg"
         >
           Ver mais clientes
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -45,7 +45,7 @@ export default function ClientsCarousel({ clients }: ClientsCarouselProps) {
       {/* Static fallback grid for users with prefers-reduced-motion */}
       <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 motion-reduce:grid hidden motion-reduce:block">
         {visibleClients.map((c) => (
-          <div key={c} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm text-white/90 anim-fadeScaleIn">
+          <div key={c} className="rounded-xl border border-amber-200 bg-white px-4 py-3 text-center text-sm text-neutral-800 shadow-sm anim-fadeScaleIn">
             {c}
           </div>
         ))}
