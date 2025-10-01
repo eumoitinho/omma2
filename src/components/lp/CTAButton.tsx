@@ -20,12 +20,12 @@ export default function CTAButton({
   variant = 'secondary'
 }: CTAButtonProps) {
   const handleClick = () => {
-    trackCtaWithTiming({
-      event: 'cta_click',
-      event_category: 'engagement',
-      event_label: eventLabel,
-      location
-    }).catch(() => {});
+      trackCtaWithTiming({
+        event: 'cta_click',
+        event_category: 'engagement',
+        event_label: eventLabel,
+        location
+      });
   };
 
   const defaultClassName = variant === 'primary'
