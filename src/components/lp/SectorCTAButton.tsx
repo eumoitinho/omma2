@@ -15,7 +15,7 @@ export default function SectorCTAButton({ sectorKey, children, className }: Sect
       event_category: 'sector',
       event_label: sectorKey,
       location: 'setores'
-    }).catch(() => {});
+    });
   };
 
   return (
