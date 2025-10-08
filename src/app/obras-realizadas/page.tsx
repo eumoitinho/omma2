@@ -1,6 +1,7 @@
 import React from 'react';
 import { getObrasRealizadasData, urlFor } from '@/lib/sanity';
 import Image from 'next/image';
+import type { PortableTextContent, PortableTextBlock, Project } from '@/types/sanity';
 
 export const revalidate = 60;
 
@@ -16,12 +17,12 @@ export default async function ObrasRealizadasPage() {
   }
 
   // Parse portable text
-  const getTextFromPortableText = (blocks: any[]) => {
+  const getTextFromPortableText = (blocks: PortableTextContent) => {
     if (!blocks) return [];
     return blocks
-      .filter((block: any) => block._type === 'block')
-      .map((block: any) =>
-        block.children?.map((child: any) => child.text).join('') || ''
+      .filter((block: PortableTextBlock) => block._type === 'block')
+      .map((block: PortableTextBlock) =>
+        block.children?.map((child) => child.text).join('') || ''
       );
   };
 
@@ -51,7 +52,7 @@ export default async function ObrasRealizadasPage() {
         <section className="pb-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-12 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-              {data.projects.map((project: any, index: number) => {
+              {data.projects.map((project: Project, index: number) => {
                 const descriptions = project.description ? getTextFromPortableText(project.description) : [];
                 const isFeatured = index === 0;
 

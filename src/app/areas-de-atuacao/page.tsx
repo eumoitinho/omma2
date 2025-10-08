@@ -1,6 +1,7 @@
 import React from 'react';
 import { getAreasAtuacaoData, urlFor } from '@/lib/sanity';
 import Image from 'next/image';
+import type { AreaAtuacao, PortableTextContent, PortableTextBlock } from '@/types/sanity';
 
 export const revalidate = 60;
 
@@ -14,6 +15,17 @@ export default async function AreasAtuacaoPage() {
       </div>
     );
   }
+
+  // Parse portable text to plain text
+  const getTextFromPortableText = (blocks: PortableTextContent) => {
+    if (!blocks) return '';
+    return blocks
+      .filter((block: PortableTextBlock) => block._type === 'block')
+      .map((block: PortableTextBlock) =>
+        block.children?.map((child) => child.text).join('') || ''
+      )
+      .join(' ');
+  };
 
   return (
     <div className="min-h-screen">
@@ -40,7 +52,7 @@ export default async function AreasAtuacaoPage() {
       {data.areas && data.areas.length > 0 && (
         <section className="pb-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-24">
-            {data.areas.map((area: any, index: number) => (
+            {data.areas.map((area: AreaAtuacao, index: number) => (
               <div key={index} className={`grid md:grid-cols-2 gap-10 items-center ${index % 2 === 0 ? '' : 'md:grid-flow-dense'}`}>
                 {/* Images */}
                 <div className={`relative ${index % 2 === 0 ? '' : 'md:col-start-2'}`}>
@@ -96,7 +108,7 @@ export default async function AreasAtuacaoPage() {
                     <span className="text-amber-400">{area.title}</span>
                   </h2>
                   <p className="text-base md:text-lg text-white/80 leading-relaxed" style={{ fontFamily: 'Exo, Inter', fontWeight: 400 }}>
-                    {area.description}
+                    {getTextFromPortableText(area.description)}
                   </p>
 
                   <div className="mt-8">

@@ -81,7 +81,7 @@ export default async function ContatoPage() {
                   </div>
                   <h3 className="text-lg font-bold mb-3" style={{ fontFamily: 'Exo, Inter' }}>E-mails</h3>
                   <div className="space-y-2">
-                    {data.emails.map((item: any, index: number) => (
+                    {data.emails.map((item: { label: string; email: string }, index: number) => (
                       <div key={index}>
                         <p className="text-xs text-white/50">{item.label}</p>
                         <a

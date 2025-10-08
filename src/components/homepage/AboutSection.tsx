@@ -2,15 +2,16 @@
 import React from 'react';
 import { urlFor } from '@/lib/sanity';
 import Image from 'next/image';
+import type { SanityImage, PortableTextContent, PortableTextBlock } from '@/types/sanity';
 
 interface AboutSectionProps {
   data: {
     title?: string;
     subtitle?: string;
-    description?: any[];
+    description?: PortableTextContent;
     ctaText?: string;
     ctaLink?: string;
-    images?: any[];
+    images?: SanityImage[];
   };
 }
 
@@ -18,12 +19,12 @@ export default function AboutSection({ data }: AboutSectionProps) {
   if (!data) return null;
 
   // Parse description text from portable text
-  const getTextFromPortableText = (blocks: any[]) => {
+  const getTextFromPortableText = (blocks: PortableTextContent) => {
     if (!blocks) return [];
     return blocks
-      .filter((block: any) => block._type === 'block')
-      .map((block: any) =>
-        block.children?.map((child: any) => child.text).join('') || ''
+      .filter((block: PortableTextBlock) => block._type === 'block')
+      .map((block: PortableTextBlock) =>
+        block.children?.map((child) => child.text).join('') || ''
       );
   };
 

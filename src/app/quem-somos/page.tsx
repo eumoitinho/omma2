@@ -1,6 +1,6 @@
 import React from 'react';
-import { getQuemSomosData, urlFor } from '@/lib/sanity';
-import Image from 'next/image';
+import { getQuemSomosData } from '@/lib/sanity';
+import type { PortableTextContent, PortableTextBlock } from '@/types/sanity';
 
 export const revalidate = 60;
 
@@ -16,12 +16,12 @@ export default async function QuemSomosPage() {
   }
 
   // Parse portable text to plain text
-  const getTextFromPortableText = (blocks: any[]) => {
+  const getTextFromPortableText = (blocks: PortableTextContent) => {
     if (!blocks) return [];
     return blocks
-      .filter((block: any) => block._type === 'block')
-      .map((block: any) =>
-        block.children?.map((child: any) => child.text).join('') || ''
+      .filter((block: PortableTextBlock) => block._type === 'block')
+      .map((block: PortableTextBlock) =>
+        block.children?.map((child) => child.text).join('') || ''
       );
   };
 

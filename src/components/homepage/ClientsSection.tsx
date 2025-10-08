@@ -2,13 +2,14 @@
 import React from 'react';
 import { urlFor } from '@/lib/sanity';
 import Image from 'next/image';
+import type { SanityImage } from '@/types/sanity';
 
 interface ClientsSectionProps {
   data: {
     title?: string;
     clients?: Array<{
       name: string;
-      logo: any;
+      logo: SanityImage;
     }>;
   };
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { getMetodologiaData } from '@/lib/sanity';
+import type { PortableTextContent, PortableTextBlock, Step } from '@/types/sanity';
 
 export const revalidate = 60;
 
@@ -15,12 +16,12 @@ export default async function MetodologiaPage() {
   }
 
   // Parse portable text
-  const getTextFromPortableText = (blocks: any[]) => {
+  const getTextFromPortableText = (blocks: PortableTextContent) => {
     if (!blocks) return [];
     return blocks
-      .filter((block: any) => block._type === 'block')
-      .map((block: any) =>
-        block.children?.map((child: any) => child.text).join('') || ''
+      .filter((block: PortableTextBlock) => block._type === 'block')
+      .map((block: PortableTextBlock) =>
+        block.children?.map((child) => child.text).join('') || ''
       );
   };
 
@@ -68,7 +69,7 @@ export default async function MetodologiaPage() {
               <div className="absolute left-0 right-0 top-[68px] h-px bg-gradient-to-r from-yellow-400/20 via-yellow-400/40 to-yellow-400/20"></div>
 
               <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-                {data.phases.map((s: any) => (
+                {data.phases.map((s: Step) => (
                   <div className="relative" key={s.number}>
                     <div className="absolute left-1/2 top-[60px] -translate-x-1/2">
                       <span className="block h-3 w-3 rounded-full bg-yellow-400 ring-2 ring-yellow-300/30"></span>

@@ -67,6 +67,7 @@ export interface Step {
   number: number;
   title: string;
   description: string;
+  steps?: string[];
 }
 
 export interface ContactInfo {
@@ -127,9 +128,15 @@ export interface MetodologiaData {
 
 export interface Project {
   _key: string;
-  title: string;
-  description: string;
+  title?: string;
+  clientName?: string;
+  clientDescription?: string;
+  location?: string;
+  area?: string;
+  duration?: string;
+  description?: PortableTextContent;
   images: SanityImage[];
+  architect?: string;
   category?: string;
   year?: number;
 }
