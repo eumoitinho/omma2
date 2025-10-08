@@ -305,7 +305,7 @@ export default function ArquitetosLP() {
                 Soluções completas para ambientes de alto padrão
               </p>
               <div className="space-y-6 text-lg text-white/90 leading-relaxed" style={{ fontFamily: 'Inter' }}>
-                <p>Desde 1998, a OMMA se estabeleceu como um pilar de excelência e eficiência no segmento de engenharia e construção. Nos diferenciamos pela gestão de obras pelo modelo "chave na mão" (turn-key), conduzindo todo o gerenciamento do projeto para entregar ambientes completos, prontos para uso e totalmente funcionais. Para isso, contamos com arquitetos parceiros e também oferecemos suporte de engenharia e construção para seus projetos.</p>
+                <p>Desde 1998, a OMMA se estabeleceu como um pilar de excelência e eficiência no segmento de engenharia e construção. Nos diferenciamos pela gestão de obras pelo modelo &ldquo;chave na mão&rdquo; (turn-key), conduzindo todo o gerenciamento do projeto para entregar ambientes completos, prontos para uso e totalmente funcionais. Para isso, contamos com arquitetos parceiros e também oferecemos suporte de engenharia e construção para seus projetos.</p>
                 <p>Além de escritórios corporativos, nosso portfólio contempla clínicas, laboratórios, lojas e escolas, atendendo empresas de diversos setores, como tecnologia, finanças e saúde. Nosso propósito é ser a parceira estratégica que transforma ambientes em experiências, oferecendo segurança, eficiência e tranquilidade em cada entrega.</p>
               </div>
               <div className="mt-8">
