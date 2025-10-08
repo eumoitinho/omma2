@@ -5,9 +5,22 @@ import { Mail, Phone, MapPin, Instagram, Linkedin, Facebook } from 'lucide-react
 import { getSiteSettings } from '@/lib/sanity';
 import Link from 'next/link';
 
+interface SiteSettings {
+  siteDescription?: string;
+  contactInfo?: {
+    emails?: Array<{ email: string }>;
+    phone?: string;
+  };
+  socialMedia?: {
+    instagram?: string;
+    linkedin?: string;
+    facebook?: string;
+  };
+}
+
 const Footer: React.FC = () => {
     const pathname = usePathname();
-    const [settings, setSettings] = useState<any>(null);
+    const [settings, setSettings] = useState<SiteSettings | null>(null);
     const year = new Date().getFullYear();
 
     useEffect(() => {

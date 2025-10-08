@@ -2,13 +2,14 @@
 import React from 'react';
 import { urlFor } from '@/lib/sanity';
 import Image from 'next/image';
+import type { SanityImage } from '@/types/sanity';
 
 interface SectorsSectionProps {
   data: {
     title?: string;
     sectors?: Array<{
       name: string;
-      icon?: any;
+      icon?: SanityImage;
       svgPath?: string;
       link?: string;
     }>;

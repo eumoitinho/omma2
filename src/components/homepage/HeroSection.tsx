@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { urlFor } from '@/lib/sanity';
+import type { SanityImage } from '@/types/sanity';
 
 interface HeroSectionProps {
   data: {
@@ -8,7 +9,7 @@ interface HeroSectionProps {
     subtitle?: string;
     ctaText?: string;
     ctaLink?: string;
-    backgroundImage?: any;
+    backgroundImage?: SanityImage;
   };
 }
 

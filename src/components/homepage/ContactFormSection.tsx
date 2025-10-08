@@ -1,11 +1,12 @@
 'use client';
 import React from 'react';
+import type { SanityImage } from '@/types/sanity';
 
 interface ContactFormSectionProps {
   data: {
     title?: string;
     subtitle?: string;
-    backgroundImage?: any;
+    backgroundImage?: SanityImage;
   };
 }
 
