@@ -8,7 +8,7 @@ interface AboutSectionProps {
   data: {
     title?: string;
     subtitle?: string;
-    description?: PortableTextContent;
+    description?: PortableTextContent | string;
     ctaText?: string;
     ctaLink?: string;
     images?: SanityImage[];
@@ -18,14 +18,25 @@ interface AboutSectionProps {
 export default function AboutSection({ data }: AboutSectionProps) {
   if (!data) return null;
 
-  // Parse description text from portable text
-  const getTextFromPortableText = (blocks: PortableTextContent) => {
-    if (!blocks) return [];
-    return blocks
-      .filter((block: PortableTextBlock) => block._type === 'block')
-      .map((block: PortableTextBlock) =>
-        block.children?.map((child) => child.text).join('') || ''
-      );
+  // Parse description text from portable text or string
+  const getTextFromPortableText = (content: PortableTextContent | string) => {
+    if (!content) return [];
+
+    // If it's a string, split by newlines
+    if (typeof content === 'string') {
+      return content.split('\n\n').filter(text => text.trim());
+    }
+
+    // If it's an array of portable text blocks
+    if (Array.isArray(content)) {
+      return content
+        .filter((block: PortableTextBlock) => block._type === 'block')
+        .map((block: PortableTextBlock) =>
+          block.children?.map((child) => child.text).join('') || ''
+        );
+    }
+
+    return [];
   };
 
   const descriptionTexts = data.description ? getTextFromPortableText(data.description) : [];
