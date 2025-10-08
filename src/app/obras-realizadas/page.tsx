@@ -68,14 +68,14 @@ export default async function ObrasRealizadasPage() {
                     {project.images && project.images[0] ? (
                       <Image
                         src={urlFor(project.images[0]).url()}
-                        alt={project.clientName}
+                        alt={project.clientName || 'Projeto OMMA'}
                         fill
                         className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
                       />
                     ) : (
                       <img
                         src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                        alt={project.clientName}
+                        alt={project.clientName || 'Projeto OMMA'}
                         className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
                       />
                     )}
