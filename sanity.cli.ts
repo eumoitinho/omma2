@@ -2,8 +2,11 @@ import { defineCliConfig } from 'sanity/cli';
 
 export default defineCliConfig({
   api: {
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
-    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+    projectId: '6xp8522n',
+    dataset: 'production',
   },
   studioHost: 'omma-engenharia',
+  deployment: {
+    appId: 'e839qmmz41je6m4j06hpvg5a',
+  },
 });

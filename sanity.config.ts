@@ -7,8 +7,8 @@ export default defineConfig({
   name: 'default',
   title: 'OMMA Engenharia',
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  projectId: '6xp8522n',
+  dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
 
