@@ -54,7 +54,7 @@ export async function getHomepageData() {
     },
     methodologySection: {
       title: rawData.methodology?.title,
-      phases: rawData.methodology?.phases?.map((phase: any, index: number) => ({
+      phases: rawData.methodology?.phases?.map((phase: { name: string; items?: string[] }, index: number) => ({
         number: index + 1,
         name: phase.name,
         title: phase.name,
