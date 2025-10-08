@@ -14,8 +14,8 @@ interface Project {
   area: string;
   duration: string;
   year?: string;
-  thumbnail?: SanityImage;
-  gallery?: SanityImage[];
+  thumbnail?: SanityImage | string;
+  gallery?: (SanityImage | string)[];
   category: string;
   description?: string;
 }

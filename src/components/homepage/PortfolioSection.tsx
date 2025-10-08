@@ -17,7 +17,7 @@ interface PortfolioSectionProps {
       location: string;
       area: string;
       duration: string;
-      thumbnail?: SanityImage;
+      thumbnail?: SanityImage | string;
       category: string;
     }>;
     ctaText?: string;
