@@ -39,7 +39,7 @@ export default async function QuemSomosPage() {
           {/* Hero Title */}
           {data.heroTitle && (
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center mb-8" style={{ fontFamily: 'Exo, Inter', fontWeight: 700 }}>
-              {data.heroTitle.split(' ').map((word, i) => {
+              {data.heroTitle.split(' ').map((word: string, i: number) => {
                 if (word === 'OMMA' || word === 'Engenharia') {
                   return <span key={i} className="text-amber-400">{word} </span>;
                 }
