@@ -8,9 +8,8 @@ import WhyChooseSection from '@/components/homepage/WhyChooseSection';
 import ClientsSection from '@/components/homepage/ClientsSection';
 import MethodologySection from '@/components/homepage/MethodologySection';
 import ArchitectsSection from '@/components/homepage/ArchitectsSection';
+import PortfolioSection from '@/components/homepage/PortfolioSection';
 import AboutSection from '@/components/homepage/AboutSection';
-import ContactFormSection from '@/components/homepage/ContactFormSection';
-import ContactInfoSection from '@/components/homepage/ContactInfoSection';
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
@@ -36,8 +35,7 @@ export default async function HomePage() {
             <MethodologySection data={data.methodologySection} />
             <ArchitectsSection data={data.architectsSection} />
             <AboutSection data={data.aboutSection} />
-            <ContactFormSection data={data.contactFormSection} />
-            <ContactInfoSection data={data.contactInfoSection} />
+            <PortfolioSection data={data.portfolioSection} />
         </>
     );
 }

@@ -7,7 +7,7 @@ import type { SanityImage, PortableTextContent, PortableTextBlock } from '@/type
 interface ArchitectsSectionProps {
   data: {
     title?: string;
-    description?: PortableTextContent;
+    description?: PortableTextContent | string;
     ctaText?: string;
     ctaLink?: string;
     images?: SanityImage[];
@@ -17,48 +17,61 @@ interface ArchitectsSectionProps {
 export default function ArchitectsSection({ data }: ArchitectsSectionProps) {
   if (!data) return null;
 
-  // Parse description text from portable text
-  const getTextFromPortableText = (blocks: PortableTextContent) => {
-    if (!blocks) return [];
-    return blocks
-      .filter((block: PortableTextBlock) => block._type === 'block')
-      .map((block: PortableTextBlock) =>
-        block.children?.map((child) => child.text).join('') || ''
-      );
+  // Parse description text from portable text or string
+  const getTextFromPortableText = (content: PortableTextContent | string) => {
+    if (!content) return [];
+
+    // If it's a string, split by newlines
+    if (typeof content === 'string') {
+      return content.split('\n\n').filter(text => text.trim());
+    }
+
+    // If it's an array of portable text blocks
+    if (Array.isArray(content)) {
+      return content
+        .filter((block: PortableTextBlock) => block._type === 'block')
+        .map((block: PortableTextBlock) =>
+          block.children?.map((child) => child.text).join('') || ''
+        );
+    }
+
+    return [];
   };
 
   const descriptionTexts = data.description ? getTextFromPortableText(data.description) : [];
 
   return (
-    <section className="relative py-12 md:py-20">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid items-center gap-10 md:grid-cols-2">
-          <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-6 md:p-8">
+    <section className="relative py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-8">
+        <div className="grid items-center gap-10 lg:gap-16 md:grid-cols-2">
+          <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-10">
             {data.title && (
-              <h3 className="text-[26px] md:text-[32px] font-semibold tracking-tight text-white">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ fontFamily: 'Exo, Inter' }}>
                 {data.title.split(' ').map((word, i) => {
                   if (word === 'arquiteto' || word === 'OMMA') {
-                    return <span key={i} className="text-yellow-300">{word} </span>;
+                    return <span key={i} className="text-amber-400">{word} </span>;
                   }
                   return <span key={i} className="text-white">{word} </span>;
                 })}
-              </h3>
+              </h2>
             )}
             {descriptionTexts.map((text, i) => (
-              <p key={i} className="mt-4 text-[15px] leading-7 text-neutral-300">{text}</p>
+              <p key={i} className="mt-4 text-base leading-7 text-white/70" style={{ fontFamily: 'Inter' }}>{text}</p>
             ))}
 
             {data.ctaText && (
-              <div className="mt-6">
-                <button className="inline-flex items-center gap-2 rounded-full border border-yellow-400/60 bg-yellow-400/10 px-5 py-3 text-sm font-medium text-yellow-300 hover:bg-yellow-400/15 hover:border-yellow-400 transition">{data.ctaText}</button>
+              <div className="mt-8">
+                <button className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 bg-amber-400/10 px-9 py-4 text-base font-medium text-amber-400 hover:bg-amber-400/15 hover:border-amber-400 transition shadow-[0_4px_10px_rgba(20,20,42,0.08)] ring-1 ring-inset ring-white/10 hover:ring-white/20" style={{ fontFamily: 'Exo, Inter' }}>
+                  {data.ctaText}
+                </button>
               </div>
             )}
           </div>
 
           <div className="relative">
             <div className="relative mx-auto w-full max-w-md">
-              <div className="absolute -left-6 -top-6 h-40 w-40 rounded-2xl bg-yellow-400/10 blur-2xl"></div>
-              <div className="relative rounded-3xl border border-white/10 bg-white/5 p-2 shadow-[0_0_60px_rgba(250,204,21,0.12)]">
+              <div className="absolute -left-6 -top-6 h-40 w-40 rounded-2xl bg-amber-400/10 blur-2xl"></div>
+              <div className="relative rounded-3xl border border-white/10 bg-white/5 p-2 shadow-[0_0_60px_rgba(251,191,36,0.12)]">
                 {data.images && data.images[0] ? (
                   <Image
                     src={urlFor(data.images[0]).url()}
@@ -85,7 +98,7 @@ export default function ArchitectsSection({ data }: ArchitectsSectionProps) {
                     <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop" alt="Equipe de construção" className="h-40 w-72 rounded-2xl object-cover md:h-48 md:w-96" />
                   )}
                 </div>
-                <div className="absolute -right-4 -top-4 h-10 w-10 rounded-lg bg-yellow-400/20 ring-1 ring-yellow-300/40"></div>
+                <div className="absolute -right-4 -top-4 h-10 w-10 rounded-lg bg-amber-400/20 ring-1 ring-amber-400/40"></div>
               </div>
             </div>
           </div>

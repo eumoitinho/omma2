@@ -7,7 +7,8 @@ import type { SanityImage, PortableTextContent, PortableTextBlock } from '@/type
 interface ManagementSectionProps {
   data: {
     title?: string;
-    description?: PortableTextContent;
+    description?: PortableTextContent | string;
+    highlights?: string[];
     features?: string[];
     ctaText?: string;
     ctaLink?: string;
@@ -18,17 +19,29 @@ interface ManagementSectionProps {
 export default function ManagementSection({ data }: ManagementSectionProps) {
   if (!data) return null;
 
-  // Parse description text from portable text
-  const getTextFromPortableText = (blocks: PortableTextContent) => {
-    if (!blocks) return [];
-    return blocks
-      .filter((block: PortableTextBlock) => block._type === 'block')
-      .map((block: PortableTextBlock) =>
-        block.children?.map((child) => child.text).join('') || ''
-      );
+  // Parse description text from portable text or string
+  const getTextFromPortableText = (content: PortableTextContent | string) => {
+    if (!content) return [];
+
+    // If it's a string, split by newlines
+    if (typeof content === 'string') {
+      return content.split('\n\n').filter(text => text.trim());
+    }
+
+    // If it's an array of portable text blocks
+    if (Array.isArray(content)) {
+      return content
+        .filter((block: PortableTextBlock) => block._type === 'block')
+        .map((block: PortableTextBlock) =>
+          block.children?.map((child) => child.text).join('') || ''
+        );
+    }
+
+    return [];
   };
 
   const descriptionTexts = data.description ? getTextFromPortableText(data.description) : [];
+  const features = data.highlights || data.features || [];
 
   return (
     <section className="relative">
@@ -85,27 +98,22 @@ export default function ManagementSection({ data }: ManagementSectionProps) {
           {/* Right content */}
           <div className="order-1 lg:order-2">
             {data.title && (
-              <h2 className="text-[28px] sm:text-[35px] font-bold tracking-tight leading-[1.25]" style={{ fontFamily: 'Exo, Inter', fontWeight: 700 }}>
-                {data.title.split(' ').map((word, i) => {
-                  if (word === 'rápidas' || word === 'eficientes') {
-                    return <span key={i} className="text-amber-400">{word} </span>;
-                  }
-                  return <span key={i} className="text-white">{word} </span>;
-                })}
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white" style={{ fontFamily: 'Exo, Inter' }}>
+                {data.title}
               </h2>
             )}
 
-            <div className="mt-5">
+            <div className="mt-6">
               {descriptionTexts.map((text, i) => (
-                <p key={i} className={`${i > 0 ? 'mt-4' : ''} text-[17px] sm:text-[18px] leading-7 text-white/90`} style={{ fontFamily: 'Exo, Inter', fontWeight: 400 }}>
+                <p key={i} className={`${i > 0 ? 'mt-4' : ''} text-base leading-7 text-white/90`} style={{ fontFamily: 'Inter' }}>
                   {text}
                 </p>
               ))}
             </div>
 
-            {data.features && data.features.length > 0 && (
+            {features && features.length > 0 && (
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                {data.features.map((text, i) => (
+                {features.map((text, i) => (
                   <div className="flex items-center gap-3" key={i}>
                     <div className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-black/60 ring-1 ring-white/10">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-amber-400"><path d="M20 6 9 17l-5-5"></path></svg>

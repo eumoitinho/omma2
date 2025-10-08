@@ -16,22 +16,24 @@ export default function WhyChooseSection({ data }: WhyChooseSectionProps) {
   if (!data) return null;
 
   return (
-    <section className="relative py-10">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-6 md:flex-row md:p-8">
+    <section className="relative py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-8">
+        <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-8 md:flex-row md:p-10">
           <div>
             {data.title && (
-              <h4 className="text-[20px] md:text-[22px] font-semibold tracking-tight text-white">{data.title}</h4>
+              <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white" style={{ fontFamily: 'Exo, Inter' }}>
+                {data.title}
+              </h3>
             )}
             {data.subtitle && (
-              <p className="mt-1 text-sm text-neutral-400">{data.subtitle}</p>
+              <p className="mt-2 text-base text-white/70" style={{ fontFamily: 'Inter' }}>{data.subtitle}</p>
             )}
           </div>
-          <div className="flex items-center gap-3">
-            <button className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10 transition">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <button className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-base font-medium text-white hover:bg-white/10 transition" style={{ fontFamily: 'Exo, Inter' }}>
               Entrar em contato
             </button>
-            <button className="inline-flex items-center gap-2 rounded-full border border-yellow-400/60 bg-yellow-400/10 px-4 py-2.5 text-sm font-medium text-yellow-300 hover:bg-yellow-400/15 hover:border-yellow-400 transition">
+            <button className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 bg-amber-400/10 px-6 py-3 text-base font-medium text-amber-400 hover:bg-amber-400/15 hover:border-amber-400 transition" style={{ fontFamily: 'Exo, Inter' }}>
               Agendar reunião
             </button>
           </div>

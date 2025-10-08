@@ -38,23 +38,18 @@ export default function HeroSection({ data }: HeroSectionProps) {
             {/* Heading */}
             {data.title && (
               <h1
-                className="text-4xl sm:text-5xl lg:text-6xl leading-tight font-semibold tracking-tight"
-                style={{ fontFamily: "'DM Sans', Inter", fontStyle: 'italic', fontWeight: 600 }}
+                className="text-4xl sm:text-5xl lg:text-6xl leading-tight font-bold tracking-tight text-white"
+                style={{ fontFamily: "Exo, Inter" }}
               >
-                {data.title.split(' ').map((word, i) => {
-                  if (word === 'TRANSFORMANDO' || word === 'RESULTADOS') {
-                    return <React.Fragment key={i}><span className="text-amber-400">{word}</span><br /></React.Fragment>;
-                  }
-                  return <React.Fragment key={i}>{word}<br /></React.Fragment>;
-                })}
+                {data.title}
               </h1>
             )}
 
             {/* Paragraph */}
             {data.subtitle && (
               <p
-                className="mt-6 text-lg sm:text-xl text-white/90 max-w-lg"
-                style={{ fontFamily: "'DM Sans', Inter", fontWeight: 500 }}
+                className="mt-6 text-lg text-white/90 max-w-lg"
+                style={{ fontFamily: "Inter" }}
               >
                 {data.subtitle}
               </p>
@@ -64,8 +59,8 @@ export default function HeroSection({ data }: HeroSectionProps) {
             {data.ctaText && (
               <div className="mt-8">
                 <button
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-amber-400 px-8 py-4 text-sm font-semibold text-amber-400 hover:bg-amber-400 hover:text-black transition-all duration-300 shadow-lg hover:shadow-amber-400/25"
-                  style={{ fontFamily: "'DM Sans', Inter" }}
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-amber-400 px-8 py-4 text-base font-semibold text-amber-400 hover:bg-amber-400 hover:text-black transition-all duration-300 shadow-lg hover:shadow-amber-400/25"
+                  style={{ fontFamily: "Exo, Inter" }}
                 >
                   {data.ctaText}
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

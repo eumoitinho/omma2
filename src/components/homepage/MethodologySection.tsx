@@ -20,51 +20,57 @@ export default function MethodologySection({ data }: MethodologySectionProps) {
   if (!data || !data.phases) return null;
 
   return (
-    <section className="relative py-12 md:py-20">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mx-auto max-w-3xl text-center">
+    <section className="relative py-16 md:py-24 bg-neutral-900">
+      <div className="mx-auto max-w-7xl px-4 md:px-8">
+        <div className="mx-auto max-w-3xl text-center mb-12">
           {data.title && (
-            <h3 className="text-[24px] md:text-[32px] font-semibold tracking-tight text-white">{data.title}</h3>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'Exo, Inter' }}>
+              {data.title}
+            </h2>
           )}
           {data.subtitle && (
-            <p className="mt-2 text-sm md:text-base text-neutral-400">{data.subtitle}</p>
+            <p className="mt-4 text-base text-white/70" style={{ fontFamily: 'Inter' }}>{data.subtitle}</p>
           )}
         </div>
 
-        <div className="relative mt-10 md:mt-14">
-          <div className="absolute left-0 right-0 top-[68px] h-px bg-gradient-to-r from-yellow-400/20 via-yellow-400/40 to-yellow-400/20"></div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-            {data.phases.map((s) => (
-              <div className="relative" key={s.number}>
-                <div className="absolute left-1/2 top-[60px] -translate-x-1/2">
-                  <span className="block h-3 w-3 rounded-full bg-yellow-400 ring-2 ring-yellow-300/30"></span>
-                </div>
-                <div className="flex items-center justify-center">
-                  <div className="text-[34px] font-semibold tracking-tight text-white/90">{s.number < 10 ? `0${s.number}` : s.number}</div>
-                </div>
-                <div className="mt-4 rounded-2xl bg-white text-neutral-800 p-5 shadow-[0_0_40px_rgba(250,204,21,0.12)]">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-900 text-yellow-300 ring-1 ring-yellow-300/40">
-                    {/* Icon placeholder */}
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1" /></svg>
-                  </div>
-                  <h4 className="text-[16px] font-semibold tracking-tight">{s.title}</h4>
-                  <ul className="mt-2 space-y-1 text-[13px] text-neutral-600">
-                    {s.steps.map((t) => (<li key={t}>{t}</li>))}
-                  </ul>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {data.phases.map((phase) => (
+            <div
+              className="group relative bg-black border border-white/10 rounded-2xl p-6 hover:border-amber-400/40 transition-all duration-300 h-full flex flex-col"
+              key={phase.number}
+            >
+              {/* Number badge */}
+              <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-400/25">
+                <span className="text-xl font-bold text-black" style={{ fontFamily: 'Exo, Inter' }}>
+                  {phase.number < 10 ? `0${phase.number}` : phase.number}
+                </span>
               </div>
-            ))}
-          </div>
 
-          {data.ctaText && (
-            <div className="mt-10 flex justify-center">
-              <button className="inline-flex items-center gap-2 rounded-full border border-yellow-400/60 bg-yellow-400/10 px-6 py-3 text-sm font-medium text-yellow-300 hover:bg-yellow-400/15 hover:border-yellow-400 transition">
-                {data.ctaText}
-              </button>
+              {/* Title */}
+              <h3 className="text-xl font-bold text-white mt-4 mb-4 group-hover:text-amber-400 transition-colors" style={{ fontFamily: 'Exo, Inter' }}>
+                {phase.title}
+              </h3>
+
+              {/* Steps list */}
+              <ul className="space-y-2 flex-1" style={{ fontFamily: 'Inter' }}>
+                {phase.steps.map((step, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-sm text-white/70">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 flex-shrink-0"></span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          )}
+          ))}
         </div>
+
+        {data.ctaText && (
+          <div className="mt-12 flex justify-center">
+            <button className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 px-9 py-4 text-base text-white hover:bg-amber-400/10 transition shadow-[0_4px_10px_rgba(20,20,42,0.08)] ring-1 ring-inset ring-white/10 hover:ring-white/20" style={{ fontFamily: 'Exo, Inter' }}>
+              {data.ctaText}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
