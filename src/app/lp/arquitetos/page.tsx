@@ -88,7 +88,7 @@ export default function ArquitetosLP() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {stats.map((s, i) => (
+            {stats.map((s) => (
               <div
                 key={s.label}
                 className="group relative rounded-3xl bg-gradient-to-br from-white/10 to-white/5 ring-1 ring-white/20 p-8 hover:ring-amber-400/50 transition-all hover:scale-105"
