@@ -19,7 +19,8 @@
     "next-sanity": "^11.4.2",
     "react": "latest",
     "react-dom": "latest",
-    "sanity": "^4.10.2"
+    "sanity": "^4.10.2",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.13",
