@@ -1,22 +1,43 @@
 import React from 'react';
-import Section01 from '../components/sections/Section01';
-import Section02 from '../components/sections/Section02';
-import Section03 from '../components/sections/Section03';
-import Section04 from '../components/sections/Section04';
-import Section05 from '../components/sections/Section05';
-import Section06 from '../components/sections/Section06';
+import { getHomepageData } from '@/lib/sanity';
+import HeroSection from '@/components/homepage/HeroSection';
+import StatsSection from '@/components/homepage/StatsSection';
+import ManagementSection from '@/components/homepage/ManagementSection';
+import SectorsSection from '@/components/homepage/SectorsSection';
+import WhyChooseSection from '@/components/homepage/WhyChooseSection';
+import ClientsSection from '@/components/homepage/ClientsSection';
+import MethodologySection from '@/components/homepage/MethodologySection';
+import ArchitectsSection from '@/components/homepage/ArchitectsSection';
+import AboutSection from '@/components/homepage/AboutSection';
+import ContactFormSection from '@/components/homepage/ContactFormSection';
+import ContactInfoSection from '@/components/homepage/ContactInfoSection';
 
-const Page = () => {
+export const revalidate = 60; // Revalidate every 60 seconds
+
+export default async function HomePage() {
+    const data = await getHomepageData();
+
+    if (!data) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <p>Conteúdo não encontrado. Configure o conteúdo no Sanity Studio.</p>
+            </div>
+        );
+    }
+
     return (
         <>
-            <Section01 />
-            <Section02 />
-            <Section03 />
-            <Section04 />
-            <Section05 />
-            <Section06 />
+            <HeroSection data={data.heroSection} />
+            <StatsSection data={data.statsSection} />
+            <ManagementSection data={data.managementSection} />
+            <SectorsSection data={data.sectorsSection} />
+            <WhyChooseSection data={data.whyChooseSection} />
+            <ClientsSection data={data.clientsSection} />
+            <MethodologySection data={data.methodologySection} />
+            <ArchitectsSection data={data.architectsSection} />
+            <AboutSection data={data.aboutSection} />
+            <ContactFormSection data={data.contactFormSection} />
+            <ContactInfoSection data={data.contactInfoSection} />
         </>
     );
-};
-
-export default Page;
+}
