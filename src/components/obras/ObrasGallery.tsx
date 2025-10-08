@@ -88,7 +88,7 @@ export default function ObrasGallery({ data }: ObrasGalleryProps) {
               <div className="relative aspect-[16/10] overflow-hidden">
                 {project.thumbnail ? (
                   <Image
-                    src={urlFor(project.thumbnail).url()}
+                    src={typeof project.thumbnail === 'string' ? project.thumbnail : urlFor(project.thumbnail).url()}
                     alt={project.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

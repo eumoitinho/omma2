@@ -1,124 +1,192 @@
 import React from 'react';
-import { getMetodologiaData } from '@/lib/sanity';
-import type { PortableTextContent, PortableTextBlock, Step } from '@/types/sanity';
+import Link from 'next/link';
+import { CheckCircle2, Target, Users, Sparkles } from 'lucide-react';
 
 export const revalidate = 60;
 
 export default async function MetodologiaPage() {
-  const data = await getMetodologiaData();
-
-  if (!data) {
-    return (
-      <div className="min-h-screen flex items-center justify-center pt-32">
-        <p>Conteúdo não encontrado. Configure no Sanity Studio.</p>
-      </div>
-    );
-  }
-
-  // Parse portable text
-  const getTextFromPortableText = (blocks: PortableTextContent) => {
-    if (!blocks) return [];
-    return blocks
-      .filter((block: PortableTextBlock) => block._type === 'block')
-      .map((block: PortableTextBlock) =>
-        block.children?.map((child) => child.text).join('') || ''
-      );
-  };
-
-  const introTexts = data.introContent ? getTextFromPortableText(data.introContent) : [];
+  const phases = [
+    {
+      number: 1,
+      title: 'Planejamento',
+      description: 'Análise detalhada do projeto e definição de estratégias',
+      steps: ['Levantamento técnico', 'Definição de escopo', 'Cronograma inicial', 'Orçamento detalhado'],
+    },
+    {
+      number: 2,
+      title: 'Projeto',
+      description: 'Desenvolvimento técnico e compatibilização',
+      steps: ['Projetos executivos', 'Compatibilização', 'Aprovações legais', 'Especificações técnicas'],
+    },
+    {
+      number: 3,
+      title: 'Execução',
+      description: 'Gestão completa da obra com acompanhamento técnico',
+      steps: ['Mobilização de equipe', 'Gestão de fornecedores', 'Controle de qualidade', 'Relatórios semanais'],
+    },
+    {
+      number: 4,
+      title: 'Entrega',
+      description: 'Finalização e handover completo',
+      steps: ['Vistoria final', 'Documentação as-built', 'Treinamento operacional', 'Garantia e suporte'],
+    },
+  ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-yellow-500/10 blur-3xl"></div>
+      <section className="relative py-16 md:py-24 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 4.jpg"
+            alt="Metodologia OMMA"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+        </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          {data.heroTitle && (
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4" style={{ fontFamily: 'Exo, Inter', fontWeight: 700 }}>
-              <span className="text-amber-400">Metodologia</span> OMMA
-            </h1>
-          )}
-
-          {data.subtitle && (
-            <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto" style={{ fontFamily: 'Exo, Inter', fontWeight: 400 }}>
-              {data.subtitle}
-            </p>
-          )}
+        <div className="relative max-w-7xl mx-auto px-4 md:px-8">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center mb-6" style={{ fontFamily: 'Exo, Inter' }}>
+            Nossa <span className="text-amber-400">Metodologia</span>
+          </h1>
+          <p className="mt-6 text-base md:text-lg leading-relaxed text-white/80 text-center max-w-4xl mx-auto" style={{ fontFamily: 'Inter' }}>
+            Desenvolvemos uma metodologia própria que garante excelência em cada etapa do projeto. Da concepção à entrega, seguimos processos rigorosos que asseguram qualidade, prazo e eficiência.
+          </p>
         </div>
       </section>
 
-      {/* Intro Content */}
-      {introTexts.length > 0 && (
-        <section className="py-12">
-          <div className="max-w-4xl mx-auto px-6">
-            {introTexts.map((text, i) => (
-              <p key={i} className="mt-4 text-base md:text-lg text-white/80 leading-relaxed text-center" style={{ fontFamily: 'Exo, Inter', fontWeight: 400 }}>
-                {text}
-              </p>
-            ))}
-          </div>
-        </section>
-      )}
-
       {/* Phases Timeline */}
-      {data.phases && data.phases.length > 0 && (
-        <section className="relative py-12 md:py-20">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="relative mt-10 md:mt-14">
-              <div className="absolute left-0 right-0 top-[68px] h-px bg-gradient-to-r from-yellow-400/20 via-yellow-400/40 to-yellow-400/20"></div>
+      <section className="relative py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="relative">
+            {/* Desktop Timeline Line */}
+            <div className="hidden md:block absolute left-0 right-0 top-[68px] h-px bg-gradient-to-r from-amber-400/20 via-amber-400/40 to-amber-400/20"></div>
 
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-                {data.phases.map((s: Step) => (
-                  <div className="relative" key={s.number}>
-                    <div className="absolute left-1/2 top-[60px] -translate-x-1/2">
-                      <span className="block h-3 w-3 rounded-full bg-yellow-400 ring-2 ring-yellow-300/30"></span>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <div className="text-[34px] font-semibold tracking-tight text-white/90">{s.number < 10 ? `0${s.number}` : s.number}</div>
-                    </div>
-                    <div className="mt-4 rounded-2xl bg-white text-neutral-800 p-5 shadow-[0_0_40px_rgba(250,204,21,0.12)]">
-                      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-900 text-yellow-300 ring-1 ring-yellow-300/40">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1" /></svg>
-                      </div>
-                      <h4 className="text-[16px] font-semibold tracking-tight">{s.title}</h4>
-                      <ul className="mt-2 space-y-1 text-[13px] text-neutral-600">
-                        {s.steps?.map((t: string) => (<li key={t}>{t}</li>))}
-                      </ul>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+              {phases.map((phase) => (
+                <div className="relative" key={phase.number}>
+                  {/* Timeline Dot */}
+                  <div className="hidden md:block absolute left-1/2 top-[60px] -translate-x-1/2">
+                    <span className="block h-3 w-3 rounded-full bg-amber-400 ring-4 ring-amber-400/30"></span>
+                  </div>
+
+                  {/* Phase Number */}
+                  <div className="flex items-center justify-center mb-4">
+                    <div className="text-5xl font-bold tracking-tight text-amber-400/20" style={{ fontFamily: 'Exo, Inter' }}>
+                      {phase.number < 10 ? `0${phase.number}` : phase.number}
                     </div>
                   </div>
-                ))}
-              </div>
 
-              <div className="mt-10 flex justify-center">
-                <a href="/contato" className="inline-flex items-center gap-2 rounded-full border border-yellow-400/60 bg-yellow-400/10 px-6 py-3 text-sm font-medium text-yellow-300 hover:bg-yellow-400/15 hover:border-yellow-400 transition">
-                  SOLICITE UM ORÇAMENTO AGORA!
-                </a>
-              </div>
+                  {/* Phase Card */}
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-6 hover:border-amber-400/40 transition-all">
+                    <h3 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Exo, Inter' }}>
+                      {phase.title}
+                    </h3>
+                    <p className="text-sm text-white/60 mb-4" style={{ fontFamily: 'Inter' }}>
+                      {phase.description}
+                    </p>
+
+                    {/* Steps List */}
+                    <ul className="space-y-2">
+                      {phase.steps.map((step, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-white/70" style={{ fontFamily: 'Inter' }}>
+                          <CheckCircle2 className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {/* Benefits Section */}
-      <section className="py-16 bg-white/[0.02]">
-        <div className="max-w-6xl mx-auto px-6">
+      {/* Differentials Section */}
+      <section className="py-16 md:py-24 bg-neutral-900">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12" style={{ fontFamily: 'Exo, Inter' }}>
-            Por que escolher a <span className="text-amber-400">OMMA</span>?
+            Nossos <span className="text-amber-400">Diferenciais</span>
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'Agilidade', desc: 'Prazos cumpridos com rigor e eficiência comprovada' },
-              { title: 'Qualidade', desc: 'Padrão AAA em todos os projetos executados' },
-              { title: 'Segurança', desc: 'Processos certificados e transparência total' },
-            ].map((benefit, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/50 transition-all">
-                <h3 className="text-xl font-bold text-amber-400 mb-3" style={{ fontFamily: 'Exo, Inter' }}>{benefit.title}</h3>
-                <p className="text-white/70 text-sm">{benefit.desc}</p>
-              </div>
-            ))}
+              {
+                icon: Target,
+                title: 'Foco em Resultados',
+                description: 'Cumprimento rigoroso de prazos e orçamentos estabelecidos',
+                image: '/cases/1b8c917b8644a16c37fb95ec68e6d27b/Unimed/Unimed 1.jpg',
+              },
+              {
+                icon: Users,
+                title: 'Equipe Especializada',
+                description: 'Profissionais experientes e certificados em gestão de obras',
+                image: '/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 2.jpg',
+              },
+              {
+                icon: Sparkles,
+                title: 'Tecnologia Aplicada',
+                description: 'Ferramentas modernas de gestão e acompanhamento em tempo real',
+                image: '/cases/2823dd82e2efaa0de9675a5e68e6d275/Ultracargo/Ultracargo 4.jpg',
+              },
+              {
+                icon: CheckCircle2,
+                title: 'Qualidade Garantida',
+                description: 'Processos certificados e controle de qualidade em todas as etapas',
+                image: '/cases/0116d02df0f87c87093b8ab668e6d26e/Praça da Cidadania/Praça da Cidadania 3.jpg',
+              },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <div key={i} className="group relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:border-amber-400/40 transition-all">
+                  {/* Background Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+
+                    {/* Icon */}
+                    <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-amber-400/20 backdrop-blur-sm border border-amber-400/40 flex items-center justify-center">
+                      <Icon className="w-6 h-6 text-amber-400" />
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Exo, Inter' }}>
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-white/70" style={{ fontFamily: 'Inter' }}>
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Exo, Inter' }}>
+            Pronto para trabalhar com <span className="text-amber-400">excelência</span>?
+          </h2>
+          <p className="text-base md:text-lg text-white/70 mb-8" style={{ fontFamily: 'Inter' }}>
+            Entre em contato e descubra como nossa metodologia pode transformar seu projeto em realidade.
+          </p>
+          <Link
+            href="/contato"
+            className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 bg-amber-400/10 px-9 py-4 text-base font-medium text-amber-400 hover:bg-amber-400/15 hover:border-amber-400 transition shadow-[0_4px_10px_rgba(20,20,42,0.08)] ring-1 ring-inset ring-white/10 hover:ring-white/20"
+            style={{ fontFamily: 'Exo, Inter' }}
+          >
+            Solicitar Orçamento
+          </Link>
         </div>
       </section>
     </div>

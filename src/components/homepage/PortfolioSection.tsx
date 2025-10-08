@@ -57,7 +57,7 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
               <div className="relative aspect-[4/3] overflow-hidden">
                 {project.thumbnail ? (
                   <Image
-                    src={urlFor(project.thumbnail).url()}
+                    src={typeof project.thumbnail === 'string' ? project.thumbnail : urlFor(project.thumbnail).url()}
                     alt={project.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
