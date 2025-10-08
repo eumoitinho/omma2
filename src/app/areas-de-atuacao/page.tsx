@@ -17,8 +17,8 @@ export default async function AreasAtuacaoPage() {
   }
 
   // Parse portable text to plain text
-  const getTextFromPortableText = (blocks: PortableTextContent) => {
-    if (!blocks) return '';
+  const getTextFromPortableText = (blocks: PortableTextContent | undefined) => {
+    if (!blocks || !Array.isArray(blocks)) return '';
     return blocks
       .filter((block: PortableTextBlock) => block._type === 'block')
       .map((block: PortableTextBlock) =>

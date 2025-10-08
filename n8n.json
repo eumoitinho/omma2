@@ -2,544 +2,539 @@
   "name": "Spireflow Data Sync Workflow (Otimizado)",
   "nodes": [
     {
-      "name": "Spireflow Multi-Tenant Data Sync",
-      "nodes": [
-        {
-          "parameters": {
-            "rule": {
-              "interval": [
-                {
-                  "field": "minutes",
-                  "minute": 0,
-                  "minutesInterval": 10
-                }
-              ]
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minute": 0,
+              "minutesInterval": 10
             }
-          },
-          "id": "trigger-schedule",
-          "name": "Trigger 10 min",
-          "type": "n8n-nodes-base.scheduleTrigger",
-          "typeVersion": 1,
-          "position": [
-            -1800,
-            0
-          ]
-        },
-        {
-          "parameters": {
-            "operation": "executeQuery",
-            "query": "WITH tenant_queue AS (\n  SELECT \n    t.tenant_id,\n    t.company_name,\n    t.plan_type,\n    t.status,\n    t.priority,\n    t.fetch_interval_minutes,\n    t.last_fetch_time,\n    tp.alert_email,\n    tp.whatsapp_number,\n    tp.webhook_url,\n    tc.ga4_property_id,\n    tc.google_ads_customer_id,\n    tc.meta_ad_account_id,\n    tc.encrypted_credentials\n  FROM tenants t\n  LEFT JOIN tenant_preferences tp ON tp.tenant_id = t.tenant_id\n  LEFT JOIN tenant_credentials tc ON tc.tenant_id = t.tenant_id\n  WHERE t.status = 'active'\n    AND (t.last_fetch_time IS NULL OR t.last_fetch_time < NOW() - INTERVAL '1 minute' * t.fetch_interval_minutes)\n  ORDER BY t.priority DESC, t.last_fetch_time ASC NULLS FIRST\n  LIMIT 10\n)\nSELECT * FROM tenant_queue;"
-          },
-          "id": "postgres-fetch-tenants",
-          "name": "Buscar Tenants Pendentes",
-          "type": "n8n-nodes-base.postgres",
-          "typeVersion": 2.4,
-          "position": [
-            -1600,
-            0
-          ],
-          "credentials": {
-            "postgres": {
-              "id": "gcoDQdoPVkczyXbW",
-              "name": "Postgres account"
-            }
-          }
-        },
-        {
-          "parameters": {
-            "batchSize": 1,
-            "options": {}
-          },
-          "id": "split-tenants",
-          "name": "Processar Tenant",
-          "type": "n8n-nodes-base.splitInBatches",
-          "typeVersion": 3,
-          "position": [
-            -1400,
-            0
-          ]
-        },
-        {
-          "parameters": {
-            "mode": "runOnceForEachItem",
-            "jsCode": "const tenant = $json.tenant;\nconst creds = $json.credentials;\n\nreturn {\n  tenant: tenant,\n  credentials: creds,\n};"
-          },
-          "id": "code-prepare-tenant",
-          "name": "Preparar Credenciais",
-          "type": "n8n-nodes-base.code",
-          "typeVersion": 2,
-          "position": [
-            -960,
-            0
-          ]
-        },
-        {
-          "parameters": {
-            "operation": "decrypt",
-            "dataPropertyName": "encrypted_credentials",
-            "key": "={{ $env.N8N_ENCRYPTION_KEY }}",
-            "returnType": "json",
-            "options": {}
-          },
-          "id": "crypto-decrypt",
-          "name": "Decrypt Credentials",
-          "type": "n8n-nodes-base.crypto",
-          "typeVersion": 1,
-          "position": [
-            -1180,
-            0
-          ]
-        },
-        {
-          "parameters": {
-            "url": "https://analyticsdata.googleapis.com/v1beta/properties/{{ $json.tenant.ga4_property_id }}/runReport",
-            "method": "POST",
-            "authentication": "oAuth2",
-            "responseFormat": "json",
-            "sendHeaders": true,
-            "headerParameters": {
-              "parameters": [
-                {
-                  "name": "Content-Type",
-                  "value": "application/json"
-                }
-              ]
-            },
-            "sendBody": true,
-            "jsonBody": "{\n  \"dateRanges\": [{ \"startDate\": \"{{ $now.minus({days: 30}).toFormat('yyyy-MM-dd') }}\", \"endDate\": \"{{ $now.toFormat('yyyy-MM-dd') }}\" }],\n  \"dimensions\": [{ \"name\": \"date\" }],\n  \"metrics\": [\n    { \"name\": \"sessions\" },\n    { \"name\": \"totalUsers\" },\n    { \"name\": \"conversions\" },\n    { \"name\": \"purchaseRevenue\" }\n  ]\n}"
-          },
-          "id": "http-ga4",
-          "name": "Buscar GA4",
-          "type": "n8n-nodes-base.httpRequest",
-          "typeVersion": 4.2,
-          "position": [
-            -720,
-            180
-          ],
-          "credentials": {
-            "googleAnalyticsOAuth2": {
-              "id": "XnchKOxK5KaHUPFf",
-              "name": "Google Analytics account"
-            }
-          }
-        },
-        {
-          "parameters": {
-            "method": "POST",
-            "url": "https://googleads.googleapis.com/v17/customers/{{ $json.tenant.google_ads_customer_id }}/googleAds:search",
-            "authentication": "predefinedCredentialType",
-            "nodeCredentialType": "googleAdsOAuth2Api",
-            "sendHeaders": true,
-            "headerParameters": {
-              "parameters": [
-                {
-                  "name": "developer-token",
-                  "value": "={{ $json.credentials.googleAds?.developerToken || '' }}"
-                }
-              ]
-            },
-            "sendBody": true,
-            "bodyParameters": {
-              "parameters": [
-                {
-                  "name": "query",
-                  "value": "SELECT segments.date, campaign.name, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions, metrics.conversions_value FROM campaign WHERE segments.date DURING LAST_30_DAYS"
-                }
-              ]
-            }
-          },
-          "id": "http-google-ads",
-          "name": "Buscar Google Ads",
-          "type": "n8n-nodes-base.httpRequest",
-          "typeVersion": 4.2,
-          "position": [
-            -720,
-            0
-          ],
-          "credentials": {
-            "googleAdsOAuth2Api": {
-              "id": "4jwcPiv8EY2EnWwK",
-              "name": "Google Ads account"
-            }
-          }
-        },
-        {
-          "parameters": {
-            "graphApiVersion": "v18.0",
-            "node": "act_{{ $json.tenant.meta_ad_account_id }}",
-            "edge": "insights",
-            "options": {
-              "queryParametersJson": "{\n  \"fields\": \"date_start,date_stop,impressions,clicks,spend,conversions,actions\",\n  \"time_range\": { \"since\": \"{{ $now.minus({days:30}).toFormat('yyyy-MM-dd') }}\", \"until\": \"{{ $now.toFormat('yyyy-MM-dd') }}\" },\n  \"time_increment\": 1\n}"
-            }
-          },
-          "id": "http-meta",
-          "name": "Buscar Meta Ads",
-          "type": "n8n-nodes-base.facebookGraphApi",
-          "typeVersion": 1,
-          "position": [
-            -720,
-            -180
-          ],
-          "credentials": {
-            "facebookGraphApi": {
-              "id": "JmWYzVAxfZHJRA54",
-              "name": "Facebook Graph account"
-            }
-          }
-        },
-        {
-          "parameters": {
-            "mode": "runOnceForEachItem",
-            "jsCode": "const tenant = $items[0].json.tenant;\nconst now = new Date().toISOString();\n\n// Os itens chegam do Merge node na ordem das entradas\nconst googleAds = $items[0].json || {};\nconst meta = $items[1].json || {};\nconst ga4 = $items[2].json || {};\n\nconst metricsTimeseries = [];\n\n// GA4 Processing\nconst rowsGa4 = ga4.rows || [];\nrowsGa4.forEach((row) => {\n  const date = row.dimensionValues?.[0]?.value;\n  const ts = date ? new Date(date.substring(0,4), date.substring(4,6) - 1, date.substring(6,8)).toISOString() : now;\n  const metrics = row.metricValues || [];\n  const pushMetric = (source, name, index) => {\n    const raw = metrics[index]?.value ?? '0';\n    metricsTimeseries.push({\n      tenantId: tenant.tenant_id,\n      metricSource: source,\n      metricName: name,\n      metricValue: Number(raw) || 0,\n      timestamp: ts\n    });\n  };\n  pushMetric('ga4', 'sessions', 0);\n  pushMetric('ga4', 'users', 1);\n  pushMetric('ga4', 'conversions', 2);\n  pushMetric('ga4', 'revenue', 3);\n});\n\n// Google Ads Processing\nconst googleRows = googleAds.results || [];\ngoogleRows.forEach((row) => {\n  const segments = row.segments || {};\n  const date = segments.date || now;\n  const metrics = row.metrics || {};\n  const conversions = Number(metrics.conversions || 0);\n  const spend = Number(metrics.costMicros || metrics.cost_micros || 0) / 1000000;\n  const impressions = Number(metrics.impressions || 0);\n  const clicks = Number(metrics.clicks || 0);\n  const convValue = Number(metrics.conversionsValue || metrics.conversions_value || 0);\n  const ts = new Date(date).toISOString();\n  metricsTimeseries.push(\n    { tenantId: tenant.tenant_id, metricSource: 'google_ads', metricName: 'impressions', metricValue: impressions, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'google_ads', metricName: 'clicks', metricValue: clicks, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'google_ads', metricName: 'cost', metricValue: spend, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'google_ads', metricName: 'conversions', metricValue: conversions, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'google_ads', metricName: 'revenue', metricValue: convValue, timestamp: ts }\n  );\n});\n\n// Meta Ads Processing\nconst metaData = meta.data || [];\nmetaData.forEach((row) => {\n  const date = row.date_start || now;\n  const ts = new Date(date).toISOString();\n  const impressions = Number(row.impressions || 0);\n  const clicks = Number(row.clicks || 0);\n  const spend = Number(row.spend || 0);\n  const actions = row.actions || [];\n  const conversions = actions.reduce((acc, action) => {\n    if (action.action_type && action.action_type.includes('purchase')) {\n      return acc + Number(action.value || action.action_value || 0);\n    }\n    return acc;\n  }, 0);\n  metricsTimeseries.push(\n    { tenantId: tenant.tenant_id, metricSource: 'meta_ads', metricName: 'impressions', metricValue: impressions, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'meta_ads', metricName: 'clicks', metricValue: clicks, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'meta_ads', metricName: 'spend', metricValue: spend, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'meta_ads', metricName: 'conversions', metricValue: conversions, timestamp: ts }\n  );\n});\n\nconst aggregate = (name) => metricsTimeseries.filter(m => m.metricName === name).reduce((acc, item) => acc + Number(item.metricValue || 0), 0);\n\nconst summaryCards = [\n  { id: `${tenant.tenant_id}-sessions`, title: 'Sessões', metric: aggregate('sessions'), metricPrev: aggregate('sessions') * 0.9, changeValue: 10, deltaType: 'increase', color: 'blue', increased: true, tenantId: tenant.tenant_id },\n  { id: `${tenant.tenant_id}-ads-cost`, title: 'Investimento Ads', metric: aggregate('cost') + aggregate('spend'), metricPrev: aggregate('cost') * 0.95, changeValue: -5, deltaType: 'moderateDecrease', color: 'amber', increased: false, tenantId: tenant.tenant_id }\n];\n\nconst performance = rowsGa4.map(row => ({ id: `${tenant.tenant_id}-${row.dimensionValues?.[0]?.value}`, month: row.dimensionValues?.[0]?.value || '', sales: Number(row.metricValues?.[3]?.value || row.metricValues?.[2]?.value || 0), profit: Number(row.metricValues?.[2]?.value || 0), tenantId: tenant.tenant_id })).slice(-12);\n\nconst rowsLen = rowsGa4.length;\nconst todaySales = rowsLen > 0 ? [{ id: `${tenant.tenant_id}-${now}`, hour: new Date().toISOString(), today: Number(rowsGa4[rowsLen - 1]?.metricValues?.[0]?.value || 0), average: Number(rowsGa4[rowsLen - 1]?.metricValues?.[1]?.value || 0), yesterday: Number(rowsGa4[rowsLen - 2]?.metricValues?.[0]?.value || 0), tenantId: tenant.tenant_id }] : [];\n\nconst revenueDistribution = [\n  { id: `${tenant.tenant_id}-ga4`, category: 'GA4', online: aggregate('revenue'), inStore: aggregate('conversions'), tenantId: tenant.tenant_id },\n  { id: `${tenant.tenant_id}-google-ads`, category: 'Google Ads', online: aggregate('revenue'), inStore: aggregate('conversions'), tenantId: tenant.tenant_id },\n  { id: `${tenant.tenant_id}-meta`, category: 'Meta Ads', online: aggregate('conversions'), inStore: aggregate('spend'), tenantId: tenant.tenant_id }\n];\n\nreturn {\n  tenantId: tenant.tenant_id,\n  companyName: tenant.company_name,\n  planType: tenant.plan_type,\n  status: tenant.status,\n  priority: tenant.priority,\n  fetchIntervalMinutes: tenant.fetch_interval_minutes,\n  preferences: { alertEmail: tenant.alert_email, whatsappNumber: tenant.whatsapp_number, webhookUrl: tenant.webhook_url },\n  analytics: {\n    performance,\n    todaySales,\n    totalProfitSales: performance.map(r => ({ ...r })),\n    totalProfitProducts: performance.map(r => ({ id: r.id, title: r.month, value: r.sales, metric: 'sales', tenantId: tenant.tenant_id })),\n    marketMetrics: summaryCards.map(card => ({ id: `${card.id}-metric`, metric: card.title, phones: Number(card.metric || 0), laptops: Number(card.metricPrev || 0), maxValue: Number(card.metric || 0), tenantId: tenant.tenant_id })),\n    revenueDistribution\n  },\n  homepage: {\n    bestSellingProducts: performance.slice(-5).map(r => ({ id: `${r.id}-product`, name: r.month, revenue: Number(r.sales || 0), profit: Number(r.profit || 0), tenantId: tenant.tenant_id })),\n    customerSatisfaction: summaryCards.map(card => ({ id: `${card.id}-csat`, brandName: card.title, customerSatisfaction: Math.max(0, Math.min(100, Number(card.metric || 0) % 100)), totalSales: Number(card.metric || 0), numberOfOrders: Number(card.metricPrev || 0), tenantId: tenant.tenant_id })),\n    homeSmallCards: summaryCards,\n    regions: [],\n    revenueOverTime: performance.map(r => ({ id: r.id, date: r.month, websiteSales: r.sales, inStoreSales: r.profit, tenantId: tenant.tenant_id })),\n    tradersTable: [],\n    revenuePerCountry: []\n  },\n  metricsTimeseries,\n  healthScore: Math.max(40, Math.min(100, Math.round((aggregate('conversions') || 1) * 10)))\n};"
-          },
-          "id": "code-build-payload",
-          "name": "Montar Payload",
-          "type": "n8n-nodes-base.code",
-          "typeVersion": 2,
-          "position": [
-            -300,
-            0
-          ]
-        },
-        {
-          "parameters": {
-            "method": "POST",
-            "url": "={{ $env.BACKEND_BASE_URL || 'https://api.ninetwo.com.br' }}/webhooks/n8n/data-sync",
-            "authentication": "none",
-            "sendHeaders": true,
-            "headerParameters": {
-              "parameters": [
-                {
-                  "name": "Content-Type",
-                  "value": "application/json"
-                },
-                {
-                  "name": "x-webhook-secret",
-                  "value": "={{ $env.N8N_WEBHOOK_SECRET }}"
-                }
-              ]
-            },
-            "sendBody": true,
-            "specifyBody": "json",
-            "jsonBody": "={{ $json }}",
-            "options": {
-              "timeout": 120000
-            }
-          },
-          "id": "http-sync-backend",
-          "name": "Persistir no Backend",
-          "type": "n8n-nodes-base.httpRequest",
-          "typeVersion": 4.2,
-          "position": [
-            -80,
-            0
-          ]
-        },
-        {
-          "parameters": {
-            "operation": "executeQuery",
-            "query": "UPDATE tenants SET last_fetch_time = NOW(), health_score = {{ Math.min(100, Math.max($json.healthScore, 0)) }} WHERE tenant_id = '{{ $json.tenantId }}'"
-          },
-          "id": "postgres-update-tenant",
-          "name": "Atualizar Tenant",
-          "type": "n8n-nodes-base.postgres",
-          "typeVersion": 2.4,
-          "position": [
-            140,
-            -80
-          ],
-          "credentials": {
-            "postgres": {
-              "id": "gcoDQdoPVkczyXbW",
-              "name": "Postgres account"
-            }
-          }
-        },
-        {
-          "parameters": {
-            "method": "POST",
-            "url": "https://dashboard.ninetwo.com.br/api/realtime/push",
-            "sendHeaders": true,
-            "headerParameters": {
-              "parameters": [
-                {
-                  "name": "Content-Type",
-                  "value": "application/json"
-                }
-              ]
-            },
-            "sendBody": true,
-            "specifyBody": "json",
-            "jsonBody": "{\n  \"type\": \"metrics_update\",\n  \"tenant_id\": \"{{ $json.tenantId }}\",\n  \"summary\": {\n    \"sessions\": {{ $json.analytics.performance.reduce((acc, row) => acc + (row.sales || 0), 0) }},\n    \"conversions\": {{ $json.analytics.performance.reduce((acc, row) => acc + (row.profit || 0), 0) }},\n    \"ads_spend\": {{ $json.metricsTimeseries.filter(item => item.metricName === 'cost' || item.metricName === 'spend').reduce((acc, row) => acc + Number(row.metricValue || 0), 0) }},\n    \"updated_at\": \"{{ $now.toISOString() }}\"\n  }\n}"
-          },
-          "id": "http-realtime",
-          "name": "Atualizar Dashboard Realtime",
-          "type": "n8n-nodes-base.httpRequest",
-          "typeVersion": 4.2,
-          "position": [
-            140,
-            120
-          ],
-          "continueOnFail": true
-        },
-        {
-          "parameters": {
-            "conditions": {
-              "number": [
-                {
-                  "value1": "={{ $json.healthScore }}",
-                  "operation": "smaller",
-                  "value2": 50
-                }
-              ]
-            }
-          },
-          "id": "if-health-alert",
-          "name": "Saúde Crítica?",
-          "type": "n8n-nodes-base.if",
-          "typeVersion": 1,
-          "position": [
-            140,
-            0
-          ]
-        },
-        {
-          "parameters": {
-            "method": "POST",
-            "url": "={{ $env.NINETWO_ALERT_WEBHOOK }}",
-            "sendBody": true,
-            "specifyBody": "json",
-            "jsonBody": "{\n  \"tenant\": \"{{ $json.tenantId }}\",\n  \"healthScore\": {{ $json.healthScore }},\n  \"alertEmail\": \"{{ $json.preferences.alertEmail }}\",\n  \"summary\": {{ JSON.stringify($json.homepage.homeSmallCards || []) }}\n}"
-          },
-          "id": "http-alert",
-          "name": "Enviar Alerta",
-          "type": "n8n-nodes-base.httpRequest",
-          "typeVersion": 4.2,
-          "position": [
-            340,
-            -80
-          ],
-          "continueOnFail": true
-        },
-        {
-          "parameters": {
-            "options": {}
-          },
-          "id": "merge-results",
-          "name": "Merge Resultados",
-          "type": "n8n-nodes-base.merge",
-          "typeVersion": 2,
-          "position": [
-            -500,
-            0
-          ]
-        },
-        {
-          "parameters": {
-            "method": "POST",
-            "url": "={{ $env.N8N_ERROR_WEBHOOK }}",
-            "sendBody": true,
-            "specifyBody": "json",
-            "jsonBody": "{\n  \"text\": \"Erro no workflow Spireflow Data Sync para o tenant: `{{ $json.item.json.tenant.tenant_id }}`. \\nErro no nó: `{{ $json.error.cause.node.name }}`\\nURL da Execução: {{ $execution.url }}\",\n  \"blocks\": [\n    {\n      \"type\": \"section\",\n      \"text\": {\n        \"type\": \"mrkdwn\",\n        \"text\": \"*Erro no Workflow: Spireflow Data Sync* Workflow: {{$workflow.name}} Tenant: {{$json.item.json.tenant.tenant_id}} erro no nó: {{$json.error.cause.node.name}}\"\n      }\n    },\n    {\n      \"type\": \"section\",\n      \"text\": {\n        \"type\": \"mrkdwn\",\n        \"text\": \"<{{$execution.url}}|Ver Execução>\"\n      }\n    }\n  ]\n}"
-          },
-          "id": "error-webhook",
-          "name": "Error Webhook",
-          "type": "n8n-nodes-base.httpRequest",
-          "typeVersion": 4.2,
-          "position": [
-            -460,
-            -340
-          ],
-          "continueOnFail": true,
-          "executeOnce": false
-        }
-      ],
-      "connections": {
-        "trigger-schedule": {
-          "main": [
-            [
-              {
-                "node": "postgres-fetch-tenants",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "postgres-fetch-tenants": {
-          "main": [
-            [
-              {
-                "node": "split-tenants",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "split-tenants": {
-          "main": [
-            [
-              {
-                "node": "crypto-decrypt",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "code-prepare-tenant": {
-          "main": [
-            [
-              {
-                "node": "http-google-ads",
-                "type": "main",
-                "index": 0
-              },
-              {
-                "node": "http-meta",
-                "type": "main",
-                "index": 0
-              },
-              {
-                "node": "http-ga4",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "crypto-decrypt": {
-          "main": [
-            [
-              {
-                "node": "code-prepare-tenant",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "http-ga4": {
-          "main": [
-            [
-              {
-                "node": "merge-results",
-                "type": "main",
-                "index": 2
-              }
-            ],
-            [
-              {
-                "node": "error-webhook",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "http-google-ads": {
-          "main": [
-            [
-              {
-                "node": "merge-results",
-                "type": "main",
-                "index": 0
-              }
-            ],
-            [
-              {
-                "node": "error-webhook",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "http-meta": {
-          "main": [
-            [
-              {
-                "node": "merge-results",
-                "type": "main",
-                "index": 1
-              }
-            ],
-            [
-              {
-                "node": "error-webhook",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "code-build-payload": {
-          "main": [
-            [
-              {
-                "node": "http-sync-backend",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "http-sync-backend": {
-          "main": [
-            [
-              {
-                "node": "postgres-update-tenant",
-                "type": "main",
-                "index": 0
-              },
-              {
-                "node": "http-realtime",
-                "type": "main",
-                "index": 0
-              },
-              {
-                "node": "if-health-alert",
-                "type": "main",
-                "index": 0
-              }
-            ],
-            [
-              {
-                "node": "error-webhook",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "if-health-alert": {
-          "main": [
-            [
-              {
-                "node": "http-alert",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "merge-results": {
-          "main": [
-            [
-              {
-                "node": "code-build-payload",
-                "type": "main",
-                "index": 0
-              }
-            ]
           ]
         }
       },
-      "settings": {
-        "executionOrder": "v1",
-        "timezone": "America/Sao_Paulo"
+      "id": "trigger-schedule",
+      "name": "Trigger 10 min",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1800,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH tenant_queue AS (\n  SELECT \n    t.tenant_id,\n    t.company_name,\n    t.plan_type,\n    t.status,\n    t.priority,\n    t.fetch_interval_minutes,\n    t.last_fetch_time,\n    tp.alert_email,\n    tp.whatsapp_number,\n    tp.webhook_url,\n    tc.ga4_property_id,\n    tc.google_ads_customer_id,\n    tc.meta_ad_account_id,\n    tc.encrypted_credentials\n  FROM tenants t\n  LEFT JOIN tenant_preferences tp ON tp.tenant_id = t.tenant_id\n  LEFT JOIN tenant_credentials tc ON tc.tenant_id = t.tenant_id\n  WHERE t.status = 'active'\n    AND (t.last_fetch_time IS NULL OR t.last_fetch_time < NOW() - INTERVAL '1 minute' * t.fetch_interval_minutes)\n  ORDER BY t.priority DESC, t.last_fetch_time ASC NULLS FIRST\n  LIMIT 10\n)\nSELECT * FROM tenant_queue;"
+      },
+      "id": "postgres-fetch-tenants",
+      "name": "Buscar Tenants Pendentes",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        -1600,
+        0
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "gcoDQdoPVkczyXbW",
+          "name": "Postgres account"
+        }
       }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "split-tenants",
+      "name": "Processar Tenant",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1400,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const tenant = $json.tenant;\nconst creds = $json.credentials;\n\nreturn {\n  tenant: tenant,\n  credentials: creds,\n};"
+      },
+      "id": "code-prepare-tenant",
+      "name": "Preparar Credenciais",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -960,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "decrypt",
+        "dataPropertyName": "encrypted_credentials",
+        "key": "={{ $env.N8N_ENCRYPTION_KEY }}",
+        "returnType": "json",
+        "options": {}
+      },
+      "id": "crypto-decrypt",
+      "name": "Decrypt Credentials",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        -1180,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://analyticsdata.googleapis.com/v1beta/properties/{{ $json.tenant.ga4_property_id }}/runReport",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "responseFormat": "json",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "jsonBody": "{\n  \"dateRanges\": [{ \"startDate\": \"{{ $now.minus({days: 30}).toFormat('yyyy-MM-dd') }}\", \"endDate\": \"{{ $now.toFormat('yyyy-MM-dd') }}\" }],\n  \"dimensions\": [{ \"name\": \"date\" }],\n  \"metrics\": [\n    { \"name\": \"sessions\" },\n    { \"name\": \"totalUsers\" },\n    { \"name\": \"conversions\" },\n    { \"name\": \"purchaseRevenue\" }\n  ]\n}"
+      },
+      "id": "http-ga4",
+      "name": "Buscar GA4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -720,
+        180
+      ],
+      "credentials": {
+        "googleAnalyticsOAuth2": {
+          "id": "XnchKOxK5KaHUPFf",
+          "name": "Google Analytics account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://googleads.googleapis.com/v17/customers/{{ $json.tenant.google_ads_customer_id }}/googleAds:search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleAdsOAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "developer-token",
+              "value": "={{ $json.credentials.googleAds?.developerToken || '' }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "SELECT segments.date, campaign.name, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions, metrics.conversions_value FROM campaign WHERE segments.date DURING LAST_30_DAYS"
+            }
+          ]
+        }
+      },
+      "id": "http-google-ads",
+      "name": "Buscar Google Ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -720,
+        0
+      ],
+      "credentials": {
+        "googleAdsOAuth2Api": {
+          "id": "4jwcPiv8EY2EnWwK",
+          "name": "Google Ads account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v18.0",
+        "node": "act_{{ $json.tenant.meta_ad_account_id }}",
+        "edge": "insights",
+        "options": {
+          "queryParametersJson": "{\n  \"fields\": \"date_start,date_stop,impressions,clicks,spend,conversions,actions\",\n  \"time_range\": { \"since\": \"{{ $now.minus({days:30}).toFormat('yyyy-MM-dd') }}\", \"until\": \"{{ $now.toFormat('yyyy-MM-dd') }}\" },\n  \"time_increment\": 1\n}"
+        }
+      },
+      "id": "http-meta",
+      "name": "Buscar Meta Ads",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        -180
+      ],
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "JmWYzVAxfZHJRA54",
+          "name": "Facebook Graph account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const tenant = $items[0].json.tenant;\nconst now = new Date().toISOString();\n\n// Os itens chegam do Merge node na ordem das entradas\nconst googleAds = $items[0].json || {};\nconst meta = $items[1].json || {};\nconst ga4 = $items[2].json || {};\n\nconst metricsTimeseries = [];\n\n// GA4 Processing\nconst rowsGa4 = ga4.rows || [];\nrowsGa4.forEach((row) => {\n  const date = row.dimensionValues?.[0]?.value;\n  const ts = date ? new Date(date.substring(0,4), date.substring(4,6) - 1, date.substring(6,8)).toISOString() : now;\n  const metrics = row.metricValues || [];\n  const pushMetric = (source, name, index) => {\n    const raw = metrics[index]?.value ?? '0';\n    metricsTimeseries.push({\n      tenantId: tenant.tenant_id,\n      metricSource: source,\n      metricName: name,\n      metricValue: Number(raw) || 0,\n      timestamp: ts\n    });\n  };\n  pushMetric('ga4', 'sessions', 0);\n  pushMetric('ga4', 'users', 1);\n  pushMetric('ga4', 'conversions', 2);\n  pushMetric('ga4', 'revenue', 3);\n});\n\n// Google Ads Processing\nconst googleRows = googleAds.results || [];\ngoogleRows.forEach((row) => {\n  const segments = row.segments || {};\n  const date = segments.date || now;\n  const metrics = row.metrics || {};\n  const conversions = Number(metrics.conversions || 0);\n  const spend = Number(metrics.costMicros || metrics.cost_micros || 0) / 1000000;\n  const impressions = Number(metrics.impressions || 0);\n  const clicks = Number(metrics.clicks || 0);\n  const convValue = Number(metrics.conversionsValue || metrics.conversions_value || 0);\n  const ts = new Date(date).toISOString();\n  metricsTimeseries.push(\n    { tenantId: tenant.tenant_id, metricSource: 'google_ads', metricName: 'impressions', metricValue: impressions, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'google_ads', metricName: 'clicks', metricValue: clicks, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'google_ads', metricName: 'cost', metricValue: spend, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'google_ads', metricName: 'conversions', metricValue: conversions, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'google_ads', metricName: 'revenue', metricValue: convValue, timestamp: ts }\n  );\n});\n\n// Meta Ads Processing\nconst metaData = meta.data || [];\nmetaData.forEach((row) => {\n  const date = row.date_start || now;\n  const ts = new Date(date).toISOString();\n  const impressions = Number(row.impressions || 0);\n  const clicks = Number(row.clicks || 0);\n  const spend = Number(row.spend || 0);\n  const actions = row.actions || [];\n  const conversions = actions.reduce((acc, action) => {\n    if (action.action_type && action.action_type.includes('purchase')) {\n      return acc + Number(action.value || action.action_value || 0);\n    }\n    return acc;\n  }, 0);\n  metricsTimeseries.push(\n    { tenantId: tenant.tenant_id, metricSource: 'meta_ads', metricName: 'impressions', metricValue: impressions, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'meta_ads', metricName: 'clicks', metricValue: clicks, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'meta_ads', metricName: 'spend', metricValue: spend, timestamp: ts },\n    { tenantId: tenant.tenant_id, metricSource: 'meta_ads', metricName: 'conversions', metricValue: conversions, timestamp: ts }\n  );\n});\n\nconst aggregate = (name) => metricsTimeseries.filter(m => m.metricName === name).reduce((acc, item) => acc + Number(item.metricValue || 0), 0);\n\nconst summaryCards = [\n  { id: `${tenant.tenant_id}-sessions`, title: 'Sessões', metric: aggregate('sessions'), metricPrev: aggregate('sessions') * 0.9, changeValue: 10, deltaType: 'increase', color: 'blue', increased: true, tenantId: tenant.tenant_id },\n  { id: `${tenant.tenant_id}-ads-cost`, title: 'Investimento Ads', metric: aggregate('cost') + aggregate('spend'), metricPrev: aggregate('cost') * 0.95, changeValue: -5, deltaType: 'moderateDecrease', color: 'amber', increased: false, tenantId: tenant.tenant_id }\n];\n\nconst performance = rowsGa4.map(row => ({ id: `${tenant.tenant_id}-${row.dimensionValues?.[0]?.value}`, month: row.dimensionValues?.[0]?.value || '', sales: Number(row.metricValues?.[3]?.value || row.metricValues?.[2]?.value || 0), profit: Number(row.metricValues?.[2]?.value || 0), tenantId: tenant.tenant_id })).slice(-12);\n\nconst rowsLen = rowsGa4.length;\nconst todaySales = rowsLen > 0 ? [{ id: `${tenant.tenant_id}-${now}`, hour: new Date().toISOString(), today: Number(rowsGa4[rowsLen - 1]?.metricValues?.[0]?.value || 0), average: Number(rowsGa4[rowsLen - 1]?.metricValues?.[1]?.value || 0), yesterday: Number(rowsGa4[rowsLen - 2]?.metricValues?.[0]?.value || 0), tenantId: tenant.tenant_id }] : [];\n\nconst revenueDistribution = [\n  { id: `${tenant.tenant_id}-ga4`, category: 'GA4', online: aggregate('revenue'), inStore: aggregate('conversions'), tenantId: tenant.tenant_id },\n  { id: `${tenant.tenant_id}-google-ads`, category: 'Google Ads', online: aggregate('revenue'), inStore: aggregate('conversions'), tenantId: tenant.tenant_id },\n  { id: `${tenant.tenant_id}-meta`, category: 'Meta Ads', online: aggregate('conversions'), inStore: aggregate('spend'), tenantId: tenant.tenant_id }\n];\n\nreturn {\n  tenantId: tenant.tenant_id,\n  companyName: tenant.company_name,\n  planType: tenant.plan_type,\n  status: tenant.status,\n  priority: tenant.priority,\n  fetchIntervalMinutes: tenant.fetch_interval_minutes,\n  preferences: { alertEmail: tenant.alert_email, whatsappNumber: tenant.whatsapp_number, webhookUrl: tenant.webhook_url },\n  analytics: {\n    performance,\n    todaySales,\n    totalProfitSales: performance.map(r => ({ ...r })),\n    totalProfitProducts: performance.map(r => ({ id: r.id, title: r.month, value: r.sales, metric: 'sales', tenantId: tenant.tenant_id })),\n    marketMetrics: summaryCards.map(card => ({ id: `${card.id}-metric`, metric: card.title, phones: Number(card.metric || 0), laptops: Number(card.metricPrev || 0), maxValue: Number(card.metric || 0), tenantId: tenant.tenant_id })),\n    revenueDistribution\n  },\n  homepage: {\n    bestSellingProducts: performance.slice(-5).map(r => ({ id: `${r.id}-product`, name: r.month, revenue: Number(r.sales || 0), profit: Number(r.profit || 0), tenantId: tenant.tenant_id })),\n    customerSatisfaction: summaryCards.map(card => ({ id: `${card.id}-csat`, brandName: card.title, customerSatisfaction: Math.max(0, Math.min(100, Number(card.metric || 0) % 100)), totalSales: Number(card.metric || 0), numberOfOrders: Number(card.metricPrev || 0), tenantId: tenant.tenant_id })),\n    homeSmallCards: summaryCards,\n    regions: [],\n    revenueOverTime: performance.map(r => ({ id: r.id, date: r.month, websiteSales: r.sales, inStoreSales: r.profit, tenantId: tenant.tenant_id })),\n    tradersTable: [],\n    revenuePerCountry: []\n  },\n  metricsTimeseries,\n  healthScore: Math.max(40, Math.min(100, Math.round((aggregate('conversions') || 1) * 10)))\n};"
+      },
+      "id": "code-build-payload",
+      "name": "Montar Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -300,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.BACKEND_BASE_URL || 'https://api.ninetwo.com.br' }}/webhooks/n8n/data-sync",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "x-webhook-secret",
+              "value": "={{ $env.N8N_WEBHOOK_SECRET }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "http-sync-backend",
+      "name": "Persistir no Backend",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -80,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE tenants SET last_fetch_time = NOW(), health_score = {{ Math.min(100, Math.max($json.healthScore, 0)) }} WHERE tenant_id = '{{ $json.tenantId }}'"
+      },
+      "id": "postgres-update-tenant",
+      "name": "Atualizar Tenant",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        140,
+        -80
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "gcoDQdoPVkczyXbW",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://dashboard.ninetwo.com.br/api/realtime/push",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"type\": \"metrics_update\",\n  \"tenant_id\": \"{{ $json.tenantId }}\",\n  \"summary\": {\n    \"sessions\": {{ $json.analytics.performance.reduce((acc, row) => acc + (row.sales || 0), 0) }},\n    \"conversions\": {{ $json.analytics.performance.reduce((acc, row) => acc + (row.profit || 0), 0) }},\n    \"ads_spend\": {{ $json.metricsTimeseries.filter(item => item.metricName === 'cost' || item.metricName === 'spend').reduce((acc, row) => acc + Number(row.metricValue || 0), 0) }},\n    \"updated_at\": \"{{ $now.toISOString() }}\"\n  }\n}"
+      },
+      "id": "http-realtime",
+      "name": "Atualizar Dashboard Realtime",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        140,
+        120
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.healthScore }}",
+              "operation": "smaller",
+              "value2": 50
+            }
+          ]
+        }
+      },
+      "id": "if-health-alert",
+      "name": "Saúde Crítica?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        140,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.NINETWO_ALERT_WEBHOOK }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"tenant\": \"{{ $json.tenantId }}\",\n  \"healthScore\": {{ $json.healthScore }},\n  \"alertEmail\": \"{{ $json.preferences.alertEmail }}\",\n  \"summary\": {{ JSON.stringify($json.homepage.homeSmallCards || []) }}\n}"
+      },
+      "id": "http-alert",
+      "name": "Enviar Alerta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        340,
+        -80
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "merge-results",
+      "name": "Merge Resultados",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        -500,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.N8N_ERROR_WEBHOOK }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"text\": \"Erro no workflow Spireflow Data Sync para o tenant: `{{ $json.item.json.tenant.tenant_id }}`. \\nErro no nó: `{{ $json.error.cause.node.name }}`\\nURL da Execução: {{ $execution.url }}\",\n  \"blocks\": [\n    {\n      \"type\": \"section\",\n      \"text\": {\n        \"type\": \"mrkdwn\",\n        \"text\": \"*Erro no Workflow: Spireflow Data Sync* Workflow: {{$workflow.name}} Tenant: {{$json.item.json.tenant.tenant_id}} erro no nó: {{$json.error.cause.node.name}}\"\n      }\n    },\n    {\n      \"type\": \"section\",\n      \"text\": {\n        \"type\": \"mrkdwn\",\n        \"text\": \"<{{$execution.url}}|Ver Execução>\"\n      }\n    }\n  ]\n}"
+      },
+      "id": "error-webhook",
+      "name": "Error Webhook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -460,
+        -340
+      ],
+      "continueOnFail": true,
+      "executeOnce": false
     }
-  ]
+  ],
+  "connections": {
+    "trigger-schedule": {
+      "main": [
+        [
+          {
+            "node": "postgres-fetch-tenants",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "postgres-fetch-tenants": {
+      "main": [
+        [
+          {
+            "node": "split-tenants",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "split-tenants": {
+      "main": [
+        [
+          {
+            "node": "crypto-decrypt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code-prepare-tenant": {
+      "main": [
+        [
+          {
+            "node": "http-google-ads",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "http-meta",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "http-ga4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crypto-decrypt": {
+      "main": [
+        [
+          {
+            "node": "code-prepare-tenant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "http-ga4": {
+      "main": [
+        [
+          {
+            "node": "merge-results",
+            "type": "main",
+            "index": 2
+          }
+        ],
+        [
+          {
+            "node": "error-webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "http-google-ads": {
+      "main": [
+        [
+          {
+            "node": "merge-results",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "error-webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "http-meta": {
+      "main": [
+        [
+          {
+            "node": "merge-results",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "error-webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code-build-payload": {
+      "main": [
+        [
+          {
+            "node": "http-sync-backend",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "http-sync-backend": {
+      "main": [
+        [
+          {
+            "node": "postgres-update-tenant",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "http-realtime",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "if-health-alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "error-webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "if-health-alert": {
+      "main": [
+        [
+          {
+            "node": "http-alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "merge-results": {
+      "main": [
+        [
+          {
+            "node": "code-build-payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo"
+  }
 }
