@@ -31,8 +31,8 @@ export async function getHomepageData() {
       ctaLink: rawData.mainCta?.link,
     },
     statsSection: {
-      title: 'Resultados que comprovam nossa expertise',
-      stats: rawData.bigNumbers,
+      title: rawData.statsSection?.sectionTitle || 'Resultados que comprovam nossa expertise',
+      stats: rawData.statsSection?.stats || [],
     },
     managementSection: {
       title: rawData.gestaoSection?.title,
