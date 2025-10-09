@@ -1,11 +1,10 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { clientLogos } from '@/data/clients';
 
 export default function ClientsCarouselSection() {
   const [showAll, setShowAll] = useState(false);
 
-  // Embaralhar array para ter logos diferentes em cada linha
   // Criar linhas com logos triplicados (sem randomização para evitar hydration mismatch)
   const line1 = useMemo(() => [...clientLogos, ...clientLogos, ...clientLogos], []);
   const line2 = useMemo(() => {
@@ -20,19 +19,6 @@ export default function ClientsCarouselSection() {
     const rotated = [...clientLogos.slice(10), ...clientLogos.slice(0, 10)];
     return [...rotated, ...rotated, ...rotated];
   }, []);
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
-
-  // Criar 4 linhas diferentes
-  const line1 = [...shuffleArray(clientLogos), ...shuffleArray(clientLogos), ...shuffleArray(clientLogos)];
-  const line2 = [...shuffleArray(clientLogos), ...shuffleArray(clientLogos), ...shuffleArray(clientLogos)];
-  const line3 = [...shuffleArray(clientLogos), ...shuffleArray(clientLogos), ...shuffleArray(clientLogos)];
-  const line4 = [...shuffleArray(clientLogos), ...shuffleArray(clientLogos), ...shuffleArray(clientLogos)];
 
   return (
     <section id="clientes" className="relative py-16 md:py-24 border-t border-white/10 reveal">

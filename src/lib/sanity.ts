@@ -42,7 +42,21 @@ export async function getHomepageData() {
     },
     sectorsSection: {
       title: 'Expertise OMMA em diversos setores',
-      sectors: rawData.expertiseItems,
+      sectors: rawData.expertiseItems?.map((item: any, idx: number) => {
+        // Mapear fotos locais aos setores
+        const sectorImages = [
+          '/1 CORPORATIVOS.jpg',
+          '/2 START UPS.jpg',
+          '/3 COWORKING.jpg',
+          '/3 WORKPLACE.jpg',
+          '/4 COLABORAÇÃO2.jpg',
+          '/7 ESPAÇOS ESCALAVEIS3.jpg',
+        ];
+        return {
+          ...item,
+          imageUrl: sectorImages[idx] || sectorImages[0],
+        };
+      }) || [],
     },
     whyChooseSection: {
       title: 'Por que escolher a OMMA?',
