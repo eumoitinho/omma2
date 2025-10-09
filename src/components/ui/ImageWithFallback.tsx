@@ -1,51 +1,37 @@
 'use client';
 import React, { useState } from 'react';
-import Image from 'next/image';
-import { getImagePlaceholder } from '@/lib/imagePlaceholder';
 
 interface ImageWithFallbackProps {
   src: string;
   alt: string;
-  fallbackText?: string;
-  fill?: boolean;
-  width?: number;
-  height?: number;
   className?: string;
-  priority?: boolean;
-  sizes?: string;
+  fallbackSrc?: string;
 }
 
 export default function ImageWithFallback({
   src,
   alt,
-  fallbackText,
-  fill,
-  width,
-  height,
-  className,
-  priority,
-  sizes,
+  className = '',
+  fallbackSrc = '/placeholder.jpg'
 }: ImageWithFallbackProps) {
-  const [error, setError] = useState(false);
   const [imgSrc, setImgSrc] = useState(src);
+  const [hasError, setHasError] = useState(false);
 
   const handleError = () => {
-    setError(true);
-    setImgSrc(getImagePlaceholder(fallbackText || alt, width || 800, height || 600));
+    if (!hasError) {
+      console.error(`Failed to load image: ${imgSrc}`);
+      setHasError(true);
+      setImgSrc(fallbackSrc);
+    }
   };
 
   return (
-    <Image
+    <img
       src={imgSrc}
       alt={alt}
-      fill={fill}
-      width={!fill ? width : undefined}
-      height={!fill ? height : undefined}
       className={className}
-      priority={priority}
-      sizes={sizes}
       onError={handleError}
-      unoptimized={error} // Use unoptimized for SVG placeholders
+      loading="lazy"
     />
   );
 }
