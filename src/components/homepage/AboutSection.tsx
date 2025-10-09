@@ -50,13 +50,17 @@ export default function AboutSection({ data }: AboutSectionProps) {
             {data.images && data.images[0] ? (
               <Image
                 src={urlFor(data.images[0]).url()}
-                alt="Equipe de engenharia em operação"
+                alt="Projeto OMMA Engenharia"
                 width={600}
                 height={420}
                 className="h-[320px] md:h-[420px] w-full object-cover"
               />
             ) : (
-              <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1974&auto=format&fit=crop" alt="Equipe de engenharia em operação" className="h-[320px] md:h-[420px] w-full object-cover" />
+              <img
+                src="/cases/1b8c917b8644a16c37fb95ec68e6d27b/Unimed/Unimed 2.jpg"
+                alt="Projeto OMMA Engenharia - Unimed"
+                className="h-[320px] md:h-[420px] w-full object-cover"
+              />
             )}
             <div className="absolute -top-1 -right-1 h-16 w-16 bg-gradient-to-br from-amber-400 to-amber-500 rounded-br-2xl rounded-tl-2xl shadow-[0_0_40px_-10px] shadow-amber-500/50"></div>
           </div>
@@ -65,13 +69,17 @@ export default function AboutSection({ data }: AboutSectionProps) {
               {data.images && data.images[1] ? (
                 <Image
                   src={urlFor(data.images[1]).url()}
-                  alt="Profissional de obra"
+                  alt="Projeto OMMA"
                   width={160}
                   height={160}
                   className="h-40 w-40 object-cover"
                 />
               ) : (
-                <img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?q=80&w=1470&auto=format&fit=crop" alt="Profissional de obra" className="h-40 w-40 object-cover" />
+                <img
+                  src="/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 3.jpg"
+                  alt="Projeto OMMA - Movile"
+                  className="h-40 w-40 object-cover"
+                />
               )}
             </div>
           </div>

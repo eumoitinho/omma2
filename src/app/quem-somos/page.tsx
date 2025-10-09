@@ -117,7 +117,7 @@ export default async function QuemSomosPage() {
       </section>
 
       {/* Stats Section */}
-      <section id="resultados" className="py-12 border-t border-white/10 reveal relative overflow-hidden">
+      <section id="resultados" className="py-12 border-t border-white/10 relative overflow-hidden">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-amber-400/5 via-transparent to-amber-300/5" />
           <div className="absolute -right-40 top-1/2 -translate-y-1/2 h-[30rem] w-[30rem] rounded-full bg-amber-400/10 blur-3xl" />

@@ -43,14 +43,14 @@ export async function getHomepageData() {
     sectorsSection: {
       title: 'Expertise OMMA em diversos setores',
       sectors: rawData.expertiseItems?.map((item: any, idx: number) => {
-        // Mapear fotos locais aos setores
+        // Mapear fotos locais aos setores na ordem numérica
         const sectorImages = [
           '/1 CORPORATIVOS.jpg',
-          '/2 START UPS.jpg',
+          '/bloco4home/2 START UPS.jpg',
           '/3 COWORKING.jpg',
-          '/3 WORKPLACE.jpg',
-          '/4 COLABORAÇÃO2.jpg',
-          '/7 ESPAÇOS ESCALAVEIS3.jpg',
+          '/bloco4home/4 CLINICAS.jpeg',
+          '/bloco4home/5 ACADEMIAS.jpeg',
+          '/bloco4home/5 EDIFICAÇÕES COMERCIAIS.jpeg',
         ];
         return {
           ...item,

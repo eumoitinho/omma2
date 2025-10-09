@@ -115,35 +115,8 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
             <div className="absolute bottom-0 left-0 right-0 px-5 py-6 sm:p-8 md:p-10">
               <div className="flex items-end justify-between gap-6">
                 <div className="max-w-3xl">
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-white drop-shadow-lg mb-2" style={{ fontFamily: 'Exo, Inter' }}>
-                    {currentProject.client}
-                  </h3>
-                  <p className="text-base sm:text-lg text-white/80 mb-4" style={{ fontFamily: 'Inter' }}>
-                    {currentProject.title}
-                  </p>
-
-                  {/* Project details */}
-                  <div className="flex flex-wrap gap-4 text-sm text-white/70 mb-5" style={{ fontFamily: 'Inter' }}>
-                    <div className="flex items-center gap-2">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      <span>{currentProject.location}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z" />
-                      </svg>
-                      <span>{currentProject.area}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span>{currentProject.duration}</span>
-                    </div>
-                  </div>
+               
+                
 
                   <div className="flex items-center gap-1 text-white/60 text-xs mb-5">
                     <span className="tracking-wide uppercase">{idx + 1}/{len}</span>
