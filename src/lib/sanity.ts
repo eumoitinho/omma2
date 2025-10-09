@@ -50,7 +50,7 @@ export async function getHomepageData() {
     },
     clientsSection: {
       title: 'NOSSOS CLIENTES',
-      logos: rawData.clientLogos,
+      clients: rawData.clientLogos,
     },
     methodologySection: {
       title: rawData.methodology?.title,

@@ -7,7 +7,7 @@ import ProjectsCarousel from '@/components/lp/ProjectsCarousel';
 import { RevealObserver } from '@/components/ui/useReveal';
 import ContactForm from '@/components/lp/ContactForm';
 import CTAButton from '@/components/lp/CTAButton';
-import ClientsCarousel from '@/components/lp/ClientsCarousel';
+import ClientsCarouselSection from '@/components/lp/ClientsCarouselSection';
 
 export const metadata = {
   title: 'OMMA Engenharia - Ambientes corporativos (Landing page)',
@@ -563,12 +563,7 @@ export default function CorporativosLP() {
       </section>
 
       {/* Bloco 8 – Nossos clientes */}
-    <section id="clientes" className="py-12 border-t border-white/10 reveal">
-        <div className="mx-auto max-w-7xl px-6">
-          <h3 className="text-2xl font-semibold text-center text-amber-300">NOSSOS CLIENTES</h3>
-          <ClientsCarousel clients={allClients} />
-        </div>
-      </section>
+      <ClientsCarouselSection />
 
       {/* Bloco 9 – Projetos/carrossel */}
     <section id="projetos" className="py-12 border-t border-white/10">

@@ -67,50 +67,7 @@ export default async function TrabalheConoscoPage() {
       </section>
 
       {/* Benefits Grid */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12" style={{ fontFamily: 'Exo, Inter' }}>
-            Por que trabalhar na <span className="text-amber-400">OMMA</span>?
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
-              return (
-                <div
-                  key={index}
-                  className="group relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden hover:border-amber-400/40 transition-all"
-                >
-                  {/* Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={benefit.image}
-                      alt={benefit.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-
-                    {/* Icon Badge */}
-                    <div className="absolute top-6 left-6 w-14 h-14 rounded-full bg-amber-400/20 backdrop-blur-sm border border-amber-400/40 flex items-center justify-center">
-                      <Icon className="w-7 h-7 text-amber-400" />
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'Exo, Inter' }}>
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm text-white/70 leading-relaxed" style={{ fontFamily: 'Inter' }}>
-                      {benefit.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Application Form */}
       <section className="py-16 md:py-24 bg-neutral-900">
