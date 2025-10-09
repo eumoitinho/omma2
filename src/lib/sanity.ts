@@ -45,10 +45,12 @@ export async function getHomepageData() {
       sectors: rawData.expertiseItems?.map((item: { title: string; description: string }, idx: number) => {
         // Mapear fotos corretas baseado nos nomes dos arquivos
         const sectorImages = [
-          '/1 CORPORATIVOS.jpg',                       // 1 - Corporativos
+          '/1 CORPORATIVOS.jpg',
+          '/bloco4home/4 CLINICAS.jpeg', 
+                                // 1 - Corporativos
           '/bloco4home/2 START UPS.jpg',               // 2 - Startups
           '/bloco4home/1 PUBLICAS.jpg',                // 3 - Infraestrutura Pública
-          '/bloco4home/4 CLINICAS.jpeg',               // 4 - Clínicas
+                         // 4 - Clínicas
           '/bloco4home/5 ACADEMIAS.jpeg',              // 5 - Academias
           '/bloco4home/5 EDIFICAÇÕES COMERCIAIS.jpeg', // 6 - Edificações Comerciais
         ];
