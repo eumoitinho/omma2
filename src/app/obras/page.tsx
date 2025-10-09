@@ -7,7 +7,7 @@ export default async function ObrasPage() {
   const data = await getObrasData();
 
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-white">
       <ObrasGallery data={data} />
     </main>
   );

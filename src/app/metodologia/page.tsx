@@ -42,14 +42,14 @@ export default async function MetodologiaPage() {
             alt="Metodologia OMMA"
             className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 md:px-8">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center mb-6" style={{ fontFamily: 'Exo, Inter' }}>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center mb-6 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
             Nossa <span className="text-amber-400">Metodologia</span>
           </h1>
-          <p className="mt-6 text-base md:text-lg leading-relaxed text-white/80 text-center max-w-4xl mx-auto" style={{ fontFamily: 'Inter' }}>
+          <p className="mt-6 text-base md:text-lg leading-relaxed text-gray-700 text-center max-w-4xl mx-auto" style={{ fontFamily: 'Inter' }}>
             Desenvolvemos uma metodologia própria que garante excelência em cada etapa do projeto. Da concepção à entrega, seguimos processos rigorosos que asseguram qualidade, prazo e eficiência.
           </p>
         </div>
@@ -78,18 +78,18 @@ export default async function MetodologiaPage() {
                   </div>
 
                   {/* Phase Card */}
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-6 hover:border-amber-400/40 transition-all">
-                    <h3 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Exo, Inter' }}>
+                  <div className="rounded-2xl border border-gray-200 bg-white p-6 hover:border-amber-400/40 transition-all">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Exo, Inter' }}>
                       {phase.title}
                     </h3>
-                    <p className="text-sm text-white/60 mb-4" style={{ fontFamily: 'Inter' }}>
+                    <p className="text-sm text-gray-600 mb-4" style={{ fontFamily: 'Inter' }}>
                       {phase.description}
                     </p>
 
                     {/* Steps List */}
                     <ul className="space-y-2">
                       {phase.steps.map((step, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-white/70" style={{ fontFamily: 'Inter' }}>
+                        <li key={i} className="flex items-start gap-2 text-sm text-gray-700" style={{ fontFamily: 'Inter' }}>
                           <CheckCircle2 className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
                           <span>{step}</span>
                         </li>
@@ -104,9 +104,9 @@ export default async function MetodologiaPage() {
       </section>
 
       {/* Differentials Section */}
-      <section className="py-16 md:py-24 bg-neutral-900">
+      <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12" style={{ fontFamily: 'Exo, Inter' }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
             Nossos <span className="text-amber-400">Diferenciais</span>
           </h2>
 
@@ -139,7 +139,7 @@ export default async function MetodologiaPage() {
             ].map((item, i) => {
               const Icon = item.icon;
               return (
-                <div key={i} className="group relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:border-amber-400/40 transition-all">
+                <div key={i} className="group relative rounded-2xl overflow-hidden border border-gray-200 bg-white hover:border-amber-400/40 transition-all">
                   {/* Background Image */}
                   <div className="relative h-48 overflow-hidden">
                     <img
@@ -157,10 +157,10 @@ export default async function MetodologiaPage() {
 
                   {/* Content */}
                   <div className="p-6">
-                    <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Exo, Inter' }}>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2" style={{ fontFamily: 'Exo, Inter' }}>
                       {item.title}
                     </h3>
-                    <p className="text-sm text-white/70" style={{ fontFamily: 'Inter' }}>
+                    <p className="text-sm text-gray-700" style={{ fontFamily: 'Inter' }}>
                       {item.description}
                     </p>
                   </div>
@@ -174,10 +174,10 @@ export default async function MetodologiaPage() {
       {/* CTA Section */}
       <section className="py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Exo, Inter' }}>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
             Pronto para trabalhar com <span className="text-amber-400">excelência</span>?
           </h2>
-          <p className="text-base md:text-lg text-white/70 mb-8" style={{ fontFamily: 'Inter' }}>
+          <p className="text-base md:text-lg text-gray-700 mb-8" style={{ fontFamily: 'Inter' }}>
             Entre em contato e descubra como nossa metodologia pode transformar seu projeto em realidade.
           </p>
           <Link

@@ -126,7 +126,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   }
 
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-white">
       <ProjectDetail project={project} />
     </main>
   );

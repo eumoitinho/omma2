@@ -166,14 +166,14 @@ export default async function AreasAtuacaoPage() {
             alt="Áreas de Atuação OMMA"
             className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 md:px-8">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center mb-6" style={{ fontFamily: 'Exo, Inter' }}>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center mb-6 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
             Áreas de <span className="text-amber-400">Atuação</span>
           </h1>
-          <p className="mt-6 text-base md:text-lg leading-relaxed text-white/80 text-center max-w-4xl mx-auto" style={{ fontFamily: 'Inter' }}>
+          <p className="mt-6 text-base md:text-lg leading-relaxed text-gray-700 text-center max-w-4xl mx-auto" style={{ fontFamily: 'Inter' }}>
             Atuamos em diversos segmentos do mercado, entregando soluções especializadas e personalizadas para cada tipo de projeto. Nossa expertise abrange desde infraestrutura pública até facilities corporativos e industriais.
           </p>
         </div>
@@ -192,15 +192,15 @@ export default async function AreasAtuacaoPage() {
                     <Icon className="w-8 h-8 text-amber-400" />
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" style={{ fontFamily: 'Exo, Inter' }}>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Exo, Inter' }}>
                       {sector.title}
                     </h2>
-                    <p className="text-base md:text-lg text-white/70 leading-relaxed mb-4" style={{ fontFamily: 'Inter' }}>
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'Inter' }}>
                       {sector.description}
                     </p>
                     <ul className="flex flex-wrap gap-3">
                       {sector.features.map((feature, i) => (
-                        <li key={i} className="inline-flex items-center gap-2 text-sm text-white/60 bg-white/5 border border-white/10 rounded-full px-4 py-2" style={{ fontFamily: 'Inter' }}>
+                        <li key={i} className="inline-flex items-center gap-2 text-sm text-gray-700 bg-gray-50 border border-gray-200 rounded-full px-4 py-2" style={{ fontFamily: 'Inter' }}>
                           <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
                           {feature}
                         </li>
@@ -214,7 +214,7 @@ export default async function AreasAtuacaoPage() {
                   {sector.projects.map((project, projectIndex) => (
                     <div
                       key={projectIndex}
-                      className="group relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden hover:border-amber-400/40 transition-all p-6"
+                      className="group relative rounded-2xl border border-gray-200 bg-white overflow-hidden hover:border-amber-400/40 transition-all p-6"
                     >
                       <SectorCarousel
                         projectName={project.name}
@@ -230,12 +230,12 @@ export default async function AreasAtuacaoPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-neutral-900">
+      <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Exo, Inter' }}>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
             Pronto para iniciar seu <span className="text-amber-400">projeto</span>?
           </h2>
-          <p className="text-base md:text-lg text-white/70 mb-8" style={{ fontFamily: 'Inter' }}>
+          <p className="text-base md:text-lg text-gray-700 mb-8" style={{ fontFamily: 'Inter' }}>
             Entre em contato conosco e descubra como podemos transformar sua visão em realidade.
           </p>
           <Link

@@ -38,12 +38,12 @@ export default async function QuemSomosPage() {
             alt="OMMA Engenharia"
             className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 md:px-8">
           {/* Hero Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center mb-6" style={{ fontFamily: 'Exo, Inter' }}>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center mb-6 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
             Sobre a <span className="text-amber-400">OMMA Engenharia</span>
           </h1>
 
@@ -51,12 +51,12 @@ export default async function QuemSomosPage() {
           <div className="max-w-4xl mx-auto text-center">
             {introTexts.length > 0 ? (
               introTexts.map((text, i) => (
-                <p key={i} className="mt-6 text-base md:text-lg leading-relaxed text-white/80" style={{ fontFamily: 'Inter' }}>
+                <p key={i} className="mt-6 text-base md:text-lg leading-relaxed text-gray-700" style={{ fontFamily: 'Inter' }}>
                   {text}
                 </p>
               ))
             ) : (
-              <p className="mt-6 text-base md:text-lg leading-relaxed text-white/80" style={{ fontFamily: 'Inter' }}>
+              <p className="mt-6 text-base md:text-lg leading-relaxed text-gray-700" style={{ fontFamily: 'Inter' }}>
                 Com mais de 24 anos de experiência, a OMMA Engenharia é referência em gestão e execução de obras de alta complexidade. Nossa expertise abrange desde projetos corporativos até infraestrutura pública, sempre com foco em qualidade, prazo e inovação.
               </p>
             )}
@@ -65,12 +65,12 @@ export default async function QuemSomosPage() {
       </section>
 
       {/* Purpose Section with Images */}
-      <section className="relative py-16 md:py-24 bg-neutral-900">
+      <section className="relative py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Images */}
             <div className="relative order-2 md:order-1">
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 shadow-2xl">
+              <div className="relative rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-2xl">
                 <img
                   src="/cases/1b8c917b8644a16c37fb95ec68e6d27b/Unimed/Unimed 2.jpg"
                   alt="OMMA Engenharia - Projeto Unimed"
@@ -79,7 +79,7 @@ export default async function QuemSomosPage() {
                 <div className="absolute -top-1 -right-1 h-16 w-16 bg-gradient-to-br from-amber-400 to-amber-500 rounded-br-2xl rounded-tl-2xl shadow-[0_0_40px_-10px] shadow-amber-500/50"></div>
               </div>
               <div className="hidden md:flex absolute -left-8 bottom-16">
-                <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+                <div className="rounded-2xl overflow-hidden border border-gray-200 bg-white">
                   <img
                     src="/cases/2823dd82e2efaa0de9675a5e68e6d275/Ultracargo/Ultracargo 3.jpg"
                     alt="Projeto Ultracargo"
@@ -97,16 +97,16 @@ export default async function QuemSomosPage() {
 
               {purposeTexts.length > 0 ? (
                 purposeTexts.map((text, i) => (
-                  <p key={i} className="mt-4 text-base text-white/70 leading-relaxed" style={{ fontFamily: 'Inter' }}>
+                  <p key={i} className="mt-4 text-base text-gray-700 leading-relaxed" style={{ fontFamily: 'Inter' }}>
                     {text}
                   </p>
                 ))
               ) : (
                 <>
-                  <p className="text-base text-white/70 leading-relaxed" style={{ fontFamily: 'Inter' }}>
+                  <p className="text-base text-gray-700 leading-relaxed" style={{ fontFamily: 'Inter' }}>
                     Entregar projetos de infraestrutura com excelência técnica, cumprindo prazos e superando expectativas. Transformamos desafios complexos em soluções inovadoras através de gestão especializada e equipe altamente qualificada.
                   </p>
-                  <p className="mt-4 text-base text-white/70 leading-relaxed" style={{ fontFamily: 'Inter' }}>
+                  <p className="mt-4 text-base text-gray-700 leading-relaxed" style={{ fontFamily: 'Inter' }}>
                     Nossa abordagem integra tecnologia, sustentabilidade e segurança em cada etapa, garantindo resultados que geram valor real para nossos clientes.
                   </p>
                 </>
@@ -125,7 +125,7 @@ export default async function QuemSomosPage() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_25%,rgba(251,191,36,0.18),transparent_60%)] opacity-60" />
         </div>
         <div className="mx-auto max-w-7xl px-6 relative">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center" style={{ fontFamily: 'Exo, Inter' }}>
+          <h2 className="text-2xl sm:text-3xl font-semibold text-center text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
             Resultados que comprovam nossa expertise
           </h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -136,13 +136,13 @@ export default async function QuemSomosPage() {
             ].map((s, i) => (
               <div
                 key={s.label}
-                className={`relative rounded-2xl p-6 anim-fadeSlideUp overflow-hidden group ring-1 ring-white/10 bg-gradient-to-br from-white/5 via-neutral-900/30 to-amber-400/10 hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25),0_8px_28px_-6px_rgba(251,191,36,0.25)] transition-shadow`}
+                className={`relative rounded-2xl p-6 anim-fadeSlideUp overflow-hidden group ring-1 ring-gray-200 bg-gradient-to-br from-white via-gray-50/30 to-amber-400/10 hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25),0_8px_28px_-6px_rgba(251,191,36,0.25)] transition-shadow`}
                 style={{ animationDelay: `${0.1 * i}s` }}
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_78%_22%,rgba(251,191,36,0.28),transparent_65%)]" />
-                <div className="relative text-3xl font-bold text-amber-300 drop-shadow" style={{ fontFamily: 'Exo, Inter' }}>{s.number}</div>
-                <div className="relative text-white/90 mt-1 font-medium">{s.label}</div>
-                <p className="relative text-white/70 mt-3 text-sm leading-relaxed">{s.description}</p>
+                <div className="relative text-3xl font-bold text-amber-400 drop-shadow" style={{ fontFamily: 'Exo, Inter' }}>{s.number}</div>
+                <div className="relative text-gray-900 mt-1 font-medium">{s.label}</div>
+                <p className="relative text-gray-700 mt-3 text-sm leading-relaxed">{s.description}</p>
               </div>
             ))}
           </div>
@@ -150,9 +150,9 @@ export default async function QuemSomosPage() {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-16 md:py-24 bg-neutral-900">
+      <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12" style={{ fontFamily: 'Exo, Inter' }}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
             Nossos <span className="text-amber-400">Projetos</span>
           </h2>
 
@@ -165,7 +165,7 @@ export default async function QuemSomosPage() {
               { img: '/cases/2823dd82e2efaa0de9675a5e68e6d275/Ultracargo/Ultracargo 4.jpg', title: 'Ultracargo Logística' },
               { img: '/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 5.jpg', title: 'Movile Inovação' },
             ].map((item, i) => (
-              <div key={i} className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-amber-400/40 transition-all">
+              <div key={i} className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 hover:border-amber-400/40 transition-all">
                 <img
                   src={item.img}
                   alt={item.title}
@@ -185,7 +185,7 @@ export default async function QuemSomosPage() {
       {/* Team/Values Section */}
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12" style={{ fontFamily: 'Exo, Inter' }}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
             Nossos <span className="text-amber-400">Valores</span>
           </h2>
 
@@ -195,9 +195,9 @@ export default async function QuemSomosPage() {
               { title: 'Inovação', desc: 'Soluções criativas e tecnológicas para desafios complexos' },
               { title: 'Transparência', desc: 'Comunicação clara e honesta em todas as etapas' },
             ].map((value, i) => (
-              <div key={i} className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/40 transition-all">
+              <div key={i} className="p-8 rounded-2xl bg-white border border-gray-200 hover:border-amber-400/40 transition-all">
                 <h3 className="text-2xl font-bold text-amber-400 mb-4" style={{ fontFamily: 'Exo, Inter' }}>{value.title}</h3>
-                <p className="text-base text-white/70" style={{ fontFamily: 'Inter' }}>{value.desc}</p>
+                <p className="text-base text-gray-700" style={{ fontFamily: 'Inter' }}>{value.desc}</p>
               </div>
             ))}
           </div>

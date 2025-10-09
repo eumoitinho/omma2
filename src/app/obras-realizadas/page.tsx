@@ -24,13 +24,13 @@ export default async function ObrasRealizadasPage() {
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
           {data.heroTitle && (
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4" style={{ fontFamily: 'Exo, Inter', fontWeight: 700 }}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-gray-900" style={{ fontFamily: 'Exo, Inter', fontWeight: 700 }}>
               Obras <span className="text-amber-400">Realizadas</span>
             </h1>
           )}
 
           {data.subtitle && (
-            <p className="text-lg md:text-xl text-white/80 max-w-4xl mx-auto" style={{ fontFamily: 'Exo, Inter', fontWeight: 400 }}>
+            <p className="text-lg md:text-xl text-gray-700 max-w-4xl mx-auto" style={{ fontFamily: 'Exo, Inter', fontWeight: 400 }}>
               {data.subtitle}
             </p>
           )}
