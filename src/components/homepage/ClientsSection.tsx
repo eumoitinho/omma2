@@ -34,15 +34,15 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
           {data?.title || 'NOSSOS CLIENTES'}
         </h2>
 
-        <div className="relative">
-          {/* Container com altura limitada e cantos arredondados */}
+        <div className="rounded-2xl  relative">
+          {/* Container com altura limitada */}
           <div
-            className={`relative overflow-hidden rounded-3xl transition-all duration-700 ${
+            className={`relative overflow-hidden transition-all duration-700 ${
               showAll ? 'max-h-[800px]' : 'max-h-[180px]'
             }`}
           >
             {/* Primeira linha - animação da esquerda para direita */}
-            <div className="flex gap-8 mb-8 animate-scroll-left py-4">
+            <div className="flex gap-8 mb-8 animate-scroll-left">
               {line1.map((client, idx) => (
                 <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line1-${idx}`}>
                   <div className="relative w-full h-20">
@@ -88,7 +88,7 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
                   ))}
                 </div>
 
-                <div className="flex gap-8 animate-scroll-right pb-4">
+                <div className="flex gap-8 animate-scroll-right">
                   {line4.map((client, idx) => (
                     <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line4-${idx}`}>
                       <div className="relative w-full h-20">
@@ -106,12 +106,12 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
 
             {/* Gradiente de fade quando não expandido (inferior) */}
             {!showAll && (
-              <div className="absolute bottom-0 left-0 right-0 h-32 w-full bg-gradient-to-t from-amber-50 via-amber-50/70 to-transparent pointer-events-none rounded-b-3xl" />
+              <div className="absolute bottom-0 left-0 right-0 h-24 w-full bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
             )}
 
-            {/* Gradientes suaves nas extremidades horizontais */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-amber-50/95 via-amber-50/40 to-transparent rounded-l-3xl" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-amber-50/95 via-amber-50/40 to-transparent rounded-r-3xl" />
+            {/* Gradientes nas extremidades horizontais */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-16 bg-gradient-to-r from-white via-white/70 to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-16 bg-gradient-to-l from-white via-white/70 to-transparent" />
           </div>
 
           {/* Botão Ver Mais/Menos */}
