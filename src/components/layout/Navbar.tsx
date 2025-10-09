@@ -8,7 +8,16 @@ const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
+    // Verifica se está na homepage
+    const isHomepage = pathname === '/';
+
     useEffect(() => {
+        // Scroll listener apenas para homepage
+        if (!isHomepage) {
+            setIsScrolled(true); // Nas outras páginas, sempre "scrolled"
+            return;
+        }
+
         const handleScroll = () => {
             // Considera "scrolled" quando passar do viewport height (hero section)
             setIsScrolled(window.scrollY > window.innerHeight * 0.8);
@@ -16,14 +25,14 @@ const Navbar: React.FC = () => {
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [isHomepage]);
 
     if (pathname?.startsWith('/lp') || pathname?.startsWith('/studio')) return null;
 
     return (
         <header className="fixed top-4 inset-x-0 z-50">
             <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                <div className="rounded-2xl bg-white/5 backdrop-blur-xl ring-1 ring-white/10 shadow-xl">
+                <div className={`rounded-2xl backdrop-blur-xl ring-1 shadow-xl ${isScrolled ? 'bg-white/90 ring-gray-200' : 'bg-white/5 ring-white/10'}`}>
                     <div className="flex items-center justify-between px-4 py-3 sm:px-6">
                         <div className="flex items-center gap-3">
                             <Link href="/" className="inline-flex items-center gap-2">
