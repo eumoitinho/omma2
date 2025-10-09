@@ -42,13 +42,13 @@ export async function getHomepageData() {
     },
     sectorsSection: {
       title: 'Expertise OMMA em diversos setores',
-      sectors: rawData.expertiseItems?.map((item: any, idx: number) => {
-        // Mapear fotos locais aos setores na ordem numérica
+      sectors: rawData.expertiseItems?.map((item: { title: string; description: string }, idx: number) => {
+        // Mapear fotos locais aos setores
         const sectorImages = [
-          '/1 CORPORATIVOS.jpg',
+          '/bloco4home/praca1.jpg', // Educativo/Infraestrutura
           '/bloco4home/2 START UPS.jpg',
           '/3 COWORKING.jpg',
-          '/bloco4home/4 CLINICAS.jpeg',
+          '/cases/0116d02df0f87c87093b8ab668e6d26e/Praça da Cidadania/Praça da Cidadania 1.jpg', // Infraestrutura
           '/bloco4home/5 ACADEMIAS.jpeg',
           '/bloco4home/5 EDIFICAÇÕES COMERCIAIS.jpeg',
         ];
