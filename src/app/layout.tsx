@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     rel="stylesheet"
                 />
             </head>
-            <body className="antialiased min-h-screen text-white bg-black" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji' }}>
+            <body className="antialiased min-h-screen text-gray-900 bg-white" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji' }}>
                 {/* Background with texture and overlay */}
                 <div className="pointer-events-none fixed inset-0 -z-10">
                     {/* Background image */}
@@ -34,11 +34,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             className="w-full h-full object-cover opacity-40"
                         />
                     </div>
-                    {/* Dark overlay gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/85 to-black/90" />
+                    {/* Light overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/90 to-white/95" />
                     {/* Ambient glows */}
-                    <div className="absolute -top-[20%] -left-[10%] h-[40rem] w-[40rem] rounded-full bg-amber-400/15 blur-[160px]" />
-                    <div className="absolute -bottom-[10%] -right-[10%] h-[36rem] w-[36rem] rounded-full bg-white/8 blur-[140px]" />
+                    <div className="absolute -top-[20%] -left-[10%] h-[40rem] w-[40rem] rounded-full bg-amber-400/8 blur-[160px]" />
+                    <div className="absolute -bottom-[10%] -right-[10%] h-[36rem] w-[36rem] rounded-full bg-blue-400/5 blur-[140px]" />
                 </div>
                 {/* Feedback widget (client-only) */}
                 <ClientFeedbackWidget />

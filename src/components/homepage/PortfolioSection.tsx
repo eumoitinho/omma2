@@ -71,17 +71,17 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
     : '/cases/1e331a44a921916a5efadcfe68e6d25f/Ivanhoé/Ivanhoé 1.jpg';
 
   return (
-    <section className="py-16 md:py-24 border-t border-white/10">
+    <section className="py-16 md:py-24 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* Header */}
         <div className="mb-8">
           {data.title && (
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" style={{ fontFamily: 'Exo, Inter' }}>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Exo, Inter' }}>
               {data.title}
             </h2>
           )}
           {data.subtitle && (
-            <p className="text-base text-white/70 max-w-3xl" style={{ fontFamily: 'Inter' }}>
+            <p className="text-base text-gray-600 max-w-3xl" style={{ fontFamily: 'Inter' }}>
               {data.subtitle}
             </p>
           )}
@@ -89,7 +89,7 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
 
         {/* Carousel */}
         <div
-          className="relative group overflow-hidden rounded-2xl md:rounded-3xl border border-white/10 ring-1 ring-white/5 bg-black/40 backdrop-blur-sm shadow-xl"
+          className="relative group overflow-hidden rounded-2xl md:rounded-3xl border border-gray-200 ring-1 ring-gray-100 bg-white/90 backdrop-blur-sm shadow-xl"
           aria-roledescription="carousel"
           aria-label="Portfólio OMMA"
         >
@@ -118,7 +118,7 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
                
                 
 
-                  <div className="flex items-center gap-1 text-white/60 text-xs mb-5">
+                  <div className="flex items-center gap-1 text-gray-100 text-xs mb-5">
                     <span className="tracking-wide uppercase">{idx + 1}/{len}</span>
                   </div>
 

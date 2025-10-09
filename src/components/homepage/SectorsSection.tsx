@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import SectionBackground from '@/components/ui/SectionBackground';
 
 interface SectorsSectionProps {
   data: {
@@ -18,12 +17,11 @@ export default function SectorsSection({ data }: SectorsSectionProps) {
 
   return (
     <section className="relative py-16 md:py-24 overflow-hidden">
-      <SectionBackground variant="default" />
       <div className="relative max-w-7xl mx-auto px-4 md:px-8">
         {/* Title */}
         {data.title && (
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white" style={{ fontFamily: 'Exo, Inter' }}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
               {data.title}
             </h2>
           </div>
@@ -34,7 +32,7 @@ export default function SectorsSection({ data }: SectorsSectionProps) {
           {data.sectors.map((sector, idx) => (
             <div
               key={idx}
-              className="group relative overflow-hidden rounded-2xl bg-black border border-white/10 hover:border-amber-400/40 transition-all duration-300"
+              className="group relative overflow-hidden rounded-2xl bg-white border border-gray-200 hover:border-amber-400/40 hover:shadow-xl transition-all duration-300"
             >
               {/* Imagem de fundo */}
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -45,11 +43,11 @@ export default function SectorsSection({ data }: SectorsSectionProps) {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-neutral-800 to-neutral-900" />
+                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200" />
                 )}
 
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
               </div>
 
               {/* Conteúdo */}
@@ -57,7 +55,7 @@ export default function SectorsSection({ data }: SectorsSectionProps) {
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors" style={{ fontFamily: 'Exo, Inter' }}>
                   {sector.title}
                 </h3>
-                <p className="text-sm text-neutral-300 leading-relaxed">
+                <p className="text-sm text-gray-200 leading-relaxed">
                   {sector.description}
                 </p>
               </div>

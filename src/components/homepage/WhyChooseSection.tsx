@@ -23,11 +23,11 @@ export default function WhyChooseSection({ data }: WhyChooseSectionProps) {
         {/* Header */}
         {data.title && (
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white" style={{ fontFamily: 'Exo, Inter' }}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
               {data.title}
             </h2>
             {data.subtitle && (
-              <p className="mt-4 text-lg text-white/70 max-w-3xl mx-auto" style={{ fontFamily: 'Inter' }}>
+              <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto" style={{ fontFamily: 'Inter' }}>
                 {data.subtitle}
               </p>
             )}
@@ -40,20 +40,20 @@ export default function WhyChooseSection({ data }: WhyChooseSectionProps) {
             {data.benefits.map((benefit, idx) => (
               <div
                 key={idx}
-                className="relative rounded-2xl p-6 overflow-hidden group ring-1 ring-white/10 bg-gradient-to-br from-white/5 via-neutral-900/30 to-amber-400/10 hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25),0_8px_28px_-6px_rgba(251,191,36,0.25)] transition-shadow"
+                className="relative rounded-2xl p-6 overflow-hidden group ring-1 ring-gray-200 bg-gradient-to-br from-white via-gray-50 to-amber-50 hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25),0_8px_28px_-6px_rgba(251,191,36,0.25)] transition-shadow"
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_78%_22%,rgba(251,191,36,0.28),transparent_65%)]" />
                 <div className="relative flex items-start justify-between mb-3">
-                  <div className="h-10 w-10 rounded-xl bg-black/40 ring-1 ring-white/10 grid place-items-center group-hover:ring-amber-400/40 group-hover:bg-amber-400/10 transition-colors">
-                    <span className="text-[11px] font-semibold text-amber-300" style={{ fontFamily: 'Exo, Inter' }}>
+                  <div className="h-10 w-10 rounded-xl bg-gray-100 ring-1 ring-gray-200 grid place-items-center group-hover:ring-amber-400/40 group-hover:bg-amber-400/10 transition-colors">
+                    <span className="text-[11px] font-semibold text-amber-500" style={{ fontFamily: 'Exo, Inter' }}>
                       {String(idx + 1).padStart(2, '0')}
                     </span>
                   </div>
                 </div>
-                <h3 className="relative text-xl font-semibold text-white mb-2 group-hover:text-amber-200 transition-colors" style={{ fontFamily: 'Exo, Inter' }}>
+                <h3 className="relative text-xl font-semibold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors" style={{ fontFamily: 'Exo, Inter' }}>
                   {benefit.title}
                 </h3>
-                <p className="relative text-white/70 text-sm leading-relaxed group-hover:text-white/80 transition-colors" style={{ fontFamily: 'Inter' }}>
+                <p className="relative text-gray-600 text-sm leading-relaxed group-hover:text-gray-700 transition-colors" style={{ fontFamily: 'Inter' }}>
                   {benefit.description}
                 </p>
               </div>
@@ -63,10 +63,10 @@ export default function WhyChooseSection({ data }: WhyChooseSectionProps) {
 
         {/* CTA Buttons */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-base font-medium text-white hover:bg-white/10 transition" style={{ fontFamily: 'Exo, Inter' }}>
+          <button className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-900 hover:bg-gray-50 transition" style={{ fontFamily: 'Exo, Inter' }}>
             Entrar em contato
           </button>
-          <button className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 bg-amber-400/10 px-6 py-3 text-base font-medium text-amber-400 hover:bg-amber-400/15 hover:border-amber-400 transition" style={{ fontFamily: 'Exo, Inter' }}>
+          <button className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 bg-amber-400/10 px-6 py-3 text-base font-medium text-amber-600 hover:bg-amber-400/15 hover:border-amber-400 transition" style={{ fontFamily: 'Exo, Inter' }}>
             Agendar reunião
           </button>
         </div>

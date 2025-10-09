@@ -21,35 +21,35 @@ export default function ContactFormSection({ data }: ContactFormSectionProps) {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 md:px-8">
-        <div className="rounded-2xl border border-white/10 bg-black/50 backdrop-blur px-6 sm:px-10 py-10 md:py-12 shadow-2xl">
+        <div className="rounded-2xl border border-gray-200 bg-white/90 backdrop-blur px-6 sm:px-10 py-10 md:py-12 shadow-2xl">
           {data.title && (
-            <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tight font-bold text-white" style={{ fontFamily: 'Exo, Inter' }}>{data.title}</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tight font-bold text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>{data.title}</h2>
           )}
           {data.subtitle && (
-            <p className="mt-4 text-base text-white/70" style={{ fontFamily: 'Inter' }}>{data.subtitle}</p>
+            <p className="mt-4 text-base text-gray-600" style={{ fontFamily: 'Inter' }}>{data.subtitle}</p>
           )}
 
           <form className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="relative">
-              <input type="text" required placeholder="Nome" className="w-full rounded-xl bg-white/5 border border-amber-400/40 focus:border-amber-400/70 focus:ring-4 focus:ring-amber-500/20 px-4 py-3.5 text-base text-white placeholder:text-white/40 outline-none" style={{ fontFamily: 'Inter' }} />
+              <input type="text" required placeholder="Nome" className="w-full rounded-xl bg-white border border-amber-400/40 focus:border-amber-400/70 focus:ring-4 focus:ring-amber-500/20 px-4 py-3.5 text-base text-gray-900 placeholder:text-gray-400 outline-none" style={{ fontFamily: 'Inter' }} />
             </div>
             <div className="relative">
-              <input type="tel" required placeholder="Telefone" className="w-full rounded-xl bg-white/5 border border-amber-400/40 focus:border-amber-400/70 focus:ring-4 focus:ring-amber-500/20 px-4 py-3.5 text-base text-white placeholder:text-white/40 outline-none" style={{ fontFamily: 'Inter' }} />
+              <input type="tel" required placeholder="Telefone" className="w-full rounded-xl bg-white border border-amber-400/40 focus:border-amber-400/70 focus:ring-4 focus:ring-amber-500/20 px-4 py-3.5 text-base text-gray-900 placeholder:text-gray-400 outline-none" style={{ fontFamily: 'Inter' }} />
             </div>
             <div className="relative">
-              <input type="email" required placeholder="E-mail" className="w-full rounded-xl bg-white/5 border border-amber-400/40 focus:border-amber-400/70 focus:ring-4 focus:ring-amber-500/20 px-4 py-3.5 text-base text-white placeholder:text-white/40 outline-none" style={{ fontFamily: 'Inter' }} />
+              <input type="email" required placeholder="E-mail" className="w-full rounded-xl bg-white border border-amber-400/40 focus:border-amber-400/70 focus:ring-4 focus:ring-amber-500/20 px-4 py-3.5 text-base text-gray-900 placeholder:text-gray-400 outline-none" style={{ fontFamily: 'Inter' }} />
             </div>
             <div className="relative">
-              <input type="text" placeholder="Selecione o tipo de serviço" className="w-full rounded-xl bg-white/5 border border-amber-400/40 focus:border-amber-400/70 focus:ring-4 focus:ring-amber-500/20 px-4 py-3.5 text-base text-white placeholder:text-white/40 outline-none" style={{ fontFamily: 'Inter' }} />
+              <input type="text" placeholder="Selecione o tipo de serviço" className="w-full rounded-xl bg-white border border-amber-400/40 focus:border-amber-400/70 focus:ring-4 focus:ring-amber-500/20 px-4 py-3.5 text-base text-gray-900 placeholder:text-gray-400 outline-none" style={{ fontFamily: 'Inter' }} />
             </div>
             <div className="md:col-span-2">
-              <textarea rows={5} placeholder="Conte um pouco sobre o projeto, prazos e local..." className="w-full rounded-xl bg-white/5 border border-amber-400/40 focus:border-amber-400/70 focus:ring-4 focus:ring-amber-500/20 px-4 py-3.5 text-base text-white placeholder:text-white/40 outline-none" style={{ fontFamily: 'Inter' }}></textarea>
+              <textarea rows={5} placeholder="Conte um pouco sobre o projeto, prazos e local..." className="w-full rounded-xl bg-white border border-amber-400/40 focus:border-amber-400/70 focus:ring-4 focus:ring-amber-500/20 px-4 py-3.5 text-base text-gray-900 placeholder:text-gray-400 outline-none" style={{ fontFamily: 'Inter' }}></textarea>
             </div>
             <div className="md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-xs text-white/50" style={{ fontFamily: 'Inter' }}>
+              <div className="flex items-center gap-2 text-xs text-gray-500" style={{ fontFamily: 'Inter' }}>
                 <span>Seus dados estão protegidos e não serão compartilhados.</span>
               </div>
-              <button type="submit" className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-medium tracking-tight bg-gradient-to-r from-amber-500/20 to-amber-500/20 border border-amber-500/40 hover:from-amber-500/30 hover:to-amber-500/30 transition-colors" style={{ fontFamily: 'Exo, Inter' }}>
+              <button type="submit" className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-medium tracking-tight text-gray-900 bg-gradient-to-r from-amber-500/20 to-amber-500/20 border border-amber-500/40 hover:from-amber-500/30 hover:to-amber-500/30 transition-colors" style={{ fontFamily: 'Exo, Inter' }}>
                 <span>Enviar Mensagem</span>
               </button>
             </div>

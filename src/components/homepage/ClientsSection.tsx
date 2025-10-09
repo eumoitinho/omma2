@@ -29,20 +29,20 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
 
   return (
     <section className="relative py-16 md:py-24">
-      <div className="relative mx-auto max-w-7xl px-4 md:px-8">
-        <h2 className="mb-12 text-center text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'Exo, Inter' }}>
+      <div className="relative mx-auto max-w-[1600px] px-4 md:px-8">
+        <h2 className="mb-12 text-center text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
           {data?.title || 'NOSSOS CLIENTES'}
         </h2>
 
-        <div className="rounded-2xl border border-white/10 bg-black/40 p-8 md:p-10 backdrop-blur-sm relative">
-          {/* Container com altura limitada */}
+        <div className="relative">
+          {/* Container com altura limitada e cantos arredondados */}
           <div
-            className={`relative overflow-hidden transition-all duration-700 ${
+            className={`relative overflow-hidden rounded-3xl transition-all duration-700 ${
               showAll ? 'max-h-[800px]' : 'max-h-[180px]'
             }`}
           >
             {/* Primeira linha - animação da esquerda para direita */}
-            <div className="flex gap-8 mb-8 animate-scroll-left">
+            <div className="flex gap-8 mb-8 animate-scroll-left py-4">
               {line1.map((client, idx) => (
                 <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line1-${idx}`}>
                   <div className="relative w-full h-20">
@@ -88,7 +88,7 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
                   ))}
                 </div>
 
-                <div className="flex gap-8 animate-scroll-right">
+                <div className="flex gap-8 animate-scroll-right pb-4">
                   {line4.map((client, idx) => (
                     <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line4-${idx}`}>
                       <div className="relative w-full h-20">
@@ -104,10 +104,14 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
               </>
             )}
 
-            {/* Gradiente de fade quando não expandido */}
+            {/* Gradiente de fade quando não expandido (inferior) */}
             {!showAll && (
-              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-32 w-full bg-gradient-to-t from-amber-50 via-amber-50/70 to-transparent pointer-events-none rounded-b-3xl" />
             )}
+
+            {/* Gradientes suaves nas extremidades horizontais */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-amber-50/95 via-amber-50/40 to-transparent rounded-l-3xl" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-amber-50/95 via-amber-50/40 to-transparent rounded-r-3xl" />
           </div>
 
           {/* Botão Ver Mais/Menos */}

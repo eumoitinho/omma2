@@ -46,24 +46,24 @@ export default function ArchitectsSection({ data }: ArchitectsSectionProps) {
       <SectionBackground variant="default" />
       <div className="relative mx-auto max-w-7xl px-4 md:px-8">
         <div className="grid items-center gap-10 lg:gap-16 md:grid-cols-2">
-          <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-10">
+          <div className="rounded-3xl border border-gray-200 bg-white/90 p-8 md:p-10">
             {data.title && (
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ fontFamily: 'Exo, Inter' }}>
                 {data.title.split(' ').map((word, i) => {
                   if (word === 'arquiteto' || word === 'OMMA') {
                     return <span key={i} className="text-amber-400">{word} </span>;
                   }
-                  return <span key={i} className="text-white">{word} </span>;
+                  return <span key={i} className="text-gray-900">{word} </span>;
                 })}
               </h2>
             )}
             {descriptionTexts.map((text, i) => (
-              <p key={i} className="mt-4 text-base leading-7 text-white/70" style={{ fontFamily: 'Inter' }}>{text}</p>
+              <p key={i} className="mt-4 text-base leading-7 text-gray-600" style={{ fontFamily: 'Inter' }}>{text}</p>
             ))}
 
             {data.ctaText && (
               <div className="mt-8">
-                <button className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 bg-amber-400/10 px-9 py-4 text-base font-medium text-amber-400 hover:bg-amber-400/15 hover:border-amber-400 transition shadow-[0_4px_10px_rgba(20,20,42,0.08)] ring-1 ring-inset ring-white/10 hover:ring-white/20" style={{ fontFamily: 'Exo, Inter' }}>
+                <button className="inline-flex items-center gap-2 rounded-full border border-amber-400/90 bg-amber-400/10 px-9 py-4 text-base font-medium text-amber-600 hover:bg-amber-400/15 hover:border-amber-400 transition shadow-[0_4px_10px_rgba(20,20,42,0.08)] ring-1 ring-inset ring-gray-200 hover:ring-gray-300" style={{ fontFamily: 'Exo, Inter' }}>
                   {data.ctaText}
                 </button>
               </div>
@@ -73,7 +73,7 @@ export default function ArchitectsSection({ data }: ArchitectsSectionProps) {
           <div className="relative">
             <div className="relative mx-auto w-full max-w-md">
               <div className="absolute -left-6 -top-6 h-40 w-40 rounded-2xl bg-amber-400/10 blur-2xl"></div>
-              <div className="relative rounded-3xl border border-white/10 bg-white/5 p-2 shadow-[0_0_60px_rgba(251,191,36,0.12)]">
+              <div className="relative rounded-3xl border border-gray-200 bg-white/90 p-2 shadow-[0_0_60px_rgba(251,191,36,0.12)]">
                 {data.images && data.images[0] ? (
                   <Image
                     src={urlFor(data.images[0]).url()}
@@ -87,7 +87,7 @@ export default function ArchitectsSection({ data }: ArchitectsSectionProps) {
                 )}
               </div>
               <div className="relative mt-6 translate-x-6 md:translate-x-10">
-                <div className="inline-block rounded-3xl border border-white/10 bg-white/5 p-2">
+                <div className="inline-block rounded-3xl border border-gray-200 bg-white/90 p-2">
                   {data.images && data.images[1] ? (
                     <Image
                       src={urlFor(data.images[1]).url()}
