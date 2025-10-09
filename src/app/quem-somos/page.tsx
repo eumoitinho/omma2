@@ -117,21 +117,34 @@ export default async function QuemSomosPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="px-4 md:px-8 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-8 rounded-2xl border border-white/10 bg-white/5 hover:border-amber-400/40 transition-all">
-              <div className="text-5xl md:text-6xl font-bold text-amber-400 mb-3" style={{ fontFamily: 'Exo, Inter' }}>+24</div>
-              <div className="text-base text-white/70" style={{ fontFamily: 'Inter' }}>Anos de Experiência</div>
-            </div>
-            <div className="text-center p-8 rounded-2xl border border-white/10 bg-white/5 hover:border-amber-400/40 transition-all">
-              <div className="text-5xl md:text-6xl font-bold text-amber-400 mb-3" style={{ fontFamily: 'Exo, Inter' }}>+1.000</div>
-              <div className="text-base text-white/70" style={{ fontFamily: 'Inter' }}>Obras Entregues</div>
-            </div>
-            <div className="text-center p-8 rounded-2xl border border-white/10 bg-white/5 hover:border-amber-400/40 transition-all">
-              <div className="text-5xl md:text-6xl font-bold text-amber-400 mb-3" style={{ fontFamily: 'Exo, Inter' }}>+850</div>
-              <div className="text-base text-white/70" style={{ fontFamily: 'Inter' }}>Clientes Atendidos</div>
-            </div>
+      <section id="resultados" className="py-12 border-t border-white/10 reveal relative overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-400/5 via-transparent to-amber-300/5" />
+          <div className="absolute -right-40 top-1/2 -translate-y-1/2 h-[30rem] w-[30rem] rounded-full bg-amber-400/10 blur-3xl" />
+          <div className="absolute -left-40 top-0 h-[24rem] w-[24rem] rounded-full bg-amber-500/10 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_25%,rgba(251,191,36,0.18),transparent_60%)] opacity-60" />
+        </div>
+        <div className="mx-auto max-w-7xl px-6 relative">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-center" style={{ fontFamily: 'Exo, Inter' }}>
+            Resultados que comprovam nossa expertise
+          </h2>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { number: '+27', label: 'anos de experiência', description: 'Tradição e inovação a serviço do seu Projeto corporativo.' },
+              { number: '+1000', label: 'de obras entregues', description: 'Experiência comprovada em Projetos de grande escala.' },
+              { number: '+750 mil m²', label: 'de obras executadas', description: 'Consolidação da OMMA como referência no setor de engenharia.' },
+            ].map((s, i) => (
+              <div
+                key={s.label}
+                className={`relative rounded-2xl p-6 anim-fadeSlideUp overflow-hidden group ring-1 ring-white/10 bg-gradient-to-br from-white/5 via-neutral-900/30 to-amber-400/10 hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25),0_8px_28px_-6px_rgba(251,191,36,0.25)] transition-shadow`}
+                style={{ animationDelay: `${0.1 * i}s` }}
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_78%_22%,rgba(251,191,36,0.28),transparent_65%)]" />
+                <div className="relative text-3xl font-bold text-amber-300 drop-shadow" style={{ fontFamily: 'Exo, Inter' }}>{s.number}</div>
+                <div className="relative text-white/90 mt-1 font-medium">{s.label}</div>
+                <p className="relative text-white/70 mt-3 text-sm leading-relaxed">{s.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
