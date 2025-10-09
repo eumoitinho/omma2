@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import SectionBackground from '@/components/ui/SectionBackground';
 
 interface SectorsSectionProps {
   data: {
@@ -16,8 +17,9 @@ export default function SectorsSection({ data }: SectorsSectionProps) {
   if (!data || !data.sectors || data.sectors.length === 0) return null;
 
   return (
-    <section className="py-16 md:py-24 bg-neutral-900">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+    <section className="relative py-16 md:py-24 overflow-hidden">
+      <SectionBackground variant="default" />
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8">
         {/* Title */}
         {data.title && (
           <div className="text-center mb-12">

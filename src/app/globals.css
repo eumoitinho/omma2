@@ -21,6 +21,12 @@ html { scroll-behavior: smooth; }
 @keyframes fadeScaleIn { 0% { opacity:0; transform:scale(.8);} 60% { transform:scale(1.05);} 100% { opacity:1; transform:scale(1);} }
 @keyframes marquee-left { from { transform: translateX(0); } to { transform: translateX(-50%);} }
 @keyframes rotate360 { to { transform: rotate(360deg);} }
+@keyframes blob {
+	0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+	25% { transform: translate(20px, -20px) scale(1.1) rotate(90deg); }
+	50% { transform: translate(-20px, 20px) scale(0.9) rotate(180deg); }
+	75% { transform: translate(20px, 20px) scale(1.05) rotate(270deg); }
+}
 
 /* ===== Utility Classes ===== */
 .anim-fadeSlideUnblur { animation: fadeSlideUnblur 0.9s ease-out both; }
@@ -43,3 +49,8 @@ html { scroll-behavior: smooth; }
 
 /* Rotating circular CTA text */
 .rotating-text { animation: rotate360 8s linear infinite; }
+
+/* Blob animation */
+.animate-blob { animation: blob 20s ease-in-out infinite; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }

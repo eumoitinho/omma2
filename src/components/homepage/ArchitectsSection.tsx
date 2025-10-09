@@ -1,4 +1,5 @@
 'use client';
+import SectionBackground from '@/components/ui/SectionBackground';
 import React from 'react';
 import { urlFor } from '@/lib/sanity';
 import Image from 'next/image';
@@ -41,8 +42,9 @@ export default function ArchitectsSection({ data }: ArchitectsSectionProps) {
   const descriptionTexts = data.description ? getTextFromPortableText(data.description) : [];
 
   return (
-    <section className="relative py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 md:px-8">
+    <section className="relative py-16 md:py-24 overflow-hidden">
+      <SectionBackground variant="default" />
+      <div className="relative mx-auto max-w-7xl px-4 md:px-8">
         <div className="grid items-center gap-10 lg:gap-16 md:grid-cols-2">
           <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-10">
             {data.title && (

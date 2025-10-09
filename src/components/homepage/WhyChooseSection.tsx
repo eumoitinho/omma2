@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import SectionBackground from '@/components/ui/SectionBackground';
 
 interface WhyChooseSectionProps {
   data: {
@@ -16,8 +17,9 @@ export default function WhyChooseSection({ data }: WhyChooseSectionProps) {
   if (!data) return null;
 
   return (
-    <section className="relative py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 md:px-8">
+    <section className="relative py-16 md:py-24 overflow-hidden">
+      <SectionBackground variant="amber" />
+      <div className="relative mx-auto max-w-7xl px-4 md:px-8">
         <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-8 md:flex-row md:p-10">
           <div>
             {data.title && (

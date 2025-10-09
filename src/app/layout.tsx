@@ -24,11 +24,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 />
             </head>
             <body className="antialiased min-h-screen text-white bg-black" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji' }}>
-                {/* Background ambiance (removed remote photo; keep subtle glows and gradient) */}
+                {/* Background with texture and overlay */}
                 <div className="pointer-events-none fixed inset-0 -z-10">
-                    <div className="absolute -top-[20%] -left-[10%] h-[40rem] w-[40rem] rounded-full bg-amber-400/20 blur-[160px]" />
-                    <div className="absolute -bottom-[10%] -right-[10%] h-[36rem] w-[36rem] rounded-full bg-white/10 blur-[140px]" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black" />
+                    {/* Background image */}
+                    <div className="absolute inset-0">
+                        <img
+                            src="/bg.jpeg"
+                            alt=""
+                            className="w-full h-full object-cover opacity-40"
+                        />
+                    </div>
+                    {/* Dark overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/85 to-black/90" />
+                    {/* Ambient glows */}
+                    <div className="absolute -top-[20%] -left-[10%] h-[40rem] w-[40rem] rounded-full bg-amber-400/15 blur-[160px]" />
+                    <div className="absolute -bottom-[10%] -right-[10%] h-[36rem] w-[36rem] rounded-full bg-white/8 blur-[140px]" />
                 </div>
                 {/* Feedback widget (client-only) */}
                 <ClientFeedbackWidget />

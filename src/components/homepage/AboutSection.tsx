@@ -1,4 +1,5 @@
 'use client';
+import SectionBackground from '@/components/ui/SectionBackground';
 import React from 'react';
 import { urlFor } from '@/lib/sanity';
 import Image from 'next/image';
@@ -44,7 +45,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
   return (
     <section id="sobre" className="relative overflow-hidden py-16 md:py-24">
       <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-amber-500/10 blur-3xl"></div>
-      <div className="mx-auto max-w-7xl px-4 md:px-8 grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div className="relative mx-auto max-w-7xl px-4 md:px-8 grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div className="relative">
           <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 shadow-2xl">
             {data.images && data.images[0] ? (

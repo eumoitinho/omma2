@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import SectionBackground from '@/components/ui/SectionBackground';
 
 interface MethodologySectionProps {
   data: {
@@ -20,8 +21,9 @@ export default function MethodologySection({ data }: MethodologySectionProps) {
   if (!data || !data.phases) return null;
 
   return (
-    <section className="relative py-16 md:py-24 bg-neutral-900">
-      <div className="mx-auto max-w-7xl px-4 md:px-8">
+    <section className="relative py-16 md:py-24 overflow-hidden">
+      <SectionBackground variant="dark" />
+      <div className="relative mx-auto max-w-7xl px-4 md:px-8">
         <div className="mx-auto max-w-3xl text-center mb-12">
           {data.title && (
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'Exo, Inter' }}>

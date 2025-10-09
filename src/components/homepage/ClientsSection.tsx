@@ -1,4 +1,5 @@
 'use client';
+import SectionBackground from '@/components/ui/SectionBackground';
 import React from 'react';
 import { urlFor } from '@/lib/sanity';
 import Image from 'next/image';
@@ -18,8 +19,9 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
   if (!data || !data.clients) return null;
 
   return (
-    <section className="relative py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 md:px-8">
+    <section className="relative py-16 md:py-24 overflow-hidden">
+      <SectionBackground variant="default" />
+      <div className="relative mx-auto max-w-7xl px-4 md:px-8">
         {data.title && (
           <h2 className="mb-12 text-center text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'Exo, Inter' }}>
             {data.title}
