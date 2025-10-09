@@ -1,48 +1,8 @@
 import React from 'react';
-import { TrendingUp, Lightbulb, Users2, Award, Clock, Handshake } from 'lucide-react';
 
 export const revalidate = 60;
 
 export default async function TrabalheConoscoPage() {
-  const benefits = [
-    {
-      icon: TrendingUp,
-      title: 'Crescimento Profissional',
-      description: 'Plano de carreira estruturado com oportunidades reais de desenvolvimento e promoção',
-      image: '/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 5.jpg',
-    },
-    {
-      icon: Lightbulb,
-      title: 'Inovação Constante',
-      description: 'Trabalhe com tecnologias de ponta e metodologias modernas de gestão de projetos',
-      image: '/cases/1e331a44a921916a5efadcfe68e6d25f/Ivanhoé/Ivanhoé 3.jpg',
-    },
-    {
-      icon: Users2,
-      title: 'Ambiente Colaborativo',
-      description: 'Equipe experiente e cultura organizacional que valoriza a colaboração e o respeito',
-      image: '/cases/1b8c917b8644a16c37fb95ec68e6d27b/Unimed/Unimed 5.jpg',
-    },
-    {
-      icon: Award,
-      title: 'Reconhecimento',
-      description: 'Remuneração competitiva e programa de benefícios completo',
-      image: '/cases/0116d02df0f87c87093b8ab668e6d26e/Praça da Cidadania/Praça da Cidadania 4.jpg',
-    },
-    {
-      icon: Clock,
-      title: 'Qualidade de Vida',
-      description: 'Horários flexíveis e equilíbrio entre vida profissional e pessoal',
-      image: '/cases/2823dd82e2efaa0de9675a5e68e6d275/Ultracargo/Ultracargo 6.jpg',
-    },
-    {
-      icon: Handshake,
-      title: 'Projetos Desafiadores',
-      description: 'Participe de obras de grande porte e alta complexidade técnica',
-      image: '/cases/1b8c917b8644a16c37fb95ec68e6d27b/Unimed/Unimed 6.jpg',
-    },
-  ];
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
