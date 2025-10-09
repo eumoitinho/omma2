@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { clientLogos } from '@/data/clients';
 
 interface ClientsSectionProps {
@@ -11,21 +11,21 @@ interface ClientsSectionProps {
 export default function ClientsSection({ data }: ClientsSectionProps) {
   const [showAll, setShowAll] = useState(false);
 
-  // Embaralhar array para ter logos diferentes em cada linha
-  const shuffleArray = (array: typeof clientLogos) => {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
-
-  // Criar 4 linhas diferentes
-  const line1 = [...shuffleArray(clientLogos), ...shuffleArray(clientLogos), ...shuffleArray(clientLogos)];
-  const line2 = [...shuffleArray(clientLogos), ...shuffleArray(clientLogos), ...shuffleArray(clientLogos)];
-  const line3 = [...shuffleArray(clientLogos), ...shuffleArray(clientLogos), ...shuffleArray(clientLogos)];
-  const line4 = [...shuffleArray(clientLogos), ...shuffleArray(clientLogos), ...shuffleArray(clientLogos)];
+  // Criar linhas com logos triplicados (sem randomização para evitar hydration mismatch)
+  const line1 = useMemo(() => [...clientLogos, ...clientLogos, ...clientLogos], []);
+  const line2 = useMemo(() => {
+    // Rotacionar array para ter ordem diferente
+    const rotated = [...clientLogos.slice(15), ...clientLogos.slice(0, 15)];
+    return [...rotated, ...rotated, ...rotated];
+  }, []);
+  const line3 = useMemo(() => {
+    const rotated = [...clientLogos.slice(30), ...clientLogos.slice(0, 30)];
+    return [...rotated, ...rotated, ...rotated];
+  }, []);
+  const line4 = useMemo(() => {
+    const rotated = [...clientLogos.slice(10), ...clientLogos.slice(0, 10)];
+    return [...rotated, ...rotated, ...rotated];
+  }, []);
 
   return (
     <section className="relative py-16 md:py-24">

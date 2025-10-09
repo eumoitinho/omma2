@@ -6,7 +6,20 @@ export default function ClientsCarouselSection() {
   const [showAll, setShowAll] = useState(false);
 
   // Embaralhar array para ter logos diferentes em cada linha
-  const shuffleArray = (array: typeof clientLogos) => {
+  // Criar linhas com logos triplicados (sem randomização para evitar hydration mismatch)
+  const line1 = useMemo(() => [...clientLogos, ...clientLogos, ...clientLogos], []);
+  const line2 = useMemo(() => {
+    const rotated = [...clientLogos.slice(15), ...clientLogos.slice(0, 15)];
+    return [...rotated, ...rotated, ...rotated];
+  }, []);
+  const line3 = useMemo(() => {
+    const rotated = [...clientLogos.slice(30), ...clientLogos.slice(0, 30)];
+    return [...rotated, ...rotated, ...rotated];
+  }, []);
+  const line4 = useMemo(() => {
+    const rotated = [...clientLogos.slice(10), ...clientLogos.slice(0, 10)];
+    return [...rotated, ...rotated, ...rotated];
+  }, []);
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
