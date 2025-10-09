@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
                                 <Link href="/quem-somos" className="text-white/90 hover:text-white transition">Quem somos</Link>
                                 <Link href="/areas-de-atuacao" className="text-white/90 hover:text-white transition">Atuação</Link>
                                 <Link href="/metodologia" className="text-white/90 hover:text-white transition">Metodologia</Link>
-                                <Link href="/obras-realizadas" className="text-white/90 hover:text-white transition">Obras</Link>
+                                <Link href="/obras" className="text-white/90 hover:text-white transition">Obras</Link>
                                 <Link href="/trabalhe-conosco" className="inline-flex items-center gap-2 text-white/90 hover:text-white transition">
                                     <span>Trabalhe conosco</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-amber-400"><path d="m9 18 6-6-6-6"></path></svg>
