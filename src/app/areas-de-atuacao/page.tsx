@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Building2, Heart, Landmark, Briefcase, ShoppingCart, Factory } from 'lucide-react';
+import { Heart, Landmark, Briefcase, ShoppingCart, Factory } from 'lucide-react';
 import SectorCarousel from '@/components/areas-atuacao/SectorCarousel';
 
 export const revalidate = 60;

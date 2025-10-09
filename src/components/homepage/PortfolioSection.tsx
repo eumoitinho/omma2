@@ -27,9 +27,7 @@ interface PortfolioSectionProps {
 export default function PortfolioSection({ data }: PortfolioSectionProps) {
   const [idx, setIdx] = useState(0);
 
-  if (!data || !data.projects || data.projects.length === 0) return null;
-
-  const projects = data.projects;
+  const projects = data?.projects || [];
   const len = projects.length;
 
   const prev = useCallback(() => {
@@ -62,6 +60,8 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
     window.addEventListener('keydown', handle);
     return () => window.removeEventListener('keydown', handle);
   }, [prev, next]);
+
+  if (!data || !data.projects || data.projects.length === 0) return null;
 
   const currentProject = projects[idx];
   const thumbnailUrl = currentProject.thumbnail

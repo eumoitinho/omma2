@@ -1,5 +1,4 @@
 'use client';
-import SectionBackground from '@/components/ui/SectionBackground';
 import React from 'react';
 import { urlFor } from '@/lib/sanity';
 import Image from 'next/image';
