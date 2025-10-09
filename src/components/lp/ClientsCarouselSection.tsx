@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { clientLogos } from '@/data/clients';
 
 export default function ClientsCarouselSection() {
@@ -41,11 +40,10 @@ export default function ClientsCarouselSection() {
               {line1.map((client, idx) => (
                 <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line1-${idx}`}>
                   <div className="relative w-full h-20">
-                    <Image
+                    <img
                       src={client.logo}
                       alt={client.name}
-                      fill
-                      className="object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                      className="w-full h-full object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                     />
                   </div>
                 </div>
@@ -57,11 +55,10 @@ export default function ClientsCarouselSection() {
               {line2.map((client, idx) => (
                 <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line2-${idx}`}>
                   <div className="relative w-full h-20">
-                    <Image
+                    <img
                       src={client.logo}
                       alt={client.name}
-                      fill
-                      className="object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                      className="w-full h-full object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                     />
                   </div>
                 </div>
@@ -75,11 +72,10 @@ export default function ClientsCarouselSection() {
                   {line3.map((client, idx) => (
                     <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line3-${idx}`}>
                       <div className="relative w-full h-20">
-                        <Image
+                        <img
                           src={client.logo}
                           alt={client.name}
-                          fill
-                          className="object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                          className="w-full h-full object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                         />
                       </div>
                     </div>
@@ -90,11 +86,10 @@ export default function ClientsCarouselSection() {
                   {line4.map((client, idx) => (
                     <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line4-${idx}`}>
                       <div className="relative w-full h-20">
-                        <Image
+                        <img
                           src={client.logo}
                           alt={client.name}
-                          fill
-                          className="object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                          className="w-full h-full object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                         />
                       </div>
                     </div>
