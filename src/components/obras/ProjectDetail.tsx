@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, MapPin, Calendar, Maximize2, X } from 'lucide-react';
+import { ArrowLeft, MapPin, Maximize2, X } from 'lucide-react';
 
 interface Project {
   _id: string;
