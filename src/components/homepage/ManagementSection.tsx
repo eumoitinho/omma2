@@ -60,7 +60,7 @@ export default function ManagementSection({ data }: ManagementSectionProps) {
                       className="object-cover"
                     />
                   ) : (
-                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1974&auto=format&fit=crop" alt="Ambiente corporativo" className="w-full h-full object-cover" />
+                    <img src="/6 AMBIENTES REFINADOS2.JPG" alt="Ambiente corporativo" className="w-full h-full object-cover" />
                   )}
                 </div>
               </div>
@@ -74,7 +74,7 @@ export default function ManagementSection({ data }: ManagementSectionProps) {
                       className="object-cover"
                     />
                   ) : (
-                    <img src="https://images.unsplash.com/photo-1507207611509-ec012433ff52?q=80&w=1974&auto=format&fit=crop" alt="Ambiente corporativo" className="h-full w-full object-cover" />
+                    <img src="/7 ESPAÇOS ESCALAVEIS2.JPG" alt="Ambiente corporativo" className="h-full w-full object-cover" />
                   )}
                 </div>
               </div>
@@ -88,7 +88,7 @@ export default function ManagementSection({ data }: ManagementSectionProps) {
                       className="object-cover"
                     />
                   ) : (
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1849&auto=format&fit=crop" alt="Ambiente corporativo" className="h-full w-full object-cover" />
+                    <img src="/10 ESPAÇOS ATRATATIVOS.JPG" alt="Ambiente corporativo" className="h-full w-full object-cover" />
                   )}
                 </div>
               </div>

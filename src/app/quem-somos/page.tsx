@@ -131,7 +131,7 @@ export default async function QuemSomosPage() {
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { number: '+27', label: 'anos de experiência', description: 'Tradição e inovação a serviço do seu Projeto corporativo.' },
-              { number: '+1000', label: 'de obras entregues', description: 'Experiência comprovada em Projetos de grande escala.' },
+              { number: '+1000', label: 'de obras entregues', description: 'Experiência comprovada em projetos de qualquer escala.' },
               { number: '+750 mil m²', label: 'de obras executadas', description: 'Consolidação da OMMA como referência no setor de engenharia.' },
             ].map((s, i) => (
               <div

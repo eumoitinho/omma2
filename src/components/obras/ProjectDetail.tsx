@@ -53,12 +53,8 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" style={{ fontFamily: 'Exo, Inter' }}>
-                {project.client}
-              </h1>
-
-              <p className="text-xl md:text-2xl text-white/80 mb-8" style={{ fontFamily: 'Inter' }}>
                 {project.title}
-              </p>
+              </h1>
 
               {project.description && (
                 <p className="text-base text-white/70 leading-relaxed mb-8" style={{ fontFamily: 'Inter' }}>
@@ -87,28 +83,6 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                     {project.area}
                   </p>
                 </div>
-
-                <div className="p-6 rounded-xl bg-white/5 border border-white/10">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Calendar className="w-5 h-5 text-amber-400" />
-                    <span className="text-xs text-white/50" style={{ fontFamily: 'Inter' }}>Prazo</span>
-                  </div>
-                  <p className="text-base font-semibold text-white" style={{ fontFamily: 'Exo, Inter' }}>
-                    {project.duration}
-                  </p>
-                </div>
-
-                {project.year && (
-                  <div className="p-6 rounded-xl bg-white/5 border border-white/10">
-                    <div className="flex items-center gap-3 mb-2">
-                      <Calendar className="w-5 h-5 text-amber-400" />
-                      <span className="text-xs text-white/50" style={{ fontFamily: 'Inter' }}>Ano</span>
-                    </div>
-                    <p className="text-base font-semibold text-white" style={{ fontFamily: 'Exo, Inter' }}>
-                      {project.year}
-                    </p>
-                  </div>
-                )}
               </div>
             </div>
 

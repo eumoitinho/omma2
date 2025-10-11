@@ -11,6 +11,12 @@ interface ClientsSectionProps {
 export default function ClientsSection({ data }: ClientsSectionProps) {
   const [showAll, setShowAll] = useState(false);
 
+  // Selecionar 1 logo colorido aleatório para cada linha (usando índice fixo para evitar hydration mismatch)
+  const coloredIndex1 = useMemo(() => 7, []); // índice fixo para linha 1
+  const coloredIndex2 = useMemo(() => 12, []); // índice fixo para linha 2
+  const coloredIndex3 = useMemo(() => 5, []); // índice fixo para linha 3
+  const coloredIndex4 = useMemo(() => 18, []); // índice fixo para linha 4
+
   // Criar linhas com logos triplicados (sem randomização para evitar hydration mismatch)
   const line1 = useMemo(() => [...clientLogos, ...clientLogos, ...clientLogos], []);
   const line2 = useMemo(() => {
@@ -43,63 +49,83 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
           >
             {/* Primeira linha - animação da esquerda para direita */}
             <div className="flex gap-8 mb-8 animate-scroll-left">
-              {line1.map((client, idx) => (
-                <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line1-${idx}`}>
-                  <div className="relative w-full h-20">
-                    <img
-                      src={client.logo}
-                      alt={client.name}
-                      className="w-full h-full object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                    />
+              {line1.map((client, idx) => {
+                const isColored = idx % clientLogos.length === coloredIndex1;
+                return (
+                  <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line1-${idx}`}>
+                    <div className="relative w-full h-20">
+                      <img
+                        src={client.logo}
+                        alt={client.name}
+                        className={`w-full h-full object-contain transition-all duration-300 ${
+                          isColored ? 'opacity-100' : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100'
+                        }`}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Segunda linha - animação da direita para esquerda */}
             <div className="flex gap-8 mb-8 animate-scroll-right">
-              {line2.map((client, idx) => (
-                <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line2-${idx}`}>
-                  <div className="relative w-full h-20">
-                    <img
-                      src={client.logo}
-                      alt={client.name}
-                      className="w-full h-full object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                    />
+              {line2.map((client, idx) => {
+                const isColored = idx % clientLogos.length === coloredIndex2;
+                return (
+                  <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line2-${idx}`}>
+                    <div className="relative w-full h-20">
+                      <img
+                        src={client.logo}
+                        alt={client.name}
+                        className={`w-full h-full object-contain transition-all duration-300 ${
+                          isColored ? 'opacity-100' : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100'
+                        }`}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Terceira e quarta linhas - visíveis apenas quando expandido */}
             {showAll && (
               <>
                 <div className="flex gap-8 mb-8 animate-scroll-left">
-                  {line3.map((client, idx) => (
-                    <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line3-${idx}`}>
-                      <div className="relative w-full h-20">
-                        <img
-                          src={client.logo}
-                          alt={client.name}
-                          className="w-full h-full object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                        />
+                  {line3.map((client, idx) => {
+                    const isColored = idx % clientLogos.length === coloredIndex3;
+                    return (
+                      <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line3-${idx}`}>
+                        <div className="relative w-full h-20">
+                          <img
+                            src={client.logo}
+                            alt={client.name}
+                            className={`w-full h-full object-contain transition-all duration-300 ${
+                              isColored ? 'opacity-100' : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100'
+                            }`}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 <div className="flex gap-8 animate-scroll-right">
-                  {line4.map((client, idx) => (
-                    <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line4-${idx}`}>
-                      <div className="relative w-full h-20">
-                        <img
-                          src={client.logo}
-                          alt={client.name}
-                          className="w-full h-full object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                        />
+                  {line4.map((client, idx) => {
+                    const isColored = idx % clientLogos.length === coloredIndex4;
+                    return (
+                      <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line4-${idx}`}>
+                        <div className="relative w-full h-20">
+                          <img
+                            src={client.logo}
+                            alt={client.name}
+                            className={`w-full h-full object-contain transition-all duration-300 ${
+                              isColored ? 'opacity-100' : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100'
+                            }`}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </>
             )}

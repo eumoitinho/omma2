@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
                                 <img
                                     src={isScrolled ? "/cropped-OMMA-Engenharia-amarelo.png" : "/omma_logo.png"}
                                     alt="OMMA Engenharia"
-                                    className="h-7 w-auto transition-opacity duration-300"
+                                    className="h-8 w-auto transition-opacity duration-300"
                                 />
                             </Link>
                             <nav className="hidden md:flex items-center gap-7 text-sm" style={{ fontFamily: 'DM Sans, Inter' }}>

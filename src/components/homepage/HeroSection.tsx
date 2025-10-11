@@ -18,7 +18,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
 
   const bgImage = data.backgroundImage
     ? urlFor(data.backgroundImage).url()
-    : 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=2560&q=80';
+    : '/6 AMBIENTES REFINADOS1.JPG';
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -35,6 +35,13 @@ export default function HeroSection({ data }: HeroSectionProps) {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 pt-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 py-20">
           <div className="flex flex-col justify-center">
+            {/* Logo */}
+            <img
+              src="/cropped-OMMA-Engenharia-amarelo.png"
+              alt="OMMA Engenharia"
+              className="h-16 w-auto mb-6 object-contain self-start"
+            />
+
             {/* Heading */}
             {data.title && (
               <h1

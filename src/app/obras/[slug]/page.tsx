@@ -13,7 +13,7 @@ const projects = [
     area: '15.000 m²',
     duration: '18 meses',
     year: '2023',
-    description: 'Modernização completa do centro de distribuição da Ultracargo com implementação de sistemas automatizados de armazenamento e gestão logística de última geração.',
+    description: 'Modernização completa do centro de distribuição com implementação de sistemas automatizados de armazenamento e gestão logística de última geração.',
     thumbnail: '/cases/2823dd82e2efaa0de9675a5e68e6d275/Ultracargo/Ultracargo 1.jpg',
     gallery: [
       '/cases/2823dd82e2efaa0de9675a5e68e6d275/Ultracargo/Ultracargo 1.jpg',

@@ -106,15 +106,6 @@ export default function ObrasGallery({ data }: ObrasGalleryProps) {
                   </span>
                 </div>
 
-                {/* Year badge */}
-                {project.year && (
-                  <div className="absolute top-6 right-6">
-                    <span className="inline-block px-4 py-2 text-sm font-bold rounded-full bg-black/80 text-white backdrop-blur-sm border border-white/20" style={{ fontFamily: 'Exo, Inter' }}>
-                      {project.year}
-                    </span>
-                  </div>
-                )}
-
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
@@ -129,11 +120,8 @@ export default function ObrasGallery({ data }: ObrasGalleryProps) {
               {/* Content - More detailed than homepage */}
               <div className="p-8">
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors" style={{ fontFamily: 'Exo, Inter' }}>
-                  {project.client}
-                </h2>
-                <p className="text-base text-white/80 mb-6" style={{ fontFamily: 'Inter' }}>
                   {project.title}
-                </p>
+                </h2>
 
                 {/* Description preview */}
                 {project.description && (
@@ -143,7 +131,7 @@ export default function ObrasGallery({ data }: ObrasGalleryProps) {
                 )}
 
                 {/* Project details grid - Larger and more prominent */}
-                <div className="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+                <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/10">
                   <div>
                     <span className="block text-xs text-white/50 mb-1" style={{ fontFamily: 'Inter' }}>Local</span>
                     <span className="text-sm font-semibold text-white" style={{ fontFamily: 'Exo, Inter' }}>{project.location}</span>
@@ -151,10 +139,6 @@ export default function ObrasGallery({ data }: ObrasGalleryProps) {
                   <div>
                     <span className="block text-xs text-white/50 mb-1" style={{ fontFamily: 'Inter' }}>Área</span>
                     <span className="text-sm font-semibold text-white" style={{ fontFamily: 'Exo, Inter' }}>{project.area}</span>
-                  </div>
-                  <div>
-                    <span className="block text-xs text-white/50 mb-1" style={{ fontFamily: 'Inter' }}>Prazo</span>
-                    <span className="text-sm font-semibold text-white" style={{ fontFamily: 'Exo, Inter' }}>{project.duration}</span>
                   </div>
                 </div>
 

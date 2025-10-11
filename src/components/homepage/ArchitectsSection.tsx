@@ -71,36 +71,25 @@ export default function ArchitectsSection({ data }: ArchitectsSectionProps) {
           </div>
 
           <div className="relative">
-            <div className="relative mx-auto w-full max-w-md">
+            <div className="relative mx-auto w-full max-w-lg">
               <div className="absolute -left-6 -top-6 h-40 w-40 rounded-2xl bg-amber-400/10 blur-2xl"></div>
+              <div className="absolute -right-6 -bottom-6 h-32 w-32 rounded-2xl bg-amber-300/10 blur-2xl"></div>
               <div className="relative rounded-3xl border border-gray-200 bg-white/90 p-2 shadow-[0_0_60px_rgba(251,191,36,0.12)]">
                 {data.images && data.images[0] ? (
                   <Image
                     src={urlFor(data.images[0]).url()}
-                    alt="Profissionais em obra"
-                    width={500}
-                    height={320}
-                    className="h-64 w-full rounded-2xl object-cover md:h-80"
+                    alt="Seja um arquiteto parceiro"
+                    width={600}
+                    height={500}
+                    className="w-full h-auto rounded-2xl object-cover"
                   />
                 ) : (
-                  <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop" alt="Profissionais em obra" className="h-64 w-full rounded-2xl object-cover md:h-80" />
+                  <img
+                    src="/Gemini_Generated_Image_xx99g3xx99g3xx99.png"
+                    alt="Seja um arquiteto parceiro"
+                    className="w-full h-auto rounded-2xl object-cover"
+                  />
                 )}
-              </div>
-              <div className="relative mt-6 translate-x-6 md:translate-x-10">
-                <div className="inline-block rounded-3xl border border-gray-200 bg-white/90 p-2">
-                  {data.images && data.images[1] ? (
-                    <Image
-                      src={urlFor(data.images[1]).url()}
-                      alt="Equipe de construção"
-                      width={384}
-                      height={192}
-                      className="h-40 w-72 rounded-2xl object-cover md:h-48 md:w-96"
-                    />
-                  ) : (
-                    <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop" alt="Equipe de construção" className="h-40 w-72 rounded-2xl object-cover md:h-48 md:w-96" />
-                  )}
-                </div>
-                <div className="absolute -right-4 -top-4 h-10 w-10 rounded-lg bg-amber-400/20 ring-1 ring-amber-400/40"></div>
               </div>
             </div>
           </div>
