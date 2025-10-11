@@ -29,7 +29,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
+      <section className="relative py-16 md:py-24 overflow-hidden bg-black">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-900/50 to-black"></div>
 
         <div className="relative max-w-7xl mx-auto px-4 md:px-8">
@@ -204,7 +204,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
       )}
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 bg-black">
         <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6" style={{ fontFamily: 'Exo, Inter' }}>
             Interessado em um projeto similar?
