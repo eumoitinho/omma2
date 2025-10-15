@@ -1,5 +1,5 @@
 import React from 'react';
-import { getQuemSomosData } from '@/lib/sanity';
+import { getQuemSomosData, urlFor } from '@/lib/sanity';
 import type { PortableTextContent, PortableTextBlock } from '@/types/sanity';
 
 export const revalidate = 60;
@@ -27,24 +27,35 @@ export default async function QuemSomosPage() {
 
   const introTexts = data.introSection?.content ? getTextFromPortableText(data.introSection.content) : [];
   const purposeTexts = data.purposeSection?.content ? getTextFromPortableText(data.purposeSection.content) : [];
+  const stats = data.statsSection?.stats || [];
+  const galleryProjects = data.gallerySection?.projects || [];
+  const values = data.valuesSection?.values || [];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section with Background */}
       <section className="relative py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 1.jpg"
-            alt="OMMA Engenharia"
-            className="w-full h-full object-cover opacity-20"
-          />
+          {data.heroImage ? (
+            <img
+              src={urlFor(data.heroImage).url()}
+              alt="OMMA Engenharia"
+              className="w-full h-full object-cover opacity-20"
+            />
+          ) : (
+            <img
+              src="/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 1.jpg"
+              alt="OMMA Engenharia"
+              className="w-full h-full object-cover opacity-20"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 md:px-8">
           {/* Hero Title */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center mb-6 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
-            Sobre a <span className="text-amber-400">OMMA Engenharia</span>
+            {data.heroTitle || 'Sobre a'} <span className="text-amber-400">{data.heroTitle ? '' : 'OMMA Engenharia'}</span>
           </h1>
 
           {/* Intro Content */}
@@ -71,22 +82,32 @@ export default async function QuemSomosPage() {
             {/* Images */}
             <div className="relative order-2 md:order-1">
               <div className="relative rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-2xl">
-                <img
-                  src="/cases/1b8c917b8644a16c37fb95ec68e6d27b/Unimed/Unimed 2.jpg"
-                  alt="OMMA Engenharia - Projeto Unimed"
-                  className="h-[320px] md:h-[420px] w-full object-cover"
-                />
+                {data.purposeSection?.mainImage ? (
+                  <img
+                    src={urlFor(data.purposeSection.mainImage).url()}
+                    alt="OMMA Engenharia"
+                    className="h-[320px] md:h-[420px] w-full object-cover"
+                  />
+                ) : (
+                  <img
+                    src="/cases/1b8c917b8644a16c37fb95ec68e6d27b/Unimed/Unimed 2.jpg"
+                    alt="OMMA Engenharia - Projeto Unimed"
+                    className="h-[320px] md:h-[420px] w-full object-cover"
+                  />
+                )}
                 <div className="absolute -top-1 -right-1 h-16 w-16 bg-gradient-to-br from-amber-400 to-amber-500 rounded-br-2xl rounded-tl-2xl shadow-[0_0_40px_-10px] shadow-amber-500/50"></div>
               </div>
-              <div className="hidden md:flex absolute -left-8 bottom-16">
-                <div className="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-                  <img
-                    src="/cases/2823dd82e2efaa0de9675a5e68e6d275/Ultracargo/Ultracargo 3.jpg"
-                    alt="Projeto Ultracargo"
-                    className="h-40 w-40 object-cover"
-                  />
+              {data.purposeSection?.secondaryImage && (
+                <div className="hidden md:flex absolute -left-8 bottom-16">
+                  <div className="rounded-2xl overflow-hidden border border-gray-200 bg-white">
+                    <img
+                      src={urlFor(data.purposeSection.secondaryImage).url()}
+                      alt="Projeto OMMA"
+                      className="h-40 w-40 object-cover"
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Content */}
@@ -126,16 +147,12 @@ export default async function QuemSomosPage() {
         </div>
         <div className="mx-auto max-w-7xl px-6 relative">
           <h2 className="text-2xl sm:text-3xl font-semibold text-center text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
-            Resultados que comprovam nossa expertise
+            {data.statsSection?.title || 'Resultados que comprovam nossa expertise'}
           </h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { number: '+27', label: 'anos de experiência', description: 'Tradição e inovação a serviço do seu Projeto corporativo.' },
-              { number: '+1000', label: 'de obras entregues', description: 'Experiência comprovada em projetos de qualquer escala.' },
-              { number: '+750 mil m²', label: 'de obras executadas', description: 'Consolidação da OMMA como referência no setor de engenharia.' },
-            ].map((s, i) => (
+            {stats.map((s: any, i: number) => (
               <div
-                key={s.label}
+                key={s.label || i}
                 className={`relative rounded-2xl p-6 anim-fadeSlideUp overflow-hidden group ring-1 ring-gray-200 bg-gradient-to-br from-white via-gray-50/30 to-amber-400/10 hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25),0_8px_28px_-6px_rgba(251,191,36,0.25)] transition-shadow`}
                 style={{ animationDelay: `${0.1 * i}s` }}
               >
@@ -150,59 +167,52 @@ export default async function QuemSomosPage() {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
-            Nossos <span className="text-amber-400">Projetos</span>
-          </h2>
+      {galleryProjects.length > 0 && (
+        <section className="py-16 md:py-24 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
+              {data.gallerySection?.title || 'Nossos Projetos'}
+            </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { img: '/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 2.jpg', title: 'Movile - Campus Corporativo' },
-              { img: '/cases/0116d02df0f87c87093b8ab668e6d26e/Praça da Cidadania/Praça da Cidadania 2.jpg', title: 'Praça Paraisópolis' },
-              { img: '/cases/1e331a44a921916a5efadcfe68e6d25f/Ivanhoé/Ivanhoé 3.jpg', title: 'Ivanhoé Cambridge' },
-              { img: '/cases/1b8c917b8644a16c37fb95ec68e6d27b/Unimed/Unimed 4.jpg', title: 'Unimed Hospital' },
-              { img: '/cases/2823dd82e2efaa0de9675a5e68e6d275/Ultracargo/Ultracargo 4.jpg', title: 'Ultracargo Logística' },
-              { img: '/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 5.jpg', title: 'Movile Inovação' },
-            ].map((item, i) => (
-              <div key={i} className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 hover:border-amber-400/40 transition-all">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p className="text-base font-semibold text-white" style={{ fontFamily: 'Exo, Inter' }}>{item.title}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {galleryProjects.map((item: any, i: number) => (
+                <div key={i} className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 hover:border-amber-400/40 transition-all">
+                  <img
+                    src={urlFor(item.image).url()}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <p className="text-base font-semibold text-white" style={{ fontFamily: 'Exo, Inter' }}>{item.title}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Team/Values Section */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
-            Nossos <span className="text-amber-400">Valores</span>
-          </h2>
+      {values.length > 0 && (
+        <section className="py-16 md:py-24">
+          <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
+              {data.valuesSection?.title || 'Nossos Valores'}
+            </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { title: 'Excelência', desc: 'Compromisso com a mais alta qualidade em todos os projetos' },
-              { title: 'Inovação', desc: 'Soluções criativas e tecnológicas para desafios complexos' },
-              { title: 'Transparência', desc: 'Comunicação clara e honesta em todas as etapas' },
-            ].map((value, i) => (
-              <div key={i} className="p-8 rounded-2xl bg-white border border-gray-200 hover:border-amber-400/40 transition-all">
-                <h3 className="text-2xl font-bold text-amber-400 mb-4" style={{ fontFamily: 'Exo, Inter' }}>{value.title}</h3>
-                <p className="text-base text-gray-700" style={{ fontFamily: 'Inter' }}>{value.desc}</p>
-              </div>
-            ))}
+            <div className="grid md:grid-cols-3 gap-8">
+              {values.map((value: any, i: number) => (
+                <div key={i} className="p-8 rounded-2xl bg-white border border-gray-200 hover:border-amber-400/40 transition-all">
+                  <h3 className="text-2xl font-bold text-amber-400 mb-4" style={{ fontFamily: 'Exo, Inter' }}>{value.title}</h3>
+                  <p className="text-base text-gray-700" style={{ fontFamily: 'Inter' }}>{value.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 }

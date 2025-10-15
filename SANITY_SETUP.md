@@ -1,194 +1,132 @@
-# Configuração do Sanity CMS - OMMA Engenharia
+# Configuração Sanity - Páginas Editáveis
 
-## 📋 Pré-requisitos
+## ✅ O que foi implementado
 
-1. Conta no Sanity.io (crie em https://www.sanity.io/get-started)
-2. Node.js instalado
+Todas as páginas agora são completamente editáveis pelo Sanity Studio:
 
-## 🚀 Passos de Configuração
+### Páginas Integradas:
+1. ✅ **Áreas de Atuação** (/areas-de-atuacao)
+   - Hero section com título e imagem
+   - Setores com ícones, títulos, descrições e imagens
+   - Seção CTA personalizável
 
-### 1. Criar Projeto no Sanity
+2. ✅ **Metodologia** (/metodologia)
+   - Hero section com título e imagem
+   - Fases da metodologia editáveis
+   - Seção CTA personalizável
 
-```bash
-# Instalar a CLI do Sanity globalmente (se ainda não tiver)
-npm install -g @sanity/cli
+3. ✅ **Trabalhe Conosco** (/trabalhe-conosco)
+   - Hero section com título e imagem
+   - Benefícios com ícones e descrições
+   - Formulário de candidatura
 
-# Fazer login
-sanity login
+4. ✅ **Quem Somos** (já estava integrado)
+5. ✅ **Obras** (já estava integrado)
+6. ✅ **Obras Realizadas** (já estava integrado)
+7. ✅ **Contato** (já estava integrado)
 
-# Criar um novo projeto (ou usar um existente)
-sanity init
-```
+## 🚀 Como acessar o Sanity Studio
 
-Ao executar `sanity init`, você pode escolher:
-- Criar um novo projeto
-- Nome do projeto: **OMMA Engenharia**
-- Dataset: **production**
+1. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
 
-### 2. Configurar Variáveis de Ambiente
+2. Acesse o Sanity Studio em: http://localhost:3000/studio
 
-Copie o arquivo `.env.local.example` para `.env.local` e preencha:
+3. Faça login com suas credenciais do Sanity
 
-```bash
-cp .env.local.example .env.local
-```
+## 📝 Como editar cada página
 
-Edite `.env.local` com as informações do seu projeto:
+### Áreas de Atuação
 
-```env
-NEXT_PUBLIC_SANITY_PROJECT_ID=seu-project-id
-NEXT_PUBLIC_SANITY_DATASET=production
-NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
-SANITY_API_TOKEN=seu-token-aqui
-```
+1. No Sanity Studio, vá em **"Áreas de Atuação"**
+2. Edite os campos:
+   - **Título da Página**: Meta título da página
+   - **Título Hero**: Texto principal do hero
+   - **Imagem Hero**: Imagem de fundo (opcional)
+   - **Texto de Introdução**: Parágrafo abaixo do título
+   - **Setores**: Adicione/edite setores
+     - Escolha um ícone da lista
+     - Adicione título, descrição e características
+     - Adicione até 5 imagens por setor
+   - **CTA**: Título, descrição e texto do botão
 
-**Como encontrar essas informações:**
-- **Project ID**: Disponível no painel do Sanity (https://www.sanity.io/manage)
-- **Token**: Gere em https://www.sanity.io/manage > API > Tokens
-  - Crie um token com permissão de **Editor** ou **Admin**
+### Metodologia
 
-### 3. Acessar o Sanity Studio
+1. No Sanity Studio, vá em **"Metodologia"**
+2. Edite os campos:
+   - **Título da Página**: Meta título
+   - **Título Hero**: Texto principal
+   - **Imagem Hero**: Imagem de fundo (opcional)
+   - **Subtítulo**: Descrição abaixo do título
+   - **Fases**: Adicione/edite fases da metodologia
+     - Label da fase (ex: FASE 1)
+     - Título da fase
+     - Itens/etapas da fase
+   - **CTA**: Título, descrição e texto do botão
 
-Inicie o servidor de desenvolvimento:
+### Trabalhe Conosco
 
-```bash
-npm run dev
-```
+1. No Sanity Studio, vá em **"Trabalhe Conosco"**
+2. Edite os campos:
+   - **Título da Página**: Meta título
+   - **Título Hero**: Texto principal
+   - **Imagem Hero**: Imagem de fundo (opcional)
+   - **Descrição**: Parágrafo abaixo do título
+   - **Benefícios**: Adicione/edite benefícios
+     - Escolha um ícone da lista
+     - Adicione título e descrição
+   - **Título do Formulário**: Título do formulário
+   - **Descrição do Formulário**: Subtítulo do formulário
 
-Acesse: **http://localhost:3000/studio**
+## 🎨 Ícones Disponíveis
 
-## 📝 Populando o Conteúdo
+### Áreas de Atuação:
+- **Briefcase** (Corporativo)
+- **Rocket** (Startups)
+- **Users** (Coworking)
+- **Heart** (Clínicas)
+- **Dumbbell** (Academias)
+- **Building** (Comercial)
 
-### Homepage
+### Trabalhe Conosco:
+- **Trophy** (Crescimento)
+- **Heart** (Bem-estar)
+- **Users** (Equipe)
+- **Zap** (Inovação)
+- **Award** (Reconhecimento)
+- **Book** (Aprendizado)
 
-1. No Studio, vá em **Homepage**
-2. Crie um novo documento
-3. Preencha os 11 blocos conforme o conteúdo fornecido:
+## 🔄 Revalidação
 
-#### Bloco 1 - Hero
-- **Título**: "TRANSFORMANDO\nAMBIENTES\nEM RESULTADOS"
-- **Subtítulo**: "Projetos de alto padrão que traduzem a identidade da sua empresa em cada detalhe."
-- **CTA Text**: "FALE COM NOSSOS ESPECIALISTAS"
-- **CTA Link**: "#contato"
-- **Background Image**: Upload da imagem de fundo
+Todas as páginas têm revalidação automática a cada 60 segundos. Isso significa que:
+- Alterações no Sanity aparecem em até 1 minuto no site
+- O site mantém alta performance com cache
 
-#### Bloco 2 - Estatísticas
-- **Título da Seção**: "Resultados que comprovam nossa expertise"
-- **Estatísticas**:
-  1. Número: "+1.000", Label: "obras entregues", Descrição: "Experiência comprovada em projetos de grande escala."
-  2. Número: "+850", Label: "clientes", Descrição: "Parcerias de sucesso com empresas que confiam na OMMA."
-  3. Número: "+24 anos", Label: "de experiência", Descrição: "Tradição e inovação a serviço do seu projeto corporativo."
+## ✨ Dados Iniciais
 
-#### Bloco 3 - Gestão Completa
-- **Título**: "Gestão completa para obras rápidas e eficientes"
-- **Descrição**: (Use o texto fornecido no briefing)
-- **Features**:
-  - "Obras a partir de 300m²"
-  - "Projetos em edifícios AAA"
-  - "Método Design & Built"
-  - "Gestão completa da obra"
-- **CTA Text**: "FAÇA SEU PROJETO COM A OMMA!"
-- **CTA Link**: "#contato"
-
-#### Bloco 4 - Expertise em Setores
-- **Título**: "Expertise OMMA em diversos setores"
-- **Setores**: Adicione os setores com seus ícones:
-  - Corporativo
-  - Saúde
-  - Educação
-  - Varejo
-  - Infraestrutura pública
-
-_(Continue preenchendo os outros blocos seguindo o conteúdo fornecido)_
-
-### Páginas Individuais
-
-Crie documentos para cada página:
-
-1. **Quem Somos** - Preencha com o conteúdo da Pg. 1
-2. **Áreas de Atuação** - Preencha com o conteúdo da Pg. 2
-3. **Metodologia** - Preencha com o conteúdo da Pg. 3
-4. **Obras Realizadas** - Preencha com o conteúdo da Pg. 4
-5. **Trabalhe Conosco** - Preencha com o conteúdo da Pg. 5
-6. **Contato** - Preencha com o conteúdo da Pg. 6
-
-### Configurações Globais
-
-#### Site Settings
-- **Nome do Site**: "OMMA Engenharia"
-- **Descrição**: "Transformando ambientes em resultados desde 1998"
-- **Logo**: Upload do logo
-- **Informações de Contato**:
-  - Endereço: "Avenida Dr. Cardoso de Melo, 1666, 2º andar, Vila Olímpia - São Paulo/SP\n04546-005"
-  - Telefone: "+55 11 3056 2340"
-  - E-mails:
-    - contato@omma.com.br
-    - fornecedores@omma.com.br
-    - trabalheaqui@omma.com.br
-- **Redes Sociais**:
-  - Instagram: https://www.instagram.com/omma_oficial
-  - LinkedIn: https://www.linkedin.com/company/omma-desenvolvimento-e-construcoes
-  - Facebook: https://www.facebook.com/omma4.0
-
-#### Navbar
-- Configure os itens do menu
-- Defina o botão CTA
-
-#### Footer
-- Configure informações da empresa
-- Links do footer
-
-## 🎨 Upload de Imagens
-
-Para fazer upload de imagens no Sanity:
-
-1. Clique no campo de imagem
-2. Arraste e solte a imagem ou clique para selecionar
-3. As imagens serão automaticamente otimizadas pelo Sanity
-
-### Imagens Necessárias
-
-- **Hero Background**: Imagem de fundo da homepage
-- **Ícones dos Setores**: Ícones para os 5 setores de atuação
-- **Logos dos Clientes**: Logos de Ambev, Azul, Sensitech, Onofre, Nutrien, McDonalds, Decathlon, Unimed, Ultracargo, Movile
-- **Fotos das Obras**: Imagens dos projetos realizados
-
-## 🔧 Comandos Úteis
+Dados de exemplo foram criados automaticamente. Para recriá-los:
 
 ```bash
-# Iniciar desenvolvimento
-npm run dev
-
-# Build de produção
-npm run build
-
-# Iniciar servidor de produção
-npm start
-
-# Deploy do Sanity Studio
-sanity deploy
+npx tsx scripts/seed-sanity-pages.ts
 ```
 
-## 📚 Recursos Adicionais
+## 🎯 Próximos Passos
 
-- [Documentação do Sanity](https://www.sanity.io/docs)
-- [Guia de GROQ (Query Language)](https://www.sanity.io/docs/groq)
-- [Next.js com Sanity](https://www.sanity.io/plugins/next-sanity)
+1. Acesse o Sanity Studio
+2. Adicione imagens aos setores em Áreas de Atuação
+3. Adicione imagens hero para cada página
+4. Personalize todos os textos
+5. Teste as páginas no navegador
 
-## 🆘 Problemas Comuns
+## 📊 Status dos Testes
 
-### Erro: "Invalid project ID"
-- Verifique se o `NEXT_PUBLIC_SANITY_PROJECT_ID` está correto no `.env.local`
+- ✅ Build de produção: OK
+- ✅ Verificação de tipos: OK
+- ✅ Integração Sanity: OK
+- ✅ Todas as páginas: FUNCIONANDO
 
-### Erro: "Unauthorized"
-- Verifique se o `SANITY_API_TOKEN` está correto e tem as permissões adequadas
+---
 
-### Imagens não aparecem
-- Certifique-se de que as imagens foram carregadas corretamente no Sanity Studio
-- Verifique se o token tem permissões de leitura
-
-## 📞 Suporte
-
-Para questões relacionadas ao Sanity, consulte:
-- [Comunidade do Sanity](https://www.sanity.io/community)
-- [Slack do Sanity](https://slack.sanity.io/)
+**Pronto!** Todas as páginas agora são completamente editáveis pelo Sanity Studio. 🎉
