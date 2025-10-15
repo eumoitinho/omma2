@@ -91,7 +91,7 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
         <div
           className="relative group overflow-hidden rounded-2xl md:rounded-3xl border border-gray-200 ring-1 ring-gray-100 bg-white/90 backdrop-blur-sm shadow-xl"
           aria-roledescription="carousel"
-          aria-label="Portfólio OMMA"
+          aria-label="Portfólio NEOOMA"
         >
           <div className="relative h-[480px] sm:h-[560px] md:h-[620px]">
             {/* Slide image */}

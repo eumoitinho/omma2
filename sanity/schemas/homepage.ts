@@ -116,8 +116,13 @@ export default defineType({
       fields: [
         {
           name: 'title',
-          title: 'Título',
+          title: 'Título da Seção',
           type: 'string',
+        },
+        {
+          name: 'subtitle',
+          title: 'Subtítulo (opcional)',
+          type: 'text',
         },
         {
           name: 'sectors',
@@ -127,14 +132,14 @@ export default defineType({
             {
               type: 'object',
               fields: [
-                { name: 'name', title: 'Nome', type: 'string' },
+                { name: 'title', title: 'Título do Setor', type: 'string' },
+                { name: 'description', title: 'Descrição', type: 'text' },
                 {
-                  name: 'icon',
-                  title: 'Ícone',
+                  name: 'image',
+                  title: 'Imagem do Setor',
                   type: 'image',
                   options: { hotspot: true },
                 },
-                { name: 'link', title: 'Link', type: 'string' },
               ],
             },
           ],
@@ -283,6 +288,35 @@ export default defineType({
       ],
     }),
 
+    // Bloco 8.5: Portfólio
+    defineField({
+      name: 'portfolioSection',
+      title: 'Bloco 8.5 - Portfólio de Obras',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'Título',
+          type: 'string',
+        },
+        {
+          name: 'subtitle',
+          title: 'Subtítulo',
+          type: 'text',
+        },
+        {
+          name: 'ctaText',
+          title: 'Texto do CTA',
+          type: 'string',
+        },
+        {
+          name: 'ctaLink',
+          title: 'Link do CTA',
+          type: 'string',
+        },
+      ],
+    }),
+
     // Bloco 9: Quem Somos
     defineField({
       name: 'aboutSection',
@@ -295,10 +329,27 @@ export default defineType({
           type: 'string',
         },
         {
+          name: 'subtitle',
+          title: 'Subtítulo (opcional)',
+          type: 'text',
+        },
+        {
           name: 'description',
           title: 'Descrição',
           type: 'array',
           of: [{ type: 'block' }],
+        },
+        {
+          name: 'images',
+          title: 'Imagens',
+          type: 'array',
+          of: [
+            {
+              type: 'image',
+              options: { hotspot: true },
+            },
+          ],
+          validation: (Rule: any) => Rule.max(2),
         },
         {
           name: 'ctaText',

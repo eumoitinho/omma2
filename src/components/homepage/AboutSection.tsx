@@ -50,7 +50,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
             {data.images && data.images[0] ? (
               <Image
                 src={urlFor(data.images[0]).url()}
-                alt="Projeto OMMA Engenharia"
+                alt="Projeto NEOOMA Engenharia"
                 width={600}
                 height={420}
                 className="h-[320px] md:h-[420px] w-full object-cover"
@@ -58,7 +58,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
             ) : (
               <img
                 src="/cases/1b8c917b8644a16c37fb95ec68e6d27b/Unimed/Unimed 2.jpg"
-                alt="Projeto OMMA Engenharia - Unimed"
+                alt="Projeto NEOOMA Engenharia - Unimed"
                 className="h-[320px] md:h-[420px] w-full object-cover"
               />
             )}
@@ -69,7 +69,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
               {data.images && data.images[1] ? (
                 <Image
                   src={urlFor(data.images[1]).url()}
-                  alt="Projeto OMMA"
+                  alt="Projeto NEOOMA"
                   width={160}
                   height={160}
                   className="h-40 w-40 object-cover"
@@ -77,7 +77,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
               ) : (
                 <img
                   src="/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 3.jpg"
-                  alt="Projeto OMMA - Movile"
+                  alt="Projeto NEOOMA - Movile"
                   className="h-40 w-40 object-cover"
                 />
               )}

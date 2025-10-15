@@ -21,7 +21,7 @@ export default function SectorsSection({ data }: SectorsSectionProps) {
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-10">
           <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
-            {data.title || 'Expertise OMMA em diversos setores'}
+            {data.title || 'Expertise NEOOMA em diversos setores'}
           </h3>
           {data.subtitle && (
             <p className="mt-3 text-sm text-gray-600 max-w-2xl" style={{ fontFamily: 'Inter' }}>

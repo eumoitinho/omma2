@@ -24,7 +24,7 @@ export default function MethodologySection({ data }: MethodologySectionProps) {
     <section className="py-12 border-t border-gray-200 relative overflow-hidden bg-white">
       <div className="relative mx-auto max-w-7xl px-6">
         <h3 className="text-2xl font-semibold text-center text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
-          {data.title || 'METODOLOGIA OMMA'}
+          {data.title || 'METODOLOGIA NEOOMA'}
         </h3>
         {data.subtitle && (
           <p className="text-center text-gray-600 mt-1" style={{ fontFamily: 'Inter' }}>

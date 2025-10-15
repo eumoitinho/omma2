@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { clientLogos } from '@/data/clients';
 
 interface ClientsSectionProps {
@@ -11,11 +11,17 @@ interface ClientsSectionProps {
 export default function ClientsSection({ data }: ClientsSectionProps) {
   const [showAll, setShowAll] = useState(false);
 
-  // Selecionar 1 logo colorido aleatório para cada linha (usando índice fixo para evitar hydration mismatch)
-  const coloredIndex1 = useMemo(() => 7, []); // índice fixo para linha 1
-  const coloredIndex2 = useMemo(() => 12, []); // índice fixo para linha 2
-  const coloredIndex3 = useMemo(() => 5, []); // índice fixo para linha 3
-  const coloredIndex4 = useMemo(() => 18, []); // índice fixo para linha 4
+  // Índices destacados dinamicamente por linha (um de cada vez por linha)
+  const [highlight1, setHighlight1] = useState<number | null>(null);
+  const [highlight2, setHighlight2] = useState<number | null>(null);
+  const [highlight3, setHighlight3] = useState<number | null>(null);
+  const [highlight4, setHighlight4] = useState<number | null>(null);
+
+  const mountedRef = useRef(true);
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
 
   // Criar linhas com logos triplicados (sem randomização para evitar hydration mismatch)
   const line1 = useMemo(() => [...clientLogos, ...clientLogos, ...clientLogos], []);
@@ -31,6 +37,50 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
   const line4 = useMemo(() => {
     const rotated = [...clientLogos.slice(10), ...clientLogos.slice(0, 10)];
     return [...rotated, ...rotated, ...rotated];
+  }, []);
+
+  // Agendador sequencial por linha (fluxo lento/médio)
+  useEffect(() => {
+    const baseLen = clientLogos.length;
+
+    function schedule(setter: (i: number | null) => void, durationMs: number, gapMin: number, gapMax: number, prev: number | null = null) {
+      // escolher próximo índice diferente do anterior
+      const nextIndex = (() => {
+        if (baseLen <= 1) return 0;
+        let i = Math.floor(Math.random() * baseLen);
+        if (prev !== null && baseLen > 1) {
+          while (i === prev) i = Math.floor(Math.random() * baseLen);
+        }
+        return i;
+      })();
+
+      if (!mountedRef.current) return;
+      setter(nextIndex);
+
+      const offId = setTimeout(() => {
+        if (!mountedRef.current) return;
+        setter(null);
+        const gap = gapMin + Math.floor(Math.random() * (gapMax - gapMin));
+        const nextId = setTimeout(() => schedule(setter, durationMs, gapMin, gapMax, nextIndex), gap);
+        // cleanup encadeado
+        (schedule as any).nextId = nextId;
+      }, durationMs);
+
+      return offId;
+    }
+
+    const t1 = schedule(setHighlight1, 2200, 800, 1400);
+    const t2 = schedule(setHighlight2, 2600, 900, 1500);
+    const t3 = schedule(setHighlight3, 2400, 900, 1400);
+    const t4 = schedule(setHighlight4, 2800, 1000, 1600);
+
+    return () => {
+      if (t1) clearTimeout(t1 as any);
+      if ((schedule as any).nextId) clearTimeout((schedule as any).nextId);
+      if (t2) clearTimeout(t2 as any);
+      if (t3) clearTimeout(t3 as any);
+      if (t4) clearTimeout(t4 as any);
+    };
   }, []);
 
   return (
@@ -50,7 +100,8 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
             {/* Primeira linha - animação da esquerda para direita */}
             <div className="flex gap-8 mb-8 animate-scroll-left">
               {line1.map((client, idx) => {
-                const isColored = idx % clientLogos.length === coloredIndex1;
+                const logicalIdx = idx % clientLogos.length;
+                const isColored = highlight1 !== null && logicalIdx === highlight1;
                 return (
                   <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line1-${idx}`}>
                     <div className="relative w-full h-20">
@@ -70,7 +121,8 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
             {/* Segunda linha - animação da direita para esquerda */}
             <div className="flex gap-8 mb-8 animate-scroll-right">
               {line2.map((client, idx) => {
-                const isColored = idx % clientLogos.length === coloredIndex2;
+                const logicalIdx = idx % clientLogos.length;
+                const isColored = highlight2 !== null && logicalIdx === highlight2;
                 return (
                   <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line2-${idx}`}>
                     <div className="relative w-full h-20">
@@ -92,7 +144,8 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
               <>
                 <div className="flex gap-8 mb-8 animate-scroll-left">
                   {line3.map((client, idx) => {
-                    const isColored = idx % clientLogos.length === coloredIndex3;
+                    const logicalIdx = idx % clientLogos.length;
+                    const isColored = highlight3 !== null && logicalIdx === highlight3;
                     return (
                       <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line3-${idx}`}>
                         <div className="relative w-full h-20">
@@ -111,7 +164,8 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
 
                 <div className="flex gap-8 animate-scroll-right">
                   {line4.map((client, idx) => {
-                    const isColored = idx % clientLogos.length === coloredIndex4;
+                    const logicalIdx = idx % clientLogos.length;
+                    const isColored = highlight4 !== null && logicalIdx === highlight4;
                     return (
                       <div className="flex items-center justify-center flex-shrink-0 w-32" key={`line4-${idx}`}>
                         <div className="relative w-full h-20">

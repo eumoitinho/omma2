@@ -149,13 +149,33 @@ async function seedSanity() {
 
       // Bloco 4 - Sectors
       sectorsSection: {
-        title: 'Expertise OMMA em diversos setores',
+        title: 'Expertise NEOOMA em diversos setores',
+        subtitle: 'Atuamos em diversos segmentos com excelência e compromisso com resultados',
         sectors: [
-          { name: 'Corporativo', link: '/areas-de-atuacao#corporativo' },
-          { name: 'Saúde', link: '/areas-de-atuacao#saude' },
-          { name: 'Educação', link: '/areas-de-atuacao#educacao' },
-          { name: 'Varejo', link: '/areas-de-atuacao#varejo' },
-          { name: 'Infraestrutura pública', link: '/areas-de-atuacao#infraestrutura' },
+          {
+            title: 'Ambientes Corporativos',
+            description: 'Espaços eficientes que equilibram foco e colaboração, fortalecendo a cultura e performance diária.',
+          },
+          {
+            title: 'Startups & Scale-ups',
+            description: 'Ambientes flexíveis e escaláveis que acompanham o crescimento e estimulam velocidade de execução.',
+          },
+          {
+            title: 'Coworkings',
+            description: 'Espaços multiuso desenhados para alta rotatividade, conforto e retenção de clientes e comunidades.',
+          },
+          {
+            title: 'Clínicas e Laboratórios',
+            description: 'Ambientes humanizados, funcionais e normativos, com infraestrutura técnica precisa e fluxos otimizados.',
+          },
+          {
+            title: 'Academias',
+            description: 'Layouts projetados para o máximo desempenho e bem-estar, unindo funcionalidade, segurança e conforto.',
+          },
+          {
+            title: 'Espaços Comerciais',
+            description: 'Edificações e galpões versáteis para operações de atacado e varejo com eficiência e confiabilidade.',
+          },
         ],
       },
 
@@ -300,6 +320,14 @@ async function seedSanity() {
         ],
         ctaText: 'SEJA UM ARQUITETO PARCEIRO AGORA!',
         ctaLink: '#contato',
+      },
+
+      // Bloco 8.5 - Portfolio
+      portfolioSection: {
+        title: 'Portfólio de Obras',
+        subtitle: 'Conheça alguns dos nossos principais projetos',
+        ctaText: 'Ver todas as obras',
+        ctaLink: '/obras',
       },
 
       // Bloco 9 - About

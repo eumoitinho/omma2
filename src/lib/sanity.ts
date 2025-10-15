@@ -18,74 +18,87 @@ export function urlFor(source: SanityImageSource) {
 
 // Helper functions for fetching data
 export async function getHomepageData() {
-  const rawData = await client.fetch(`*[_type == "homepage"][0]`);
+  const rawData = await client.fetch(`*[_type == "homepage"][0]{
+    ...,
+    heroSection {
+      ...,
+      backgroundImage {
+        asset->{_id, url}
+      }
+    },
+    sectorsSection {
+      ...,
+      sectors[] {
+        title,
+        description,
+        image {
+          asset->{_id, url}
+        }
+      }
+    },
+    aboutSection {
+      ...,
+      images[] {
+        asset->{_id, url}
+      }
+    }
+  }`);
 
   if (!rawData) return null;
 
   // Map the raw data to the expected structure
   return {
     heroSection: {
-      title: rawData.title,
-      subtitle: rawData.subtitle,
-      ctaText: rawData.mainCta?.text,
-      ctaLink: rawData.mainCta?.link,
+      title: rawData.heroSection?.title,
+      subtitle: rawData.heroSection?.subtitle,
+      ctaText: rawData.heroSection?.ctaText,
+      ctaLink: rawData.heroSection?.ctaLink,
+      backgroundImage: rawData.heroSection?.backgroundImage,
     },
     statsSection: {
       title: rawData.statsSection?.sectionTitle || 'Resultados que comprovam nossa expertise',
       stats: rawData.statsSection?.stats || [],
     },
     managementSection: {
-      title: rawData.gestaoSection?.title,
-      description: rawData.gestaoSection?.description,
-      highlights: rawData.gestaoSection?.highlights,
-      ctaText: rawData.gestaoSection?.ctaText,
+      title: rawData.managementSection?.title,
+      description: rawData.managementSection?.description,
+      features: rawData.managementSection?.features,
+      ctaText: rawData.managementSection?.ctaText,
+      ctaLink: rawData.managementSection?.ctaLink,
     },
     sectorsSection: {
-      title: 'Expertise OMMA em diversos setores',
-      sectors: rawData.expertiseItems?.map((item: { title: string; description: string }, idx: number) => {
-        // Mapear fotos corretas baseado nos nomes dos arquivos
-        const sectorImages = [
-          '/1 CORPORATIVOS.jpg',
-          '/bloco4home/4 CLINICAS.jpeg', 
-                                // 1 - Corporativos
-          '/bloco4home/2 START UPS.jpg',               // 2 - Startups
-          '/bloco4home/1 PUBLICAS.jpg',                // 3 - Infraestrutura Pública
-                         // 4 - Clínicas
-          '/bloco4home/5 ACADEMIAS.jpeg',              // 5 - Academias
-          '/bloco4home/5 EDIFICAÇÕES COMERCIAIS.jpeg', // 6 - Edificações Comerciais
-        ];
-        return {
-          ...item,
-          imageUrl: sectorImages[idx] || sectorImages[0],
-        };
-      }) || [],
+      title: rawData.sectorsSection?.title || 'Expertise NEOOMA em diversos setores',
+      subtitle: rawData.sectorsSection?.subtitle,
+      sectors: rawData.sectorsSection?.sectors?.map((sector: any) => ({
+        title: sector.title,
+        description: sector.description,
+        imageUrl: sector.image?.asset?.url,
+      })) || [],
     },
     whyChooseSection: {
-      title: 'Por que escolher a OMMA?',
-      benefits: rawData.benefits,
+      title: rawData.whyChooseSection?.title || 'Por que escolher a NEOOMA?',
+      benefits: rawData.whyChooseSection?.benefits || [],
     },
     clientsSection: {
-      title: 'NOSSOS CLIENTES',
-      clients: rawData.clientLogos,
+      title: rawData.clientsSection?.title || 'NOSSOS CLIENTES',
+      clients: rawData.clientsSection?.clients || [],
     },
     methodologySection: {
-      title: rawData.methodology?.title,
-      phases: rawData.methodology?.phases?.map((phase: { name: string; items?: string[] }, index: number) => ({
-        number: index + 1,
-        name: phase.name,
-        title: phase.name,
-        steps: phase.items || [],
-      })),
-      ctaText: rawData.methodology?.ctaText,
+      title: rawData.methodologySection?.title,
+      subtitle: rawData.methodologySection?.subtitle,
+      phases: rawData.methodologySection?.phases || [],
+      ctaText: rawData.methodologySection?.ctaText,
+      ctaLink: rawData.methodologySection?.ctaLink,
     },
     architectsSection: {
-      title: rawData.architectPartner?.title,
-      description: rawData.architectPartner?.description,
-      ctaText: rawData.architectPartner?.ctaText,
+      title: rawData.architectsSection?.title,
+      description: rawData.architectsSection?.description,
+      ctaText: rawData.architectsSection?.ctaText,
+      ctaLink: rawData.architectsSection?.ctaLink,
     },
     portfolioSection: {
-      title: rawData.portfolio?.title || 'Portfólio de Obras',
-      subtitle: rawData.portfolio?.subtitle || 'Conheça alguns dos nossos principais projetos',
+      title: rawData.portfolioSection?.title || 'Portfólio de Obras',
+      subtitle: rawData.portfolioSection?.subtitle || 'Conheça alguns dos nossos principais projetos',
       projects: [
         {
           _id: '1',
@@ -143,24 +156,26 @@ export async function getHomepageData() {
           thumbnail: '/cases/1e331a44a921916a5efadcfe68e6d25f/Ivanhoé/Ivanhoé 1.jpg',
         },
       ],
-      ctaText: rawData.portfolio?.ctaText || 'Ver todas as obras',
-      ctaLink: rawData.portfolio?.ctaLink || '/obras',
+      ctaText: rawData.portfolioSection?.ctaText || 'Ver todas as obras',
+      ctaLink: rawData.portfolioSection?.ctaLink || '/obras',
     },
     aboutSection: {
       title: rawData.aboutSection?.title,
+      subtitle: rawData.aboutSection?.subtitle,
       description: rawData.aboutSection?.description,
+      images: rawData.aboutSection?.images || [],
       ctaText: rawData.aboutSection?.ctaText,
+      ctaLink: rawData.aboutSection?.ctaLink,
     },
     contactFormSection: {
-      title: rawData.contactForm?.title || 'Descubra como garantir a excelência do seu próximo investimento em infraestrutura!',
-      description: rawData.contactForm?.description || 'Preencha seus dados e agende uma conversa estratégica hoje mesmo. Estamos prontos para construir o futuro do seu negócio com solidez e inteligência.',
+      title: rawData.contactFormSection?.title || 'Descubra como garantir a excelência do seu próximo investimento em infraestrutura!',
+      subtitle: rawData.contactFormSection?.subtitle || 'Preencha seus dados e agende uma conversa estratégica hoje mesmo. Estamos prontos para construir o futuro do seu negócio com solidez e inteligência.',
     },
     contactInfoSection: {
-      title: rawData.contactInfo?.title || 'Contato',
-      address: rawData.contactInfo?.address,
-      phone: rawData.contactInfo?.phone,
-      emails: rawData.contactInfo?.emails,
-      socialMedia: rawData.contactInfo?.socialMedia,
+      title: rawData.contactInfoSection?.title || 'Contato',
+      address: rawData.contactInfoSection?.address,
+      phone: rawData.contactInfoSection?.phone,
+      emails: rawData.contactInfoSection?.emails,
     },
   };
 }

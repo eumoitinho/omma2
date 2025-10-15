@@ -38,7 +38,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
             {/* Logo */}
             <img
               src="/cropped-OMMA-Engenharia-amarelo.png"
-              alt="OMMA Engenharia"
+              alt="NEOOMA Engenharia"
               className="h-16 w-auto mb-6 object-contain self-start"
             />
 
