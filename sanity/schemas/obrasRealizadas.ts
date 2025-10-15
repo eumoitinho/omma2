@@ -28,16 +28,41 @@ export default defineType({
         {
           type: 'object',
           fields: [
-            { name: 'clientName', title: 'Nome do Cliente', type: 'string' },
-            { name: 'clientDescription', title: 'Descrição do Cliente', type: 'string' },
-            { name: 'location', title: 'Local', type: 'string' },
-            { name: 'area', title: 'Área de Intervenção', type: 'string' },
-            { name: 'duration', title: 'Tempo de Intervenção', type: 'string' },
+            {
+              name: 'clientName',
+              title: 'Nome do Cliente',
+              type: 'string',
+              validation: (Rule: any) => Rule.required(),
+            },
+            {
+              name: 'clientDescription',
+              title: 'Descrição do Cliente',
+              type: 'string',
+            },
+            {
+              name: 'location',
+              title: 'Local',
+              type: 'string',
+              validation: (Rule: any) => Rule.required(),
+            },
+            {
+              name: 'area',
+              title: 'Área de Intervenção',
+              type: 'string',
+              validation: (Rule: any) => Rule.required(),
+            },
+            {
+              name: 'duration',
+              title: 'Tempo de Intervenção',
+              type: 'string',
+              validation: (Rule: any) => Rule.required(),
+            },
             {
               name: 'description',
               title: 'Descrição do Projeto',
               type: 'array',
               of: [{ type: 'block' }],
+              validation: (Rule: any) => Rule.required(),
             },
             {
               name: 'images',
@@ -56,6 +81,20 @@ export default defineType({
               type: 'string',
             },
           ],
+          preview: {
+            select: {
+              title: 'clientName',
+              subtitle: 'location',
+              media: 'images.0',
+            },
+            prepare({ title, subtitle, media }) {
+              return {
+                title: title || 'Projeto sem nome',
+                subtitle: subtitle || 'Local não definido',
+                media,
+              };
+            },
+          },
         },
       ],
     }),

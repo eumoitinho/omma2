@@ -39,9 +39,24 @@ export default defineType({
         {
           type: 'object',
           fields: [
-            { name: 'number', title: 'Número da Fase', type: 'number' },
-            { name: 'name', title: 'Nome', type: 'string' },
-            { name: 'title', title: 'Título', type: 'string' },
+            {
+              name: 'number',
+              title: 'Número da Fase',
+              type: 'number',
+              validation: (Rule: any) => Rule.required().min(1),
+            },
+            {
+              name: 'name',
+              title: 'Nome',
+              type: 'string',
+              validation: (Rule: any) => Rule.required(),
+            },
+            {
+              name: 'title',
+              title: 'Título',
+              type: 'string',
+              validation: (Rule: any) => Rule.required(),
+            },
             {
               name: 'steps',
               title: 'Etapas',
@@ -49,6 +64,19 @@ export default defineType({
               of: [{ type: 'string' }],
             },
           ],
+          preview: {
+            select: {
+              number: 'number',
+              name: 'name',
+              title: 'title',
+            },
+            prepare({ number, name, title }) {
+              return {
+                title: `Fase ${number}: ${title}`,
+                subtitle: name,
+              };
+            },
+          },
         },
       ],
     }),

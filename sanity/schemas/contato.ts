@@ -33,9 +33,25 @@ export default defineType({
         {
           type: 'object',
           fields: [
-            { name: 'label', title: 'Label', type: 'string' },
-            { name: 'email', title: 'E-mail', type: 'string' },
+            {
+              name: 'label',
+              title: 'Label',
+              type: 'string',
+              validation: (Rule: any) => Rule.required(),
+            },
+            {
+              name: 'email',
+              title: 'E-mail',
+              type: 'string',
+              validation: (Rule: any) => Rule.required().email(),
+            },
           ],
+          preview: {
+            select: {
+              title: 'label',
+              subtitle: 'email',
+            },
+          },
         },
       ],
     }),

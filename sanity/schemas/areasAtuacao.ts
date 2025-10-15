@@ -28,8 +28,19 @@ export default defineType({
         {
           type: 'object',
           fields: [
-            { name: 'title', title: 'Título', type: 'string' },
-            { name: 'description', title: 'Descrição', type: 'text' },
+            {
+              name: 'title',
+              title: 'Título',
+              type: 'string',
+              validation: (Rule: any) => Rule.required(),
+            },
+            {
+              name: 'description',
+              title: 'Descrição',
+              type: 'text',
+              rows: 4,
+              validation: (Rule: any) => Rule.required(),
+            },
             {
               name: 'images',
               title: 'Imagens',
@@ -42,6 +53,13 @@ export default defineType({
               ],
             },
           ],
+          preview: {
+            select: {
+              title: 'title',
+              subtitle: 'description',
+              media: 'images.0',
+            },
+          },
         },
       ],
     }),
