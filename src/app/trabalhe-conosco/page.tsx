@@ -1,43 +1,109 @@
 import React from 'react';
+import { Trophy, Heart, Users, Zap, Award, Book } from 'lucide-react';
+import { getTrabalheConoscoData, urlFor } from '@/lib/sanity';
 
 export const revalidate = 60;
 
+const iconMap = {
+  trophy: Trophy,
+  heart: Heart,
+  users: Users,
+  zap: Zap,
+  award: Award,
+  book: Book,
+};
+
 export default async function TrabalheConoscoPage() {
+  const data = await getTrabalheConoscoData();
+
+  if (!data) {
+    return (
+      <div className="min-h-screen flex items-center justify-center pt-32">
+        <p>Conteúdo não encontrado. Configure no Sanity Studio.</p>
+      </div>
+    );
+  }
+
+  const benefits = data.benefits || [];
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 6.jpg"
-            alt="Trabalhe Conosco OMMA"
-            className="w-full h-full object-cover opacity-20"
-          />
+          {data.heroImage ? (
+            <img
+              src={urlFor(data.heroImage).url()}
+              alt="Trabalhe Conosco OMMA"
+              className="w-full h-full object-cover opacity-20"
+            />
+          ) : (
+            <img
+              src="/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 6.jpg"
+              alt="Trabalhe Conosco OMMA"
+              className="w-full h-full object-cover opacity-20"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 md:px-8">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center mb-6 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
-            Trabalhe <span className="text-amber-400">Conosco</span>
+            {data.heroTitle || 'Trabalhe'} <span className="text-amber-400">Conosco</span>
           </h1>
           <p className="mt-6 text-base md:text-lg leading-relaxed text-gray-700 text-center max-w-4xl mx-auto" style={{ fontFamily: 'Inter' }}>
-            Junte-se a uma equipe de profissionais experientes e apaixonados por transformar desafios em realizações. Na OMMA, você encontrará um ambiente que valoriza talento, dedicação e inovação.
+            {data.description || 'Junte-se a uma equipe de profissionais experientes e apaixonados por transformar desafios em realizações. Na OMMA, você encontrará um ambiente que valoriza talento, dedicação e inovação.'}
           </p>
         </div>
       </section>
 
       {/* Benefits Grid */}
-      
+      {benefits.length > 0 && (
+        <section className="py-16 md:py-24 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
+              Por que <span className="text-amber-400">trabalhar conosco</span>?
+            </h2>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {benefits.map((benefit: any, index: number) => {
+                const IconComponent = iconMap[benefit.icon as keyof typeof iconMap] || Users;
+                return (
+                  <div
+                    key={index}
+                    className="group relative rounded-2xl border border-gray-200 bg-white overflow-hidden hover:border-amber-400/40 transition-all p-6"
+                  >
+                    {/* Icon */}
+                    <div className="w-14 h-14 rounded-xl bg-amber-400/20 backdrop-blur-sm border border-amber-400/40 flex items-center justify-center mb-4">
+                      <IconComponent className="w-7 h-7 text-amber-400" />
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-amber-600 transition-colors" style={{ fontFamily: 'Exo, Inter' }}>
+                      {benefit.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-base text-gray-700 leading-relaxed" style={{ fontFamily: 'Inter' }}>
+                      {benefit.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Application Form */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900" style={{ fontFamily: 'Exo, Inter' }}>
-              Envie seu <span className="text-amber-400">currículo</span>
+              {data.formTitle || 'Envie seu'} <span className="text-amber-400">{data.formTitle ? '' : 'currículo'}</span>
             </h2>
             <p className="text-base text-gray-700" style={{ fontFamily: 'Inter' }}>
-              Preencha o formulário abaixo e faça parte da nossa equipe
+              {data.formDescription || 'Preencha o formulário abaixo e faça parte da nossa equipe'}
             </p>
           </div>
 
