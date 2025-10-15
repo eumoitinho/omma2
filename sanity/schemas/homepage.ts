@@ -132,8 +132,19 @@ export default defineType({
             {
               type: 'object',
               fields: [
-                { name: 'title', title: 'Título do Setor', type: 'string' },
-                { name: 'description', title: 'Descrição', type: 'text' },
+                {
+                  name: 'title',
+                  title: 'Título do Setor',
+                  type: 'string',
+                  validation: (Rule: any) => Rule.required(),
+                },
+                {
+                  name: 'description',
+                  title: 'Descrição',
+                  type: 'text',
+                  rows: 3,
+                  validation: (Rule: any) => Rule.required(),
+                },
                 {
                   name: 'image',
                   title: 'Imagem do Setor',
@@ -141,6 +152,13 @@ export default defineType({
                   options: { hotspot: true },
                 },
               ],
+              preview: {
+                select: {
+                  title: 'title',
+                  subtitle: 'description',
+                  media: 'image',
+                },
+              },
             },
           ],
         },
