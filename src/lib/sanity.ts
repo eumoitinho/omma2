@@ -163,7 +163,7 @@ export async function getHomepageData() {
       title: rawData.aboutSection?.title,
       subtitle: rawData.aboutSection?.subtitle,
       description: rawData.aboutSection?.description,
-      images: rawData.aboutSection?.images || [],
+      images: rawData.aboutSection?.images?.map((img: any) => img.asset) || [],
       ctaText: rawData.aboutSection?.ctaText,
       ctaLink: rawData.aboutSection?.ctaLink,
     },
