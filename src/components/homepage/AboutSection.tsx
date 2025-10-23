@@ -54,6 +54,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                 width={600}
                 height={420}
                 className="h-[320px] md:h-[420px] w-full object-cover"
+                unoptimized
               />
             ) : (
               <img
@@ -73,6 +74,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                   width={160}
                   height={160}
                   className="h-40 w-40 object-cover"
+                  unoptimized
                 />
               ) : (
                 <img
