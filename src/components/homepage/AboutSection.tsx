@@ -18,10 +18,6 @@ interface AboutSectionProps {
 export default function AboutSection({ data }: AboutSectionProps) {
   if (!data) return null;
 
-  const dinamicImage = data.images?.[0]
-    ? urlFor(data.images?.[0]).url()
-    : '/2.jpg';
-
   // Parse description text from portable text or string
   const getTextFromPortableText = (content: PortableTextContent | string) => {
     if (!content) return [];
@@ -51,16 +47,16 @@ export default function AboutSection({ data }: AboutSectionProps) {
       <div className="relative mx-auto max-w-7xl px-4 md:px-8 grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div className="relative">
           <div className="relative rounded-2xl overflow-hidden border border-gray-200 bg-white/90 shadow-2xl">
-              {dinamicImage && dinamicImage[0] ? (
-                <Image
-                  src={dinamicImage}
-                  alt="Projeto NEOOMA Engenharia"
-                  width={600}
-                  height={420}
-                  className="h-[320px] md:h-[420px] w-full object-cover"
-                />
-              ) : (
-                <img
+            {data.images && data.images[0] ? (
+              <Image
+                src={urlFor(data.images[0]).url()}
+                alt="Projeto NEOOMA Engenharia"
+                width={600}
+                height={420}
+                className="h-[320px] md:h-[420px] w-full object-cover"
+              />
+            ) : (
+              <img
                 src="/cases/1b8c917b8644a16c37fb95ec68e6d27b/Unimed/Unimed 2.jpg"
                 alt="Projeto NEOOMA Engenharia - Unimed"
                 className="h-[320px] md:h-[420px] w-full object-cover"
@@ -70,11 +66,14 @@ export default function AboutSection({ data }: AboutSectionProps) {
           </div>
           <div className="hidden md:flex absolute -right-8 top-16">
             <div className="rounded-2xl overflow-hidden border border-gray-200 bg-white/90">
-              {dinamicImage && dinamicImage[1] ? (
-                (() => {
-                  const dinamicImages = urlFor(dinamicImage[1]).url();
-                  return <Image src={dinamicImages} alt="Projeto NEOOMA" width={160} height={160} className="h-40 w-40 object-cover" />;
-                })()
+              {data.images && data.images[1] ? (
+                <Image
+                  src={urlFor(data.images[1]).url()}
+                  alt="Projeto NEOOMA"
+                  width={160}
+                  height={160}
+                  className="h-40 w-40 object-cover"
+                />
               ) : (
                 <img
                   src="/cases/713a729e8202c0be137ac64e68e6d26c/Movile/Movile 3.jpg"
