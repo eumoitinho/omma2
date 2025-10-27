@@ -77,6 +77,7 @@ export async function getHomepageData() {
     },
     whyChooseSection: {
       title: rawData.whyChooseSection?.title || 'Por que escolher a NEOOMA?',
+      subtitle: rawData.whyChooseSection?.subtitle,
       benefits: rawData.whyChooseSection?.benefits || [],
     },
     clientsSection: {

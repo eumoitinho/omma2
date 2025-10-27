@@ -177,6 +177,11 @@ export default defineType({
           type: 'string',
         },
         {
+          name: 'subtitle',
+          title: 'Subtítulo',
+          type: 'text',
+        },
+        {
           name: 'benefits',
           title: 'Benefícios',
           type: 'array',
@@ -186,6 +191,7 @@ export default defineType({
               fields: [
                 { name: 'title', title: 'Título', type: 'string' },
                 { name: 'description', title: 'Descrição', type: 'text' },
+                { name: 'expandedDescription', title: 'Descrição Expandida (Ver Mais)', type: 'text', rows: 3 },
               ],
             },
           ],

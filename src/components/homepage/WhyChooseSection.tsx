@@ -53,7 +53,14 @@ export default function WhyChooseSection({ data }: WhyChooseSectionProps) {
 
   if (!data) return null;
 
-  const benefits = data.benefits && data.benefits.length > 0 ? data.benefits : defaultBenefits;
+  // Usar dados do Sanity se existirem, senão usar os defaultBenefits
+  const benefits = data.benefits && data.benefits.length > 0 
+    ? data.benefits.map((benefit, idx) => ({
+        title: benefit.title,
+        description: benefit.description,
+        expandedDescription: benefit.expandedDescription || defaultBenefits[idx]?.expandedDescription
+      }))
+    : defaultBenefits;
 
   const toggleExpand = (index: number) => {
     const newExpanded = new Set(expandedItems);
@@ -88,7 +95,7 @@ export default function WhyChooseSection({ data }: WhyChooseSectionProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((benefit, idx) => {
               const isExpanded = expandedItems.has(idx);
-              const hasExpandedContent = benefit.expandedDescription || defaultBenefits[idx]?.expandedDescription;
+              const hasExpandedContent = benefit.expandedDescription;
 
               return (
                 <div
@@ -114,7 +121,7 @@ export default function WhyChooseSection({ data }: WhyChooseSectionProps) {
                   {isExpanded && hasExpandedContent && (
                     <div className="relative mt-4 pt-4 border-t border-gray-200">
                       <p className="text-gray-700 text-sm leading-relaxed" style={{ fontFamily: 'Inter' }}>
-                        {benefit.expandedDescription || defaultBenefits[idx]?.expandedDescription}
+                        {benefit.expandedDescription}
                       </p>
                     </div>
                   )}
