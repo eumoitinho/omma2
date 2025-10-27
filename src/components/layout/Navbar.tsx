@@ -34,15 +34,15 @@ const Navbar: React.FC = () => {
             <div className="mx-auto max-w-7xl px-4 sm:px-6">
                 <div className={`rounded-2xl backdrop-blur-xl ring-1 shadow-xl ${isScrolled ? 'bg-white/90 ring-gray-200' : 'bg-white/5 ring-white/10'}`}>
                     <div className="flex items-center justify-between px-4 py-3 sm:px-6">
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center justify-between w-full">
                             <Link href="/" className="inline-flex items-center gap-2">
                                 <img
-                                    src={isScrolled ? "/cropped-OMMA-Engenharia-amarelo.png" : "/omma_logo.png"}
+                                    src={isScrolled ? "/LANDSCAPE_LOGOTIPO_PRETO_2.png" : "/VETOR_LOGOTIPO_COR_2.png"}
                                     alt="OMMA Engenharia"
                                     className="h-8 w-auto transition-opacity duration-300"
                                 />
                             </Link>
-                            <nav className="hidden md:flex items-center gap-7 text-sm" style={{ fontFamily: 'DM Sans, Inter' }}>
+                            <nav className="hidden md:flex items-center gap-7 text-sm mx-auto" style={{ fontFamily: 'DM Sans, Inter' }}>
                                 <Link href="/" className={`transition ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'}`}>Home</Link>
                                 <Link href="/quem-somos" className={`transition ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'}`}>Quem somos</Link>
                                 <Link href="/areas-de-atuacao" className={`transition ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'}`}>Atuação</Link>

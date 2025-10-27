@@ -37,7 +37,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
           <div className="flex flex-col justify-center">
             {/* Logo */}
             <img
-              src="/cropped-OMMA-Engenharia-amarelo.png"
+              src="/VETOR_LOGOTIPO_COR_2.png"
               alt="NEOOMA Engenharia"
               className="h-16 w-auto mb-6 object-contain self-start"
             />
