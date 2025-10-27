@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import { clientLogos } from '@/data/clients';
 
 interface ClientsSectionProps {
@@ -9,8 +9,6 @@ interface ClientsSectionProps {
 }
 
 export default function ClientsSection({ data }: ClientsSectionProps) {
-  const [showAll, setShowAll] = useState(false);
-
   return (
     <section className="relative py-16 md:py-24">
       <div className="relative mx-auto max-w-[1600px] px-4 md:px-8">
