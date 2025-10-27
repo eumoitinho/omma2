@@ -1,0 +1,178 @@
+{
+  "pageTitle": "Nossas Obras",
+  "heroTitle": "Nossas Obras",
+  "subtitle": "Conheça nosso portfólio de projetos realizados com excelência e compromisso",
+  "projects": [
+    {
+      "_key": "project-0",
+      "title": "Novo escritório e showroom (Projeto Turnkey)",
+      "description": "Implantação de dois andares do novo escritório da empresa + um andar dedicado ao showroom com área de eventos e cozinha.",
+      "category": "Ambientes Corporativos",
+      "location": "Barra Funda – São Paulo",
+      "area": "3000m²"
+    },
+    {
+      "_key": "project-1",
+      "title": "Implantação de novo escritório (Projeto Turnkey)",
+      "description": "Implantação do novo escritório de empresa de tecnologia em edifício Triple A. Ocupação híbrida com 145 colaboradores.",
+      "category": "Ambientes Corporativos",
+      "location": "Morumbi – São Paulo",
+      "area": "725m²"
+    },
+    {
+      "_key": "project-2",
+      "title": "Funcionalidade (Projeto Turnkey)",
+      "description": "Implantação do novo escritório de empresa química onde a funcionalidade era o principal desejo do cliente.",
+      "category": "Ambientes Corporativos",
+      "location": "Alphaville – São Paulo",
+      "area": "230m²"
+    },
+    {
+      "_key": "project-3",
+      "title": "Open Space",
+      "description": "Implantação de novo escritório da empresa.",
+      "category": "Ambientes Corporativos",
+      "location": "Paulista – São Paulo",
+      "area": "230m²"
+    },
+    {
+      "_key": "project-4",
+      "title": "Tradição e Modernidade (Projeto Turnkey)",
+      "description": "Implantação do novo escritório de empresa, aliando tradição e modernidade.",
+      "category": "Ambientes Corporativos",
+      "location": "Pinheiro – São Paulo",
+      "area": "3.500m²"
+    },
+    {
+      "_key": "project-5",
+      "title": "Versatilidade",
+      "description": "Implantação do novo escritório",
+      "category": "Ambientes Corporativos",
+      "location": "São Paulo"
+    },
+    {
+      "_key": "project-6",
+      "title": "Identidade e Cultura Corporativa",
+      "description": "Implantação de novo escritório",
+      "category": "Ambientes Corporativos",
+      "location": "São Paulo"
+    },
+    {
+      "_key": "project-7",
+      "title": "Identidade",
+      "description": "Implantação de novo escritório",
+      "category": "Ambientes Corporativos",
+      "location": "Ribeirão Preto - São Paulo"
+    },
+    {
+      "_key": "project-8",
+      "title": "Novo escritório",
+      "description": "Implantação do novo escritório da empresa",
+      "category": "Ambientes Corporativos",
+      "location": "São Paulo"
+    },
+    {
+      "_key": "project-9",
+      "title": "Novo escritório",
+      "description": "Implantação do novo escritório da empresa",
+      "category": "Ambientes Corporativos",
+      "location": "São Paulo"
+    },
+    {
+      "_key": "project-10",
+      "title": "Charme e elegância",
+      "description": "Implantação de biblioteca",
+      "category": "Ambientes Corporativos",
+      "location": "São Paulo"
+    },
+    {
+      "_key": "project-11",
+      "title": "Novo escritório",
+      "description": "Implantação do novo escritório da empresa",
+      "category": "Ambientes Corporativos",
+      "location": "São Paulo"
+    },
+    {
+      "_key": "project-12",
+      "title": "Área de staff",
+      "description": "Expansão de nova área para colaboradores",
+      "category": "Ambientes Corporativos",
+      "location": "São Paulo"
+    },
+    {
+      "_key": "project-13",
+      "title": "Ambiente funcional",
+      "description": "Retrofit em escritório existente",
+      "category": "Ambientes Corporativos",
+      "location": "São Paulo"
+    },
+    {
+      "_key": "project-14",
+      "title": "Espaços funcionais",
+      "description": "Implantação de novo escritório",
+      "category": "Ambientes Corporativos",
+      "location": "São Paulo"
+    },
+    {
+      "_key": "project-15",
+      "title": "Espaços descontraídos",
+      "description": "Implantação do novo escritório da empresa.",
+      "category": "Ambientes Corporativos",
+      "location": "São Paulo"
+    },
+    {
+      "_key": "project-16",
+      "title": "Cores da marca",
+      "description": "Implantação de novo escritório",
+      "category": "Ambientes Corporativos",
+      "location": "São Paulo"
+    },
+    {
+      "_key": "project-17",
+      "title": "Luminosidade (Projeto Turnkey)",
+      "description": "Implantação de novo escritório de escritório em edifício Tripe A.",
+      "category": "Ambientes Corporativos",
+      "location": "Faria Lima – São Paulo",
+      "area": "230m²"
+    },
+    {
+      "_key": "project-18",
+      "title": "Modernidade",
+      "description": "Implantação do novo escritório de empresa",
+      "category": "Ambientes Corporativos",
+      "location": "São Carlos – São Paulo",
+      "area": "750m²"
+    },
+    {
+      "_key": "project-19",
+      "title": "Áreas de atendimentos",
+      "description": "Implantação de nova clínica de atendimento",
+      "category": "Clínicas e Laboratórios",
+      "location": "São Paulo"
+    },
+    {
+      "_key": "project-20",
+      "title": "Nova unidade",
+      "description": "Implantação de nova unidade de rede de academias.",
+      "category": "Academias",
+      "location": "Itapevi – São Paulo",
+      "area": "1230m²"
+    },
+    {
+      "_key": "project-21",
+      "title": "Nova Unidade",
+      "description": "Implantação de nova unidade de rede de varejo.",
+      "category": "Edificações Comerciais",
+      "location": "Jaçanã – São Paulo"
+    },
+    {
+      "_key": "project-22",
+      "title": "Descompressão e criatividade",
+      "description": "Implantação do novo escritório com muito espaço de integração.",
+      "category": "Startups & Scale-Ups",
+      "location": "Rio de Janeiro",
+      "area": "1000m²"
+    }
+  ]
+}
+
