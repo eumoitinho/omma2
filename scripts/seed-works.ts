@@ -2,6 +2,8 @@ import { createClient } from '@sanity/client';
 import * as fs from 'fs';
 import * as path from 'path';
 
+const imagesMap = JSON.parse(fs.readFileSync(path.join(__dirname, 'images-map.json'), 'utf-8'));
+
 const client = createClient({
   projectId: '6xp8522n',
   dataset: 'production',
@@ -248,6 +250,7 @@ async function seedWorks() {
             },
           ],
           fallbackImage: fallbackImage,
+          localImages: imagesMap[index] || [],
           images: [],
         };
       }),
