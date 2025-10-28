@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { urlFor } from '@/lib/sanity';
 import type { SanityImage } from '@/types/sanity';
 
@@ -20,14 +21,28 @@ export default function HeroSection({ data }: HeroSectionProps) {
     ? urlFor(data.backgroundImage).url()
     : '/6 AMBIENTES REFINADOS1.JPG';
 
+  // Fallbacks para evitar hero sem conteúdo (imagem solta)
+  const title = data.title || 'Gestão completa para obras rápidas e eficientes';
+  const subtitle =
+    data.subtitle ||
+    'Planejamento ponta a ponta, previsibilidade e segurança para entregar ambientes funcionais com alto padrão.';
+  const ctaText = data.ctaText || 'FAÇA SUA OBRA COM A NEOOMMA!';
+  const ctaLink = data.ctaLink || '#contato';
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image com Overlay */}
       <div className="absolute inset-0 z-0 top-0">
-        <div
-          className="absolute inset-0 top-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${bgImage}')` }}
-        />
+        <div className="absolute inset-0">
+          <Image
+            src={bgImage}
+            alt="Background"
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
+        </div>
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
@@ -35,47 +50,42 @@ export default function HeroSection({ data }: HeroSectionProps) {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 pt-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 py-20">
           <div className="flex flex-col justify-center">
-            {/* Logo */}
-            <img
+          {/* Logo */}
+            <Image
               src="/VETOR_LOGOTIPO_COR_2.png"
               alt="NEOOMA Engenharia"
+              width={200}
+              height={64}
               className="h-16 w-auto mb-6 object-contain self-start"
+              unoptimized
             />
 
             {/* Heading */}
-            {data.title && (
-              <h1
-                className="text-4xl sm:text-5xl lg:text-6xl leading-tight font-bold tracking-tight text-white"
-                style={{ fontFamily: "Exo, Inter" }}
-              >
-                {data.title}
-              </h1>
-            )}
+          <h1
+            className="text-4xl sm:text-5xl lg:text-6xl leading-tight font-bold tracking-tight text-white"
+            style={{ fontFamily: 'Exo, Inter' }}
+          >
+            {title}
+          </h1>
 
             {/* Paragraph */}
-            {data.subtitle && (
-              <p
-                className="mt-6 text-lg text-white/90 max-w-lg"
-                style={{ fontFamily: "Inter" }}
-              >
-                {data.subtitle}
-              </p>
-            )}
+          <p className="mt-6 text-lg text-white/90 max-w-lg" style={{ fontFamily: 'Inter' }}>
+            {subtitle}
+          </p>
 
             {/* CTA */}
-            {data.ctaText && (
-              <div className="mt-8">
-                <button
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-amber-400 px-8 py-4 text-base font-semibold text-amber-400 hover:bg-amber-400 hover:text-black transition-all duration-300 shadow-lg hover:shadow-amber-400/25"
-                  style={{ fontFamily: "Exo, Inter" }}
-                >
-                  {data.ctaText}
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            )}
+          <div className="mt-8">
+            <a
+              href={ctaLink}
+              className="inline-flex items-center gap-2 rounded-full border-2 border-amber-400 px-8 py-4 text-base font-semibold text-amber-400 hover:bg-amber-400 hover:text-black transition-all duration-300 shadow-lg hover:shadow-amber-400/25"
+              style={{ fontFamily: 'Exo, Inter' }}
+            >
+              {ctaText}
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
           </div>
 
           {/* Espaço adicional */}

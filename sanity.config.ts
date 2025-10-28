@@ -17,4 +17,6 @@ export default defineConfig({
   },
 
   basePath: '/studio',
+  
+  apiVersion: '2024-01-01',
 });

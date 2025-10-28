@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import LeadForm from '@/components/lp/LeadForm';
 import {
   Target,
@@ -55,7 +56,7 @@ export default function ArquitetosLP() {
         </div>
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-4xl">
-            <img src="/omma_logo.png" alt="OMMA" className="h-10 w-auto mb-8" />
+            <Image src="/omma_logo.png" alt="OMMA" width={150} height={40} className="h-10 w-auto mb-8" unoptimized />
             <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight" style={{ fontFamily: 'Exo, Inter' }}>
               Arquiteto (a)?<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-500">Junte-se à OMMA</span> e leve seus projetos além

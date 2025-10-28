@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { Mail, Phone, MapPin, Instagram, Linkedin, Facebook } from 'lucide-react';
 import { getSiteSettings } from '@/lib/sanity';
 import Link from 'next/link';
@@ -41,7 +42,7 @@ const Footer: React.FC = () => {
                     {/* Logo and Description */}
                     <div className="lg:col-span-1">
                         <div className="flex items-center gap-3 mb-6">
-                            <img src="/PORTRAIT_BRANCO_LOGOTIPO.png" alt="OMMA Engenharia" className="h-20 w-auto" />
+                            <Image src="/PORTRAIT_BRANCO_LOGOTIPO.png" alt="OMMA Engenharia" width={120} height={80} className="h-20 w-auto" unoptimized />
                         </div>
                         <p className="text-base text-gray-400 leading-relaxed" style={{ fontFamily: 'Inter' }}>
                             {settings?.siteDescription || 'Transformando ambientes em resultados desde 1998.'}

@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import type { SanityImage } from '@/types/sanity';
 
 interface ContactFormSectionProps {
@@ -16,7 +17,7 @@ export default function ContactFormSection({ data }: ContactFormSectionProps) {
   return (
     <section id="contato" className="relative py-16 md:py-24">
       <div className="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1517420704952-d9f39e95b43f?q=80&w=2070&auto=format&fit=crop" alt="Canteiro de obras" className="h-full w-full object-cover opacity-40" />
+        <Image src="https://images.unsplash.com/photo-1517420704952-d9f39e95b43f?q=80&w=2070&auto=format&fit=crop" alt="Canteiro de obras" fill className="object-cover opacity-40" unoptimized />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/60 to-[#0b0b0f]"></div>
       </div>
 

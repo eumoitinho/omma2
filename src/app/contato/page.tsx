@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { getContatoData, getSiteSettings } from '@/lib/sanity';
 import { MapPin, Phone, Mail, Instagram, Linkedin, Facebook } from 'lucide-react';
 
@@ -35,7 +36,7 @@ export default async function ContatoPage() {
       {/* Contact Form Section */}
       <section className="relative py-16 md:py-24">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1517420704952-d9f39e95b43f?q=80&w=2070&auto=format&fit=crop" alt="Canteiro de obras" className="h-full w-full object-cover opacity-40" />
+          <Image src="https://images.unsplash.com/photo-1517420704952-d9f39e95b43f?q=80&w=2070&auto=format&fit=crop" alt="Canteiro de obras" fill className="object-cover opacity-40" unoptimized />
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/60 to-white"></div>
         </div>
 

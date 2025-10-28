@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import PageAnalytics from '@/components/analytics/PageAnalytics';
 import ScrollAndSections from '@/components/analytics/ScrollAndSections';
 import projectsData from '@/../projects.json';
@@ -70,7 +71,7 @@ export default function CorporativosLP() {
           <div className="grid lg:grid-cols-2 gap-12 items-center relative">
             {/* Conteúdo textual */}
             <div className="max-w-3xl">
-              <img src="/omma_logo.png" alt="OMMA" className="h-8 w-auto anim-fadeSlideUnblur" />
+              <Image src="/omma_logo.png" alt="OMMA" width={120} height={32} className="h-8 w-auto anim-fadeSlideUnblur" unoptimized />
               {/* Badge animada opcional (mantendo cores) */}
               <div className="inline-flex mt-6 rounded-full border border-amber-400/30 bg-amber-400/10 px-4 py-2 text-xs font-medium text-amber-300 tracking-wide anim-fadeSlideIn anim-delay-1">
                 Engenharia Corporativa
@@ -165,11 +166,13 @@ export default function CorporativosLP() {
                         key={item.title + dup + i}
                         className="relative flex-shrink-0 w-[240px] sm:w-[260px] md:w-[280px] h-44 sm:h-52 md:h-56 mr-4 sm:mr-6 rounded-2xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-black/60 via-black/40 to-amber-400/10 group"
                       >
-                        <img
+                        <Image
                           src={item.img}
                           alt={item.title}
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[6000ms] group-hover:scale-105"
+                          fill
+                          className="object-cover transition-transform duration-[6000ms] group-hover:scale-105"
                           loading="lazy"
+                          unoptimized
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_70%_25%,rgba(251,191,36,0.25),transparent_60%)]" />
@@ -250,7 +253,7 @@ export default function CorporativosLP() {
                   ].join(' ')}
                   style={{ animationDelay: `${0.04 * idx}s` }}
                 >
-                  <img src={img} alt="" className="absolute inset-0 h-full w-full object-cover opacity-60 group-hover:opacity-70 transition-opacity duration-500" loading="lazy" />
+                  <Image src={img} alt="" fill className="object-cover opacity-60 group-hover:opacity-70 transition-opacity duration-500" loading="lazy" unoptimized />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 group-hover:from-black/55 group-hover:via-black/35 group-hover:to-black/75 transition-colors" />
                   <div className="pointer-events-none absolute inset-0 [background:radial-gradient(circle_at_30%_30%,rgba(255,193,7,0.15),transparent_60%)] opacity-70 mix-blend-screen" />
                   <div className="relative mb-4 flex items-center justify-between">
@@ -309,11 +312,13 @@ export default function CorporativosLP() {
                     style={{ animationDelay: `${0.05 * idx}s` }}
                   >
                     <div className="relative h-48 lg:h-52 overflow-hidden rounded-xl ring-1 ring-white/10 mb-6">
-                      <img
+                      <Image
                         src={card.img}
                         alt={card.title}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
+                        unoptimized
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_75%_25%,rgba(251,191,36,0.25),transparent_60%)]" />
