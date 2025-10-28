@@ -226,6 +226,7 @@ export async function getObrasData() {
         location,
         area,
         description,
+        category,
         fallbackImage,
         localImages,
         images
@@ -248,6 +249,7 @@ export async function getObrasData() {
     location?: string;
     area?: string;
     description?: Array<{ children?: Array<{ text?: string }> }>;
+    category?: string;
     fallbackImage?: string;
     localImages?: string[];
   }, index: number) => {
@@ -259,7 +261,7 @@ export async function getObrasData() {
       slug: `project-${index + 1}`,
       client: project.clientName || '',
       title: project.clientName || '',
-      category: 'Geral',
+      category: project.category || 'Geral',
       location: project.location || '',
       area: project.area || '',
       description: project.description?.[0]?.children?.[0]?.text || '',

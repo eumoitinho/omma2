@@ -18,6 +18,8 @@ interface PortfolioSectionProps {
       duration: string;
       thumbnail?: SanityImage | string;
       category: string;
+      description?: string;
+      gallery?: string[];
     }>;
     ctaText?: string;
     ctaLink?: string;
@@ -26,6 +28,20 @@ interface PortfolioSectionProps {
 
 export default function PortfolioSection({ data }: PortfolioSectionProps) {
   const [idx, setIdx] = useState(0);
+  const [selectedProject, setSelectedProject] = useState<{
+    _id: string;
+    slug: string;
+    title: string;
+    client: string;
+    location: string;
+    area: string;
+    duration?: string;
+    category: string;
+    description?: string;
+    thumbnail?: string | SanityImage;
+    gallery?: string[];
+  } | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const projects = data?.projects || [];
   const len = projects.length;
@@ -144,8 +160,11 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
                         <path d="m12 5 7 7-7 7" />
                       </svg>
                     </button>
-                    <Link
-                      href={`/obras/${currentProject.slug}`}
+                    <button
+                      onClick={() => {
+                        setSelectedProject(currentProject);
+                        setIsModalOpen(true);
+                      }}
                       className="flex h-11 px-6 items-center justify-center gap-2 rounded-full bg-amber-400 hover:bg-amber-300 text-black font-semibold transition-all duration-200 hover:scale-105 shadow"
                       style={{ fontFamily: 'Exo, Inter' }}
                     >
@@ -153,7 +172,7 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -180,6 +199,89 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
           </div>
         )}
       </div>
+
+      {/* Modal */}
+      {isModalOpen && selectedProject && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div 
+            className="relative max-w-6xl w-full max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white hover:bg-gray-100 shadow-lg transition-all"
+              aria-label="Fechar modal"
+            >
+              <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Content */}
+            <div className="p-8">
+              {/* Header */}
+              <div className="mb-6">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-3 py-1 text-xs font-semibold rounded-full bg-amber-400 text-black">
+                    {selectedProject.category}
+                  </span>
+                </div>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Exo, Inter' }}>
+                  {selectedProject.title}
+                </h3>
+                {(selectedProject.location || selectedProject.area) && (
+                  <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                    {selectedProject.location && (
+                      <span className="flex items-center gap-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        {selectedProject.location}
+                      </span>
+                    )}
+                    {selectedProject.area && (
+                      <span className="flex items-center gap-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                        </svg>
+                        {selectedProject.area}
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Description */}
+              {selectedProject.description && (
+                <p className="text-base text-gray-700 mb-8 leading-relaxed" style={{ fontFamily: 'Inter' }}>
+                  {selectedProject.description}
+                </p>
+              )}
+
+              {/* Gallery */}
+              {selectedProject.gallery && selectedProject.gallery.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {selectedProject.gallery.map((image: string, index: number) => (
+                    <div key={index} className="relative aspect-video rounded-lg overflow-hidden border border-gray-200">
+                      <img 
+                        src={image} 
+                        alt={`${selectedProject.title} - Imagem ${index + 1}`}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
