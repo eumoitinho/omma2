@@ -1,9 +1,7 @@
 import { createClient } from '@sanity/client';
 import * as fs from 'fs';
 import * as path from 'path';
-
 const imagesMap = JSON.parse(fs.readFileSync(path.join(__dirname, 'images-map.json'), 'utf-8'));
-
 const client = createClient({
   projectId: '6xp8522n',
   dataset: 'production',
@@ -11,7 +9,6 @@ const client = createClient({
   useCdn: false,
   token: 'skMM1A6GdgZ9wLKwjPBtMkmS3EtW4chx6goCreTDSBMYrlJzMerFI4SotSg0VvyLFXy023TcLu6iuSUCUMoGs1tgtCIZwPVsUxXj8At8b0ul0mWIurde9HcMpxYbYvNWaMJBC6QtoPhcmnUXfEfTm8v4Xarhf7ukJQgr0YycQCxHuXvLpU6v',
 });
-
 interface Work {
   title: string;
   description: string;
@@ -19,9 +16,7 @@ interface Work {
   location: string;
   area?: string;
   imagePath?: string;
-  images: string[];
 }
-
 const works: Work[] = [
   // AMBIENTES CORPORATIVOS
   {
@@ -38,7 +33,6 @@ const works: Work[] = [
     category: 'Ambientes Corporativos',
     location: 'Morumbi – São Paulo',
     area: '725m²',
-    images: [],
   },
   {
     title: 'Funcionalidade (Projeto Turnkey)',
@@ -46,7 +40,7 @@ const works: Work[] = [
     category: 'Ambientes Corporativos',
     location: 'Alphaville – São Paulo',
     area: '230m²',
-    images: [],
+
   },
   {
     title: 'Open Space',
@@ -54,7 +48,7 @@ const works: Work[] = [
     category: 'Ambientes Corporativos',
     location: 'Paulista – São Paulo',
     area: '230m²',
-    images: [],
+
   },
   {
     title: 'Tradição e Modernidade (Projeto Turnkey)',
@@ -62,91 +56,91 @@ const works: Work[] = [
     category: 'Ambientes Corporativos',
     location: 'Pinheiro – São Paulo',
     area: '3.500m²',
-    images: [],
+
   },
   {
     title: 'Versatilidade',
     description: 'Implantação do novo escritório',
     category: 'Ambientes Corporativos',
     location: 'São Paulo',
-    images: [],
+
   },
   {
     title: 'Identidade e Cultura Corporativa',
     description: 'Implantação de novo escritório',
     category: 'Ambientes Corporativos',
     location: 'São Paulo',
-    images: [],
+
   },
   {
     title: 'Identidade',
     description: 'Implantação de novo escritório',
     category: 'Ambientes Corporativos',
     location: 'Ribeirão Preto - São Paulo',
-    images: [],
+
   },
   {
     title: 'Novo escritório',
     description: 'Implantação do novo escritório da empresa',
     category: 'Ambientes Corporativos',
     location: 'São Paulo',
-    images: [],
+
   },
   {
     title: 'Novo escritório',
     description: 'Implantação do novo escritório da empresa',
     category: 'Ambientes Corporativos',
     location: 'São Paulo',
-    images: [],
+
   },
   {
     title: 'Charme e elegância',
     description: 'Implantação de biblioteca',
     category: 'Ambientes Corporativos',
     location: 'São Paulo',
-    images: [],
+
   },
   {
     title: 'Novo escritório',
     description: 'Implantação do novo escritório da empresa',
     category: 'Ambientes Corporativos',
     location: 'São Paulo',
-    images: [],
+
   },
   {
     title: 'Área de staff',
     description: 'Expansão de nova área para colaboradores',
     category: 'Ambientes Corporativos',
     location: 'São Paulo',
-    images: [],
+
   },
   {
     title: 'Ambiente funcional',
     description: 'Retrofit em escritório existente',
     category: 'Ambientes Corporativos',
     location: 'São Paulo',
-    images: [],
+
   },
   {
     title: 'Espaços funcionais',
     description: 'Implantação de novo escritório',
     category: 'Ambientes Corporativos',
     location: 'São Paulo',
-    images: [],
+
   },
   {
     title: 'Espaços descontraídos',
     description: 'Implantação do novo escritório da empresa.',
     category: 'Ambientes Corporativos',
     location: 'São Paulo',
-    images: [],
+
   },
   {
     title: 'Cores da marca',
     description: 'Implantação de novo escritório',
     category: 'Ambientes Corporativos',
     location: 'São Paulo',
-    images: [],
+
   },
   {
     title: 'Luminosidade (Projeto Turnkey)',
@@ -154,7 +148,7 @@ const works: Work[] = [
     category: 'Ambientes Corporativos',
     location: 'Faria Lima – São Paulo',
     area: '230m²',
-    images: [],
+
   },
   {
     title: 'Modernidade',
@@ -162,7 +156,7 @@ const works: Work[] = [
     category: 'Ambientes Corporativos',
     location: 'São Carlos – São Paulo',
     area: '750m²',
-    images: [],
+
   },
   
   // CLÍNICAS E LABORATÓRIOS
@@ -171,7 +165,7 @@ const works: Work[] = [
     description: 'Implantação de nova clínica de atendimento',
     category: 'Clínicas e Laboratórios',
     location: 'São Paulo',
-    images: [],
+
   },
   
   // ACADEMIAS
@@ -181,7 +175,7 @@ const works: Work[] = [
     category: 'Academias',
     location: 'Itapevi – São Paulo',
     area: '1230m²',
-    images: [],
+
   },
   
   // EDIFICAÇÕES COMERCIAIS
@@ -190,7 +184,7 @@ const works: Work[] = [
     description: 'Implantação de nova unidade de rede de varejo.',
     category: 'Edificações Comerciais',
     location: 'Jaçanã – São Paulo',
-    images: [],
+
   },
   
   // STARTUPS & SCALE-UPS
@@ -200,10 +194,9 @@ const works: Work[] = [
     category: 'Startups & Scale-Ups',
     location: 'Rio de Janeiro',
     area: '1000m²',
-    images: [],
+
   },
 ];
-
 async function seedWorks() {
   try {
     console.log('🔄 Verificando se a página de obras já existe...');
@@ -251,7 +244,7 @@ async function seedWorks() {
           ],
           fallbackImage: fallbackImage,
           localImages: imagesMap[index] || [],
-          images: [],
+
         };
       }),
     };
@@ -275,6 +268,4 @@ async function seedWorks() {
     console.error('❌ Erro ao criar/atualizar página de obras:', error);
   }
 }
-
 seedWorks();
-

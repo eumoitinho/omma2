@@ -243,7 +243,14 @@ export async function getObrasData() {
   }
 
   // Mapear projetos do Sanity para o formato esperado
-  const projects = sanityData.projects.map((project: any, index: number) => {
+  const projects = sanityData.projects.map((project: {
+    clientName?: string;
+    location?: string;
+    area?: string;
+    description?: Array<{ children?: Array<{ text?: string }> }>;
+    fallbackImage?: string;
+    localImages?: string[];
+  }, index: number) => {
     // Usar first image from localImages se disponível
     const thumbnail = project.localImages?.[0] || project.fallbackImage || '';
     

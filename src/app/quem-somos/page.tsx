@@ -150,14 +150,14 @@ export default async function QuemSomosPage() {
             {data.statsSection?.title || 'Resultados que comprovam nossa expertise'}
           </h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {stats.map((s: any, i: number) => (
+            {stats.map((s: { label: string; value: string; description?: string }, i: number) => (
               <div
                 key={s.label || i}
                 className={`relative rounded-2xl p-6 anim-fadeSlideUp overflow-hidden group ring-1 ring-gray-200 bg-gradient-to-br from-white via-gray-50/30 to-amber-400/10 hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25),0_8px_28px_-6px_rgba(251,191,36,0.25)] transition-shadow`}
                 style={{ animationDelay: `${0.1 * i}s` }}
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_78%_22%,rgba(251,191,36,0.28),transparent_65%)]" />
-                <div className="relative text-3xl font-bold text-amber-400 drop-shadow" style={{ fontFamily: 'Exo, Inter' }}>{s.number}</div>
+                <div className="relative text-3xl font-bold text-amber-400 drop-shadow" style={{ fontFamily: 'Exo, Inter' }}>{s.value}</div>
                 <div className="relative text-gray-900 mt-1 font-medium">{s.label}</div>
                 <p className="relative text-gray-700 mt-3 text-sm leading-relaxed">{s.description}</p>
               </div>
@@ -175,7 +175,8 @@ export default async function QuemSomosPage() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {galleryProjects.map((item: any, i: number) => (
+              {galleryProjects.map((item: { image?: { _type: string; asset: { _ref: string } }; title: string }, i: number) => (
+                item.image && (
                 <div key={i} className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 hover:border-amber-400/40 transition-all">
                   <img
                     src={urlFor(item.image).url()}
@@ -188,6 +189,7 @@ export default async function QuemSomosPage() {
                     </div>
                   </div>
                 </div>
+                )
               ))}
             </div>
           </div>
@@ -203,7 +205,7 @@ export default async function QuemSomosPage() {
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {values.map((value: any, i: number) => (
+              {values.map((value: { title: string; description: string }, i: number) => (
                 <div key={i} className="p-8 rounded-2xl bg-white border border-gray-200 hover:border-amber-400/40 transition-all">
                   <h3 className="text-2xl font-bold text-amber-400 mb-4" style={{ fontFamily: 'Exo, Inter' }}>{value.title}</h3>
                   <p className="text-base text-gray-700" style={{ fontFamily: 'Inter' }}>{value.description}</p>

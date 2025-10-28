@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
                                 <Link href="/quem-somos" className={`transition ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'}`}>Quem somos</Link>
                                 <Link href="/areas-de-atuacao" className={`transition ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'}`}>Atuação</Link>
                                 <Link href="/metodologia" className={`transition ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'}`}>Metodologia</Link>
-                                <Link href="/obras" className={`transition ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'}`}>Obras</Link>
+                                <Link href="/obras" className={`transition ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'}`}>Nossas Obras</Link>
                                 <Link href="/trabalhe-conosco" className={`inline-flex items-center gap-2 transition ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'}`}>
                                     <span>Trabalhe conosco</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={`h-4 w-4 ${isScrolled ? 'text-amber-500' : 'text-amber-400'}`}><path d="m9 18 6-6-6-6"></path></svg>

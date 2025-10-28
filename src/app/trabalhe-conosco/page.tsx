@@ -66,7 +66,7 @@ export default async function TrabalheConoscoPage() {
             </h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {benefits.map((benefit: any, index: number) => {
+              {benefits.map((benefit: { icon?: string; title: string; description: string }, index: number) => {
                 const IconComponent = iconMap[benefit.icon as keyof typeof iconMap] || Users;
                 return (
                   <div
