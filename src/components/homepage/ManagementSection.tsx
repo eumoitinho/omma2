@@ -51,45 +51,38 @@ export default function ManagementSection({ data }: ManagementSectionProps) {
           <div className="order-2 lg:order-1">
             <div className="grid grid-cols-6 sm:grid-cols-12 gap-4 sm:gap-6">
               <div className="col-span-6 sm:col-span-8">
-                <div className="aspect-[470/419] w-full overflow-hidden rounded-3xl ring-1 ring-gray-200 bg-white/90">
-                  {data.images && data.images[0] ? (
-                    <Image
-                      src={urlFor(data.images[0]).url()}
-                      alt="Ambiente corporativo"
-                      fill
-                      className="object-cover"
-                    />
-                  ) : (
-                    <Image src="/6 AMBIENTES REFINADOS2.JPG" alt="Ambiente corporativo" fill className="object-cover" unoptimized />
-                  )}
+                <div className="relative aspect-[470/419] w-full overflow-hidden rounded-3xl ring-1 ring-gray-200 bg-white/90">
+                        <Image
+                        src={data.images && data.images[0] ? urlFor(data.images[0]).url() : '/6 AMBIENTES REFINADOS2.JPG'}
+                        alt="Ambiente corporativo"
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
                 </div>
               </div>
               <div className="col-span-6 sm:col-span-4">
-                <div className="aspect-[326/289] w-full overflow-hidden rounded-3xl ring-1 ring-gray-200 bg-white/90">
-                  {data.images && data.images[1] ? (
+                <div className="relative aspect-[326/289] w-full overflow-hidden rounded-3xl ring-1 ring-gray-200 bg-white/90">
+        
                     <Image
-                      src={urlFor(data.images[1]).url()}
+                      src={data.images && data.images[1] ? urlFor(data.images[1]).url() : '/7 AMBIENTE CONVENIENTE.JPG'}
                       alt="Ambiente corporativo" 
                       fill
                       className="object-cover"
+                      unoptimized
                     />
-                  ) : (
-                    <Image src="/7 ESPAÇOS ESCALAVEIS2.JPG" alt="Ambiente corporativo" fill className="object-cover" unoptimized />
-                  )}
+                  
                 </div>
               </div>
               <div className="col-span-6 sm:col-span-5 sm:col-start-5">
-                <div className="aspect-square w-full overflow-hidden rounded-3xl ring-1 ring-gray-200 bg-white/90">
-                  {data.images && data.images[2] ? (
+                <div className="relative aspect-square w-full overflow-hidden rounded-3xl ring-1 ring-gray-200 bg-white/90">
                     <Image
-                      src={urlFor(data.images[2]).url()}
+                      src={data.images && data.images[2] ? urlFor(data.images[2]).url() : '/10 ESPAÇOS ATRATATIVOS.JPG'}
                       alt="Ambiente corporativo"
                       fill
                       className="object-cover"
-                    />
-                  ) : (
-                    <Image src="/10 ESPAÇOS ATRATATIVOS.JPG" alt="Ambiente corporativo" fill className="object-cover" unoptimized />
-                  )}
+                      unoptimized
+            />
                 </div>
               </div>
             </div>
