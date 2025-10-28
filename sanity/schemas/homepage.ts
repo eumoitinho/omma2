@@ -96,6 +96,19 @@ export default defineType({
           of: [{ type: 'string' }],
         },
         {
+          name: 'images',
+          title: 'Imagens',
+          type: 'array',
+          of: [
+            {
+              type: 'image',
+              options: { hotspot: true },
+            },
+          ],
+          validation: (Rule: any) => Rule.max(3).min(3),
+          description: 'Adicione exatamente 3 imagens para o grid',
+        },
+        {
           name: 'ctaText',
           title: 'Texto do CTA',
           type: 'string',
