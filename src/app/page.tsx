@@ -1,5 +1,5 @@
 import React from 'react';
-import { getHomepageData } from '@/lib/sanity';
+import { getHomepageData, getObrasData } from '@/lib/sanity';
 import HeroSection from '@/components/homepage/HeroSection';
 import StatsSection from '@/components/homepage/StatsSection';
 import ManagementSection from '@/components/homepage/ManagementSection';
@@ -15,6 +15,7 @@ export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function HomePage() {
     const data = await getHomepageData();
+    const obras = await getObrasData();
 
     if (!data) {
         return (
@@ -35,7 +36,15 @@ export default async function HomePage() {
             <MethodologySection data={data.methodologySection} />
             <ArchitectsSection data={data.architectsSection} />
             <AboutSection data={data.aboutSection} />
-            <PortfolioSection data={data.portfolioSection} />
+            <PortfolioSection
+              data={{
+                title: data.portfolioSection.title,
+                subtitle: data.portfolioSection.subtitle,
+                ctaText: data.portfolioSection.ctaText,
+                ctaLink: data.portfolioSection.ctaLink,
+                projects: obras.projects,
+              }}
+            />
         </>
     );
 }

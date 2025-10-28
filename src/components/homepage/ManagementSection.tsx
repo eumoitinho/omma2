@@ -65,7 +65,7 @@ export default function ManagementSection({ data }: ManagementSectionProps) {
                 <div className="relative aspect-[326/289] w-full overflow-hidden rounded-3xl ring-1 ring-gray-200 bg-white/90">
         
                     <Image
-                      src={data.images && data.images[1] ? urlFor(data.images[1]).url() : '/7 AMBIENTE CONVENIENTE.JPG'}
+                      src={data.images && data.images[1] ? urlFor(data.images[1]).url() : '/7 ESPACOS ESCALAVEIS2.JPG'}
                       alt="Ambiente corporativo" 
                       fill
                       className="object-cover"
