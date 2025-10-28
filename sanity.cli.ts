@@ -6,7 +6,4 @@ export default defineCliConfig({
     dataset: 'production',
   },
   studioHost: 'omma-engenharia',
-  deployment: {
-    appId: 'e839qmmz41je6m4j06hpvg5a',
-  },
 });
