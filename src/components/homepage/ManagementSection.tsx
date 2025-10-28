@@ -69,7 +69,7 @@ export default function ManagementSection({ data }: ManagementSectionProps) {
                   {data.images && data.images[1] ? (
                     <Image
                       src={urlFor(data.images[1]).url()}
-                      alt="Ambiente corporativo"
+                      alt="Ambiente corporativo" 
                       fill
                       className="object-cover"
                     />
