@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { urlFor } from '@/lib/sanity';
 import type { SanityImage } from '@/types/sanity';
 
@@ -111,11 +112,13 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
         >
           <div className="relative h-[480px] sm:h-[560px] md:h-[620px]">
             {/* Slide image */}
-            <img
+            <Image
               src={thumbnailUrl}
               alt={currentProject.title}
-              className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-[1.04]"
-              loading="lazy"
+              fill
+              className="object-cover transition-transform duration-[1400ms] group-hover:scale-[1.04]"
+              priority
+              unoptimized={thumbnailUrl.startsWith('/')}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/85 group-hover:to-black/90 transition-all duration-500" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent opacity-80 pointer-events-none" style={{clipPath: 'polygon(0 70%, 100% 70%, 100% 100%, 0 100%)'}} />
@@ -268,11 +271,13 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {selectedProject.gallery.map((image: string, index: number) => (
                     <div key={index} className="relative aspect-video rounded-lg overflow-hidden border border-gray-200">
-                      <img 
+                      <Image 
                         src={image} 
                         alt={`${selectedProject.title} - Imagem ${index + 1}`}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
                         loading="lazy"
+                        unoptimized
                       />
                     </div>
                   ))}

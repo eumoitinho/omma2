@@ -60,7 +60,7 @@ export default function ManagementSection({ data }: ManagementSectionProps) {
                       className="object-cover"
                     />
                   ) : (
-                    <img src="/6 AMBIENTES REFINADOS2.JPG" alt="Ambiente corporativo" className="w-full h-full object-cover" />
+                    <Image src="/6 AMBIENTES REFINADOS2.JPG" alt="Ambiente corporativo" fill className="object-cover" unoptimized />
                   )}
                 </div>
               </div>
@@ -74,7 +74,7 @@ export default function ManagementSection({ data }: ManagementSectionProps) {
                       className="object-cover"
                     />
                   ) : (
-                    <img src="/7 ESPAÇOS ESCALAVEIS2.JPG" alt="Ambiente corporativo" className="h-full w-full object-cover" />
+                    <Image src="/7 ESPAÇOS ESCALAVEIS2.JPG" alt="Ambiente corporativo" fill className="object-cover" unoptimized />
                   )}
                 </div>
               </div>
@@ -88,7 +88,7 @@ export default function ManagementSection({ data }: ManagementSectionProps) {
                       className="object-cover"
                     />
                   ) : (
-                    <img src="/10 ESPAÇOS ATRATATIVOS.JPG" alt="Ambiente corporativo" className="h-full w-full object-cover" />
+                    <Image src="/10 ESPAÇOS ATRATATIVOS.JPG" alt="Ambiente corporativo" fill className="object-cover" unoptimized />
                   )}
                 </div>
               </div>
