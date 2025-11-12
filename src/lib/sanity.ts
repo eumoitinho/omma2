@@ -255,7 +255,7 @@ export async function getObrasData() {
   }, index: number) => {
     // Usar first image from localImages se disponível
     const thumbnail = project.localImages?.[0] || project.fallbackImage || '';
-    
+
     return {
       _id: String(index + 1),
       slug: `project-${index + 1}`,
@@ -275,4 +275,142 @@ export async function getObrasData() {
     subtitle: 'Conheça nosso portfólio de projetos realizados com excelência e compromisso',
     projects,
   };
+}
+
+// Blog functions
+export async function getAllBlogPosts() {
+  return client.fetch(`
+    *[_type == "blogPost"] | order(publishedAt desc) {
+      _id,
+      title,
+      slug,
+      author,
+      publishedAt,
+      excerpt,
+      mainImage {
+        asset->{_id, url},
+        alt
+      },
+      categories[]->{
+        _id,
+        title,
+        slug,
+        color
+      },
+      tags,
+      featured,
+      readingTime
+    }
+  `);
+}
+
+export async function getFeaturedBlogPosts(limit = 3) {
+  return client.fetch(`
+    *[_type == "blogPost" && featured == true] | order(publishedAt desc) [0...${limit}] {
+      _id,
+      title,
+      slug,
+      author,
+      publishedAt,
+      excerpt,
+      mainImage {
+        asset->{_id, url},
+        alt
+      },
+      categories[]->{
+        _id,
+        title,
+        slug,
+        color
+      },
+      tags,
+      readingTime
+    }
+  `);
+}
+
+export async function getBlogPostBySlug(slug: string) {
+  return client.fetch(
+    `
+    *[_type == "blogPost" && slug.current == $slug][0] {
+      _id,
+      title,
+      slug,
+      author,
+      publishedAt,
+      excerpt,
+      mainImage {
+        asset->{_id, url},
+        alt
+      },
+      categories[]->{
+        _id,
+        title,
+        slug,
+        color
+      },
+      tags,
+      body,
+      seo,
+      featured,
+      readingTime
+    }
+  `,
+    { slug }
+  );
+}
+
+export async function getBlogPostsByCategory(categorySlug: string) {
+  return client.fetch(
+    `
+    *[_type == "blogPost" && references(*[_type == "blogCategory" && slug.current == $categorySlug]._id)] | order(publishedAt desc) {
+      _id,
+      title,
+      slug,
+      author,
+      publishedAt,
+      excerpt,
+      mainImage {
+        asset->{_id, url},
+        alt
+      },
+      categories[]->{
+        _id,
+        title,
+        slug,
+        color
+      },
+      tags,
+      readingTime
+    }
+  `,
+    { categorySlug }
+  );
+}
+
+export async function getAllBlogCategories() {
+  return client.fetch(`
+    *[_type == "blogCategory"] | order(title asc) {
+      _id,
+      title,
+      slug,
+      description,
+      color
+    }
+  `);
+}
+
+export async function getBlogCategoryBySlug(slug: string) {
+  return client.fetch(
+    `
+    *[_type == "blogCategory" && slug.current == $slug][0] {
+      _id,
+      title,
+      slug,
+      description,
+      color
+    }
+  `,
+    { slug }
+  );
 }
