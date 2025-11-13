@@ -40,8 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <div className="absolute -top-[20%] -left-[10%] h-[40rem] w-[40rem] rounded-full bg-amber-400/8 blur-[160px]" />
                     <div className="absolute -bottom-[10%] -right-[10%] h-[36rem] w-[36rem] rounded-full bg-blue-400/5 blur-[140px]" />
                 </div>
-                {/* Feedback widget (client-only) */}
-                <ClientFeedbackWidget />
+              
                 <script async type="text/javascript" src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/69c4f434-0cd5-40c9-895e-c70ffc37e85c-loader.js"></script>
                 <Navbar />
                 <main>{children}</main>

@@ -149,21 +149,22 @@ export default defineType({
             },
           ],
         },
-        {
-          type: 'code',
-          title: 'Bloco de Código',
-          options: {
-            language: 'javascript',
-            languageAlternatives: [
-              { title: 'JavaScript', value: 'javascript' },
-              { title: 'TypeScript', value: 'typescript' },
-              { title: 'HTML', value: 'html' },
-              { title: 'CSS', value: 'css' },
-              { title: 'Python', value: 'python' },
-              { title: 'JSON', value: 'json' },
-            ],
-          },
-        },
+        // Temporariamente desabilitado - requer plugin @sanity/code-input
+        // {
+        //   type: 'code',
+        //   title: 'Bloco de Código',
+        //   options: {
+        //     language: 'javascript',
+        //     languageAlternatives: [
+        //       { title: 'JavaScript', value: 'javascript' },
+        //       { title: 'TypeScript', value: 'typescript' },
+        //       { title: 'HTML', value: 'html' },
+        //       { title: 'CSS', value: 'css' },
+        //       { title: 'Python', value: 'python' },
+        //       { title: 'JSON', value: 'json' },
+        //     ],
+        //   },
+        // },
       ],
       validation: (Rule) => Rule.required(),
     }),

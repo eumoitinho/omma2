@@ -61,22 +61,30 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
     });
   }, [len]);
 
-  // Auto-advance every 5 seconds
+  // Auto-advance every 5 seconds (paused when modal is open)
   useEffect(() => {
-    if (len <= 1) return;
+    if (len <= 1 || isModalOpen) return;
     const id = setTimeout(next, 5000);
     return () => clearTimeout(id);
-  }, [idx, next, len]);
+  }, [idx, next, len, isModalOpen]);
 
   // Keyboard accessibility
   useEffect(() => {
     const handle = (e: KeyboardEvent) => {
+      if (isModalOpen) {
+        // Close modal with ESC key
+        if (e.key === 'Escape') {
+          setIsModalOpen(false);
+        }
+        return;
+      }
+      // Navigate carousel with arrow keys
       if (e.key === 'ArrowLeft') prev();
       if (e.key === 'ArrowRight') next();
     };
     window.addEventListener('keydown', handle);
     return () => window.removeEventListener('keydown', handle);
-  }, [prev, next]);
+  }, [prev, next, isModalOpen]);
 
   if (!data || !data.projects || data.projects.length === 0) return null;
 
@@ -164,7 +172,8 @@ export default function PortfolioSection({ data }: PortfolioSectionProps) {
                       </svg>
                     </button>
                     <button
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setSelectedProject(currentProject);
                         setIsModalOpen(true);
                       }}
