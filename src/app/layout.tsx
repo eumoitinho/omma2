@@ -4,7 +4,6 @@ import Footer from '../components/layout/Footer';
 import './globals.css';
 import GTMProvider from '@/components/GTMProvider';
 import ConsentBanner from '@/components/ConsentBanner';
-import ClientFeedbackWidget from '@/components/ClientFeedbackWidget';
 
 export const metadata = {
     title: 'OMMA Engenharia — Hero + Second Section',

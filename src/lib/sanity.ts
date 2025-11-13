@@ -69,7 +69,7 @@ export async function getHomepageData() {
     sectorsSection: {
       title: rawData.sectorsSection?.title || 'Expertise NEOOMA em diversos setores',
       subtitle: rawData.sectorsSection?.subtitle,
-      sectors: rawData.sectorsSection?.sectors?.map((sector: { title: string; description: string; image?: { asset?: { url?: string } } }) => ({
+      sectors: rawData.sectorsSection?.sectors?.map((sector: { title: string; description: string; image?: { asset?: { url?: string } } }): { title: string; description: string; imageUrl?: string } => ({
         title: sector.title,
         description: sector.description,
         imageUrl: sector.image?.asset?.url,
@@ -164,7 +164,7 @@ export async function getHomepageData() {
       title: rawData.aboutSection?.title,
       subtitle: rawData.aboutSection?.subtitle,
       description: rawData.aboutSection?.description,
-      images: rawData.aboutSection?.images?.map((img: { asset?: { _id: string; url: string } }) => img.asset) || [],
+      images: rawData.aboutSection?.images?.map((img: { asset?: { _id: string; url: string } }): { _id: string; url: string } | undefined => img.asset) || [],
       ctaText: rawData.aboutSection?.ctaText,
       ctaLink: rawData.aboutSection?.ctaLink,
     },
