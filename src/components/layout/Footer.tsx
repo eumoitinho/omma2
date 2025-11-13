@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { Mail, Phone, MapPin, Instagram, Linkedin, Facebook } from 'lucide-react';
-import { getSiteSettings } from '@/lib/sanity';
+import { getSiteSettings, getFooterData } from '@/lib/sanity';
 import Link from 'next/link';
 
 interface SiteSettings {
@@ -19,13 +19,27 @@ interface SiteSettings {
   };
 }
 
+interface FooterData {
+  quickLinksTitle?: string;
+  links?: Array<{ text: string; url: string }>;
+  contactTitle?: string;
+  contactEmail?: string;
+  contactPhone?: string;
+  addressTitle?: string;
+  address?: string;
+  copyrightText?: string;
+  legalLinks?: Array<{ text: string; url: string }>;
+}
+
 const Footer: React.FC = () => {
     const pathname = usePathname();
     const [settings, setSettings] = useState<SiteSettings | null>(null);
+    const [footerData, setFooterData] = useState<FooterData | null>(null);
     const year = new Date().getFullYear();
 
     useEffect(() => {
         getSiteSettings().then(setSettings);
+        getFooterData().then(setFooterData);
     }, []);
 
     if (pathname?.startsWith('/lp') || pathname?.startsWith('/studio')) return null;
@@ -90,31 +104,53 @@ const Footer: React.FC = () => {
 
                     {/* Links Rápidos */}
                     <div>
-                        <h5 className="text-lg font-bold mb-6 text-white" style={{ fontFamily: 'Exo, Inter' }}>Links Rápidos</h5>
+                        <h5 className="text-lg font-bold mb-6 text-white" style={{ fontFamily: 'Exo, Inter' }}>
+                            {footerData?.quickLinksTitle || 'Links Rápidos'}
+                        </h5>
                         <ul className="space-y-3 text-base" style={{ fontFamily: 'Inter' }}>
-                            <li><Link href="/" className="text-gray-400 hover:text-amber-400 transition">Home</Link></li>
-                            <li><Link href="/quem-somos" className="text-gray-400 hover:text-amber-400 transition">Quem Somos</Link></li>
-                            <li><Link href="/areas-de-atuacao" className="text-gray-400 hover:text-amber-400 transition">Áreas de Atuação</Link></li>
-                            <li><Link href="/metodologia" className="text-gray-400 hover:text-amber-400 transition">Metodologia</Link></li>
-                            <li><Link href="/obras" className="text-gray-400 hover:text-amber-400 transition">Nossas Obras</Link></li>
-                            <li><Link href="/trabalhe-conosco" className="text-gray-400 hover:text-amber-400 transition">Trabalhe Conosco</Link></li>
+                            {footerData?.links && footerData.links.length > 0 ? (
+                                footerData.links.map((link, index) => (
+                                    <li key={index}>
+                                        <Link href={link.url} className="text-gray-400 hover:text-amber-400 transition">
+                                            {link.text}
+                                        </Link>
+                                    </li>
+                                ))
+                            ) : (
+                                <>
+                                    <li><Link href="/" className="text-gray-400 hover:text-amber-400 transition">Home</Link></li>
+                                    <li><Link href="/quem-somos" className="text-gray-400 hover:text-amber-400 transition">Quem Somos</Link></li>
+                                    <li><Link href="/areas-de-atuacao" className="text-gray-400 hover:text-amber-400 transition">Áreas de Atuação</Link></li>
+                                    <li><Link href="/metodologia" className="text-gray-400 hover:text-amber-400 transition">Metodologia</Link></li>
+                                    <li><Link href="/obras" className="text-gray-400 hover:text-amber-400 transition">Nossas Obras</Link></li>
+                                    <li><Link href="/trabalhe-conosco" className="text-gray-400 hover:text-amber-400 transition">Trabalhe Conosco</Link></li>
+                                </>
+                            )}
                         </ul>
                     </div>
 
                     {/* Contato */}
                     <div>
-                        <h5 className="text-lg font-bold mb-6 text-white" style={{ fontFamily: 'Exo, Inter' }}>Contato</h5>
+                        <h5 className="text-lg font-bold mb-6 text-white" style={{ fontFamily: 'Exo, Inter' }}>
+                            {footerData?.contactTitle || 'Contato'}
+                        </h5>
                         <ul className="space-y-4 text-base" style={{ fontFamily: 'Inter' }}>
                             <li className="flex items-start gap-3">
                                 <Mail className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
-                                <a href="mailto:contato@omma.com.br" className="text-gray-400 hover:text-amber-400 transition">
-                                    contato@omma.com.br
+                                <a
+                                    href={`mailto:${footerData?.contactEmail || 'contato@omma.com.br'}`}
+                                    className="text-gray-400 hover:text-amber-400 transition"
+                                >
+                                    {footerData?.contactEmail || 'contato@omma.com.br'}
                                 </a>
                             </li>
                             <li className="flex items-start gap-3">
                                 <Phone className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
-                                <a href="tel:+551130562340" className="text-gray-400 hover:text-amber-400 transition">
-                                    +55 11 3056 2340
+                                <a
+                                    href={`tel:${(footerData?.contactPhone || '+551130562340').replace(/\s/g, '')}`}
+                                    className="text-gray-400 hover:text-amber-400 transition"
+                                >
+                                    {footerData?.contactPhone || '+55 11 3056 2340'}
                                 </a>
                             </li>
                         </ul>
@@ -122,14 +158,27 @@ const Footer: React.FC = () => {
 
                     {/* Endereço */}
                     <div>
-                        <h5 className="text-lg font-bold mb-6 text-white" style={{ fontFamily: 'Exo, Inter' }}>Endereço</h5>
+                        <h5 className="text-lg font-bold mb-6 text-white" style={{ fontFamily: 'Exo, Inter' }}>
+                            {footerData?.addressTitle || 'Endereço'}
+                        </h5>
                         <div className="flex items-start gap-3 text-base" style={{ fontFamily: 'Inter' }}>
                             <MapPin className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
                             <address className="not-italic text-gray-400 leading-relaxed">
-                                Avenida Dr. Cardoso de Melo, 1666<br />
-                                2º andar, Vila Olímpia<br />
-                                São Paulo/SP<br />
-                                CEP 04546-005
+                                {footerData?.address ? (
+                                    footerData.address.split('\n').map((line, index) => (
+                                        <React.Fragment key={index}>
+                                            {line}
+                                            {index < footerData.address!.split('\n').length - 1 && <br />}
+                                        </React.Fragment>
+                                    ))
+                                ) : (
+                                    <>
+                                        Avenida Dr. Cardoso de Melo, 1666<br />
+                                        2º andar, Vila Olímpia<br />
+                                        São Paulo/SP<br />
+                                        CEP 04546-005
+                                    </>
+                                )}
                             </address>
                         </div>
                     </div>
@@ -140,10 +189,22 @@ const Footer: React.FC = () => {
             <div className="relative border-t border-white/10">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8 py-6">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500" style={{ fontFamily: 'Inter' }}>
-                        <span>© {year} OMMA Engenharia. Todos os direitos reservados.</span>
+                        <span>
+                            {footerData?.copyrightText || `© ${year} OMMA Engenharia. Todos os direitos reservados.`}
+                        </span>
                         <div className="flex gap-6">
-                            <Link href="/politica-privacidade" className="hover:text-amber-400 transition">Política de Privacidade</Link>
-                            <Link href="/termos-uso" className="hover:text-amber-400 transition">Termos de Uso</Link>
+                            {footerData?.legalLinks && footerData.legalLinks.length > 0 ? (
+                                footerData.legalLinks.map((link, index) => (
+                                    <Link key={index} href={link.url} className="hover:text-amber-400 transition">
+                                        {link.text}
+                                    </Link>
+                                ))
+                            ) : (
+                                <>
+                                    <Link href="/politica-privacidade" className="hover:text-amber-400 transition">Política de Privacidade</Link>
+                                    <Link href="/termos-uso" className="hover:text-amber-400 transition">Termos de Uso</Link>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -9,6 +9,8 @@ import trabalheConosco from './trabalheConosco';
 import contato from './contato';
 import navbar from './navbar';
 import footer from './footer';
+import blogCategory from './blogCategory';
+import blogPost from './blogPost';
 
 export const schemaTypes = [
   // Site Settings
@@ -24,4 +26,8 @@ export const schemaTypes = [
   obrasRealizadas,
   trabalheConosco,
   contato,
+
+  // Blog
+  blogCategory,
+  blogPost,
 ];
