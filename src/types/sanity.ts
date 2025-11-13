@@ -70,6 +70,13 @@ export interface Step {
   steps?: string[];
 }
 
+export interface MetodologiaPhase {
+  _key?: string;
+  phase: string;
+  title: string;
+  items: string[];
+}
+
 export interface ContactInfo {
   address: string;
   phone: string;
@@ -114,16 +121,13 @@ export interface AreaAtuacao {
 }
 
 export interface MetodologiaData {
-  hero: Hero;
-  processTitle: string;
-  processDescription: string;
-  phases: Step[];
-  benefitsTitle: string;
-  benefits: Array<{
-    _key: string;
-    title: string;
-    description: string;
-  }>;
+  heroTitle?: string;
+  heroImage?: SanityImage;
+  subtitle?: string;
+  ctaTitle?: string;
+  ctaDescription?: string;
+  ctaButtonText?: string;
+  phases: MetodologiaPhase[];
 }
 
 export interface Project {

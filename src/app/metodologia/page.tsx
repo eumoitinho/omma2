@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { getMetodologiaData, urlFor } from '@/lib/sanity';
-import type { Step } from '@/types/sanity';
+import type { MetodologiaPhase } from '@/types/sanity';
 
 export const revalidate = 60;
 
@@ -53,7 +53,7 @@ export default async function MetodologiaPage() {
       <section className="py-12 border-t border-gray-200 relative overflow-hidden bg-white">
         <div className="relative mx-auto max-w-7xl px-6">
           <div className="relative mt-8 grid md:grid-cols-4 gap-6">
-            {phases.map((step: Step) => (
+            {phases.map((step: MetodologiaPhase) => (
               <div
                 key={step.phase || step.title}
                 className="relative rounded-2xl bg-white p-5 text-neutral-900 shadow-[0_0_40px_rgba(250,204,21,0.12)] ring-1 ring-gray-200 hover:ring-amber-400/40 transition-all"
