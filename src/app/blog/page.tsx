@@ -55,7 +55,7 @@ export default async function BlogPage() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
               style={{ fontFamily: 'Exo, Inter' }}
             >
-              Blog OMMA
+              Blog
             </h1>
             <p
               className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"
