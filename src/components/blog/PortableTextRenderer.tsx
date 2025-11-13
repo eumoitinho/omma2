@@ -2,8 +2,39 @@ import React from 'react';
 import Image from 'next/image';
 import { urlFor } from '@/lib/sanity';
 
+interface PortableTextBlock {
+  _type: string;
+  _key?: string;
+  style?: string;
+  listItem?: string;
+  children?: PortableTextChild[];
+  markDefs?: MarkDef[];
+  asset?: {
+    _ref: string;
+    _type: string;
+  };
+  alt?: string;
+  caption?: string;
+  code?: string;
+  language?: string;
+}
+
+interface PortableTextChild {
+  _type: string;
+  _key?: string;
+  text: string;
+  marks?: string[];
+}
+
+interface MarkDef {
+  _key: string;
+  _type: string;
+  href?: string;
+  blank?: boolean;
+}
+
 interface PortableTextProps {
-  content: any[];
+  content: PortableTextBlock[];
 }
 
 export default function PortableTextRenderer({ content }: PortableTextProps) {
@@ -31,11 +62,11 @@ export default function PortableTextRenderer({ content }: PortableTextProps) {
   );
 }
 
-function BlockRenderer({ block }: { block: any }) {
+function BlockRenderer({ block }: { block: PortableTextBlock }) {
   const style = block.style || 'normal';
 
   // Render children (text with marks)
-  const children = block.children?.map((child: any, idx: number) => {
+  const children = block.children?.map((child: PortableTextChild, idx: number) => {
     if (child._type !== 'span') return null;
 
     const text = child.text;
@@ -61,7 +92,7 @@ function BlockRenderer({ block }: { block: any }) {
 
       // Handle link annotation
       const linkMark = block.markDefs?.find(
-        (def: any) => child.marks.includes(def._key) && def._type === 'link'
+        (def: MarkDef) => child.marks?.includes(def._key) && def._type === 'link'
       );
       if (linkMark) {
         element = (
@@ -154,7 +185,7 @@ function BlockRenderer({ block }: { block: any }) {
   }
 }
 
-function ImageRenderer({ block }: { block: any }) {
+function ImageRenderer({ block }: { block: PortableTextBlock }) {
   if (!block.asset) return null;
 
   const imageUrl = urlFor(block.asset).width(1200).url();
@@ -182,7 +213,7 @@ function ImageRenderer({ block }: { block: any }) {
   );
 }
 
-function CodeRenderer({ block }: { block: any }) {
+function CodeRenderer({ block }: { block: PortableTextBlock }) {
   return (
     <pre className="bg-gray-900 text-gray-100 rounded-xl p-6 my-6 overflow-x-auto">
       <code className="text-sm font-mono" style={{ fontFamily: 'monospace' }}>
