@@ -1,6 +1,6 @@
-'use client';
+"use client";
 import React, { useState } from 'react';
-import Image from 'next/image';
+import ImageWithFallback from '@/components/shared/ImageWithFallback';
 import Link from 'next/link';
 import { urlFor } from '@/lib/sanity';
 import type { SanityImage } from '@/types/sanity';
@@ -87,7 +87,7 @@ export default function ObrasGallery({ data }: ObrasGalleryProps) {
               {/* Large Image */}
               <div className="relative aspect-[16/10] overflow-hidden">
                 {project.thumbnail ? (
-                  <Image
+                  <ImageWithFallback
                     src={typeof project.thumbnail === 'string' ? project.thumbnail : urlFor(project.thumbnail).url()}
                     alt={project.title}
                     fill
