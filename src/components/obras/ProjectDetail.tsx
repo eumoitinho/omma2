@@ -1,6 +1,6 @@
-'use client';
+"use client";
 import React, { useState } from 'react';
-import Image from 'next/image';
+import ImageWithFallback from '@/components/shared/ImageWithFallback';
 import Link from 'next/link';
 import { ArrowLeft, MapPin, Maximize2, X } from 'lucide-react';
 
@@ -89,7 +89,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
             {/* Main image */}
             <div className="relative">
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-amber-400/10">
-                <Image
+                <ImageWithFallback
                   src={project.thumbnail}
                   alt={project.title}
                   fill
@@ -116,7 +116,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                 onClick={() => setSelectedImage(index)}
                 className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-amber-400/40 transition-all duration-300 cursor-pointer"
               >
-                <Image
+                <ImageWithFallback
                   src={image}
                   alt={`${project.client} - Foto ${index + 1}`}
                   fill
@@ -185,7 +185,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
 
           {/* Image */}
           <div className="relative w-full h-full max-w-6xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-            <Image
+            <ImageWithFallback
               src={project.gallery[selectedImage]}
               alt={`${project.client} - Foto ${selectedImage + 1}`}
               fill
