@@ -244,7 +244,9 @@ export function getLocalProjects(): LocalProject[] {
 
         if (files.length > 0) {
           projectName = subDir;
-          images = files.map(file => `/projetos/${folder}/${subDir}/${file}`);
+          images = files.map(file =>
+            `/projetos/${encodeURIComponent(folder)}/${encodeURIComponent(subDir)}/${encodeURIComponent(file)}`
+          );
           break;
         }
       }
