@@ -13,18 +13,13 @@ export default function ImageWithFallback({ src, alt, className, ...rest }: Next
 
   if (errored) {
     return (
-      // fallback to native img for problematic sources
-      // parent containers usually set sizing (aspect, relative), so w-full/h-full helps fit
-      // eslint-disable-next-line @next/next/no-img-element
       <img src={src} alt={alt} className={`${className ?? ''} w-full h-full object-cover`} />
     );
   }
 
   return (
-    // Use Next/Image normally and switch to fallback on error
-    // @ts-ignore - forwarding props like 'fill' can be typed broadly via NextImageProps
     <Image
-      {...(rest as any)}
+      {...rest}
       src={src}
       alt={alt}
       className={className}
