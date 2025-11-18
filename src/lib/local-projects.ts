@@ -19,32 +19,32 @@ export interface LocalProject {
 // Mapeamento de nomes de projetos para dados estruturados
 const projectMetadata: Record<string, Partial<LocalProject>> = {
   '1.ROJEMAC': {
-    title: 'Novo escritório e showroom',
-    category: 'Geral',
-    location: 'São Paulo',
-    area: '3.000m²',
+    title: 'Novo escritório e showroom (Projeto Turnkey)',
+    category: 'Ambientes Corporativos',
+    location: 'Barra Funda – São Paulo',
+    area: '3000m²',
     year: '2024',
     description: 'Implantação de dois andares do novo escritório da empresa + um andar dedicado ao showroom com área de eventos e cozinha.'
   },
   '2.AUTODOC': {
-    title: 'Novo escritório (Projeto Turnkey)',
-    category: 'Geral',
-    location: 'São Paulo',
+    title: 'Implantação de novo escritório (Projeto Turnkey)',
+    category: 'Ambientes Corporativos',
+    location: 'Morumbi – São Paulo',
     area: '725m²',
     year: '2024',
     description: 'Implantação do novo escritório de empresa de tecnologia em edifício Triple A. Ocupação híbrida com 145 colaboradores.'
   },
   '3.THOR': {
     title: 'Funcionalidade (Projeto Turnkey)',
-    category: 'Geral',
-    location: 'São Paulo',
+    category: 'Ambientes Corporativos',
+    location: 'Alphaville – São Paulo',
     area: '230m²',
     year: '2024',
     description: 'Implantação do novo escritório de empresa química onde a funcionalidade era o principal desejo do cliente.'
   },
   '4.SAO CARLOS': {
     title: 'Open Space',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'Paulista – São Paulo',
     area: '230m²',
     year: '2024',
@@ -52,7 +52,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '5.MELHORAMENTOS': {
     title: 'Tradição e Modernidade (Projeto Turnkey)',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'Pinheiro – São Paulo',
     area: '3.500m²',
     year: '2023',
@@ -60,7 +60,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '6.DECATHLON': {
     title: 'Versatilidade',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'São Paulo',
     area: '',
     year: '2023',
@@ -68,7 +68,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '7.AMBEV AC': {
     title: 'Identidade e Cultura Corporativa',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'São Paulo',
     area: '',
     year: '2023',
@@ -76,7 +76,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '8.AMBEV RPO': {
     title: 'Identidade',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'Ribeirão Preto - São Paulo',
     area: '',
     year: '2023',
@@ -84,7 +84,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '9.MERCADO ELETRÔNICO': {
     title: 'Novo escritório',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'São Paulo',
     area: '',
     year: '2023',
@@ -92,7 +92,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '11.ONOFRE': {
     title: 'Charme e elegância',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'São Paulo',
     area: '',
     year: '2022',
@@ -100,7 +100,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '12.IASP': {
     title: 'Novo escritório',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'São Paulo',
     area: '',
     year: '2022',
@@ -108,7 +108,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '13.ORTHO': {
     title: 'Áreas de atendimentos',
-    category: 'Geral',
+    category: 'Clínicas e Laboratórios',
     location: 'São Paulo',
     area: '',
     year: '2022',
@@ -116,7 +116,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '14.CIP CEA': {
     title: 'Área de staff',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'São Paulo',
     area: '',
     year: '2022',
@@ -124,7 +124,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '15.DASA': {
     title: 'Ambiente funcional',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'São Paulo',
     area: '',
     year: '2022',
@@ -132,7 +132,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '16.DPSP': {
     title: 'Espaços funcionais',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'São Paulo',
     area: '',
     year: '2021',
@@ -140,7 +140,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '17.FIAT': {
     title: 'Espaços descontraídos',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'São Paulo',
     area: '',
     year: '2021',
@@ -148,7 +148,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '18.REED': {
     title: 'Cores da marca',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'São Paulo',
     area: '',
     year: '2021',
@@ -156,7 +156,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   '19.STOCHE FORBES': {
     title: 'Luminosidade (Projeto Turnkey)',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'Faria Lima – São Paulo',
     area: '230m²',
     year: '2021',
@@ -164,7 +164,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   'CAREPLUS': {
     title: 'Modernidade',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'São Carlos – São Paulo',
     area: '750m²',
     year: '2020',
@@ -172,7 +172,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   'GAVIOES': {
     title: 'Nova unidade',
-    category: 'Geral',
+    category: 'Academias',
     location: 'Itapevi – São Paulo',
     area: '1230m²',
     year: '2020',
@@ -180,7 +180,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   'Movile': {
     title: 'Descompressão e criatividade',
-    category: 'Geral',
+    category: 'Startups & Scale-Ups',
     location: 'Rio de Janeiro',
     area: '1000m²',
     year: '2020',
@@ -188,7 +188,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   'PETZ': {
     title: 'Nova Unidade',
-    category: 'Geral',
+    category: 'Edificações Comerciais',
     location: 'Jaçanã – São Paulo',
     area: '',
     year: '2019',
@@ -196,7 +196,7 @@ const projectMetadata: Record<string, Partial<LocalProject>> = {
   },
   'ZOOP RJ': {
     title: 'Novo escritório',
-    category: 'Geral',
+    category: 'Ambientes Corporativos',
     location: 'São Paulo',
     area: '',
     year: '2019',
