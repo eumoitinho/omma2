@@ -19,188 +19,188 @@ export interface LocalProject {
 // Mapeamento de nomes de projetos para dados estruturados
 const projectMetadata: Record<string, Partial<LocalProject>> = {
   '1.ROJEMAC': {
-    title: 'ROJEMAC',
-    category: 'Comercial',
-    location: 'São Paulo, SP',
-    area: '1.200 m²',
+    title: 'Novo escritório e showroom',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '3.000m²',
     year: '2024',
-    description: 'Projeto comercial de alta complexidade'
+    description: 'Implantação de dois andares do novo escritório da empresa + um andar dedicado ao showroom com área de eventos e cozinha.'
   },
   '2.AUTODOC': {
-    title: 'AUTODOC',
-    category: 'Comercial',
-    location: 'São Paulo, SP',
-    area: '800 m²',
+    title: 'Novo escritório (Projeto Turnkey)',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '725m²',
     year: '2024',
-    description: 'Centro automotivo moderno'
+    description: 'Implantação do novo escritório de empresa de tecnologia em edifício Triple A. Ocupação híbrida com 145 colaboradores.'
   },
   '3.THOR': {
-    title: 'THOR',
-    category: 'Industrial',
-    location: 'São Paulo, SP',
-    area: '1.500 m²',
+    title: 'Funcionalidade (Projeto Turnkey)',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '230m²',
     year: '2024',
-    description: 'Complexo industrial'
+    description: 'Implantação do novo escritório de empresa química onde a funcionalidade era o principal desejo do cliente.'
   },
   '4.SAO CARLOS': {
-    title: 'SÃO CARLOS',
-    category: 'Comercial',
-    location: 'São Paulo, SP - Av. Paulista',
-    area: '2.000 m²',
+    title: 'Open Space',
+    category: 'Geral',
+    location: 'Paulista – São Paulo',
+    area: '230m²',
     year: '2024',
-    description: 'Edifício comercial na Av. Paulista'
+    description: 'Implantação de novo escritório da empresa.'
   },
   '5.MELHORAMENTOS': {
-    title: 'MELHORAMENTOS',
-    category: 'Industrial',
-    location: 'São Paulo, SP',
-    area: '3.000 m²',
+    title: 'Tradição e Modernidade (Projeto Turnkey)',
+    category: 'Geral',
+    location: 'Pinheiro – São Paulo',
+    area: '3.500m²',
     year: '2023',
-    description: 'Complexo industrial'
+    description: 'Implantação do novo escritório de empresa, aliando tradição e modernidade.'
   },
   '6.DECATHLON': {
-    title: 'DECATHLON',
-    category: 'Comercial',
-    location: 'São Paulo, SP',
-    area: '2.500 m²',
+    title: 'Versatilidade',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '',
     year: '2023',
-    description: 'Loja de artigos esportivos'
+    description: 'Implantação do novo escritório'
   },
   '7.AMBEV AC': {
-    title: 'AMBEV AC',
-    category: 'Industrial',
-    location: 'Acre',
-    area: '5.000 m²',
+    title: 'Identidade e Cultura Corporativa',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '',
     year: '2023',
-    description: 'Unidade industrial AMBEV'
+    description: 'Implantação de novo escritório'
   },
   '8.AMBEV RPO': {
-    title: 'AMBEV RPO',
-    category: 'Industrial',
-    location: 'Ribeirão Preto, SP',
-    area: '4.500 m²',
+    title: 'Identidade',
+    category: 'Geral',
+    location: 'Ribeirão Preto - São Paulo',
+    area: '',
     year: '2023',
-    description: 'Unidade industrial AMBEV'
+    description: 'Implantação de novo escritório'
   },
   '9.MERCADO ELETRÔNICO': {
-    title: 'MERCADO ELETRÔNICO',
-    category: 'Comercial',
-    location: 'São Paulo, SP',
-    area: '1.000 m²',
+    title: 'Novo escritório',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '',
     year: '2023',
-    description: 'Centro comercial eletrônico'
+    description: 'Implantação do novo escritório da empresa'
   },
   '11.ONOFRE': {
-    title: 'ONOFRE',
-    category: 'Comercial',
-    location: 'São Paulo, SP',
-    area: '600 m²',
+    title: 'Charme e elegância',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '',
     year: '2022',
-    description: 'Farmácia de alto padrão'
+    description: 'Implantação de biblioteca'
   },
   '12.IASP': {
-    title: 'IASP',
-    category: 'Institucional',
-    location: 'São Paulo, SP',
-    area: '1.800 m²',
+    title: 'Novo escritório',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '',
     year: '2022',
-    description: 'Instituto IASP'
+    description: 'Implantação do novo escritório da empresa'
   },
   '13.ORTHO': {
-    title: 'ORTHO',
-    category: 'Saúde',
-    location: 'São Paulo, SP',
-    area: '900 m²',
+    title: 'Áreas de atendimentos',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '',
     year: '2022',
-    description: 'Clínica ortopédica'
+    description: 'Implantação de nova clínica de atendimento'
   },
   '14.CIP CEA': {
-    title: 'CIP CEA',
-    category: 'Institucional',
-    location: 'São Paulo, SP',
-    area: '2.200 m²',
+    title: 'Área de staff',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '',
     year: '2022',
-    description: 'Centro institucional'
+    description: 'Expansão de nova área para colaboradores'
   },
   '15.DASA': {
-    title: 'DASA',
-    category: 'Saúde',
-    location: 'São Paulo, SP',
-    area: '1.500 m²',
+    title: 'Ambiente funcional',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '',
     year: '2022',
-    description: 'Laboratório DASA'
+    description: 'Retrofit em escritório existente'
   },
   '16.DPSP': {
-    title: 'DPSP',
-    category: 'Institucional',
-    location: 'São Paulo, SP',
-    area: '3.500 m²',
+    title: 'Espaços funcionais',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '',
     year: '2021',
-    description: 'Departamento de Polícia'
+    description: 'Implantação de novo escritório'
   },
   '17.FIAT': {
-    title: 'FIAT',
-    category: 'Comercial',
-    location: 'São Paulo, SP',
-    area: '2.000 m²',
+    title: 'Espaços descontraídos',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '',
     year: '2021',
-    description: 'Concessionária FIAT'
+    description: 'Implantação do novo escritório da empresa.'
   },
   '18.REED': {
-    title: 'REED',
-    category: 'Comercial',
-    location: 'São Paulo, SP',
-    area: '1.200 m²',
+    title: 'Cores da marca',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '',
     year: '2021',
-    description: 'Centro comercial'
+    description: 'Implantação de novo escritório'
   },
   '19.STOCHE FORBES': {
-    title: 'STOCHE FORBES',
-    category: 'Comercial',
-    location: 'São Paulo, SP',
-    area: '800 m²',
+    title: 'Luminosidade (Projeto Turnkey)',
+    category: 'Geral',
+    location: 'Faria Lima – São Paulo',
+    area: '230m²',
     year: '2021',
-    description: 'Escritório comercial'
+    description: 'Implantação de novo escritório de escritório em edifício Tripe A.'
   },
   'CAREPLUS': {
-    title: 'CAREPLUS',
-    category: 'Saúde',
-    location: 'São Paulo, SP',
-    area: '1.800 m²',
+    title: 'Modernidade',
+    category: 'Geral',
+    location: 'São Carlos – São Paulo',
+    area: '750m²',
     year: '2020',
-    description: 'Hospital Care Plus'
+    description: 'Implantação do novo escritório de empresa'
   },
   'GAVIOES': {
-    title: 'GAVIÕES',
-    category: 'Institucional',
-    location: 'São Paulo, SP',
-    area: '5.000 m²',
+    title: 'Nova unidade',
+    category: 'Geral',
+    location: 'Itapevi – São Paulo',
+    area: '1230m²',
     year: '2020',
-    description: 'Sede social'
+    description: 'Implantação de nova unidade de rede de academias.'
   },
   'Movile': {
-    title: 'Movile',
-    category: 'Comercial',
-    location: 'São Paulo, SP',
-    area: '1.500 m²',
+    title: 'Descompressão e criatividade',
+    category: 'Geral',
+    location: 'Rio de Janeiro',
+    area: '1000m²',
     year: '2020',
-    description: 'Escritório corporativo'
+    description: 'Implantação do novo escritório com muito espaço de integração.'
   },
   'PETZ': {
-    title: 'PETZ',
-    category: 'Comercial',
-    location: 'São Paulo, SP',
-    area: '1.000 m²',
+    title: 'Nova Unidade',
+    category: 'Geral',
+    location: 'Jaçanã – São Paulo',
+    area: '',
     year: '2019',
-    description: 'Loja pet shop'
+    description: 'Implantação de nova unidade de rede de varejo.'
   },
   'ZOOP RJ': {
-    title: 'ZOOP RJ',
-    category: 'Comercial',
-    location: 'Rio de Janeiro, RJ',
-    area: '900 m²',
+    title: 'Novo escritório',
+    category: 'Geral',
+    location: 'São Paulo',
+    area: '',
     year: '2019',
-    description: 'Escritório comercial'
+    description: 'Implantação do novo escritório da empresa'
   }
 };
 
