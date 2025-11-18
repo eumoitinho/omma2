@@ -10,6 +10,8 @@ module.exports = {
         pathname: '/images/**',
       },
     ],
+    unoptimized: true, // Desabilita otimização de imagens para reduzir tamanho do bundle
   },
+  output: 'standalone', // Otimiza o build para deployment
   // Additional Next.js configuration options can be added here
 };

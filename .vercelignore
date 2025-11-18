@@ -1,0 +1,7 @@
+# Ignore large project images from serverless function
+public/projetos/**/*.jpg
+public/projetos/**/*.jpeg
+public/projetos/**/*.png
+public/projetos/**/*.JPG
+public/projetos/**/*.JPEG
+public/projetos/**/*.PNG

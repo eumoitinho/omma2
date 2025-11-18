@@ -2,6 +2,10 @@ import { notFound } from 'next/navigation';
 import ProjectDetail from '@/components/obras/ProjectDetail';
 import { getLocalProjects, getProjectBySlug } from '@/lib/local-projects';
 
+// Força geração estática
+export const dynamic = 'force-static';
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   const projects = getLocalProjects();
   return projects.map((project) => ({
