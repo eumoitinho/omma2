@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import ProjectDetail from '@/components/obras/ProjectDetail';
 import { getObrasData } from '@/lib/sanity';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // Forçar geração estática
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -12,7 +14,8 @@ export async function generateStaticParams() {
   return projects.map((project: any) => ({ slug: project.slug }));
 }
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
+export default async function ProjectPage(props: any) {
+  const { params } = props;
   const { slug } = params;
   const data = await getObrasData();
   const projects = data?.projects || [];
