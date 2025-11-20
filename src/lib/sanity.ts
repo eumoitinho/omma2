@@ -244,15 +244,15 @@ export async function getObrasData() {
 
     if (typeof window === 'undefined') {
       try {
-        const fs = require('fs');
-        const path = require('path');
+        const fs = await import('fs');
+        const path = await import('path');
         const imagesMapPath = path.join(process.cwd(), 'scripts', 'images-map.json');
 
         if (fs.existsSync(imagesMapPath)) {
           const raw = fs.readFileSync(imagesMapPath, 'utf-8');
           imagesMap = JSON.parse(raw);
         }
-      } catch (err) {
+      } catch {
         imagesMap = {};
       }
     } else {
