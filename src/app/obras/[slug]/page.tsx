@@ -1,40 +1,39 @@
 import { notFound } from 'next/navigation';
 import ProjectDetail from '@/components/obras/ProjectDetail';
-import { getLocalProjects, getProjectBySlug } from '@/lib/local-projects';
+import { getObrasData } from '@/lib/sanity';
 
-// Força geração estática
+// Forçar geração estática
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
-export function generateStaticParams() {
-  const projects = getLocalProjects();
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
+export async function generateStaticParams() {
+  const data = await getObrasData();
+  const projects = data?.projects || [];
+  return projects.map((project: any) => ({ slug: project.slug }));
 }
 
-export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const localProject = getProjectBySlug(slug);
+export default async function ProjectPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const data = await getObrasData();
+  const projects = data?.projects || [];
 
-  if (!localProject) {
-    notFound();
-  }
+  const found = projects.find((p: any) => p.slug === slug);
 
-  // Converter para o formato esperado pelo ProjectDetail
+  if (!found) return notFound();
+
   const project = {
-    _id: localProject.id,
-    slug: localProject.slug,
-    client: localProject.title,
-    title: localProject.title,
-    category: localProject.category,
-    location: localProject.location,
-    area: localProject.area,
-    duration: localProject.duration,
-    year: localProject.year,
-    description: localProject.description,
-    thumbnail: localProject.thumbnail,
-    gallery: localProject.gallery,
+    _id: found._id,
+    slug: found.slug,
+    client: found.client || '',
+    title: found.title || '',
+    category: found.category || '',
+    location: found.location || '',
+    area: found.area || '',
+    duration: found.duration || '',
+    year: found.year || '',
+    description: found.description || '',
+    thumbnail: found.thumbnail || '',
+    gallery: found.gallery || [],
   };
 
   return (
