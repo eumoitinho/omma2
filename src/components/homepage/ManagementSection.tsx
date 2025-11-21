@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { urlFor } from '@/lib/sanity';
-import Image from 'next/image';
 import ImageWithFallback from '@/components/shared/ImageWithFallback';
 import type { SanityImage, PortableTextContent, PortableTextBlock } from '@/types/sanity';
 
