@@ -2,6 +2,7 @@
 import React from 'react';
 import { urlFor } from '@/lib/sanity';
 import Image from 'next/image';
+import ImageWithFallback from '@/components/shared/ImageWithFallback';
 import type { SanityImage, PortableTextContent, PortableTextBlock } from '@/types/sanity';
 
 interface ManagementSectionProps {
@@ -52,19 +53,19 @@ export default function ManagementSection({ data }: ManagementSectionProps) {
             <div className="grid grid-cols-6 sm:grid-cols-12 gap-4 sm:gap-6">
               <div className="col-span-6 sm:col-span-8">
                 <div className="relative aspect-[470/419] w-full overflow-hidden rounded-3xl ring-1 ring-gray-200 bg-white/90">
-                        <Image
-                        src={data.images && data.images[0] ? urlFor(data.images[0]).url() : '/6 AMBIENTES REFINADOS2.JPG'}
-                        alt="Ambiente corporativo"
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
+                        <ImageWithFallback
+                          src={data.images && data.images[0] ? urlFor(data.images[0]).url() : '/6 AMBIENTES REFINADOS2.JPG'}
+                          alt="Ambiente corporativo"
+                          fill
+                          className="object-cover"
+                          unoptimized
+                        />
                 </div>
               </div>
               <div className="col-span-6 sm:col-span-4">
                 <div className="relative aspect-[326/289] w-full overflow-hidden rounded-3xl ring-1 ring-gray-200 bg-white/90">
         
-                    <Image
+                    <ImageWithFallback
                       src={data.images && data.images[1] ? urlFor(data.images[1]).url() : '/7 ESPACOS ESCALAVEIS2.JPG'}
                       alt="Ambiente corporativo" 
                       fill
@@ -76,13 +77,13 @@ export default function ManagementSection({ data }: ManagementSectionProps) {
               </div>
               <div className="col-span-6 sm:col-span-5 sm:col-start-5">
                 <div className="relative aspect-square w-full overflow-hidden rounded-3xl ring-1 ring-gray-200 bg-white/90">
-                    <Image
+                    <ImageWithFallback
                       src={data.images && data.images[2] ? urlFor(data.images[2]).url() : '/10 ESPAÇOS ATRATATIVOS.JPG'}
                       alt="Ambiente corporativo"
                       fill
                       className="object-cover"
                       unoptimized
-            />
+                    />
                 </div>
               </div>
             </div>
