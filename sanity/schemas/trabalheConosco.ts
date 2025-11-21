@@ -54,20 +54,20 @@ export default defineType({
                   { title: 'Book (Aprendizado)', value: 'book' },
                 ],
               },
-              validation: (Rule: any) => Rule.required(),
+              validation: (Rule) => Rule.required(),
             },
             {
               name: 'title',
               title: 'Título',
               type: 'string',
-              validation: (Rule: any) => Rule.required(),
+              validation: (Rule) => Rule.required(),
             },
             {
               name: 'description',
               title: 'Descrição',
               type: 'text',
               rows: 3,
-              validation: (Rule: any) => Rule.required(),
+              validation: (Rule) => Rule.required(),
             },
           ],
           preview: {

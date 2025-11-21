@@ -58,20 +58,20 @@ export default defineType({
               name: 'phase',
               title: 'Label da Fase (ex: FASE 1)',
               type: 'string',
-              validation: (Rule: any) => Rule.required(),
+              validation: (Rule) => Rule.required(),
             },
             {
               name: 'title',
               title: 'Título',
               type: 'string',
-              validation: (Rule: any) => Rule.required(),
+              validation: (Rule) => Rule.required(),
             },
             {
               name: 'items',
               title: 'Itens',
               type: 'array',
               of: [{ type: 'string' }],
-              validation: (Rule: any) => Rule.required().min(1),
+              validation: (Rule) => Rule.required().min(1),
             },
           ],
           preview: {

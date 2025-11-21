@@ -105,7 +105,7 @@ export default defineType({
               options: { hotspot: true },
             },
           ],
-          validation: (Rule: any) => Rule.max(3).min(3),
+          validation: (Rule) => Rule.max(3).min(3),
           description: 'Adicione exatamente 3 imagens para o grid',
         },
         {
@@ -149,14 +149,14 @@ export default defineType({
                   name: 'title',
                   title: 'Título do Setor',
                   type: 'string',
-                  validation: (Rule: any) => Rule.required(),
+                  validation: (Rule) => Rule.required(),
                 },
                 {
                   name: 'description',
                   title: 'Descrição',
                   type: 'text',
                   rows: 3,
-                  validation: (Rule: any) => Rule.required(),
+                  validation: (Rule) => Rule.required(),
                 },
                 {
                   name: 'image',
@@ -386,7 +386,7 @@ export default defineType({
               options: { hotspot: true },
             },
           ],
-          validation: (Rule: any) => Rule.max(2),
+          validation: (Rule) => Rule.max(2),
         },
         {
           name: 'ctaText',

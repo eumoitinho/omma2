@@ -37,13 +37,13 @@ export default defineType({
               name: 'label',
               title: 'Label',
               type: 'string',
-              validation: (Rule: any) => Rule.required(),
+              validation: (Rule) => Rule.required(),
             },
             {
               name: 'email',
               title: 'E-mail',
               type: 'string',
-              validation: (Rule: any) => Rule.required().email(),
+              validation: (Rule) => Rule.required().email(),
             },
           ],
           preview: {
