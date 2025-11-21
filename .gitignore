@@ -32,3 +32,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Sanity Studio build artifacts and local files
+/dist/
+/.sanity/
+sanity/.sanity/
+sanity/node_modules/
+
+# Ignore local sanity build output if present
+sanity/dist/
