@@ -235,9 +235,10 @@ export async function getObrasData() {
     }
   `);
   // Forçar uso dos projetos configurados localmente (substitui dados do Sanity)
-  // Isso garante que os títulos fornecidos no conteúdo sejam exibidos
-  // e que não apareçam nomes de marcas antigas.
-  const forceUseLocalProjects = true;
+  // Por padrão isso é DESLIGADO em produção — use a variável de ambiente
+  // `FORCE_LOCAL_PROJECTS=true` somente durante desenvolvimento ou se
+  // você realmente precisar servir imagens a partir de `public/projetos`.
+  const forceUseLocalProjects = process.env.FORCE_LOCAL_PROJECTS === 'true';
 
   if (forceUseLocalProjects) {
     let imagesMap: Record<string, string[]> = {};
