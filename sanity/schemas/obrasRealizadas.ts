@@ -76,6 +76,21 @@ export default defineType({
               ],
             },
             {
+              name: 'fallbackImage',
+              title: 'Fallback Image (caminho local)',
+              type: 'string',
+              description: 'Caminho relativo para imagem fallback (usado por scripts locais).',
+            },
+            {
+              name: 'localImages',
+              title: 'Local Images (caminhos locais)',
+              type: 'array',
+              of: [
+                { type: 'string' }
+              ],
+              description: 'Lista de caminhos locais para imagens (apenas para uso interno).',
+            },
+            {
               name: 'architect',
               title: 'Arquitetura',
               type: 'string',
