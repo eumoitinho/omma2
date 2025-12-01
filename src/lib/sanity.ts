@@ -230,7 +230,7 @@ export async function getObrasData() {
         category,
         fallbackImage,
         localImages,
-        images
+        images[] { asset->{_id, url} }
       }
     }
   `);
@@ -317,7 +317,7 @@ export async function getObrasData() {
   }
 
   // Mapear projetos do Sanity para o formato esperado
-  const projects = sanityData.projects.map((project: {
+  const projects = (sanityData?.projects || []).map((project: {
     clientName?: string;
     location?: string;
     area?: string;
@@ -325,9 +325,16 @@ export async function getObrasData() {
     category?: string;
     fallbackImage?: string;
     localImages?: string[];
+    images?: Array<{ asset?: { url?: string } }>;
   }, index: number) => {
-    // Usar first image from localImages se disponível
-    const thumbnail = project.localImages?.[0] || project.fallbackImage || '';
+    // Preferir imagens hospedadas no Sanity (images[].asset.url)
+    const firstSanityImage = project.images?.[0]?.asset?.url;
+    const thumbnail = firstSanityImage || project.localImages?.[0] || project.fallbackImage || '';
+
+    // Gallery: priorizar imagens do Sanity, se existirem; caso contrário usar localImages
+    const gallery = (project.images && project.images.length > 0)
+      ? project.images.map(img => img?.asset?.url).filter(Boolean)
+      : (project.localImages || []);
 
     return {
       _id: String(index + 1),
@@ -339,7 +346,7 @@ export async function getObrasData() {
       area: project.area || '',
       description: project.description?.[0]?.children?.[0]?.text || '',
       thumbnail: thumbnail,
-      gallery: project.localImages || [],
+      gallery: gallery,
     };
   });
 
