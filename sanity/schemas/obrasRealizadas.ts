@@ -101,12 +101,16 @@ export default defineType({
               title: 'clientName',
               subtitle: 'location',
               media: 'images.0',
+              fallback: 'fallbackImage',
+              localImage: 'localImages.0',
             },
-            prepare({ title, subtitle, media }) {
+            prepare({ title, subtitle, media, fallback, localImage }) {
               return {
                 title: title || 'Projeto sem nome',
                 subtitle: subtitle || 'Local não definido',
                 media,
+                // NOTE: `fallback` and `localImage` are selected for debugging
+                // and can be used to implement a visual fallback in the Studio.
               };
             },
           },
