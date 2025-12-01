@@ -45,6 +45,10 @@ export default async function ObrasRealizadasPage() {
               {data.projects.map((project: Project, index: number) => {
                 const isFeatured = index === 0;
 
+                // Determinar a URL da imagem: priorizar image do Sanity, senão thumbnail/gallery locais
+                const sanityImage = project.images && project.images[0] ? project.images[0] : null;
+                const imageSrc = sanityImage ? urlFor(sanityImage).url() : (project.thumbnail || (project.gallery && project.gallery[0]) || '');
+
                 return (
                   <section
                     key={index}
@@ -54,9 +58,10 @@ export default async function ObrasRealizadasPage() {
                         : 'col-span-1 md:col-span-3 lg:col-span-4 min-h-[200px] sm:min-h-[240px] md:min-h-[260px]'
                     }`}
                   >
-                    {project.images && project.images[0] ? (
+                    {imageSrc ? (
+                      // Usar Next/Image quando possível (URL gerada pelo builder ou caminho local em `public/`)
                       <Image
-                        src={urlFor(project.images[0]).url()}
+                        src={imageSrc}
                         alt={project.clientName || 'Projeto OMMA'}
                         fill
                         className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
