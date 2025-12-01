@@ -139,7 +139,11 @@ export interface Project {
   area?: string;
   duration?: string;
   description?: PortableTextContent;
-  images: SanityImage[];
+  // `images` can be the Sanity image shape or objects with `asset.url` (mapped in data layer)
+  images?: Array<SanityImage | { asset?: { url?: string } }>;
+  // Local fallback fields populated by the data mapping
+  thumbnail?: string;
+  gallery?: string[];
   architect?: string;
   category?: string;
   year?: number;
