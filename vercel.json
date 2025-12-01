@@ -1,9 +1,0 @@
-{
-  "functions": {
-    "app/obras/[slug]/page.tsx": {
-      "maxDuration": 10,
-      "memory": 1024
-    }
-  },
-  "outputDirectory": ".next"
-}
