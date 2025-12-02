@@ -3,6 +3,24 @@ import React, { useState } from 'react';
 import ImageWithFallback from '@/components/shared/ImageWithFallback';
 import Link from 'next/link';
 import { ArrowLeft, MapPin, Maximize2, X } from 'lucide-react';
+import { urlFor } from '@/lib/sanity';
+import type { SanityImage } from '@/types/sanity';
+
+// Helper para obter URL de imagem (Sanity ou string local)
+function getImageUrl(image: SanityImage | string | undefined): string {
+  if (!image) return '';
+  if (typeof image === 'string') return image;
+  // Se for objeto Sanity com asset.url direto
+  if (image.asset && typeof image.asset === 'object' && 'url' in image.asset) {
+    return (image.asset as { url: string }).url;
+  }
+  // Se for referência Sanity, usar urlFor
+  try {
+    return urlFor(image).url();
+  } catch {
+    return '';
+  }
+}
 
 interface Project {
   _id: string;
@@ -15,8 +33,8 @@ interface Project {
   duration: string;
   year?: string;
   description?: string;
-  thumbnail: string;
-  gallery: string[];
+  thumbnail: string | SanityImage;
+  gallery: (string | SanityImage)[];
 }
 
 interface ProjectDetailProps {
@@ -90,7 +108,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
             <div className="relative">
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-amber-400/10">
                 <ImageWithFallback
-                  src={project.thumbnail}
+                  src={getImageUrl(project.thumbnail)}
                   alt={project.title}
                   fill
                   className="object-cover"
@@ -117,8 +135,8 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                 className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-amber-400/40 transition-all duration-300 cursor-pointer"
               >
                 <ImageWithFallback
-                  src={image}
-                  alt={`${project.client} - Foto ${index + 1}`}
+                  src={getImageUrl(image)}
+                  alt={`${project.client || project.title} - Foto ${index + 1}`}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -186,8 +204,8 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
           {/* Image */}
           <div className="relative w-full h-full max-w-6xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
             <ImageWithFallback
-              src={project.gallery[selectedImage]}
-              alt={`${project.client} - Foto ${selectedImage + 1}`}
+              src={getImageUrl(project.gallery[selectedImage])}
+              alt={`${project.client || project.title} - Foto ${selectedImage + 1}`}
               fill
               className="object-contain"
               priority

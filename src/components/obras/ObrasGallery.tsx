@@ -20,6 +20,22 @@ interface Project {
   description?: string;
 }
 
+// Helper para obter URL de imagem (Sanity ou string local)
+function getImageUrl(image: SanityImage | string | undefined): string {
+  if (!image) return '';
+  if (typeof image === 'string') return image;
+  // Se for objeto Sanity com asset.url direto
+  if (image.asset && typeof image.asset === 'object' && 'url' in image.asset) {
+    return (image.asset as { url: string }).url;
+  }
+  // Se for referência Sanity, usar urlFor
+  try {
+    return urlFor(image).url();
+  } catch {
+    return '';
+  }
+}
+
 interface ObrasGalleryProps {
   data: {
     title?: string;
@@ -86,9 +102,9 @@ export default function ObrasGallery({ data }: ObrasGalleryProps) {
             >
               {/* Large Image */}
               <div className="relative aspect-[16/10] overflow-hidden">
-                {project.thumbnail ? (
+                {getImageUrl(project.thumbnail) ? (
                   <ImageWithFallback
-                    src={typeof project.thumbnail === 'string' ? project.thumbnail : urlFor(project.thumbnail).url()}
+                    src={getImageUrl(project.thumbnail)}
                     alt={project.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
