@@ -246,22 +246,13 @@ export async function getObrasData() {
   const useLocalProjects = process.env.FORCE_LOCAL_PROJECTS === 'true' || !sanityHasValidData;
 
   if (useLocalProjects) {
+    // Importar imagens-map diretamente como módulo (funciona em produção na Vercel)
     let imagesMap: Record<string, string[]> = {};
-
-    if (typeof window === 'undefined') {
-      try {
-        const fs = await import('fs');
-        const path = await import('path');
-        const imagesMapPath = path.join(process.cwd(), 'scripts', 'images-map.json');
-
-        if (fs.existsSync(imagesMapPath)) {
-          const raw = fs.readFileSync(imagesMapPath, 'utf-8');
-          imagesMap = JSON.parse(raw);
-        }
-      } catch {
-        imagesMap = {};
-      }
-    } else {
+    try {
+      // Usar import estático para funcionar em serverless
+      const imagesMapModule = await import('../../scripts/images-map.json');
+      imagesMap = imagesMapModule.default || imagesMapModule;
+    } catch {
       imagesMap = {};
     }
 
