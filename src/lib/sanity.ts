@@ -234,13 +234,18 @@ export async function getObrasData() {
       }
     }
   `);
-  // Forçar uso dos projetos configurados localmente (substitui dados do Sanity)
-  // Por padrão isso é DESLIGADO em produção — use a variável de ambiente
-  // `FORCE_LOCAL_PROJECTS=true` somente durante desenvolvimento ou se
-  // você realmente precisar servir imagens a partir de `public/projetos`.
-  const forceUseLocalProjects = process.env.FORCE_LOCAL_PROJECTS === 'true';
+  
+  // Verificar se Sanity tem dados válidos (projetos com imagens)
+  const sanityHasValidData = sanityData?.projects?.some((p: { images?: Array<{ asset?: { url?: string } }> }) => 
+    p.images && p.images.length > 0 && p.images[0]?.asset?.url
+  );
+  
+  // Usar projetos locais se:
+  // 1. FORCE_LOCAL_PROJECTS=true, OU
+  // 2. Sanity não tem dados válidos (sem projetos ou sem imagens)
+  const useLocalProjects = process.env.FORCE_LOCAL_PROJECTS === 'true' || !sanityHasValidData;
 
-  if (forceUseLocalProjects) {
+  if (useLocalProjects) {
     let imagesMap: Record<string, string[]> = {};
 
     if (typeof window === 'undefined') {
